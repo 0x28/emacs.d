@@ -1,0 +1,5 @@
+*
+!.gitignore
+!settings.org
+!init.el
+!.clang-format
