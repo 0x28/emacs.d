@@ -1,0 +1,309 @@
+#+TITLE: emacs settings
+* package setup
+  Bootstraps use-package and sets the repositories.
+  #+BEGIN_SRC emacs-lisp :results silent
+    ;; set up package sources
+    (require 'package)
+
+    (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+			     ("melpa" . "https://melpa.org/packages/")))
+    (package-initialize)
+
+    ;; bootstrap `use-package'
+    (unless (package-installed-p 'use-package)
+      (package-refresh-contents)
+      (package-install 'use-package))
+
+    ;; require `use-package' during compilation
+    ;; (eval-when-compile
+    ;;   (require 'use-package))
+  #+END_SRC
+
+* company
+  Generic settings for the completion framework company.
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package company
+      :ensure t
+      :config
+      (add-hook 'after-init-hook #'global-company-mode)
+      (setf company-idle-delay 0.1)
+      (setf company-minimum-prefix-length 1))
+  #+END_SRC
+
+* helm
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package helm
+      :ensure t
+      :bind (("M-x" . helm-M-x)
+             ("C-x C-f" . helm-find-files)
+             ("C-c f" . helm-occur)
+             ("C-c d" . helm-semantic-or-imenu)
+             ("C-c s" . toggle-eshell)
+             ("C-c r" . helm-recentf)
+             ("C-c k" . helm-show-kill-ring))
+      :config
+      (require 'helm-config)
+      (require 'helm-files)
+      (helm-mode 1)
+      (define-key helm-find-files-map "\t" 'helm-execute-persistent-action))
+
+    (use-package helm-descbinds
+      :ensure t
+      :config
+      (require 'helm-descbinds)
+      (helm-descbinds-mode))
+
+    (use-package helm-gtags
+      :ensure t
+      :defer 30
+      :config
+      (setq helm-gtags-maximum-candidates 1000)
+      (define-key evil-normal-state-map (kbd ", g s") #'helm-gtags-select))
+  #+END_SRC
+
+* evil
+  Vim emulation for emacs.
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package evil
+      :ensure t
+      :config
+      (bind-keys
+       :map evil-normal-state-map
+       ("SPC e i" . edit-init-file)
+       ("SPC q n" . save-buffers-kill-emacs))
+      :config (evil-mode))
+
+    (use-package evil-mc
+      :ensure t
+      :config
+      (global-evil-mc-mode 1))
+  #+END_SRC
+
+* ace-jump
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package ace-jump-mode
+      :ensure t
+      :defer t
+      :bind (:map evil-normal-state-map
+                  (", j" . ace-jump-word-mode)))
+  #+END_SRC
+
+* which key
+  #+BEGIN_SRC emacs-lisp :results silent
+    ;; show keybindings while typing
+    (use-package which-key
+      :ensure t
+      :config
+      (which-key-mode)
+      (setf which-key-idle-delay 0.2))
+  #+END_SRC
+
+* flycheck
+  #+BEGIN_SRC emacs-lisp :results silent
+    ;; syntax checking
+    (use-package flycheck
+      :ensure t
+      :config
+      (global-flycheck-mode t))
+  #+END_SRC
+
+* yasnippet
+  #+BEGIN_SRC emacs-lisp :results silent
+    ;; snippet completion
+    (use-package yasnippet
+      :ensure t
+      :defer t
+      :bind ("C-c y" . yas-insert-snippet)
+      :config
+      (yas-global-mode 1))
+  #+END_SRC
+
+* smartparens
+  #+BEGIN_SRC emacs-lisp :results silent
+    ;; better bracket handling
+    (use-package smartparens
+      :ensure t
+      :config
+      (require 'smartparens-config)
+      (smartparens-global-mode 1))
+  #+END_SRC
+
+* theme
+  #+BEGIN_SRC emacs-lisp :results silent
+    ;; theme settings
+    (use-package monokai-theme
+      :ensure t
+      :config
+      (load-theme 'monokai t))
+  #+END_SRC
+
+* eshell
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package eshell
+      :ensure t
+      :config
+      (add-hook 'eshell-mode-hook (lambda ()
+				    (setq-local global-hl-line-mode nil)
+				    (setq-local company-idle-delay nil)))
+      (setf eshell-cmpl-ignore-case t))
+
+    (defvar toggle-eshell-window nil)
+
+    (defun toggle-eshell ()
+      "Open a new eshell window or switch to an existing one."
+      (interactive)
+      (cond ((eq (selected-window) toggle-eshell-window)
+	     (delete-window)
+	     (setf toggle-eshell-window nil))
+	    ((window-live-p toggle-eshell-window)
+	     (select-window toggle-eshell-window))
+	    (t
+	     (setf toggle-eshell-window (split-window (frame-root-window) 30 'below))
+	     (select-window toggle-eshell-window)
+	     (eshell))))
+
+  #+END_SRC
+
+* whitespace
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package whitespace
+      :ensure t
+      :config
+      (global-whitespace-mode 1)
+      (setq-default
+       fill-column 80
+       whitespace-line-column fill-column
+       whitespace-style '(face trailing lines-tail)))
+  #+END_SRC
+
+* C/C++ config
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package clang-format
+      :ensure t
+      :defer t)
+
+    (use-package cc-mode
+      :bind (:map c-mode-map
+             ("C-c i" . clang-format-buffer)))
+
+    (setq-default c-basic-offset 4)
+  #+END_SRC
+
+* LaTeX config
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package tex-site
+      :ensure auctex
+      :config
+      (setq-default TeX-view-program-selection
+                    (quote (((output-dvi has-no-display-manager) "dvi2tty")
+                            ((output-dvi style-pstricks) "dvips and gv")
+                            (output-pdf "Okular")
+                            (output-dvi "xdvi")
+                            (output-pdf "Evince")
+                            (output-html "xdg-open")))))
+  #+END_SRC
+
+* sane defaults
+  #+BEGIN_SRC emacs-lisp :results silent
+    ;; don't show a startup message
+    (setq inhibit-startup-message t)
+
+    ;; no menu-bar
+    (menu-bar-mode -1)
+
+    ;; no tool-bar
+    (tool-bar-mode -1)
+
+    ;; highlight the current line
+    (global-hl-line-mode)
+
+    ;; ask "(y/n)?" and not "(yes/no)?"
+    (fset #'yes-or-no-p #'y-or-n-p)
+
+    ;; more information on describe-key
+    (define-key (current-global-map) (kbd "C-h c") #'describe-key)
+
+    ;; line numbers
+    (add-hook 'prog-mode-hook 'linum-mode)
+
+    ;; no blinking cursor
+    (blink-cursor-mode -1)
+
+    ;; no scroll bar
+    (scroll-bar-mode -1)
+
+    ;; start emacs maximized
+    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+    ;; use dejavu font
+    (add-to-list 'default-frame-alist
+    '(font . "DejaVu Sans Mono-11"))
+
+    ;; column numbers
+    (column-number-mode 1)
+
+    ;; save backups in .emacs.d
+    (setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
+
+    ;; no tabs
+    (setq-default indent-tabs-mode nil)
+
+    ;; update files when they change on disk
+    (global-auto-revert-mode 1)
+
+    ;; save more recent files
+    (require 'recentf)
+    (setq recentf-max-saved-items 100)
+
+    ;; ask before killing emacs
+    (setq confirm-kill-emacs #'y-or-n-p)
+  #+END_SRC
+
+* more keybindings
+  #+BEGIN_SRC emacs-lisp :results silent
+    (defun edit-init-file ()
+      "Open the init file."
+      (interactive)
+      (find-file (expand-file-name "settings.org" user-emacs-directory)))
+
+    (defun indent-buffer ()
+      "Indent the current buffer."
+      (interactive)
+      (save-excursion
+        (delete-trailing-whitespace)
+        (unless (string-match (rx string-start
+                                  "makefile"
+                                  (* anything)
+                                  "mode"
+                                  string-end)
+                              (symbol-name major-mode))
+          (indent-region (point-min) (point-max) nil)
+          (untabify (point-min) (point-max)))))
+
+    ;; from https://gist.github.com/3402786
+    (defun toggle-maximize-buffer ()
+      "Maximize buffer"
+      (interactive)
+      (if (and (= 1 (length (window-list)))
+               (assoc ?_ register-alist))
+          (jump-to-register ?_)
+        (progn
+          (window-configuration-to-register ?_)
+          (delete-other-windows))))
+
+    (global-set-key (kbd "C-x 1") #'toggle-maximize-buffer)
+    (define-key evil-normal-state-map (kbd "SPC f f") #'helm-find-files)
+    (global-set-key (kbd "C-c i") #'indent-buffer)
+    (global-set-key (kbd "C-x k") #'kill-this-buffer)
+    (global-set-key (kbd "C-c m") #'man)
+    (global-set-key (kbd "C-x C-b") (lambda ()
+                                      (interactive)
+                                      (ibuffer t)))
+
+    ;; define ", v" as alias for "C-x v"
+    (define-key evil-normal-state-map (kbd ", v")
+      (lookup-key (current-global-map) (kbd "C-x v")))
+  #+END_SRC
+
+
+
