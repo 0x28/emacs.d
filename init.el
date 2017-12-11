@@ -2,9 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 (require 'org)
-(org-babel-load-file
- (expand-file-name "settings.org"
-		   user-emacs-directory))
+
+(let ((gc-cons-threshold most-positive-fixnum))
+  (org-babel-load-file
+   (expand-file-name "settings.org"
+                     user-emacs-directory)))
 
 (provide 'init)
 

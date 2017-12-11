@@ -257,6 +257,16 @@
 
     ;; ask before killing emacs
     (setq confirm-kill-emacs #'y-or-n-p)
+
+    ;; no garbage collection in minibuffer
+    (defun gc-minibuffer-setup-hook ()
+      (setq gc-cons-threshold most-positive-fixnum))
+
+    (defun gc-minibuffer-exit-hook ()
+      (setq gc-cons-threshold 800000))
+
+    (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
+    (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
   #+END_SRC
 
 * more keybindings
