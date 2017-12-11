@@ -195,6 +195,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package tex-site
       :ensure auctex
+      :hook (LaTeX-mode . TeX-source-correlate-mode)
       :config
       (setq-default TeX-view-program-selection
                     (quote (((output-dvi has-no-display-manager) "dvi2tty")
