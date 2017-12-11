@@ -261,6 +261,9 @@
     ;; ask before killing emacs
     (setq confirm-kill-emacs #'y-or-n-p)
 
+    ;; show parentheses
+    (show-paren-mode)
+
     ;; no garbage collection in minibuffer
     (defun gc-minibuffer-setup-hook ()
       (setq gc-cons-threshold most-positive-fixnum))
@@ -317,6 +320,4 @@
     (define-key evil-normal-state-map (kbd ", v")
       (lookup-key (current-global-map) (kbd "C-x v")))
   #+END_SRC
-
-
 
