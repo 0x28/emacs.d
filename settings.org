@@ -184,6 +184,8 @@
 
     (use-package cc-mode
       :bind (:map c-mode-map
+             ("C-c i" . clang-format-buffer))
+      :bind (:map c++-mode-map
              ("C-c i" . clang-format-buffer)))
 
     (setq-default c-basic-offset 4)
