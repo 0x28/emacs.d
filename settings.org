@@ -49,8 +49,8 @@
 
     (use-package helm-descbinds
       :ensure t
+      :defer 5
       :config
-      (require 'helm-descbinds)
       (helm-descbinds-mode))
 
     (use-package helm-gtags
@@ -66,15 +66,18 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package evil
       :ensure t
-      :config
-      (bind-keys
-       :map evil-normal-state-map
+      :preface
+      (require 'evil) ;; needed for :bind <map>
+      :bind
+      (:map evil-normal-state-map
        ("SPC e i" . edit-init-file)
        ("SPC q n" . save-buffers-kill-emacs))
-      :config (evil-mode))
+      :config
+      (evil-mode))
 
     (use-package evil-mc
       :ensure t
+      :defer 5
       :config
       (global-evil-mc-mode 1))
   #+END_SRC
@@ -85,7 +88,7 @@
       :ensure t
       :defer t
       :bind (:map evil-normal-state-map
-                  (", j" . ace-jump-word-mode)))
+                  ("SPC j" . ace-jump-word-mode)))
   #+END_SRC
 
 * which key
@@ -255,7 +258,6 @@
     (global-auto-revert-mode 1)
 
     ;; save more recent files
-    (require 'recentf)
     (setq recentf-max-saved-items 100)
 
     ;; ask before killing emacs

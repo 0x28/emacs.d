@@ -1,9 +1,12 @@
 ;;; init.el -- test
 ;;; Commentary:
 ;;; Code:
-(require 'org)
 
-(let ((gc-cons-threshold most-positive-fixnum))
+
+;; (package-initialize)
+
+(let ((gc-cons-threshold most-positive-fixnum)
+      (file-name-handler-alist nil))
   (org-babel-load-file
    (expand-file-name "settings.org"
                      user-emacs-directory)))
