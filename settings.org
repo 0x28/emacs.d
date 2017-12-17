@@ -49,7 +49,6 @@
 
     (use-package helm-descbinds
       :ensure t
-      :defer 5
       :config
       (helm-descbinds-mode))
 
@@ -275,6 +274,10 @@
 
     (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
     (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
+
+    ;; hide minor-modes in mode-line
+    (setq mode-line-modes '(:eval (propertize " [%m]"
+                                              'face 'font-lock-constant-face)))
   #+END_SRC
 
 * more keybindings
