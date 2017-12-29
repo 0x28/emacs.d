@@ -141,10 +141,10 @@
 * theme
   #+BEGIN_SRC emacs-lisp :results silent
     ;; theme settings
-    (use-package monokai-theme
+    (use-package darktooth-theme
       :ensure t
       :config
-      (load-theme 'monokai t))
+      (load-theme 'darktooth t))
   #+END_SRC
 
 * eshell
