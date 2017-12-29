@@ -207,6 +207,8 @@
       :ensure auctex
       :hook (LaTeX-mode . TeX-source-correlate-mode)
       :config
+      (setenv "XLIB_SKIP_ARGB_VISUALS" nil)
+      (setq font-latex-fontify-sectioning 1.0)
       (setq-default TeX-view-program-selection
                     (quote (((output-dvi has-no-display-manager) "dvi2tty")
                             ((output-dvi style-pstricks) "dvips and gv")
