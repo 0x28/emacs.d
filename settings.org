@@ -250,7 +250,7 @@
 
     ;; use dejavu font
     (add-to-list 'default-frame-alist
-    '(font . "DejaVu Sans Mono-11"))
+    '(font . "DejaVu Sans Mono-12"))
 
     ;; column numbers
     (column-number-mode 1)
