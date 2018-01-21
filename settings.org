@@ -157,11 +157,13 @@
 * eshell
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package eshell
+      :after evil
       :ensure t
       :config
+      (evil-set-initial-state 'eshell-mode 'emacs)
       (add-hook 'eshell-mode-hook (lambda ()
-				    (setq-local global-hl-line-mode nil)
-				    (setq-local company-idle-delay nil)))
+                                    (setq-local global-hl-line-mode nil)
+                                    (setq-local company-idle-delay nil)))
       (setf eshell-cmpl-ignore-case t))
 
     (defvar toggle-eshell-window nil)
