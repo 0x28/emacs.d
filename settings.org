@@ -133,7 +133,8 @@
   Also load the snippets.
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package yasnippet-snippets
-      :ensure t)
+      :ensure t
+      :defer t)
   #+END_SRC
 
 * smartparens
