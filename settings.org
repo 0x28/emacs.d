@@ -340,8 +340,8 @@
                                       (interactive)
                                       (ibuffer t)))
 
-    ;; define ", v" as alias for "C-x v"
-    (define-key evil-normal-state-map (kbd ", v")
+    ;; define "SPC v" as alias for "C-x v"
+    (define-key evil-normal-state-map (kbd "SPC v")
       (lookup-key (current-global-map) (kbd "C-x v")))
   #+END_SRC
 
