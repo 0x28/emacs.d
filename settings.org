@@ -217,6 +217,13 @@
                             (output-pdf "Evince")
                             (output-html "xdg-open")))))
   #+END_SRC
+  Align the equal signs in bibtex
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package bibtex
+      :ensure t
+      :config
+      (setq bibtex-align-at-equal-sign t))
+  #+END_SRC
 
 * sane defaults
   #+BEGIN_SRC emacs-lisp :results silent
