@@ -72,10 +72,6 @@
             ("SPC e i" . edit-init-file)
             ("SPC q n" . save-buffers-kill-emacs))
       :config
-      ;; hybrid-mode as in spacemacs
-      (define-key evil-emacs-state-map [escape] 'evil-normal-state)
-      (setq evil-emacs-state-cursor '(bar . 2))
-      (defalias 'evil-insert-state 'evil-emacs-state)
       (evil-mode))
 
     (use-package evil-collection
