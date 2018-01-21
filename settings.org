@@ -65,7 +65,8 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package evil
       :ensure t
-      :preface
+      :init
+      (setq evil-want-integration nil)
       (require 'evil) ;; needed for :bind <map>
       :bind
       (:map evil-normal-state-map
@@ -79,6 +80,7 @@
       (evil-mode))
 
     (use-package evil-collection
+      :after evil
       :ensure t
       :init (evil-collection-init))
 
