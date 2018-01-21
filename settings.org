@@ -259,9 +259,9 @@
     ;; start emacs maximized
     (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-    ;; use dejavu font
+    ;; use hack font
     (add-to-list 'default-frame-alist
-    '(font . "DejaVu Sans Mono-12"))
+    '(font . "Hack-13"))
 
     ;; column numbers
     (column-number-mode 1)
