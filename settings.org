@@ -199,9 +199,11 @@
 
     (use-package cc-mode
       :bind (:map c-mode-map
-             ("C-c i" . clang-format-buffer))
+             ("C-c i" . clang-format-buffer)
+             ("C-c C-c" . comment-dwim))
       :bind (:map c++-mode-map
-             ("C-c i" . clang-format-buffer)))
+             ("C-c i" . clang-format-buffer)
+             ("C-c C-c" . comment-dwim)))
 
     (setq-default c-basic-offset 4)
   #+END_SRC
