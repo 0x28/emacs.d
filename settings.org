@@ -70,8 +70,14 @@
       :bind
       (:map evil-normal-state-map
             ("SPC e i" . edit-init-file)
-            ("SPC q n" . save-buffers-kill-emacs))
+            ("SPC q n" . save-buffers-kill-emacs)
+            ("SPC f f" . helm-find-files)
+            ("SPC f d" . (lambda () (interactive)
+                           (dired default-directory))))
       :config
+      ;; define "SPC v" as alias for "C-x v"
+      (define-key evil-normal-state-map (kbd "SPC v")
+        (lookup-key (current-global-map) (kbd "C-x v")))
       (evil-mode))
 
     (use-package evil-collection
@@ -309,6 +315,7 @@
   #+END_SRC
 
 * more keybindings
+  Small functions used in the keybindings.
   #+BEGIN_SRC emacs-lisp :results silent
     (defun edit-init-file ()
       "Open the init file."
@@ -339,18 +346,16 @@
         (progn
           (window-configuration-to-register ?_)
           (delete-other-windows))))
+  #+END_SRC
+
+  Emacs C-x and C-c keybindings.
+  #+BEGIN_SRC emacs-lisp :results silent
 
     (global-set-key (kbd "C-x 1") #'toggle-maximize-buffer)
-    (define-key evil-normal-state-map (kbd "SPC f f") #'helm-find-files)
     (global-set-key (kbd "C-c i") #'indent-buffer)
     (global-set-key (kbd "C-x k") #'kill-this-buffer)
     (global-set-key (kbd "C-c m") #'man)
     (global-set-key (kbd "C-x C-b") (lambda ()
                                       (interactive)
                                       (ibuffer t)))
-
-    ;; define "SPC v" as alias for "C-x v"
-    (define-key evil-normal-state-map (kbd "SPC v")
-      (lookup-key (current-global-map) (kbd "C-x v")))
   #+END_SRC
-
