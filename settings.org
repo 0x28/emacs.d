@@ -63,17 +63,19 @@
   Vim emulation for emacs.
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package evil
+      :after helm
       :ensure t
       :init
       (setq evil-want-integration nil)
       (require 'evil) ;; needed for :bind <map>
       :bind*
       (:map evil-normal-state-map
+            ("SPC SPC" . helm-M-x)
             ("SPC e i" . edit-init-file)
             ("SPC q n" . save-buffers-kill-emacs)
             ("SPC f f" . helm-find-files)
-            ("SPC f d" . (lambda () (interactive)
-                           (dired default-directory))))
+            ("SPC f r" . helm-recentf)
+            ("SPC f d" . dired-jump))
       :config
       ;; define "SPC v" as alias for "C-x v"
       (define-key evil-normal-state-map (kbd "SPC v")
