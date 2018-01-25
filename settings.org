@@ -5,7 +5,7 @@
     ;; set up package sources
     (require 'package)
 
-    (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+    (setf package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                              ("melpa" . "https://melpa.org/packages/")))
     (package-initialize)
 
@@ -55,7 +55,7 @@
       :ensure t
       :defer 30
       :config
-      (setq helm-gtags-maximum-candidates 1000)
+      (setf helm-gtags-maximum-candidates 1000)
       (define-key evil-normal-state-map (kbd "SPC t s") #'helm-gtags-select))
   #+END_SRC
 
@@ -66,7 +66,7 @@
       :after helm
       :ensure t
       :init
-      (setq evil-want-integration nil)
+      (setf evil-want-integration nil)
       (require 'evil) ;; needed for :bind <map>
       :bind*
       (:map evil-normal-state-map
@@ -232,7 +232,7 @@
       :hook (LaTeX-mode . TeX-source-correlate-mode)
       :config
       (setenv "XLIB_SKIP_ARGB_VISUALS" nil)
-      (setq font-latex-fontify-sectioning 1.0)
+      (setf font-latex-fontify-sectioning 1.0)
       (setq-default TeX-view-program-selection
                     (quote (((output-dvi has-no-display-manager) "dvi2tty")
                             ((output-dvi style-pstricks) "dvips and gv")
@@ -246,7 +246,7 @@
     (use-package bibtex
       :ensure t
       :config
-      (setq bibtex-align-at-equal-sign t))
+      (setf bibtex-align-at-equal-sign t))
   #+END_SRC
 
 * bookmarks
@@ -262,7 +262,7 @@
 * sane defaults
   #+BEGIN_SRC emacs-lisp :results silent
     ;; don't show a startup message
-    (setq inhibit-startup-message t)
+    (setf inhibit-startup-message t)
 
     ;; no menu-bar
     (menu-bar-mode -1)
@@ -299,7 +299,7 @@
     (column-number-mode 1)
 
     ;; save backups in .emacs.d
-    (setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
+    (setf backup-directory-alist '(("." . "~/.emacs.d/.saves")))
 
     ;; no tabs
     (setq-default indent-tabs-mode nil)
@@ -308,26 +308,26 @@
     (global-auto-revert-mode 1)
 
     ;; save more recent files
-    (setq recentf-max-saved-items 100)
+    (setf recentf-max-saved-items 100)
 
     ;; ask before killing emacs
-    (setq confirm-kill-emacs #'y-or-n-p)
+    (setf confirm-kill-emacs #'y-or-n-p)
 
     ;; show parentheses
     (show-paren-mode)
 
     ;; no garbage collection in minibuffer
     (defun gc-minibuffer-setup-hook ()
-      (setq gc-cons-threshold most-positive-fixnum))
+      (setf gc-cons-threshold most-positive-fixnum))
 
     (defun gc-minibuffer-exit-hook ()
-      (setq gc-cons-threshold 800000))
+      (setf gc-cons-threshold 800000))
 
     (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
     (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
 
     ;; hide minor-modes in mode-line
-    (setq mode-line-modes '(:eval (propertize " [%m]"
+    (setf mode-line-modes '(:eval (propertize " [%m]"
                                               'face 'font-lock-constant-face)))
   #+END_SRC
 
