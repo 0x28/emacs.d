@@ -34,12 +34,12 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package helm
       :ensure t
-      :bind (("M-x" . helm-M-x)
-             ("C-x C-f" . helm-find-files)
-             ("C-c f" . helm-occur)
-             ("C-c d" . helm-semantic-or-imenu)
-             ("C-c r" . helm-recentf)
-             ("C-c k" . helm-show-kill-ring))
+      :bind* (("M-x" . helm-M-x)
+              ("C-x C-f" . helm-find-files)
+              ("C-c f" . helm-occur)
+              ("C-c d" . helm-semantic-or-imenu)
+              ("C-c r" . helm-recentf)
+              ("C-c k" . helm-show-kill-ring))
       :config
       (require 'helm-config)
       (require 'helm-files)
@@ -67,7 +67,7 @@
       :init
       (setq evil-want-integration nil)
       (require 'evil) ;; needed for :bind <map>
-      :bind
+      :bind*
       (:map evil-normal-state-map
             ("SPC e i" . edit-init-file)
             ("SPC q n" . save-buffers-kill-emacs)
@@ -97,8 +97,8 @@
     (use-package ace-jump-mode
       :ensure t
       :defer t
-      :bind (:map evil-normal-state-map
-                  ("SPC j" . ace-jump-word-mode)))
+      :bind* (:map evil-normal-state-map
+                   ("SPC j" . ace-jump-word-mode)))
   #+END_SRC
 
 * which key
@@ -126,7 +126,7 @@
     (use-package yasnippet
       :ensure t
       :defer t
-      :bind ("C-c y" . yas-insert-snippet)
+      :bind* ("C-c y" . yas-insert-snippet)
       :config
       (yas-global-mode 1))
   #+END_SRC
@@ -161,7 +161,7 @@
     (use-package eshell
       :after evil
       :ensure t
-      :bind (("C-c s" . toggle-eshell))
+      :bind* (("C-c s" . toggle-eshell))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
       (add-hook 'eshell-mode-hook (lambda ()
@@ -209,12 +209,12 @@
       :defer t)
 
     (use-package cc-mode
-      :bind (:map c-mode-map
-             ("C-c i" . clang-format-buffer)
-             ("C-c C-c" . comment-dwim))
-      :bind (:map c++-mode-map
-             ("C-c i" . clang-format-buffer)
-             ("C-c C-c" . comment-dwim)))
+      :bind* (:map c-mode-map
+              ("C-c i" . clang-format-buffer)
+              ("C-c C-c" . comment-dwim))
+      :bind* (:map c++-mode-map
+              ("C-c i" . clang-format-buffer)
+              ("C-c C-c" . comment-dwim)))
 
     (setq-default c-basic-offset 4)
   #+END_SRC
