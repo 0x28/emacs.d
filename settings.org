@@ -245,6 +245,16 @@
       (setq bibtex-align-at-equal-sign t))
   #+END_SRC
 
+* bookmarks
+  Some bookmark keybindings.
+  #+BEGIN_SRC emacs-lisp :results silent
+  (use-package bookmark
+    :ensure t
+    :bind* (:map evil-normal-state-map
+                 ("SPC b l" . list-bookmarks)
+                 ("SPC b s" . bookmark-set)
+                 ("SPC b j" . bookmark-jump)))
+  #+END_SRC
 * sane defaults
   #+BEGIN_SRC emacs-lisp :results silent
     ;; don't show a startup message
