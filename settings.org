@@ -216,7 +216,11 @@
               ("C-c C-c" . comment-dwim))
       :bind* (:map c++-mode-map
               ("C-c i" . clang-format-buffer)
-              ("C-c C-c" . comment-dwim)))
+              ("C-c C-c" . comment-dwim))
+      :config
+      (add-hook 'c++-mode-hook
+                (lambda () (setf flycheck-gcc-language-standard "c++11"
+                                 flycheck-clang-language-standard "c++11"))))
 
     (setq-default c-basic-offset 4)
   #+END_SRC
