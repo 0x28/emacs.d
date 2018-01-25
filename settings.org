@@ -56,7 +56,7 @@
       :defer 30
       :config
       (setq helm-gtags-maximum-candidates 1000)
-      (define-key evil-normal-state-map (kbd ", g s") #'helm-gtags-select))
+      (define-key evil-normal-state-map (kbd "SPC t s") #'helm-gtags-select))
   #+END_SRC
 
 * evil
