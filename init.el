@@ -1,4 +1,4 @@
-;;; init.el -- test
+;;; init.el -- test -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
