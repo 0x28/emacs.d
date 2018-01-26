@@ -75,6 +75,7 @@
             ("SPC q n" . save-buffers-kill-emacs)
             ("SPC f f" . helm-find-files)
             ("SPC f r" . helm-recentf)
+            ("SPC f l" . helm-locate)
             ("SPC f d" . dired-jump))
       :config
       ;; define "SPC v" as alias for "C-x v"
