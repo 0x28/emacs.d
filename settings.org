@@ -64,6 +64,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package evil
       :after helm
+      :after helm-locate
       :ensure t
       :init
       (setf evil-want-integration nil)
