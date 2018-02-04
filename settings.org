@@ -284,9 +284,6 @@
     ;; more information on describe-key
     (define-key (current-global-map) (kbd "C-h c") #'describe-key)
 
-    ;; line numbers
-    (add-hook 'prog-mode-hook 'linum-mode)
-
     ;; no blinking cursor
     (blink-cursor-mode -1)
 
