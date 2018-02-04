@@ -43,6 +43,7 @@
       :config
       (require 'helm-config)
       (require 'helm-files)
+      (setq helm-net-prefer-curl t)
       (helm-mode 1)
       (define-key helm-find-files-map "\t" 'helm-execute-persistent-action))
 
@@ -77,7 +78,12 @@
             ("SPC f f" . helm-find-files)
             ("SPC f r" . helm-recentf)
             ("SPC f l" . helm-locate)
-            ("SPC f d" . dired-jump))
+            ("SPC f d" . dired-jump)
+            ("SPC n d" . narrow-to-defun)
+            ("SPC n w" . widen)
+            ("SPC n p" . narrow-to-paragraph)
+            ("SPC w g" . helm-google-suggest)
+            ("SPC w w" . helm-wikipedia-suggest))
       :config
       ;; define "SPC v" as alias for "C-x v"
       (define-key evil-normal-state-map (kbd "SPC v")
@@ -365,6 +371,14 @@
         (progn
           (window-configuration-to-register ?_)
           (delete-other-windows))))
+
+    (defun narrow-to-paragraph ()
+      "Narrow to the paragraph at point."
+      (interactive)
+      (save-mark-and-excursion
+        (mark-paragraph)
+        (narrow-to-region (point)
+                          (mark))))
   #+END_SRC
 
   Emacs C-x and C-c keybindings.
