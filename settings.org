@@ -146,6 +146,9 @@
     ;; better bracket handling
     (use-package smartparens
       :ensure t
+      :bind*
+      (:map evil-normal-state-map
+            ("SPC s s" . sp-split-sexp))
       :config
       (require 'smartparens-config)
       (smartparens-global-mode 1))
