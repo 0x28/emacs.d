@@ -325,6 +325,9 @@
     ;; show parentheses
     (show-paren-mode)
 
+    ;; sentences have a single space at the end
+    (setf sentence-end-double-space nil)
+
     ;; no garbage collection in minibuffer
     (defun gc-minibuffer-setup-hook ()
       (setf gc-cons-threshold most-positive-fixnum))
