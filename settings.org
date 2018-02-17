@@ -183,24 +183,22 @@
                                     (setq-local company-idle-delay nil)))
       (setf eshell-cmpl-ignore-case t))
 
-    (defvar toggle-eshell-window nil)
-
     (defun toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
       (interactive)
-      (cond ((eq (selected-window) toggle-eshell-window)
-             (delete-window)
-             (setf toggle-eshell-window nil))
-            ((window-live-p toggle-eshell-window)
-             (select-window toggle-eshell-window))
-            (t
-             (setf toggle-eshell-window
-                   (split-window (frame-root-window)
-                                 (round (* (window-height (frame-root-window))
-                                           0.6666))
-                                 'below))
-             (select-window toggle-eshell-window)
-             (eshell))))
+      (let* ((eshell-buffer-name "*eshell*")
+             (eshell-window (get-buffer-window eshell-buffer-name)))
+        (cond ((eq (selected-window) eshell-window)
+               (delete-window))
+              ((window-live-p eshell-window)
+               (select-window eshell-window))
+              (t
+               (select-window
+                (split-window (frame-root-window)
+                              (round (* (window-height (frame-root-window))
+                                        0.6666))
+                              'below))
+               (eshell)))))
 
   #+END_SRC
 
