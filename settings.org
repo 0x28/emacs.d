@@ -209,7 +209,7 @@
     (use-package whitespace
       :ensure t
       :config
-      (global-whitespace-mode 1)
+      (add-hook 'prog-mode-hook #'whitespace-mode)
       (setq-default
        fill-column 80
        whitespace-line-column fill-column
