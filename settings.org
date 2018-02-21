@@ -156,7 +156,7 @@
       :bind*
       (:map evil-normal-state-map
             ("SPC s s" . sp-split-sexp))
-      :config
+      :init
       (require 'smartparens-config)
       (smartparens-global-mode 1))
   #+END_SRC
