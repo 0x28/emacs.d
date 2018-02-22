@@ -1,0 +1,4 @@
+alias c clear t
+alias d dired .
+alias l ls -al
+alias x exit
