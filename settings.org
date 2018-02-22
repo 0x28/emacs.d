@@ -178,6 +178,7 @@
       :bind* (("C-c s" . toggle-eshell))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
+      (setf eshell-scroll-to-bottom-on-input t)
       (add-hook 'eshell-mode-hook (lambda ()
                                     (setq-local global-hl-line-mode nil)
                                     (setq-local company-idle-delay nil)))
