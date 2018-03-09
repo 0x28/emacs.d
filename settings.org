@@ -188,18 +188,26 @@
       "Open a new eshell window or switch to an existing one."
       (interactive)
       (let* ((eshell-buffer-name "*eshell*")
-             (eshell-window (get-buffer-window eshell-buffer-name)))
+             (eshell-window (get-buffer-window eshell-buffer-name))
+             (current-directory default-directory)
+             (cd-to-default-dir (lambda ()
+                                  (unless (string= default-directory
+                                                   current-directory)
+                                    (eshell/cd current-directory)
+                                    (eshell-reset)))))
         (cond ((eq (selected-window) eshell-window)
                (delete-window))
               ((window-live-p eshell-window)
-               (select-window eshell-window))
+               (select-window eshell-window)
+               (funcall cd-to-default-dir))
               (t
                (select-window
                 (split-window (frame-root-window)
                               (round (* (window-height (frame-root-window))
                                         0.6666))
                               'below))
-               (eshell)))))
+               (eshell)
+               (funcall cd-to-default-dir)))))
 
   #+END_SRC
 
