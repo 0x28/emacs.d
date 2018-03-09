@@ -89,6 +89,22 @@
       ;; define "SPC v" as alias for "C-x v"
       (define-key evil-normal-state-map (kbd "SPC v")
         (lookup-key (current-global-map) (kbd "C-x v")))
+
+      (setq evil-normal-state-tag
+            (propertize " {N} " 'face '((:foreground "green")))
+            evil-emacs-state-tag
+            (propertize " {E} " 'face '((:foreground "orange")))
+            evil-insert-state-tag
+            (propertize " {I} " 'face '((:foreground "red")))
+            evil-motion-state-tag
+            (propertize " {M} " 'face '((:foreground "deep sky blue")))
+            evil-visual-state-tag
+            (propertize " {V} " 'face '((:foreground "grey80")))
+            evil-replace-state-tag
+            (propertize " {R} " 'face '((:foreground "yellow")))
+            evil-operator-state-tag
+            (propertize " {O} " 'face '((:foreground "purple"))))
+
       (evil-mode))
 
     (use-package evil-collection
