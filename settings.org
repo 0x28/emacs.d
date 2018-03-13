@@ -85,6 +85,8 @@
             ("SPC n p" . narrow-to-paragraph)
             ("SPC w g" . helm-google-suggest)
             ("SPC w w" . helm-wikipedia-suggest))
+      (:map evil-visual-state-map
+            ("SPC n r" . narrow-to-region))
       :config
       ;; define "SPC v" as alias for "C-x v"
       (define-key evil-normal-state-map (kbd "SPC v")
