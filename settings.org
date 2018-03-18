@@ -350,6 +350,18 @@
     ;; show parentheses
     (show-paren-mode)
 
+    ;; automatically go to the help window
+    (setf help-window-select t)
+
+    ;; smoother scrolling
+    (setf scroll-conservatively most-positive-fixnum)
+
+    ;; add a margin when scrolling vertically
+    (setf scroll-margin 10)
+
+    ;; resize windows proportionally
+    (setf window-combination-resize t)
+
     ;; sentences have a single space at the end
     (setf sentence-end-double-space nil)
 
