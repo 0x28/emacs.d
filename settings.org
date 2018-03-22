@@ -198,6 +198,7 @@
       (evil-set-initial-state 'eshell-mode 'emacs)
       (setf eshell-scroll-to-bottom-on-input t)
       (add-hook 'eshell-mode-hook (lambda ()
+                                    (setq-local scroll-margin 0)
                                     (setq-local global-hl-line-mode nil)
                                     (setq-local company-idle-delay nil)))
       (setf eshell-cmpl-ignore-case t))
@@ -357,7 +358,7 @@
     (setf scroll-conservatively most-positive-fixnum)
 
     ;; add a margin when scrolling vertically
-    (setf scroll-margin 10)
+    (setf scroll-margin 3)
 
     ;; resize windows proportionally
     (setf window-combination-resize t)
