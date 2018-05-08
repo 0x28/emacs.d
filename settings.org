@@ -102,7 +102,6 @@
 
     (use-package evil-mc
       :ensure t
-      :defer 1
       :config
       (global-evil-mc-mode 1))
   #+END_SRC
@@ -132,6 +131,7 @@
     ;; syntax checking
     (use-package flycheck
       :ensure t
+      :defer 2
       :config
       (global-flycheck-mode t))
   #+END_SRC
