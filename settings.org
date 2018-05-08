@@ -13,10 +13,6 @@
     (unless (package-installed-p 'use-package)
       (package-refresh-contents)
       (package-install 'use-package))
-
-    ;; require `use-package' during compilation
-    ;; (eval-when-compile
-    ;;   (require 'use-package))
   #+END_SRC
 
 * company
@@ -41,20 +37,13 @@
               ("C-c r" . helm-recentf)
               ("C-c k" . helm-show-kill-ring))
       :config
-      (require 'helm-config)
-      (require 'helm-files)
       (setq helm-net-prefer-curl t)
       (helm-mode 1)
       (define-key helm-find-files-map "\t" 'helm-execute-persistent-action))
 
-    (use-package helm-descbinds
-      :ensure t
-      :config
-      (helm-descbinds-mode))
-
     (use-package helm-gtags
       :ensure t
-      :defer 30
+      :defer 2
       :config
       (setf helm-gtags-maximum-candidates 1000)
       (define-key evil-normal-state-map (kbd "SPC t s") #'helm-gtags-select))
@@ -64,12 +53,9 @@
   Vim emulation for emacs.
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package evil
-      :after helm
-      :after helm-locate
       :ensure t
       :init
       (setf evil-want-integration nil)
-      (require 'evil) ;; needed for :bind <map>
       :bind*
       (:map evil-normal-state-map
             ("SPC SPC" . helm-M-x)
@@ -110,13 +96,13 @@
       (evil-mode))
 
     (use-package evil-collection
-      :after evil
       :ensure t
-      :init (evil-collection-init))
+      :defer 1
+      :config (evil-collection-init))
 
     (use-package evil-mc
       :ensure t
-      :defer 5
+      :defer 1
       :config
       (global-evil-mc-mode 1))
   #+END_SRC
@@ -125,7 +111,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package ace-jump-mode
       :ensure t
-      :defer t
+      :defer 2
       :bind* (:map evil-normal-state-map
                    ("SPC j" . ace-jump-word-mode)))
   #+END_SRC
@@ -135,6 +121,7 @@
     ;; show keybindings while typing
     (use-package which-key
       :ensure t
+      :defer 1
       :config
       (which-key-mode)
       (setf which-key-idle-delay 0.5))
@@ -174,8 +161,7 @@
       :bind*
       (:map evil-normal-state-map
             ("SPC s s" . sp-split-sexp))
-      :init
-      (require 'smartparens-config)
+      :config
       (smartparens-global-mode 1))
   #+END_SRC
 
@@ -197,7 +183,6 @@
 * eshell
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package eshell
-      :after evil
       :ensure t
       :bind* (("C-c s" . toggle-eshell))
       :config
@@ -274,6 +259,7 @@
     (use-package tex-site
       :ensure auctex
       :hook (LaTeX-mode . TeX-source-correlate-mode)
+      :defer t
       :config
       (setenv "XLIB_SKIP_ARGB_VISUALS" nil)
       (setf font-latex-fontify-sectioning 1.0)
@@ -289,6 +275,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package bibtex
       :ensure t
+      :defer t
       :config
       (setf bibtex-align-at-equal-sign t))
   #+END_SRC
