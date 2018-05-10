@@ -298,6 +298,7 @@
     :config
     (projectile-global-mode)
 
+    (setq projectile-completion-system 'helm)
     ;; define "SPC p" as additional prefix for projectile
     (define-key evil-normal-state-map (kbd "SPC p") 'projectile-command-map))
 #+END_SRC
