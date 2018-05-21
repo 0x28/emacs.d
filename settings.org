@@ -392,6 +392,9 @@
     (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
     (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
 
+    ;; typed text replaces the selected text
+    (delete-selection-mode 1)
+
     ;; hide minor-modes in mode-line
     (setf mode-line-modes '(:eval (propertize " [%m]"
                                               'face 'font-lock-constant-face)))
