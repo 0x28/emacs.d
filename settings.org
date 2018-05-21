@@ -256,6 +256,11 @@
                                  flycheck-clang-language-standard "c++11"))))
 
     (setq-default c-basic-offset 4)
+
+    (use-package cmake-mode
+      :ensure t
+      :config
+      (setq cmake-tab-width 4))
   #+END_SRC
 
 * LaTeX config
