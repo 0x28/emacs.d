@@ -78,6 +78,8 @@
       (define-key evil-normal-state-map (kbd "SPC v")
         (lookup-key (current-global-map) (kbd "C-x v")))
 
+      (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+
       (setq evil-normal-state-tag
             (propertize " {N} " 'face '((:foreground "green")))
             evil-emacs-state-tag
