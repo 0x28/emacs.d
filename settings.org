@@ -67,7 +67,6 @@
             ("SPC f f" . helm-find-files)
             ("SPC f r" . helm-recentf)
             ("SPC f l" . helm-locate)
-            ("SPC f d" . dired-jump)
             ("SPC n d" . narrow-to-defun)
             ("SPC n w" . widen)
             ("SPC n p" . narrow-to-paragraph)
@@ -109,6 +108,14 @@
       :config
       (global-evil-mc-mode 1))
   #+END_SRC
+
+* dired
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package dired-x
+    :bind*
+    (:map evil-normal-state-map
+          ("SPC f d" . dired-jump-other-window)))
+#+END_SRC
 
 * ace-jump
   #+BEGIN_SRC emacs-lisp :results silent
