@@ -38,6 +38,8 @@
               ("C-c k" . helm-show-kill-ring))
       :config
       (setq helm-net-prefer-curl t)
+      (setq helm-google-suggest-url
+            "https://www.google.com/complete/search?output=toolbar&q=%s")
       (helm-mode 1)
       (define-key helm-find-files-map "\t" 'helm-execute-persistent-action))
 
