@@ -26,31 +26,6 @@
       (setf company-minimum-prefix-length 1))
   #+END_SRC
 
-* helm
-  #+BEGIN_SRC emacs-lisp :results silent
-    (use-package helm
-      :ensure t
-      :bind* (("M-x" . helm-M-x)
-              ("C-x C-f" . helm-find-files)
-              ("C-c f" . helm-occur)
-              ("C-c d" . helm-semantic-or-imenu)
-              ("C-c r" . helm-recentf)
-              ("C-c k" . helm-show-kill-ring))
-      :config
-      (setq helm-net-prefer-curl t)
-      (setq helm-google-suggest-url
-            "https://www.google.com/complete/search?output=toolbar&q=%s")
-      (helm-mode 1)
-      (define-key helm-find-files-map "\t" 'helm-execute-persistent-action))
-
-    (use-package helm-gtags
-      :ensure t
-      :defer 2
-      :config
-      (setf helm-gtags-maximum-candidates 1000)
-      (define-key evil-normal-state-map (kbd "SPC t s") #'helm-gtags-select))
-  #+END_SRC
-
 * evil
   Vim emulation for emacs.
   #+BEGIN_SRC emacs-lisp :results silent
@@ -60,18 +35,11 @@
       (setf evil-want-integration nil)
       :bind*
       (:map evil-normal-state-map
-            ("SPC SPC" . helm-M-x)
             ("SPC e i" . edit-init-file)
             ("SPC q n" . save-buffers-kill-emacs)
-            ("SPC f a" . helm-for-files)
-            ("SPC f f" . helm-find-files)
-            ("SPC f r" . helm-recentf)
-            ("SPC f l" . helm-locate)
             ("SPC n d" . narrow-to-defun)
             ("SPC n w" . widen)
-            ("SPC n p" . narrow-to-paragraph)
-            ("SPC w g" . helm-google-suggest)
-            ("SPC w w" . helm-wikipedia-suggest))
+            ("SPC n p" . narrow-to-paragraph))
       (:map evil-visual-state-map
             ("SPC n r" . narrow-to-region))
       :config
@@ -107,6 +75,39 @@
       :ensure t
       :config
       (global-evil-mc-mode 1))
+  #+END_SRC
+
+* helm
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package helm
+      :ensure t
+      :bind* (("M-x" . helm-M-x)
+              ("C-x C-f" . helm-find-files)
+              ("C-c f" . helm-occur)
+              ("C-c d" . helm-semantic-or-imenu)
+              ("C-c r" . helm-recentf)
+              ("C-c k" . helm-show-kill-ring))
+      (:map evil-normal-state-map
+            ("SPC SPC" . helm-M-x)
+            ("SPC f a" . helm-for-files)
+            ("SPC f f" . helm-find-files)
+            ("SPC f r" . helm-recentf)
+            ("SPC f l" . helm-locate)
+            ("SPC w g" . helm-google-suggest)
+            ("SPC w w" . helm-wikipedia-suggest))
+      :config
+      (setq helm-net-prefer-curl t)
+      (setq helm-google-suggest-url
+            "https://www.google.com/complete/search?output=toolbar&q=%s")
+      (helm-mode 1)
+      (define-key helm-find-files-map "\t" 'helm-execute-persistent-action))
+
+    (use-package helm-gtags
+      :ensure t
+      :defer 2
+      :config
+      (setf helm-gtags-maximum-candidates 1000)
+      (define-key evil-normal-state-map (kbd "SPC t s") #'helm-gtags-select))
   #+END_SRC
 
 * dired
