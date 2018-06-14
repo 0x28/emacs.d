@@ -418,6 +418,11 @@
     ;; hide minor-modes in mode-line
     (setf mode-line-modes '(:eval (propertize " [%m]"
                                               'face 'font-lock-constant-face)))
+
+    ;; pretty lambdas
+    (global-prettify-symbols-mode t)
+    (setq prettify-symbols-unprettify-at-point 'right-edge)
+
   #+END_SRC
 
 * more keybindings
