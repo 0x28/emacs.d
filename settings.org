@@ -115,7 +115,12 @@
   (use-package dired-x
     :bind*
     (:map evil-normal-state-map
-          ("SPC f d" . dired-jump-other-window)))
+          ("SPC f d" . dired-jump-other-window))
+    (:map dired-mode-map
+          ("<tab>" . dired-omit-mode))
+    :config
+    (setq-default dired-omit-mode t)
+    (setq dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
 #+END_SRC
 
 * occur
