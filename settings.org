@@ -69,7 +69,9 @@
     (use-package evil-collection
       :ensure t
       :defer 1
-      :config (evil-collection-init))
+      :config
+      (setq evil-collection-key-blacklist (list "SPC"))
+      (evil-collection-init))
 
     (use-package evil-mc
       :ensure t
