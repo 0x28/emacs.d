@@ -396,7 +396,7 @@
     (setf scroll-conservatively most-positive-fixnum)
 
     ;; add a margin when scrolling vertically
-    (setf scroll-margin 3)
+    (setf scroll-margin 0)
 
     ;; resize windows proportionally
     (setf window-combination-resize t)
