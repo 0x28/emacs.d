@@ -211,6 +211,9 @@
     (use-package eshell
       :ensure t
       :bind* (("C-c s" . toggle-eshell))
+      :hook
+      (eshell-mode . (lambda ()
+                       (local-set-key (kbd "C-r") #'helm-eshell-history)))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
       (setf eshell-scroll-to-bottom-on-input t)
