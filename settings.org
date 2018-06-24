@@ -35,11 +35,11 @@
       (setf evil-want-integration nil)
       :bind*
       (:map evil-normal-state-map
-            ("SPC e i" . edit-init-file)
+            ("SPC e i" . my/edit-init-file)
             ("SPC q n" . save-buffers-kill-emacs)
             ("SPC n d" . narrow-to-defun)
             ("SPC n w" . widen)
-            ("SPC n p" . narrow-to-paragraph))
+            ("SPC n p" . my/narrow-to-paragraph))
       (:map evil-visual-state-map
             ("SPC n r" . narrow-to-region))
       :config
@@ -210,7 +210,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package eshell
       :ensure t
-      :bind* (("C-c s" . toggle-eshell))
+      :bind* (("C-c s" . my/toggle-eshell))
       :hook
       (eshell-mode . (lambda ()
                        (local-set-key (kbd "C-r") #'helm-eshell-history)))
@@ -223,7 +223,7 @@
                                     (setq-local company-idle-delay nil)))
       (setf eshell-cmpl-ignore-case t))
 
-    (defun toggle-eshell ()
+    (defun my/toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
       (interactive)
       (let* ((eshell-buffer-name "*eshell*")
@@ -430,12 +430,12 @@
 * more keybindings
   Small functions used in the keybindings.
   #+BEGIN_SRC emacs-lisp :results silent
-    (defun edit-init-file ()
+    (defun my/edit-init-file ()
       "Open the init file."
       (interactive)
       (find-file (expand-file-name "settings.org" user-emacs-directory)))
 
-    (defun indent-buffer ()
+    (defun my/indent-buffer ()
       "Indent the current buffer."
       (interactive)
       (save-excursion
@@ -450,7 +450,7 @@
           (untabify (point-min) (point-max)))))
 
     ;; from https://gist.github.com/3402786
-    (defun toggle-maximize-buffer ()
+    (defun my/toggle-maximize-buffer ()
       "Maximize buffer"
       (interactive)
       (if (and (= 1 (length (window-list)))
@@ -460,7 +460,7 @@
           (window-configuration-to-register ?_)
           (delete-other-windows))))
 
-    (defun narrow-to-paragraph ()
+    (defun my/narrow-to-paragraph ()
       "Narrow to the paragraph at point."
       (interactive)
       (save-mark-and-excursion
@@ -472,14 +472,14 @@
   Emacs C-x and C-c keybindings.
   #+BEGIN_SRC emacs-lisp :results silent
 
-    (defun kill-current-buffer (prefix-arg)
+    (defun my/kill-current-buffer (prefix-arg)
       "Kill the current buffer."
       (interactive "P")
       (kill-buffer (current-buffer)))
 
-    (global-set-key (kbd "C-x 1") #'toggle-maximize-buffer)
-    (global-set-key (kbd "C-c i") #'indent-buffer)
-    (global-set-key (kbd "C-x k") #'kill-current-buffer)
+    (global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
+    (global-set-key (kbd "C-c i") #'my/indent-buffer)
+    (global-set-key (kbd "C-x k") #'my/kill-current-buffer)
     (global-set-key (kbd "C-c m") #'man)
     (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
   #+END_SRC
