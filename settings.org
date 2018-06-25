@@ -334,7 +334,6 @@
     (projectile-global-mode)
 
     (setq projectile-completion-system 'helm)
-    (setq projectile-svn-command "find . -name .svn -prune -o -type f -print0")
     ;; define "SPC p" as additional prefix for projectile
     (define-key evil-normal-state-map (kbd "SPC p") 'projectile-command-map))
 #+END_SRC
