@@ -131,6 +131,7 @@
   (use-package occur
     :hook (occur-mode . next-error-follow-minor-mode))
 #+END_SRC
+
 * ace-jump
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package ace-jump-mode
@@ -217,12 +218,14 @@
                        (local-set-key (kbd "C-r") #'helm-eshell-history)))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
-      (setf eshell-scroll-to-bottom-on-input t)
       (add-hook 'eshell-mode-hook (lambda ()
                                     (setq-local scroll-margin 0)
                                     (setq-local global-hl-line-mode nil)
                                     (setq-local company-idle-delay nil)))
-      (setf eshell-cmpl-ignore-case t))
+      (setf eshell-cmpl-ignore-case t
+            eshell-error-if-no-glob t
+            eshell-hist-ignoredups t
+            eshell-scroll-to-bottom-on-input t))
 
     (defun my/toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
@@ -325,6 +328,7 @@
                  ("SPC b s" . bookmark-set)
                  ("SPC b j" . bookmark-jump)))
   #+END_SRC
+
 * projectile
 #+BEGIN_SRC emacs-lisp :results silent
   (use-package projectile
