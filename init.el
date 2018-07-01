@@ -21,7 +21,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(eshell-prompt ((t (:foreground "green" :weight bold))))
- '(mode-line ((t (:background "gray10" :foreground "#EBDBB2" :box (:line-width -1 :color "black")))))
+ '(mode-line ((t (:box (:line-width -1 :color "black")))))
  '(org-block-background ((t (:background "gray6"))))
  '(whitespace-trailing ((t (:background "orange red" :foreground "black")))))
 (custom-set-variables
