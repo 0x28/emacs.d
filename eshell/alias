@@ -1,3 +1,4 @@
+alias o xdg-open $1
 alias c clear t
 alias d dired .
 alias l ls -al
