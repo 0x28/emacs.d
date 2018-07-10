@@ -342,6 +342,12 @@
     (define-key evil-normal-state-map (kbd "SPC p") 'projectile-command-map))
 #+END_SRC
 
+* quickrun
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package quickrun
+    :ensure t
+    :bind* (("C-c x" . quickrun)))
+#+END_SRC
 * sane defaults
   #+BEGIN_SRC emacs-lisp :results silent
     ;; don't show a startup message
