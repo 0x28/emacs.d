@@ -189,6 +189,7 @@
             ("SPC s s" . sp-split-sexp))
       :config
       (require 'smartparens-config)
+      (setq-default sp-escape-quotes-after-insert nil)
       :init
       (smartparens-global-mode 1))
   #+END_SRC
