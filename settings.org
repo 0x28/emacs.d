@@ -269,6 +269,8 @@
 
 * C/C++ config
   #+BEGIN_SRC emacs-lisp :results silent
+    (defalias 'cxx-mode #'c++-mode)
+
     (use-package clang-format
       :ensure t
       :defer t)
@@ -286,7 +288,10 @@
                                  flycheck-clang-language-standard "c++11"))))
 
     (setq-default c-basic-offset 4)
+  #+END_SRC
 
+* CMake config
+  #+BEGIN_SRC emacs-lisp :results silent
     (use-package cmake-mode
       :ensure t
       :config
