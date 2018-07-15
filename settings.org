@@ -298,6 +298,12 @@
       (setq cmake-tab-width 4))
   #+END_SRC
 
+* compile
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package compile
+    :config
+    (setq compilation-scroll-output 'first-error))
+#+END_SRC
 * LaTeX config
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package tex-site
