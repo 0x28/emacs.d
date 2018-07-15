@@ -304,6 +304,12 @@
     :config
     (setq compilation-scroll-output 'first-error))
 #+END_SRC
+* XML
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package nxml-mode
+    :config
+    (setq nxml-child-indent 4))
+#+END_SRC
 * LaTeX config
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package tex-site
