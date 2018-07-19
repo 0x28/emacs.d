@@ -122,6 +122,7 @@
     (:map dired-mode-map
           ("<tab>" . dired-omit-mode))
     :config
+    (setq dired-auto-revert-buffer t)
     (setq-default dired-omit-mode t)
     (setq dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
 #+END_SRC
