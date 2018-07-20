@@ -137,7 +137,6 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package ace-jump-mode
       :ensure t
-      :defer 2
       :bind* (:map evil-normal-state-map
                    ("SPC j" . ace-jump-word-mode)))
   #+END_SRC
