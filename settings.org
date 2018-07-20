@@ -259,8 +259,8 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package whitespace
       :ensure t
+      :hook (prog-mode . whitespace-mode)
       :config
-      (add-hook 'prog-mode-hook #'whitespace-mode)
       (setq-default
        fill-column 80
        whitespace-line-column fill-column
