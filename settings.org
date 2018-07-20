@@ -107,10 +107,10 @@
 
     (use-package helm-gtags
       :ensure t
-      :defer 2
+      :bind* (:map evil-normal-state-map
+                   ("SPC t s" . helm-gtags-select))
       :config
-      (setf helm-gtags-maximum-candidates 1000)
-      (define-key evil-normal-state-map (kbd "SPC t s") #'helm-gtags-select))
+      (setf helm-gtags-maximum-candidates 1000))
   #+END_SRC
 
 * dired
