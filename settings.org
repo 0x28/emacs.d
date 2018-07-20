@@ -31,6 +31,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package evil
       :ensure t
+      :demand
       :init
       (setf evil-want-integration nil)
       :bind*
@@ -77,6 +78,9 @@
 
     (use-package evil-mc
       :ensure t
+      :bind* (:map evil-normal-state-map
+                   ("C-n" . evil-mc-make-and-goto-next-match)
+                   ("C-p" . evil-mc-make-and-goto-prev-match))
       :config
       (global-evil-mc-mode 1))
   #+END_SRC
