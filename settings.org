@@ -303,12 +303,14 @@
 * compile
 #+BEGIN_SRC emacs-lisp :results silent
   (use-package compile
+    :defer t
     :config
     (setq compilation-scroll-output 'first-error))
 #+END_SRC
 * XML
 #+BEGIN_SRC emacs-lisp :results silent
   (use-package nxml-mode
+    :defer t
     :config
     (setq nxml-child-indent 4))
 #+END_SRC
