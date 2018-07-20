@@ -49,6 +49,7 @@
         (lookup-key (current-global-map) (kbd "C-x v")))
 
       (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+      (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
 
       (setq evil-normal-state-tag
             (propertize " {N} " 'face '((:foreground "green")))
