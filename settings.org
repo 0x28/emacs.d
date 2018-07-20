@@ -158,9 +158,11 @@
     ;; syntax checking
     (use-package flycheck
       :ensure t
-      :defer 2
+      :defer t
+      :hook (prog-mode . flycheck-mode)
       :config
-      (global-flycheck-mode t))
+      (setq-default flycheck-gcc-language-standard "c++11"
+                    flycheck-clang-language-standard "c++11"))
   #+END_SRC
 
 * yasnippet
@@ -277,15 +279,11 @@
 
     (use-package cc-mode
       :bind* (:map c-mode-map
-              ("C-c i" . clang-format-buffer)
-              ("C-c C-c" . comment-dwim))
+                   ("C-c i" . clang-format-buffer)
+                   ("C-c C-c" . comment-dwim))
       :bind* (:map c++-mode-map
-              ("C-c i" . clang-format-buffer)
-              ("C-c C-c" . comment-dwim))
-      :config
-      (add-hook 'c++-mode-hook
-                (lambda () (setf flycheck-gcc-language-standard "c++11"
-                                 flycheck-clang-language-standard "c++11"))))
+                   ("C-c i" . clang-format-buffer)
+                   ("C-c C-c" . comment-dwim)))
 
     (setq-default c-basic-offset 4)
   #+END_SRC
