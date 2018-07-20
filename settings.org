@@ -352,13 +352,12 @@
 #+BEGIN_SRC emacs-lisp :results silent
   (use-package projectile
     :ensure t
-    :defer 2
+    :bind* (:map evil-normal-state-map
+                 ("SPC p" . projectile-mode))
     :config
-    (projectile-mode)
-
     (setq projectile-completion-system 'helm)
     ;; define "SPC p" as additional prefix for projectile
-    (define-key evil-normal-state-map (kbd "SPC p") 'projectile-command-map))
+    (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map))
 #+END_SRC
 
 * quickrun
