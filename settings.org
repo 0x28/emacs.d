@@ -167,7 +167,6 @@
     ;; snippet completion
     (use-package yasnippet
       :ensure t
-      :defer t
       :bind* ("C-c y" . yas-insert-snippet)
       :config
       (yas-global-mode 1))
