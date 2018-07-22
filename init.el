@@ -21,7 +21,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(mode-line ((t (:box (:line-width -1 :color "black")))))
- '(org-block-background ((t (:background "gray6"))))
+ '(org-block ((t (:background "gray6")))) ;; emacs 26
+ '(org-block-background ((t (:background "gray6")))) ;; emacs 25
  '(whitespace-trailing ((t (:background "orange red" :foreground "black")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
