@@ -369,6 +369,31 @@
     :ensure t
     :bind* (("C-c x" . quickrun)))
 #+END_SRC
+* dash
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package helm-dash
+    :ensure t
+    :init
+    (defun my/view-docs-for-major-mode ()
+      "Read the documentation for the programming language of the
+  current major-mode. Use `helm-dash-install-docset' or Zeal to
+  download docsets."
+      (interactive)
+      (setq-local helm-dash-docsets
+                  (cdr (assoc major-mode '((sh-mode     . ("Bash"))
+                                           (c-mode      . ("C"))
+                                           (c++-mode    . ("C++" "Boost"))
+                                           (lisp-mode   . ("Common_Lisp"))
+                                           (cmake-mode  . ("CMake"))
+                                           (latex-mode  . ("LaTeX"))
+                                           (tex-mode    . ("LaTeX"))
+                                           (python-mode . ("Python_2"))))))
+      (if helm-dash-docsets
+          (call-interactively #'helm-dash-at-point)
+        (message "no docsets found for %s" major-mode)))
+    :bind* (:map evil-normal-state-map
+                 ("SPC h d" . my/view-docs-for-major-mode)))
+#+END_SRC
 * sane defaults
   #+BEGIN_SRC emacs-lisp :results silent
     ;; don't show a startup message
