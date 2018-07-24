@@ -202,13 +202,23 @@
     ;; theme settings
     (use-package gruvbox-theme
       :ensure t
+      :init
+      (defun my/morning-p ()
+        "Return non-nil when it's morning (06:00 - 12:00)."
+        (and (time-less-p nil
+                          (date-to-time (format-time-string "%b %d 12:00 %Y")))
+             (time-less-p (date-to-time (format-time-string "%b %d 06:00 %Y"))
+                          nil)))
       :config
       (defvar theme-already-loaded nil)
       (push (lambda (frame)
               (unless theme-already-loaded
                 (setq theme-already-loaded t)
                 (with-selected-frame frame
-                  (load-theme 'gruvbox-dark-hard t))))
+                  (load-theme (if (my/morning-p)
+                                  'gruvbox-light-hard
+                                'gruvbox-dark-hard)
+                              t))))
             after-make-frame-functions))
   #+END_SRC
 
