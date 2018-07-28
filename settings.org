@@ -100,13 +100,8 @@
             ("SPC f a" . helm-for-files)
             ("SPC f f" . helm-find-files)
             ("SPC f r" . helm-recentf)
-            ("SPC f l" . helm-locate)
-            ("SPC w g" . helm-google-suggest)
-            ("SPC w w" . helm-wikipedia-suggest))
+            ("SPC f l" . helm-locate))
       :config
-      (setq helm-net-prefer-curl t)
-      (setq helm-google-suggest-url
-            "https://www.google.com/complete/search?output=toolbar&q=%s")
       (helm-mode 1)
       (define-key helm-find-files-map "\t" 'helm-execute-persistent-action))
 
@@ -556,6 +551,19 @@
         (message "connecting to %s@%s ..." user host)
         (find-file (concat "/ssh:" user "@" host ":~"))))
 
+    (defun my/ddg-dwim ()
+      "Search duckduckgo.com for the symbol at point or the region if active."
+      (interactive)
+      (let ((search-this
+             (if (region-active-p)
+                 (buffer-substring-no-properties (region-beginning)
+                                                 (region-end))
+               (thing-at-point 'symbol t))))
+        (browse-url (concat "https://duckduckgo.com/?q="
+                            (url-hexify-string (read-string "search term: "
+                                                            search-this
+                                                            'use-history))))))
+
   #+END_SRC
 
   Emacs C-x and C-c keybindings.
@@ -570,6 +578,7 @@
     (global-set-key (kbd "C-c i") #'my/indent-buffer)
     (global-set-key (kbd "C-x k") #'my/kill-current-buffer)
     (global-set-key (kbd "C-c m") #'man)
+    (global-set-key (kbd "C-c g") #'my/ddg-dwim)
     (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
   #+END_SRC
 
