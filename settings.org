@@ -102,8 +102,7 @@
             ("SPC f r" . helm-recentf)
             ("SPC f l" . helm-locate))
       :config
-      (helm-mode 1)
-      (define-key helm-find-files-map "\t" 'helm-execute-persistent-action))
+      (helm-mode 1))
 
     (use-package helm-gtags
       :ensure t
