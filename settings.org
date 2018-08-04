@@ -102,6 +102,7 @@
             ("SPC f r" . helm-recentf)
             ("SPC f l" . helm-locate))
       :config
+      (setq helm-show-completion-display-function #'helm-default-display-buffer)
       (helm-mode 1))
 
     (use-package helm-gtags
