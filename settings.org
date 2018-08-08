@@ -504,6 +504,9 @@
     (global-prettify-symbols-mode t)
     (setq prettify-symbols-unprettify-at-point 'right-edge)
 
+    ;; show lines that contain no characters
+    (setq indicate-empty-lines t)
+
   #+END_SRC
 
 * more keybindings
