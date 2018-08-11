@@ -369,8 +369,11 @@
     (use-package projectile
       :ensure t
       :bind* (:map evil-normal-state-map
-                   ("SPC p" . projectile-mode))
+                   ("SPC p p" . projectile-switch-project)
+                   ("SPC p f" . projectile-find-file)
+                   ("SPC p c" . projectile-compile-project))
       :config
+      (projectile-mode)
       (setq projectile-completion-system 'helm)
       (setq projectile-enable-caching t)
 
