@@ -420,6 +420,36 @@
                  ("SPC h d" . my/view-docs-for-major-mode)))
 #+END_SRC
 
+* eyebrowse
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package eyebrowse
+    :ensure t
+    :bind* (:map evil-normal-state-map
+                 ("SPC w c" . eyebrowse-create-window-config)
+                 ("SPC w k" . eyebrowse-close-window-config)
+                 ("SPC w n" . eyebrowse-next-window-config)
+                 ("SPC w p" . eyebrowse-prev-window-config)
+                 ("SPC w s" . eyebrowse-switch-to-window-config)
+                 ("SPC w r" . eyebrowse-rename-window-config))
+    :config
+    (eyebrowse-mode)
+
+    (defadvice eyebrowse-create-window-config (after
+                                               my/rename-window-config
+                                               activate)
+      "After a window config has been created rename it."
+      (call-interactively #'eyebrowse-rename-window-config))
+
+    (setq eyebrowse-wrap-around t
+          eyebrowse-new-workspace t
+          eyebrowse-mode-line-separator "/"
+          eyebrowse-tagged-slot-format "%t"
+          eyebrowse-mode-line-left-delimiter " ["
+          eyebrowse-mode-line-right-delimiter "] ")
+    :custom-face
+    (eyebrowse-mode-line-active ((t (:inherit font-lock-builtin-face)))))
+#+END_SRC
+
 * sane defaults
   #+BEGIN_SRC emacs-lisp :results silent
     ;; don't show a startup message
