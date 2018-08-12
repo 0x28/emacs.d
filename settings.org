@@ -103,7 +103,10 @@
             ("SPC f l" . helm-locate))
       :config
       (setq helm-show-completion-display-function #'helm-default-display-buffer)
-      (helm-mode 1))
+      (helm-mode 1)
+
+      :custom-face
+      (helm-action ((t (:inherit default :foreground "unspecified")))))
 
     (use-package helm-gtags
       :ensure t
