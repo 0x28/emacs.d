@@ -377,7 +377,7 @@
                    ("SPC p c" . projectile-compile-project))
       :config
       (projectile-mode)
-      (setq projectile-completion-system 'helm)
+      (setq projectile-completion-system 'default)
       (setq projectile-enable-caching t)
 
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
