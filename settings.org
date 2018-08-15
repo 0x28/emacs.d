@@ -85,35 +85,40 @@
       (global-evil-mc-mode 1))
   #+END_SRC
 
-* helm
+* ivy
   #+BEGIN_SRC emacs-lisp :results silent
-    (use-package helm
+    (use-package ivy
       :ensure t
-      :bind* (("M-x" . helm-M-x)
-              ("C-x C-f" . helm-find-files)
-              ("C-c f" . helm-occur)
-              ("C-c d" . helm-semantic-or-imenu)
-              ("C-c r" . helm-recentf)
-              ("C-c k" . helm-show-kill-ring))
-      (:map evil-normal-state-map
-            ("SPC SPC" . helm-M-x)
-            ("SPC f a" . helm-for-files)
-            ("SPC f f" . helm-find-files)
-            ("SPC f r" . helm-recentf)
-            ("SPC f l" . helm-locate))
+      :defer t
       :config
-      (setq helm-show-completion-display-function #'helm-default-display-buffer)
-      (helm-mode 1)
+      (setq ivy-height 20)
+      (ivy-mode))
 
-      :custom-face
-      (helm-action ((t (:inherit default :foreground "unspecified")))))
+    (use-package swiper
+      :ensure t
+      :bind* (("C-c f" . swiper)))
 
-    (use-package helm-gtags
+    (use-package counsel
+      :ensure t
+      :bind* (("M-x" . counsel-M-x)
+              ("C-x C-f" . counsel-find-file)
+              ("C-c d" . counsel-semantic-or-imenu)
+              ("C-c r" . counsel-recentf)
+              ("C-c k" . counsel-yank-pop))
+      (:map evil-normal-state-map
+            ("SPC SPC" . counsel-M-x)
+            ("SPC f f" . counsel-find-file)
+            ("SPC f r" . counsel-recentf)
+            ("SPC f l" . counsel-locate))
+      :config
+      (setf (cdr (assoc 'counsel-M-x ivy-initial-inputs-alist)) "")
+      (counsel-mode))
+
+    (use-package counsel-gtags
       :ensure t
       :bind* (:map evil-normal-state-map
-                   ("SPC t s" . helm-gtags-select))
-      :config
-      (setf helm-gtags-maximum-candidates 1000))
+                   ("SPC t c" . counsel-gtags-create-tags)
+                   ("SPC t s" . counsel-gtags-dwim)))
   #+END_SRC
 
 * dired
@@ -229,7 +234,7 @@
       :bind* (("C-c s" . my/toggle-eshell))
       :hook
       (eshell-mode . (lambda ()
-                       (local-set-key (kbd "C-r") #'helm-eshell-history)))
+                       (local-set-key (kbd "C-r") #'counsel-esh-history)))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
       (add-hook 'eshell-mode-hook (lambda ()
@@ -399,15 +404,15 @@
 
 * dash
 #+BEGIN_SRC emacs-lisp :results silent
-  (use-package helm-dash
+  (use-package counsel-dash
     :ensure t
     :init
     (defun my/view-docs-for-major-mode ()
       "Read the documentation for the programming language of the
-  current major-mode. Use `helm-dash-install-docset' or Zeal to
+  current major-mode. Use `counsel-dash-install-docset' or Zeal to
   download docsets."
       (interactive)
-      (setq-local helm-dash-docsets
+      (setq-local counsel-dash-docsets
                   (cdr (assoc major-mode '((sh-mode     . ("Bash"))
                                            (c-mode      . ("C"))
                                            (c++-mode    . ("C++" "Boost"))
@@ -416,8 +421,8 @@
                                            (latex-mode  . ("LaTeX"))
                                            (tex-mode    . ("LaTeX"))
                                            (python-mode . ("Python_2"))))))
-      (if helm-dash-docsets
-          (call-interactively #'helm-dash-at-point)
+      (if counsel-dash-docsets
+          (call-interactively #'counsel-dash)
         (message "no docsets found for %s" major-mode)))
     :bind* (:map evil-normal-state-map
                  ("SPC h d" . my/view-docs-for-major-mode)))
