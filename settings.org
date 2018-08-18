@@ -91,7 +91,8 @@
       :ensure t
       :defer t
       :config
-      (setq ivy-height 20)
+      (setq ivy-height 20
+            ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
       (ivy-mode))
 
     (use-package swiper
@@ -112,6 +113,7 @@
             ("SPC f l" . counsel-locate))
       :config
       (setf (cdr (assoc 'counsel-M-x ivy-initial-inputs-alist)) "")
+      (setq counsel-async-filter-update-time 100000) ;; every 0.1 seconds
       (counsel-mode))
 
     (use-package counsel-gtags
