@@ -159,7 +159,20 @@
       :defer 1
       :config
       (which-key-mode)
-      (setf which-key-idle-delay 0.5))
+      (setf which-key-idle-delay 0.5)
+      (which-key-add-key-based-replacements
+        "SPC b" "bookmarks"
+        "SPC e" "edit"
+        "SPC f" "files"
+        "SPC h" "help"
+        "SPC n" "narrow"
+        "SPC p" "project"
+        "SPC q" "quit"
+        "SPC r" "remote"
+        "SPC s" "smartparens"
+        "SPC t" "tags"
+        "SPC v" "version control"
+        "SPC w" "window management"))
   #+END_SRC
 
 * flycheck
