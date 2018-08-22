@@ -138,9 +138,13 @@
 #+END_SRC
 
 * occur
+The function occur is defined within replace.el but it is missing a provide
+statement in emacs 25. Therefore the config has to be inside an init block.
 #+BEGIN_SRC emacs-lisp :results silent
-  (use-package occur
-    :hook (occur-mode . next-error-follow-minor-mode))
+  (use-package replace
+    :hook (occur-mode . next-error-follow-minor-mode)
+    :init
+    (setq list-matching-lines-default-context-lines 3))
 #+END_SRC
 
 * ace-jump
