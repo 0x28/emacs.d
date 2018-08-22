@@ -263,7 +263,8 @@ statement in emacs 25. Therefore the config has to be inside an init block.
       (setf eshell-cmpl-ignore-case t
             eshell-error-if-no-glob t
             eshell-hist-ignoredups t
-            eshell-scroll-to-bottom-on-input t))
+            eshell-scroll-to-bottom-on-input t
+            eshell-cmpl-cycle-completions nil))
 
     (defun my/toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
