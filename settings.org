@@ -130,16 +130,19 @@
     (:map evil-normal-state-map
           ("SPC f d" . dired-jump-other-window))
     (:map dired-mode-map
-          ("<tab>" . dired-omit-mode))
+          ("<tab>" . dired-omit-mode)
+          ("<backtab>" . dired-hide-details-mode))
+    :hook (dired-mode . dired-omit-mode)
+    :hook (dired-mode . dired-hide-details-mode)
     :config
     (setq dired-auto-revert-buffer t)
-    (setq-default dired-omit-mode t)
+    (setq dired-dwim-target t)
     (setq dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
 #+END_SRC
 
 * occur
-The function occur is defined within replace.el but it is missing a provide
-statement in emacs 25. Therefore the config has to be inside an init block.
+  The function occur is defined within replace.el but it is missing a provide
+  statement in emacs 25. Therefore the config has to be inside an init block.
 #+BEGIN_SRC emacs-lisp :results silent
   (use-package replace
     :hook (occur-mode . next-error-follow-minor-mode)
