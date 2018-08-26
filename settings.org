@@ -448,6 +448,15 @@ statement in emacs 25. Therefore the config has to be inside an init block.
                  ("SPC h d" . my/view-docs-for-major-mode)))
 #+END_SRC
 
+* smex
+  Counsel-M-x doesn't provide a command history. But it uses smex when
+  available.
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package smex
+    :ensure t
+    :after counsel)
+#+END_SRC
+
 * eyebrowse
 #+BEGIN_SRC emacs-lisp :results silent
   (use-package eyebrowse
