@@ -592,12 +592,7 @@
       (interactive)
       (save-excursion
         (delete-trailing-whitespace)
-        (unless (string-match (rx string-start
-                                  "makefile"
-                                  (* anything)
-                                  "mode"
-                                  string-end)
-                              (symbol-name major-mode))
+        (unless (derived-mode-p 'makefile-mode)
           (indent-region (point-min) (point-max) nil)
           (untabify (point-min) (point-max)))))
 
