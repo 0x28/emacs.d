@@ -578,7 +578,7 @@
     (delete-selection-mode 1)
 
     ;; hide minor-modes in mode-line
-    (setf mode-line-modes '(:eval (propertize " [%m]"
+    (setf mode-line-modes '(:eval (propertize " [%m] "
                                               'face 'font-lock-constant-face)))
 
     ;; pretty lambdas
