@@ -458,7 +458,7 @@
                                            (tex-mode    . ("LaTeX"))
                                            (python-mode . ("Python_2"))))))
       (if counsel-dash-docsets
-          (call-interactively #'counsel-dash)
+          (counsel-dash (thing-at-point 'symbol t))
         (message "no docsets found for %s" major-mode)))
     :bind* (:map evil-normal-state-map
                  ("SPC h d" . my/view-docs-for-major-mode)))
@@ -630,9 +630,9 @@
   Emacs C-x and C-c keybindings.
   #+BEGIN_SRC emacs-lisp :results silent
 
-    (defun my/kill-current-buffer (prefix-arg)
+    (defun my/kill-current-buffer ()
       "Kill the current buffer."
-      (interactive "P")
+      (interactive)
       (kill-buffer (current-buffer)))
 
     (global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
