@@ -215,13 +215,19 @@
       :demand
       :bind*
       (:map evil-normal-state-map
-            ("SPC s s" . sp-split-sexp))
+            ("SPC s s" . sp-split-sexp)
+            ("SPC s w" . my/wrap-sexp))
       :config
       (require 'smartparens-config)
       (setq-default sp-escape-quotes-after-insert nil)
 
       (smartparens-global-mode 1)
-      (show-smartparens-global-mode 1))
+      (show-smartparens-global-mode 1)
+
+      (defun my/wrap-sexp ()
+        (interactive)
+        (sp-wrap-with-pair
+         (completing-read "wrap with pair of: " sp-pair-list))))
   #+END_SRC
 
 * theme
