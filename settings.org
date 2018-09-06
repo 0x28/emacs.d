@@ -115,12 +115,6 @@
       (setf (cdr (assoc 'counsel-M-x ivy-initial-inputs-alist)) "")
       (setq counsel-async-filter-update-time 100000) ;; every 0.1 seconds
       (counsel-mode))
-
-    (use-package counsel-gtags
-      :ensure t
-      :bind* (:map evil-normal-state-map
-                   ("SPC t c" . counsel-gtags-create-tags)
-                   ("SPC t s" . counsel-gtags-dwim)))
   #+END_SRC
 
 * dired
@@ -314,6 +308,18 @@
        whitespace-style '(face trailing lines-tail)))
   #+END_SRC
 
+* ggtags
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package ggtags
+    :ensure t
+    :config
+    :bind* (:map evil-normal-state-map
+                 ("SPC t s" . ggtags-find-tag-dwim)
+                 ("SPC t c" . ggtags-create-tags)
+                 ("SPC t u" . ggtags-update-tags)
+                 ("SPC t d" . ggtags-delete-tags)))
+#+END_SRC
+
 * C/C++ config
   #+BEGIN_SRC emacs-lisp :results silent
     (defalias 'cxx-mode #'c++-mode)
@@ -345,6 +351,7 @@
                      (setq-local flycheck-gcc-language-standard "c++11")
                      (setq-local flycheck-clang-language-standard "c++11")))
        ((c-mode c++-mode) . (lambda ()
+                              (ggtags-mode 1)
                               (setq-local company-backends '((company-capf
                                                               company-keywords
                                                               company-gtags
