@@ -67,6 +67,8 @@
             evil-operator-state-tag
             (propertize " {O} " 'face '((:foreground "purple"))))
 
+      (setq evil-lookup-func (lambda () (interactive)
+                               (call-interactively #'man)))
       (evil-mode))
 
     (use-package evil-collection
@@ -651,7 +653,6 @@
     (global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
     (global-set-key (kbd "C-c i") #'my/indent-buffer)
     (global-set-key (kbd "C-x k") #'my/kill-current-buffer)
-    (global-set-key (kbd "C-c m") #'man)
     (global-set-key (kbd "C-c g") #'my/ddg-dwim)
     (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
   #+END_SRC
