@@ -258,7 +258,9 @@
       :bind* (("C-c s" . my/toggle-eshell))
       :hook
       (eshell-mode . (lambda ()
-                       (local-set-key (kbd "C-r") #'counsel-esh-history)))
+                       (local-set-key (kbd "C-r") #'counsel-esh-history)
+                       (local-set-key (kbd "TAB") #'company-complete)
+                       (local-set-key (kbd "<tab>") #'company-complete)))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
       (add-hook 'eshell-mode-hook (lambda ()
