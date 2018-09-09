@@ -359,7 +359,8 @@
                                                               company-gtags
                                                               company-files))))))
       :config
-      (setq-default c-basic-offset 4))
+      (setq-default c-default-style "bsd"
+                    c-basic-offset 4))
   #+END_SRC
 
 * CMake config
