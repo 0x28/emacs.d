@@ -114,6 +114,7 @@
             ("SPC f r" . counsel-recentf)
             ("SPC f l" . counsel-locate))
       :config
+      (setq counsel-find-file-at-point t)
       (setf (cdr (assoc 'counsel-M-x ivy-initial-inputs-alist)) "")
       (setq counsel-async-filter-update-time 100000) ;; every 0.1 seconds
       (counsel-mode))
