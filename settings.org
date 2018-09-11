@@ -325,7 +325,7 @@
                  ("SPC t d" . ggtags-delete-tags)))
 #+END_SRC
 
-* C/C++ config
+* C, C++ config
   #+BEGIN_SRC emacs-lisp :results silent
     (defalias 'cxx-mode #'c++-mode)
 
@@ -490,6 +490,20 @@
   (use-package smex
     :ensure t
     :after counsel)
+#+END_SRC
+
+* additional keywords
+  Some words like "FIXME" and "TODO" should be highlighted in every programming
+  mode. It doesn't matter if they're inside comments or not.
+#+BEGIN_SRC emacs-lisp :results silent
+  (defun my/add-new-keywords()
+    (highlight-regexp (rx bow (or "FIXME" "fixme"
+                                  "TODO" "todo"
+                                  "BUG" "bug")
+                          eow)
+                      font-lock-warning-face))
+
+  (add-hook 'prog-mode-hook #'my/add-new-keywords)
 #+END_SRC
 
 * sane defaults
