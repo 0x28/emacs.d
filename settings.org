@@ -429,6 +429,12 @@
 
 * projectile
   #+BEGIN_SRC emacs-lisp :results silent
+    (defun my/project-rg ()
+      "Search with ripgrep within project."
+      (interactive)
+      (counsel-rg (thing-at-point 'symbol t)
+                  (projectile-project-root)))
+
     (use-package projectile
       :ensure t
       :bind* (:map evil-normal-state-map
@@ -447,7 +453,8 @@
           (setq projectile-svn-command "fd --color never --print0 --type f"))
 
       ;; define "SPC p" as additional prefix for projectile
-      (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map))
+      (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map)
+      (define-key evil-normal-state-map (kbd "SPC p s") #'my/project-rg))
   #+END_SRC
 
 * quickrun
