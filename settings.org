@@ -504,11 +504,11 @@
   mode. It doesn't matter if they're inside comments or not.
 #+BEGIN_SRC emacs-lisp :results silent
   (defun my/add-new-keywords()
-    (highlight-regexp (rx bow (or "FIXME" "fixme"
-                                  "TODO" "todo"
-                                  "BUG" "bug")
-                          eow)
-                      font-lock-warning-face))
+    (font-lock-add-keywords
+     nil
+     '(("\\<\\(FIXME\\|fixme\\)\\>" 1 'font-lock-warning-face prepend)
+       ("\\<\\(TODO\\|todo\\)\\>" 1 'font-lock-warning-face prepend)
+       ("\\<\\(BUG\\|bug\\)\\>" 1 'font-lock-warning-face prepend))))
 
   (add-hook 'prog-mode-hook #'my/add-new-keywords)
 #+END_SRC
