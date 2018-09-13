@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
-;; (package-initialize)
-
 (let ((gc-cons-threshold most-positive-fixnum)
       (gc-cons-percentage 0.6)
       (file-name-handler-alist nil))
