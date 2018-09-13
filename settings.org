@@ -78,6 +78,13 @@
       (setq evil-collection-key-blacklist (list "SPC"))
       (evil-collection-init))
 
+    (use-package evil-mc
+      :ensure t
+      :bind* (:map evil-normal-state-map
+                   ("C-n" . evil-mc-make-and-goto-next-match)
+                   ("C-p" . evil-mc-make-and-goto-prev-match))
+      :config
+      (global-evil-mc-mode 1))
   #+END_SRC
 
 * ivy
