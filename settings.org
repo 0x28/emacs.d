@@ -33,7 +33,7 @@
       :ensure t
       :demand
       :init
-      (setf evil-want-integration nil)
+      (setf evil-want-keybinding nil)
       :bind*
       (:map evil-normal-state-map
             ("SPC e i" . my/edit-init-file)
