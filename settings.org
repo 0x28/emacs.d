@@ -70,20 +70,42 @@
       (setq evil-lookup-func (lambda () (interactive)
                                (call-interactively #'man)))
       (evil-mode))
+  #+END_SRC
 
+* evil collection
+  #+BEGIN_SRC emacs-lisp :results silent
     (use-package evil-collection
       :ensure t
       :defer 1
       :config
       (setq evil-collection-key-blacklist (list "SPC"))
       (evil-collection-init))
+  #+END_SRC
+
+* evil multiple cursors
+  #+BEGIN_SRC emacs-lisp :results silent
+    (defun my/evil-mc-dispatch ()
+      "Dispatch command to create multiple cursors."
+      (interactive)
+      (set-transient-map
+       (let ((map (make-sparse-keymap)))
+         (define-key map (kbd "C-n") #'evil-mc-make-and-goto-next-match)
+         (define-key map (kbd "C-p") #'evil-mc-make-and-goto-prev-match)
+         (define-key map (kbd "C-j") #'evil-mc-make-cursor-move-next-line)
+         (define-key map (kbd "C-k") #'evil-mc-make-cursor-move-prev-line)
+         map)
+       t))
 
     (use-package evil-mc
       :ensure t
+      :commands (evil-mc-make-and-goto-next-match
+                 evil-mc-make-and-goto-prev-match
+                 evil-mc-make-cursor-move-next-line
+                 evil-mc-make-cursor-move-prev-line)
       :bind* (:map evil-normal-state-map
-                   ("C-n" . evil-mc-make-and-goto-next-match)
-                   ("C-p" . evil-mc-make-and-goto-prev-match))
+                   ("SPC m" . my/evil-mc-dispatch))
       :config
+      (setq evil-mc-undo-cursors-on-keyboard-quit t)
       (global-evil-mc-mode 1))
   #+END_SRC
 
@@ -155,7 +177,8 @@
       :defer 1
       :config
       (which-key-mode)
-      (setf which-key-idle-delay 0.5)
+      (setq which-key-idle-delay 0.5)
+      (setq which-key-show-transient-maps t)
       (which-key-add-key-based-replacements
         "SPC b" "bookmarks"
         "SPC e" "edit"
