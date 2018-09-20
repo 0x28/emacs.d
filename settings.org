@@ -93,6 +93,7 @@
          (define-key map (kbd "C-p") #'evil-mc-make-and-goto-prev-match)
          (define-key map (kbd "C-j") #'evil-mc-make-cursor-move-next-line)
          (define-key map (kbd "C-k") #'evil-mc-make-cursor-move-prev-line)
+         (message "%s" (substitute-command-keys "\\{map}"))
          map)
        t))
 
@@ -178,7 +179,6 @@
       :config
       (which-key-mode)
       (setq which-key-idle-delay 0.5)
-      (setq which-key-show-transient-maps t)
       (which-key-add-key-based-replacements
         "SPC b" "bookmarks"
         "SPC e" "edit"
