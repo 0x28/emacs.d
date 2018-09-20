@@ -1,5 +1,7 @@
+alias v vc-dir $1
 alias o xdg-open $1
 alias c clear t
 alias d dired .
 alias l ls -al
 alias x exit
+alias type which $1
