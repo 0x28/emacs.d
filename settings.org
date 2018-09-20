@@ -46,8 +46,7 @@
             ("SPC n r" . narrow-to-region))
       :config
       ;; define "SPC v" as alias for "C-x v"
-      (define-key evil-normal-state-map (kbd "SPC v")
-        (lookup-key (current-global-map) (kbd "C-x v")))
+      (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
 
       (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
       (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
