@@ -290,7 +290,9 @@
             eshell-error-if-no-glob t
             eshell-hist-ignoredups t
             eshell-scroll-to-bottom-on-input t
-            eshell-cmpl-cycle-completions nil))
+            eshell-cmpl-cycle-completions nil)
+      :custom-face
+      (eshell-prompt ((t (:inherit minibuffer-prompt :weight normal)))))
 
     (defun my/toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
