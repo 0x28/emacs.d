@@ -22,8 +22,9 @@
       :ensure t
       :config
       (add-hook 'after-init-hook #'global-company-mode)
-      (setf company-idle-delay 0.1)
-      (setf company-minimum-prefix-length 1))
+      (setq company-selection-wrap-around t
+            company-idle-delay 0.1
+            company-minimum-prefix-length 1))
   #+END_SRC
 
 * evil
