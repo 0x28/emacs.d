@@ -79,6 +79,7 @@
       :defer 1
       :config
       (setq evil-collection-key-blacklist (list "SPC"))
+      (setq evil-collection-company-use-tng nil)
       (evil-collection-init))
   #+END_SRC
 
