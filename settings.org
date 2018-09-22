@@ -281,8 +281,8 @@
       :hook
       (eshell-mode . (lambda ()
                        (local-set-key (kbd "C-r") #'counsel-esh-history)
-                       (local-set-key (kbd "TAB") #'company-complete)
-                       (local-set-key (kbd "<tab>") #'company-complete)))
+                       (local-set-key (kbd "TAB") #'company-complete-common)
+                       (local-set-key (kbd "<tab>") #'company-complete-common)))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
       (add-hook 'eshell-mode-hook (lambda ()
