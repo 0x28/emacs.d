@@ -107,6 +107,8 @@
                    ("SPC m" . my/evil-mc-dispatch))
       :config
       (setq evil-mc-undo-cursors-on-keyboard-quit t)
+      (setq evil-mc-custom-known-commands
+            '((newline (:insert . evil-mc-execute-call))))
       (global-evil-mc-mode 1))
   #+END_SRC
 
