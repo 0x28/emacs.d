@@ -127,7 +127,7 @@
       :ensure t
       :bind* (("M-x" . counsel-M-x)
               ("C-x C-f" . counsel-find-file)
-              ("C-c d" . counsel-semantic-or-imenu)
+              ("C-c d" . counsel-imenu)
               ("C-c r" . counsel-recentf)
               ("C-c k" . counsel-yank-pop))
       (:map evil-normal-state-map
