@@ -15,18 +15,6 @@
       (package-install 'use-package))
   #+END_SRC
 
-* company
-  Generic settings for the completion framework company.
-  #+BEGIN_SRC emacs-lisp :results silent
-    (use-package company
-      :ensure t
-      :config
-      (add-hook 'after-init-hook #'global-company-mode)
-      (setq company-selection-wrap-around t
-            company-idle-delay 0.1
-            company-minimum-prefix-length 1))
-  #+END_SRC
-
 * evil
   Vim emulation for emacs.
   #+BEGIN_SRC emacs-lisp :results silent
@@ -76,7 +64,6 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package evil-collection
       :ensure t
-      :defer 1
       :config
       (setq evil-collection-key-blacklist (list "SPC"))
       (setq evil-collection-company-use-tng nil)
@@ -111,6 +98,22 @@
       (setq evil-mc-custom-known-commands
             '((newline (:insert . evil-mc-execute-call))))
       (global-evil-mc-mode 1))
+  #+END_SRC
+
+* company
+  Generic settings for the completion framework company.
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package company
+      :ensure t
+      :config
+      (add-hook 'after-init-hook #'global-company-mode)
+
+      (define-key company-active-map (kbd "<tab>") #'company-complete-common-or-cycle)
+      (define-key company-active-map (kbd "TAB") #'company-complete-common-or-cycle)
+
+      (setq company-selection-wrap-around t
+            company-idle-delay 0.1
+            company-minimum-prefix-length 1))
   #+END_SRC
 
 * ivy
