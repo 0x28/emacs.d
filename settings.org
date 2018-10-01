@@ -81,6 +81,7 @@
          (define-key map (kbd "C-p") #'evil-mc-make-and-goto-prev-match)
          (define-key map (kbd "C-j") #'evil-mc-make-cursor-move-next-line)
          (define-key map (kbd "C-k") #'evil-mc-make-cursor-move-prev-line)
+         (define-key map (kbd "C-a") #'evil-mc-make-all-cursors)
          (message "%s" (substitute-command-keys "\\{map}"))
          map)
        t))
@@ -90,7 +91,8 @@
       :commands (evil-mc-make-and-goto-next-match
                  evil-mc-make-and-goto-prev-match
                  evil-mc-make-cursor-move-next-line
-                 evil-mc-make-cursor-move-prev-line)
+                 evil-mc-make-cursor-move-prev-line
+                 evil-mc-make-all-cursors)
       :bind* (:map evil-normal-state-map
                    ("SPC m" . my/evil-mc-dispatch))
       :config
