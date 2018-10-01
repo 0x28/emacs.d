@@ -227,6 +227,19 @@
       :defer t)
   #+END_SRC
 
+* theme
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package gruvbox-theme
+      :ensure t
+      :config
+      (if (daemonp)
+          (add-hook 'after-make-frame-functions
+                    (lambda (frame)
+                      (with-selected-frame frame
+                        (load-theme 'gruvbox-dark-hard t))))
+        (load-theme 'gruvbox-dark-hard t)))
+  #+END_SRC
+
 * smartparens
   #+BEGIN_SRC emacs-lisp :results silent
     ;; better bracket handling
@@ -248,35 +261,6 @@
         (interactive)
         (sp-wrap-with-pair
          (completing-read "wrap with pair of: " sp-pair-list))))
-  #+END_SRC
-
-* theme
-  #+BEGIN_SRC emacs-lisp :results silent
-    (defun my/morning-p ()
-      "Return non-nil when it's morning (06:00 - 12:00)."
-      (and (time-less-p nil
-                        (date-to-time (format-time-string "%b %d 12:00 %Y")))
-           (time-less-p (date-to-time (format-time-string "%b %d 06:00 %Y"))
-                        nil)))
-
-    (defun my/load-theme ()
-      "Load theme depending on current time. Disable active themes."
-      (dolist (theme custom-enabled-themes)
-        (disable-theme theme))
-      (load-theme (if (my/morning-p)
-                      'gruvbox-light-hard
-                    'gruvbox-dark-hard)
-                  t))
-
-    (use-package gruvbox-theme
-      :ensure t
-      :config
-      (if (daemonp)
-          (add-hook 'after-make-frame-functions
-                    (lambda (frame)
-                      (with-selected-frame frame
-                        (my/load-theme))))
-        (my/load-theme)))
   #+END_SRC
 
 * eshell
