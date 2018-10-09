@@ -34,9 +34,6 @@
       (:map evil-visual-state-map
             ("SPC n r" . narrow-to-region))
       :config
-      ;; define "SPC v" as alias for "C-x v"
-      (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
-
       (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
       (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
 
@@ -399,6 +396,12 @@
     :defer t
     :config
     (setq nxml-child-indent 4))
+#+END_SRC
+
+* version control
+#+BEGIN_SRC emacs-lisp :resutls silent
+  (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
+  (setq vc-svn-diff-switches "--force")
 #+END_SRC
 
 * LaTeX config
