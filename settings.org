@@ -271,7 +271,8 @@
                        (local-set-key (kbd "TAB") #'company-complete-common)
                        (local-set-key (kbd "<tab>") #'company-complete-common)
                        (setq-local global-hl-line-mode nil)
-                       (setq-local company-idle-delay nil)))
+                       (setq-local company-idle-delay nil)
+                       (setq-local company-backends (list #'company-capf))))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
       (setf eshell-cmpl-ignore-case t
