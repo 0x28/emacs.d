@@ -605,6 +605,9 @@
     (global-prettify-symbols-mode t)
     (setq prettify-symbols-unprettify-at-point 'right-edge)
 
+    ;; don't accelerate mouse wheel scrolling
+    (setq mouse-wheel-progressive-speed nil)
+
   #+END_SRC
 
 * more keybindings
