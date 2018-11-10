@@ -338,6 +338,7 @@
        ((c-mode c++-mode) . (lambda ()
                               (ggtags-mode 1)
                               (setq-local company-backends '((company-capf
+                                                              company-yasnippet
                                                               company-keywords
                                                               company-gtags
                                                               company-files))))))
