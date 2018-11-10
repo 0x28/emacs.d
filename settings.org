@@ -320,21 +320,13 @@
       :ensure t
       :defer t)
 
-    (use-package find-file
-      :after cc-mode
-      :config
-      (setq cc-search-directories (append (list "../.." "include/*")
-                                          cc-search-directories)))
-
     (use-package cc-mode
       :bind* (:map c-mode-map
                    ("C-c i" . clang-format-buffer)
-                   ("C-c C-c" . comment-dwim)
-                   ("C-c o" . ff-find-other-file))
+                   ("C-c C-c" . comment-dwim))
       :bind* (:map c++-mode-map
                    ("C-c i" . clang-format-buffer)
-                   ("C-c C-c" . comment-dwim)
-                   ("C-c o" . ff-find-other-file))
+                   ("C-c C-c" . comment-dwim))
       :hook
       ((c-mode . (lambda ()
                    (setq-local flycheck-gcc-language-standard "c99")
@@ -537,8 +529,7 @@
     (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
     ;; use hack font
-    (add-to-list 'default-frame-alist
-    '(font . "Hack-13"))
+    (add-to-list 'default-frame-alist '(font . "Hack-13"))
 
     ;; column numbers
     (column-number-mode 1)
