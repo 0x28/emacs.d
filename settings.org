@@ -26,11 +26,11 @@
       :bind*
       (:map evil-normal-state-map
             ("SPC e i" . my/edit-init-file)
+            ("SPC e s" . my/ssh-connect)
             ("SPC q n" . save-buffers-kill-emacs)
             ("SPC n d" . narrow-to-defun)
             ("SPC n w" . widen)
-            ("SPC n p" . my/narrow-to-paragraph)
-            ("SPC r s" . my/ssh-connect))
+            ("SPC n p" . my/narrow-to-paragraph))
       (:map evil-visual-state-map
             ("SPC n r" . narrow-to-region))
       :config
@@ -192,7 +192,6 @@
         "SPC n" "narrow"
         "SPC p" "project"
         "SPC q" "quit"
-        "SPC r" "remote"
         "SPC s" "smartparens"
         "SPC t" "tags"
         "SPC v" "version control"
