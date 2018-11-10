@@ -29,8 +29,7 @@
             ("SPC e s" . my/ssh-connect)
             ("SPC q n" . save-buffers-kill-emacs)
             ("SPC n d" . narrow-to-defun)
-            ("SPC n w" . widen)
-            ("SPC n p" . my/narrow-to-paragraph))
+            ("SPC n w" . widen))
       (:map evil-visual-state-map
             ("SPC n r" . narrow-to-region))
       :config
@@ -595,7 +594,9 @@
       "Open the init file."
       (interactive)
       (find-file (expand-file-name "settings.org" user-emacs-directory)))
+  #+END_SRC
 
+  #+BEGIN_SRC emacs-lisp :results silent
     (defun my/indent-buffer ()
       "Indent the current buffer."
       (interactive)
@@ -604,7 +605,9 @@
         (unless (derived-mode-p 'makefile-mode)
           (indent-region (point-min) (point-max) nil)
           (untabify (point-min) (point-max)))))
+  #+END_SRC
 
+  #+BEGIN_SRC emacs-lisp :results silent
     ;; from https://gist.github.com/3402786
     (defun my/toggle-maximize-buffer ()
       "Maximize buffer"
@@ -615,15 +618,9 @@
         (progn
           (window-configuration-to-register ?_)
           (delete-other-windows))))
+  #+END_SRC
 
-    (defun my/narrow-to-paragraph ()
-      "Narrow to the paragraph at point."
-      (interactive)
-      (save-mark-and-excursion
-       (mark-paragraph)
-       (narrow-to-region (point)
-                         (mark))))
-
+  #+BEGIN_SRC emacs-lisp :results silent
     (defun my/local-hosts ()
       "Return a list of hosts in the local network."
       (split-string
@@ -638,6 +635,9 @@
         (message "connecting to %s@%s ..." user host)
         (find-file (concat "/ssh:" user "@" host ":~"))))
 
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp :results silent
     (defun my/ddg-dwim ()
       "Search duckduckgo.com for the symbol at point or the region if active."
       (interactive)
@@ -659,18 +659,20 @@
 
   #+END_SRC
 
-  Emacs C-x and C-c keybindings.
   #+BEGIN_SRC emacs-lisp :results silent
-
     (defun my/kill-current-buffer ()
       "Kill the current buffer."
       (interactive)
       (kill-buffer (current-buffer)))
 
+  #+END_SRC
+  Emacs C-x and C-c keybindings.
+  #+BEGIN_SRC emacs-lisp :results silent
     (global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
     (global-set-key (kbd "C-c i") #'my/indent-buffer)
     (global-set-key (kbd "C-x k") #'my/kill-current-buffer)
     (global-set-key (kbd "C-c g") #'my/ddg-dwim)
     (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
+
   #+END_SRC
 
