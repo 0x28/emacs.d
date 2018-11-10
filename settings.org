@@ -639,15 +639,21 @@
     (defun my/ddg-dwim ()
       "Search duckduckgo.com for the symbol at point or the region if active."
       (interactive)
-      (let ((search-this
-             (if (region-active-p)
-                 (buffer-substring-no-properties (region-beginning)
-                                                 (region-end))
-               (thing-at-point 'symbol t))))
-        (browse-url (concat "https://duckduckgo.com/?q="
-                            (url-hexify-string (read-string "search term: "
-                                                            search-this
-                                                            'use-history))))))
+      (let* ((search-this
+              (if (region-active-p)
+                  (buffer-substring-no-properties (region-beginning)
+                                                  (region-end))
+                (thing-at-point 'symbol t)))
+             (user-input (read-string (format "search term (default \"%s\"): "
+                                              (or search-this ""))
+                                      nil
+                                      'ddg-input-history
+                                      search-this)))
+        (thread-last
+          user-input
+          url-hexify-string
+          (concat "https://duckduckgo.com/?q=")
+          browse-url)))
 
   #+END_SRC
 
