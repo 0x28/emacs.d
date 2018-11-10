@@ -149,7 +149,7 @@
   #+END_SRC
 
 * dired
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (use-package dired-x
     :bind*
     (:map evil-normal-state-map
@@ -163,17 +163,17 @@
     (setq dired-auto-revert-buffer t)
     (setq dired-dwim-target t)
     (setq dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
-#+END_SRC
+  #+END_SRC
 
 * occur
   The function occur is defined within replace.el but it is missing a provide
   statement in emacs 25. Therefore the config has to be inside an init block.
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (use-package replace
     :hook (occur-mode . next-error-follow-minor-mode)
     :init
     (setq list-matching-lines-default-context-lines 3))
-#+END_SRC
+  #+END_SRC
 
 * which key
   #+BEGIN_SRC emacs-lisp :results silent
@@ -300,7 +300,7 @@
   #+END_SRC
 
 * ggtags
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (use-package ggtags
     :ensure t
     :config
@@ -311,7 +311,7 @@
                  ("SPC t c" . ggtags-create-tags)
                  ("SPC t u" . ggtags-update-tags)
                  ("SPC t d" . ggtags-delete-tags)))
-#+END_SRC
+  #+END_SRC
 
 * C, C++ config
   #+BEGIN_SRC emacs-lisp :results silent
@@ -356,26 +356,26 @@
   #+END_SRC
 
 * compile
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (use-package compile
     :defer t
     :config
     (setq compilation-scroll-output 'first-error))
-#+END_SRC
+  #+END_SRC
 
 * XML
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (use-package nxml-mode
     :defer t
     :config
     (setq nxml-child-indent 4))
-#+END_SRC
+  #+END_SRC
 
 * version control
-#+BEGIN_SRC emacs-lisp :resutls silent
+  #+BEGIN_SRC emacs-lisp :resutls silent
   (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
   (setq vc-svn-diff-switches "--force")
-#+END_SRC
+  #+END_SRC
 
 * LaTeX config
   #+BEGIN_SRC emacs-lisp :results silent
@@ -445,14 +445,14 @@
   #+END_SRC
 
 * quickrun
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (use-package quickrun
     :ensure t
     :bind* (("C-c x" . quickrun)))
-#+END_SRC
+  #+END_SRC
 
 * dash
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (use-package counsel-dash
     :ensure t
     :init
@@ -475,21 +475,21 @@
         (message "no docsets found for %s" major-mode)))
     :bind* (:map evil-normal-state-map
                  ("SPC h d" . my/view-docs-for-major-mode)))
-#+END_SRC
+  #+END_SRC
 
 * smex
   Counsel-M-x doesn't provide a command history. But it uses smex when
   available.
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (use-package smex
     :ensure t
     :after counsel)
-#+END_SRC
+  #+END_SRC
 
 * additional keywords
   Some words like "FIXME" and "TODO" should be highlighted in every programming
   mode. It doesn't matter if they're inside comments or not.
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (defun my/add-new-keywords()
     (font-lock-add-keywords
      nil
@@ -499,7 +499,7 @@
        ("\\<\\(NOTE\\|note\\)\\>" 1 'font-lock-constant-face prepend))))
 
   (add-hook 'prog-mode-hook #'my/add-new-keywords)
-#+END_SRC
+  #+END_SRC
 
 * sane defaults
   #+BEGIN_SRC emacs-lisp :results silent
