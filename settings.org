@@ -238,29 +238,6 @@
         (load-theme 'gruvbox-dark-hard t)))
   #+END_SRC
 
-* smartparens
-  #+BEGIN_SRC emacs-lisp :results silent
-    ;; better bracket handling
-    (use-package smartparens
-      :ensure t
-      :demand
-      :bind*
-      (:map evil-normal-state-map
-            ("SPC s s" . sp-split-sexp)
-            ("SPC s w" . my/wrap-sexp))
-      :config
-      (require 'smartparens-config)
-      (setq-default sp-escape-quotes-after-insert nil)
-
-      (smartparens-global-mode 1)
-      (show-smartparens-global-mode 1)
-
-      (defun my/wrap-sexp ()
-        (interactive)
-        (sp-wrap-with-pair
-         (completing-read "wrap with pair of: " sp-pair-list))))
-  #+END_SRC
-
 * eshell
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package eshell
@@ -608,6 +585,12 @@
 
     ;; don't accelerate mouse wheel scrolling
     (setq mouse-wheel-progressive-speed nil)
+
+    ;; show off-screen matching parens when typing
+    (setq blink-matching-paren 'echo)
+
+    ;; add matching pairs automatically
+    (electric-pair-mode 1)
 
   #+END_SRC
 
