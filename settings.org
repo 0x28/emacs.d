@@ -191,10 +191,8 @@
         "SPC n" "narrow"
         "SPC p" "project"
         "SPC q" "quit"
-        "SPC s" "smartparens"
         "SPC t" "tags"
-        "SPC v" "version control"
-        "SPC w" "window management"))
+        "SPC v" "version control"))
   #+END_SRC
 
 * flycheck
