@@ -25,8 +25,8 @@
       (setf evil-want-keybinding nil)
       :bind*
       (:map evil-normal-state-map
-            ("SPC e i" . my/edit-init-file)
-            ("SPC e s" . my/ssh-connect)
+            ("SPC f i" . my/edit-init-file)
+            ("SPC f s" . my/ssh-connect)
             ("SPC q n" . save-buffers-kill-emacs)
             ("SPC n d" . narrow-to-defun)
             ("SPC n w" . widen))
@@ -185,7 +185,6 @@
       (setq which-key-idle-delay 0.5)
       (which-key-add-key-based-replacements
         "SPC b" "bookmarks"
-        "SPC e" "edit"
         "SPC f" "files"
         "SPC h" "help"
         "SPC n" "narrow"
