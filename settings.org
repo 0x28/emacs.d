@@ -373,6 +373,13 @@
   (setq vc-svn-diff-switches "--force")
   #+END_SRC
 
+* diff
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package diff
+      :defer t
+      :hook (diff-mode . whitespace-mode))
+  #+END_SRC
+
 * LaTeX config
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package tex-site
