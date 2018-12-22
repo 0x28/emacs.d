@@ -333,11 +333,11 @@
                      (setq-local flycheck-clang-language-standard "c++11")))
        ((c-mode c++-mode) . (lambda ()
                               (ggtags-mode 1)
-                              (setq-local company-backends '((company-capf
+                              (setq-local company-backends '((company-files
+                                                              company-capf
                                                               company-yasnippet
                                                               company-keywords
-                                                              company-gtags
-                                                              company-files))))))
+                                                              company-gtags))))))
       :config
       (setq-default c-default-style "bsd"
                     c-basic-offset 4))
