@@ -589,6 +589,9 @@
     ;; add matching pairs automatically
     (electric-pair-mode 1)
 
+    ;; make *scratch* unkillable
+    (with-current-buffer "*scratch*"
+      (emacs-lock-mode 'kill))
   #+END_SRC
 
 * more keybindings
