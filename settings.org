@@ -4,6 +4,10 @@
   #+BEGIN_SRC emacs-lisp :results silent
     ;; set up package sources
     (require 'package)
+    (require 'nsm)
+
+    (setq network-security-level 'high)
+    (setq gnutls-min-prime-bits 2048)
 
     (setf package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                              ("melpa" . "https://melpa.org/packages/")))
