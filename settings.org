@@ -225,16 +225,28 @@
 
 * theme
   #+BEGIN_SRC emacs-lisp :results silent
-    (use-package gruvbox-theme
+    (use-package doom-themes
       :ensure t
       :config
       (if (daemonp)
           (add-hook 'after-make-frame-functions
                     (lambda (frame)
                       (with-selected-frame frame
-                        (unless (member 'gruvbox-dark-hard custom-enabled-themes)
-                          (load-theme 'gruvbox-dark-hard t)))))
-        (load-theme 'gruvbox-dark-hard t)))
+                        (unless (member 'doom-one-light custom-enabled-themes)
+                          (load-theme 'doom-one-light t)))))
+        (load-theme 'doom-one-light t))
+
+      (add-hook 'org-mode-hook
+                (lambda ()
+                  (dolist (face '(org-level-1
+                                  org-level-2
+                                  org-level-3
+                                  org-level-4
+                                  org-level-5))
+                    (set-face-attribute face
+                                        nil
+                                        :weight 'semi-bold
+                                        :height 1.0)))))
   #+END_SRC
 
 * eshell
