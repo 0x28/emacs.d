@@ -448,7 +448,15 @@
 
       ;; define "SPC p" as additional prefix for projectile
       (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map)
-      (define-key evil-normal-state-map (kbd "SPC p s") #'my/project-rg))
+      (define-key evil-normal-state-map (kbd "SPC p s") #'my/project-rg)
+
+      ;; compatibility layer between projectile and project.el
+      (defun my/projectile-project-find-function (dir)
+        (let ((root (projectile-project-root dir)))
+          (and root (cons 'transient root))))
+
+      (require 'project)
+      (add-to-list 'project-find-functions #'my/projectile-project-find-function))
   #+END_SRC
 
 * quickrun
