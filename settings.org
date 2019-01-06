@@ -616,6 +616,10 @@
     ;; make *scratch* unkillable
     (with-current-buffer "*scratch*"
       (emacs-lock-mode 'kill))
+
+    ;; reduce the delay for creating frames and for using undo-tree
+    (setq x-wait-for-event-timeout nil)
+
   #+END_SRC
 
 * more keybindings
