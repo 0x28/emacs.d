@@ -102,6 +102,19 @@
       (global-evil-mc-mode 1))
   #+END_SRC
 
+* undo-tree
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package undo-tree
+    :ensure t
+    :config
+    (setq undo-tree-visualizer-timestamps t
+          undo-tree-visualizer-relative-timestamps t)
+
+    (defun my/undo-tree-config ()
+      (setq undo-tree-visualizer-diff t))
+    :hook (undo-tree-visualizer-mode . my/undo-tree-config))
+#+END_SRC
+
 * company
   Generic settings for the completion framework company.
   #+BEGIN_SRC emacs-lisp :results silent
