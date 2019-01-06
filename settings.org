@@ -311,6 +311,13 @@
        whitespace-style '(face trailing lines-tail)))
   #+END_SRC
 
+* line numbers
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package display-line-numbers
+    :if (fboundp 'display-line-numbers-mode)
+    :hook (prog-mode . display-line-numbers-mode))
+#+END_SRC
+
 * ggtags
   #+BEGIN_SRC emacs-lisp :results silent
   (use-package ggtags
