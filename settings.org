@@ -103,17 +103,17 @@
   #+END_SRC
 
 * undo-tree
-#+BEGIN_SRC emacs-lisp :results silent
-  (use-package undo-tree
-    :ensure t
-    :config
-    (setq undo-tree-visualizer-timestamps t
-          undo-tree-visualizer-relative-timestamps t)
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package undo-tree
+      :ensure t
+      :config
+      (setq undo-tree-visualizer-timestamps t
+            undo-tree-visualizer-relative-timestamps t)
 
-    (defun my/undo-tree-config ()
-      (setq undo-tree-visualizer-diff t))
-    :hook (undo-tree-visualizer-mode . my/undo-tree-config))
-#+END_SRC
+      (defun my/undo-tree-config ()
+        (setq undo-tree-visualizer-diff t))
+      :hook (undo-tree-visualizer-mode . my/undo-tree-config))
+  #+END_SRC
 
 * company
   Generic settings for the completion framework company.
@@ -325,11 +325,11 @@
   #+END_SRC
 
 * line numbers
-#+BEGIN_SRC emacs-lisp :results silent
-  (use-package display-line-numbers
-    :if (fboundp 'display-line-numbers-mode)
-    :hook (prog-mode . display-line-numbers-mode))
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package display-line-numbers
+      :if (fboundp 'display-line-numbers-mode)
+      :hook (prog-mode . display-line-numbers-mode))
+  #+END_SRC
 
 * ggtags
   #+BEGIN_SRC emacs-lisp :results silent
