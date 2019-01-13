@@ -389,10 +389,12 @@
 
 * compile
   #+BEGIN_SRC emacs-lisp :results silent
-  (use-package compile
-    :defer t
-    :config
-    (setq compilation-scroll-output 'first-error))
+    (use-package compile
+      :defer t
+      :bind* (:map compilation-mode-map
+                   ("SPC" . nil))
+      :config
+      (setq compilation-scroll-output 'first-error))
   #+END_SRC
 
 * XML
