@@ -15,6 +15,7 @@ BinPackArguments: 'false'
 BinPackParameters: 'false'
 BreakBeforeBraces: Allman
 ColumnLimit: '80'
+ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 DisableFormat: 'false'
 IndentCaseLabels: 'true'
 IndentWidth: '4'
