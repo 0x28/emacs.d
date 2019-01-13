@@ -405,6 +405,21 @@
     (setq nxml-child-indent 4))
   #+END_SRC
 
+* align
+  #+BEGIN_SRC emacs-lisp :results silent
+    (defun my/align-whitespace (begin end)
+      "Align columns by whitespace between BEGIN and END."
+      (interactive "r")
+      (align-regexp begin end
+                    "\\(\\s-*\\)\\s-" 1 0 t))
+
+    (use-package align
+        :bind* (:map evil-visual-state-map
+                     ("SPC a a" . align)
+                     ("SPC a r" . align-regexp)
+                     ("SPC a w" . my/align-whitespace)))
+  #+END_SRC
+
 * version control
   #+BEGIN_SRC emacs-lisp :resutls silent
   (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
