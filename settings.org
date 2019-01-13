@@ -640,7 +640,8 @@
       (emacs-lock-mode 'kill))
 
     ;; reduce the delay for creating frames and for using undo-tree
-    (setq x-wait-for-event-timeout nil)
+    (when (eq system-type 'gnu/linux)
+      (setq x-wait-for-event-timeout nil))
 
   #+END_SRC
 
