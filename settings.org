@@ -379,8 +379,23 @@
                                                               company-keywords
                                                               company-gtags))))))
       :config
-      (setq-default c-default-style "bsd"
-                    c-basic-offset 4))
+      (defconst my-cc-style
+        '((c-basic-offset . 4)
+          (c-comment-only-line-offset . 0)
+          (c-offsets-alist
+           (innamespace . 0)
+           (case-label . +)
+           (statement-block-intro . +)
+           (knr-argdecl-intro . +)
+           (substatement-open . 0)
+           (substatement-label . 0)
+           (label . 0)
+           (statement-cont . +)
+           (inline-open . 0)
+           (inexpr-class . 0))))
+
+      (c-add-style "my-style" my-cc-style)
+      (setq-default c-default-style "my-style"))
   #+END_SRC
 
 * CMake config
