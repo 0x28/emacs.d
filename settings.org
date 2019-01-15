@@ -98,7 +98,10 @@
       :config
       (setq evil-mc-undo-cursors-on-keyboard-quit t)
       (setq evil-mc-custom-known-commands
-            '((newline (:insert . evil-mc-execute-call))))
+            '((newline (:insert . evil-mc-execute-call))
+              (c-indent-line-or-region (:insert . evil-mc-execute-call))
+              (upcase-word (:default . evil-mc-execute-default-call-with-count))
+              (downcase-word (:default . evil-mc-execute-default-call-with-count))))
       (global-evil-mc-mode 1))
   #+END_SRC
 
