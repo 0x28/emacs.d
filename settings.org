@@ -142,7 +142,8 @@
       :config
       (setq ivy-height 20
             ivy-re-builders-alist '((t . ivy--regex-ignore-order))
-            ivy-use-virtual-buffers t)
+            ivy-use-virtual-buffers t
+            ivy-virtual-abbreviate 'abbreviate)
       (ivy-mode))
 
     (use-package swiper
