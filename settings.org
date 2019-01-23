@@ -338,16 +338,17 @@
 
 * ggtags
   #+BEGIN_SRC emacs-lisp :results silent
-  (use-package ggtags
-    :ensure t
-    :config
-    (setq ggtags-sort-by-nearness t)
-    :bind* (:map evil-normal-state-map
-                 ("SPC t s" . ggtags-find-tag-regexp)
-                 ("SPC t r" . ggtags-find-reference)
-                 ("SPC t c" . ggtags-create-tags)
-                 ("SPC t u" . ggtags-update-tags)
-                 ("SPC t d" . ggtags-delete-tags)))
+    (use-package ggtags
+      :ensure t
+      :config
+      (setq ggtags-sort-by-nearness t
+            ggtags-global-abbreviate-filename 80)
+      :bind* (:map evil-normal-state-map
+                   ("SPC t s" . ggtags-find-tag-regexp)
+                   ("SPC t r" . ggtags-find-reference)
+                   ("SPC t c" . ggtags-create-tags)
+                   ("SPC t u" . ggtags-update-tags)
+                   ("SPC t d" . ggtags-delete-tags)))
   #+END_SRC
 
 * C, C++ config
