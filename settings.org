@@ -571,6 +571,12 @@
     :after counsel)
   #+END_SRC
 
+* ibuffer
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package ibuffer
+      :bind ("C-x C-b" . ibuffer-other-window))
+  #+END_SRC
+
 * additional keywords
   Some words like "FIXME" and "TODO" should be highlighted in every programming
   mode. It doesn't matter if they're inside comments or not.
@@ -681,8 +687,10 @@
 
   #+END_SRC
 
-* more keybindings
+* custom functions
   Small functions used in the keybindings.
+** edit init file
+   Function used to quickly edit my settings.org file.
   #+BEGIN_SRC emacs-lisp :results silent
     (defun my/edit-init-file ()
       "Open the init file."
@@ -690,17 +698,25 @@
       (find-file (expand-file-name "settings.org" user-emacs-directory)))
   #+END_SRC
 
+** indent buffer
+   This function removes trailing whitespace, indents the current buffer and
+   removes tabs. For Makefiles it only removes trailing whitespace.
   #+BEGIN_SRC emacs-lisp :results silent
     (defun my/indent-buffer ()
-      "Indent the current buffer."
+      "Indent and untabify the current buffer."
       (interactive)
       (save-excursion
         (delete-trailing-whitespace)
         (unless (derived-mode-p 'makefile-mode)
           (indent-region (point-min) (point-max) nil)
           (untabify (point-min) (point-max)))))
+
+    (global-set-key (kbd "C-c i") #'my/indent-buffer)
   #+END_SRC
 
+** toggle maximize buffer
+   This function maximizes the current buffer, hiding the other buffers inside
+   the current frame. A further call restores the old buffer layout.
   #+BEGIN_SRC emacs-lisp :results silent
     ;; from https://gist.github.com/3402786
     (defun my/toggle-maximize-buffer ()
@@ -712,8 +728,13 @@
         (progn
           (window-configuration-to-register ?_)
           (delete-other-windows))))
+
+    (global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
   #+END_SRC
 
+** ssh connect
+   Use tramp to connect to a host in the local network. Uses the ip command to
+   find possible hosts.
   #+BEGIN_SRC emacs-lisp :results silent
     (defun my/local-hosts ()
       "Return a list of hosts in the local network."
@@ -731,6 +752,7 @@
 
   #+END_SRC
 
+** duckduckgo dwim
   #+BEGIN_SRC emacs-lisp :results silent
     (defun my/ddg-dwim ()
       "Search duckduckgo.com for the symbol at point or the region if active."
@@ -751,22 +773,17 @@
           (concat "https://duckduckgo.com/?q=")
           browse-url)))
 
+    (global-set-key (kbd "C-c g") #'my/ddg-dwim)
   #+END_SRC
 
+** kill current buffer
+   Kill the current buffer without asking.
   #+BEGIN_SRC emacs-lisp :results silent
     (defun my/kill-current-buffer ()
       "Kill the current buffer."
       (interactive)
       (kill-buffer (current-buffer)))
 
-  #+END_SRC
-  Emacs C-x and C-c keybindings.
-  #+BEGIN_SRC emacs-lisp :results silent
-    (global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
-    (global-set-key (kbd "C-c i") #'my/indent-buffer)
     (global-set-key (kbd "C-x k") #'my/kill-current-buffer)
-    (global-set-key (kbd "C-c g") #'my/ddg-dwim)
-    (global-set-key (kbd "C-x C-b") #'ibuffer-other-window)
-
   #+END_SRC
 
