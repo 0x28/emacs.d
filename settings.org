@@ -787,3 +787,23 @@
     (global-set-key (kbd "C-x k") #'my/kill-current-buffer)
   #+END_SRC
 
+** yank words to minibuffer
+  #+BEGIN_SRC emacs-lisp :results silent
+    (defun my/minibuffer-yank-word (&optional arg)
+      "Yank ARG words from current line into minibuffer."
+      (interactive "p")
+      (let (text)
+        (with-current-buffer (cadr (buffer-list))
+          (let* ((beg (point))
+                 (bol (line-beginning-position))
+                 (eol (line-end-position))
+                 (end (progn (forward-word arg)
+                             (goto-char (max bol (min (point) eol))))))
+            (setq text (buffer-substring-no-properties beg end))
+            (pulse-momentary-highlight-region beg end 'region)))
+        (when text
+          (insert (replace-regexp-in-string "  +" " " text t t)))))
+
+    (define-key minibuffer-local-map (kbd "M-j") #'my/minibuffer-yank-word)
+  #+END_SRC
+
