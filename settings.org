@@ -797,3 +797,16 @@
     (define-key minibuffer-local-map (kbd "M-j") #'my/minibuffer-yank-word)
   #+END_SRC
 
+** confirm closing emacsclient frames
+   #+BEGIN_SRC emacs-lisp :results silent
+     (defun my/confirm-kill-terminal (&optional arg)
+       "Ask for confirmation when closing frames.
+     With prefix ARG, silently save all file-visiting buffers, then kill."
+       (interactive "P")
+       (when (y-or-n-p "Close frame? ")
+         (save-buffers-kill-terminal arg)))
+
+     (when (daemonp)
+       (global-set-key [remap save-buffers-kill-terminal] #'my/confirm-kill-terminal))
+   #+END_SRC
+
