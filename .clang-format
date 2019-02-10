@@ -8,12 +8,10 @@ AllowShortBlocksOnASingleLine: 'false'
 AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: 'false'
 AllowShortLoopsOnASingleLine: 'false'
-AlwaysBreakAfterDefinitionReturnType: All
-AlwaysBreakAfterReturnType: All
 AlwaysBreakTemplateDeclarations: 'true'
 BinPackArguments: 'false'
 BinPackParameters: 'false'
-BreakBeforeBraces: Allman
+BreakBeforeBraces: Attach
 ColumnLimit: '80'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 DisableFormat: 'false'
@@ -24,7 +22,6 @@ SortIncludes: 'true'
 SpaceBeforeAssignmentOperators: 'true'
 SpaceBeforeParens: 'Never'
 SpacesInAngles: 'true'
-SpacesInParentheses: 'true'
 Standard: Cpp11
 TabWidth: '4'
 UseTab: Never
