@@ -544,7 +544,7 @@
                                            (cmake-mode  . ("CMake"))
                                            (latex-mode  . ("LaTeX"))
                                            (tex-mode    . ("LaTeX"))
-                                           (python-mode . ("Python_2"))))))
+                                           (python-mode . ("Python_3"))))))
       (if counsel-dash-docsets
           (counsel-dash (thing-at-point 'symbol t))
         (message "no docsets found for %s" major-mode)))
