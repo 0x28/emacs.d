@@ -466,7 +466,7 @@
       :hook (diff-mode . whitespace-mode))
   #+END_SRC
 
-* LaTeX config
+* LaTeX
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package tex-site
       :ensure auctex
