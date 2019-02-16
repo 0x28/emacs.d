@@ -351,7 +351,7 @@
                    ("SPC t d" . ggtags-delete-tags)))
   #+END_SRC
 
-* C, C++ config
+* C, C++
   #+BEGIN_SRC emacs-lisp :results silent
     (defalias 'cxx-mode #'c++-mode)
 
@@ -395,7 +395,7 @@
       (setq-default c-default-style "my-style"))
   #+END_SRC
 
-* CMake config
+* CMake
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package cmake-mode
       :ensure t
