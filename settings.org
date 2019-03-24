@@ -212,7 +212,6 @@
         "SPC n" "narrow"
         "SPC p" "project"
         "SPC q" "quit"
-        "SPC t" "tags"
         "SPC v" "version control"))
   #+END_SRC
 
@@ -336,21 +335,6 @@
       :hook (prog-mode . display-line-numbers-mode))
   #+END_SRC
 
-* ggtags
-  #+BEGIN_SRC emacs-lisp :results silent
-    (use-package ggtags
-      :ensure t
-      :config
-      (setq ggtags-sort-by-nearness t
-            ggtags-global-abbreviate-filename 80)
-      :bind* (:map evil-normal-state-map
-                   ("SPC t s" . ggtags-find-tag-regexp)
-                   ("SPC t r" . ggtags-find-reference)
-                   ("SPC t c" . ggtags-create-tags)
-                   ("SPC t u" . ggtags-update-tags)
-                   ("SPC t d" . ggtags-delete-tags)))
-  #+END_SRC
-
 * C, C++
   #+BEGIN_SRC emacs-lisp :results silent
     (defalias 'cxx-mode #'c++-mode)
@@ -361,12 +345,10 @@
 
     (defun my/c-and-c++-config ()
       "Setup C and C++ config."
-      (ggtags-mode 1)
       (setq-local company-backends '((company-files
                                       company-capf
                                       company-yasnippet
-                                      company-keywords
-                                      company-gtags))))
+                                      company-keywords))))
 
     (use-package cc-mode
       :bind* (:map c-mode-map
