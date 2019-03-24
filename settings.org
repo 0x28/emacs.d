@@ -412,14 +412,6 @@
       (setq compilation-scroll-output 'first-error))
   #+END_SRC
 
-* XML
-  #+BEGIN_SRC emacs-lisp :results silent
-  (use-package nxml-mode
-    :defer t
-    :config
-    (setq nxml-child-indent 4))
-  #+END_SRC
-
 * align
   #+BEGIN_SRC emacs-lisp :results silent
     (defun my/align-whitespace (begin end)
