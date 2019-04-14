@@ -171,29 +171,29 @@
 
 * dired
   #+BEGIN_SRC emacs-lisp :results silent
-  (use-package dired-x
-    :bind*
-    (:map evil-normal-state-map
-          ("SPC f d" . dired-jump-other-window))
-    (:map dired-mode-map
-          ("<tab>" . dired-omit-mode)
-          ("<backtab>" . dired-hide-details-mode))
-    :hook (dired-mode . dired-omit-mode)
-    :hook (dired-mode . dired-hide-details-mode)
-    :config
-    (setq dired-auto-revert-buffer t)
-    (setq dired-dwim-target t)
-    (setq dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
+    (use-package dired-x
+      :bind*
+      (:map evil-normal-state-map
+            ("SPC f d" . dired-jump-other-window))
+      (:map dired-mode-map
+            ("<tab>" . dired-omit-mode)
+            ("<backtab>" . dired-hide-details-mode))
+      :hook (dired-mode . dired-omit-mode)
+      :hook (dired-mode . dired-hide-details-mode)
+      :config
+      (setq dired-auto-revert-buffer t)
+      (setq dired-dwim-target t)
+      (setq dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
   #+END_SRC
 
 * occur
   The function occur is defined within replace.el but it is missing a provide
   statement in emacs 25. Therefore the config has to be inside an init block.
   #+BEGIN_SRC emacs-lisp :results silent
-  (use-package replace
-    :hook (occur-mode . next-error-follow-minor-mode)
-    :init
-    (setq list-matching-lines-default-context-lines 3))
+    (use-package replace
+      :hook (occur-mode . next-error-follow-minor-mode)
+      :init
+      (setq list-matching-lines-default-context-lines 3))
   #+END_SRC
 
 * which key
@@ -429,8 +429,8 @@
 
 * version control
   #+BEGIN_SRC emacs-lisp :resutls silent
-  (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
-  (setq vc-svn-diff-switches "--force")
+    (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
+    (setq vc-svn-diff-switches "--force")
   #+END_SRC
 
 * diff
@@ -459,12 +459,12 @@
 * bookmarks
   Some bookmark keybindings.
   #+BEGIN_SRC emacs-lisp :results silent
-  (use-package bookmark
-    :ensure t
-    :bind* (:map evil-normal-state-map
-                 ("SPC b l" . list-bookmarks)
-                 ("SPC b s" . bookmark-set)
-                 ("SPC b j" . bookmark-jump)))
+    (use-package bookmark
+      :ensure t
+      :bind* (:map evil-normal-state-map
+                   ("SPC b l" . list-bookmarks)
+                   ("SPC b s" . bookmark-set)
+                   ("SPC b j" . bookmark-jump)))
   #+END_SRC
 
 * projectile
@@ -507,9 +507,9 @@
 
 * quickrun
   #+BEGIN_SRC emacs-lisp :results silent
-  (use-package quickrun
-    :ensure t
-    :bind* (("C-c x" . quickrun)))
+    (use-package quickrun
+      :ensure t
+      :bind* (("C-c x" . quickrun)))
   #+END_SRC
 
 * dash
@@ -543,9 +543,9 @@
   Counsel-M-x doesn't provide a command history. But it uses smex when
   available.
   #+BEGIN_SRC emacs-lisp :results silent
-  (use-package smex
-    :ensure t
-    :after counsel)
+    (use-package smex
+      :ensure t
+      :after counsel)
   #+END_SRC
 
 * ibuffer
@@ -558,15 +558,15 @@
   Some words like "FIXME" and "TODO" should be highlighted in every programming
   mode. It doesn't matter if they're inside comments or not.
   #+BEGIN_SRC emacs-lisp :results silent
-  (defun my/add-new-keywords()
-    (font-lock-add-keywords
-     nil
-     '(("\\<\\(FIXME\\|fixme\\)\\>" 1 'font-lock-warning-face prepend)
-       ("\\<\\(TODO\\|todo\\)\\>" 1 'font-lock-warning-face prepend)
-       ("\\<\\(BUG\\|bug\\)\\>" 1 'font-lock-warning-face prepend)
-       ("\\<\\(NOTE\\|note\\)\\>" 1 'font-lock-constant-face prepend))))
+    (defun my/add-new-keywords()
+      (font-lock-add-keywords
+       nil
+       '(("\\<\\(FIXME\\|fixme\\)\\>" 1 'font-lock-warning-face prepend)
+         ("\\<\\(TODO\\|todo\\)\\>" 1 'font-lock-warning-face prepend)
+         ("\\<\\(BUG\\|bug\\)\\>" 1 'font-lock-warning-face prepend)
+         ("\\<\\(NOTE\\|note\\)\\>" 1 'font-lock-constant-face prepend))))
 
-  (add-hook 'prog-mode-hook #'my/add-new-keywords)
+    (add-hook 'prog-mode-hook #'my/add-new-keywords)
   #+END_SRC
 
 * sane defaults
