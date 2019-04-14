@@ -605,7 +605,12 @@
     (column-number-mode 1)
 
     ;; save backups in .emacs.d
-    (setf backup-directory-alist '(("." . "~/.emacs.d/.saves")))
+    (setf backup-directory-alist '(("." . "~/.emacs.d/.backups")))
+
+    ;; save auto-save files (#file#) in .emacs.d
+    (let ((auto-save-dir "~/.emacs.d/.autosaves/"))
+      (make-directory auto-save-dir t)
+      (setq auto-save-file-name-transforms `((".*" ,auto-save-dir t))))
 
     ;; no tabs
     (setq-default indent-tabs-mode nil)
@@ -619,7 +624,7 @@
     ;; ask before killing emacs
     (setf confirm-kill-emacs #'y-or-n-p)
 
-    ;; show parentheses
+    ;; show matching parentheses
     (show-paren-mode)
 
     ;; automatically go to the help window
