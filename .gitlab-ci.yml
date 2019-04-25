@@ -1,0 +1,15 @@
+image: debian:sid
+
+before_script:
+  - apt-get update -yqq
+  - apt-get install -yqq gpg emacs wget
+  - cp -r "$CI_PROJECT_DIR" ~/.emacs.d
+
+test:
+  script:
+    - emacs --batch -l ~/.emacs.d/init.el
+    - tar caf emacs.tar.xz --exclude "*.elc" --exclude ".git" -C ~ .emacs.d
+  artifacts:
+    paths:
+      - emacs.tar.xz
+    expire_in: 3 months
