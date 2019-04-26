@@ -430,7 +430,7 @@
 * version control
   #+BEGIN_SRC emacs-lisp :resutls silent
     (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
-    (setq vc-svn-diff-switches "--force")
+    (setq vc-follow-symlinks t)
   #+END_SRC
 
 * diff
