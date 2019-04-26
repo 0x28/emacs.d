@@ -488,10 +488,6 @@
 
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
 
-      ;; svn list is too slow in combination with svn externals
-      (if (executable-find "fd")
-          (setq projectile-svn-command "fd --color never --print0 --type f"))
-
       ;; define "SPC p" as additional prefix for projectile
       (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map)
       (define-key evil-normal-state-map (kbd "SPC p s") #'my/project-rg)
