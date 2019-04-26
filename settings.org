@@ -8,6 +8,7 @@
 
     (setq network-security-level 'high)
     (setq gnutls-min-prime-bits 2048)
+    (setq gnutls-verify-error t)
 
     (setf package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                              ("melpa" . "https://melpa.org/packages/")))
