@@ -383,7 +383,9 @@
 * eglot
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package eglot
-      :ensure t)
+      :if (>= emacs-major-version 26)
+      :ensure t
+      :defer)
   #+END_SRC
 
 * Rust
@@ -391,6 +393,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package rust-mode
       :ensure t
+      :if (fboundp 'eglot-ensure)
       :bind* (:map rust-mode-map
                    ("C-c i" . rust-format-buffer))
       :hook (rust-mode . (lambda () (flycheck-mode -1)))
