@@ -44,19 +44,19 @@
       (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
 
       (setq evil-normal-state-tag
-            (propertize " {N} " 'face '((:foreground "green")))
+            (propertize " N " 'face '((:foreground "green")))
             evil-emacs-state-tag
-            (propertize " {E} " 'face '((:foreground "orange")))
+            (propertize " E " 'face '((:foreground "orange")))
             evil-insert-state-tag
-            (propertize " {I} " 'face '((:foreground "red")))
+            (propertize " I " 'face '((:foreground "red")))
             evil-motion-state-tag
-            (propertize " {M} " 'face '((:foreground "deep sky blue")))
+            (propertize " M " 'face '((:foreground "deep sky blue")))
             evil-visual-state-tag
-            (propertize " {V} " 'face '((:foreground "grey80")))
+            (propertize " V " 'face '((:foreground "grey80")))
             evil-replace-state-tag
-            (propertize " {R} " 'face '((:foreground "yellow")))
+            (propertize " R " 'face '((:foreground "yellow")))
             evil-operator-state-tag
-            (propertize " {O} " 'face '((:foreground "purple"))))
+            (propertize " O " 'face '((:foreground "purple"))))
 
       (setq evil-lookup-func (lambda () (interactive)
                                (call-interactively #'man)))
