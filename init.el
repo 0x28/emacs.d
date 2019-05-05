@@ -24,10 +24,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(help-argument-name ((t (:inherit (italic minibuffer-prompt)))))
- '(mode-line ((t (:box (:line-width -1 :color "black")))))
+ '(mode-line ((t (:overline "gainsboro" :background nil))))
+ '(mode-line-inactive ((t (:overline "dim gray" :background nil))))
  '(org-block-begin-line ((t (:inherit org-meta-line :box -1))))
- '(org-block-end-line ((t (:inherit org-meta-line :box -1))))
- '(whitespace-trailing ((t (:background "orange red" :foreground "black")))))
+ '(org-block-end-line ((t (:inherit org-meta-line :box -1)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
