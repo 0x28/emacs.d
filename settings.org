@@ -574,103 +574,78 @@
   #+END_SRC
 
 * sane defaults
+** visual
   #+BEGIN_SRC emacs-lisp :results silent
     ;; don't show a startup message
-    (setf inhibit-startup-message t)
-
+    (setq inhibit-startup-message t)
     ;; no menu-bar
     (menu-bar-mode -1)
-
     ;; no tool-bar
     (tool-bar-mode -1)
-
-    ;; highlight the current line
-    (global-hl-line-mode)
-
-    ;; ask "(y/n)?" and not "(yes/no)?"
-    (fset #'yes-or-no-p #'y-or-n-p)
-
-    ;; more information on describe-key
-    (define-key (current-global-map) (kbd "C-h c") #'describe-key)
-
     ;; no blinking cursor
     (blink-cursor-mode -1)
-
     ;; no scroll bar
     (scroll-bar-mode -1)
-
-    ;; start emacs maximized
-    (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-    ;; use hack font
-    (add-to-list 'default-frame-alist '(font . "Hack-13"))
-
+    ;; highlight the current line
+    (global-hl-line-mode)
     ;; column numbers
     (column-number-mode 1)
+    ;; show matching parentheses
+    (show-paren-mode)
+    ;; start emacs maximized
+    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+    ;; use hack font
+    (add-to-list 'default-frame-alist '(font . "Hack-13"))
+    ;; pretty lambdas
+    (global-prettify-symbols-mode t)
+    (setq prettify-symbols-unprettify-at-point 'right-edge)
+    ;; smoother scrolling
+    (setq scroll-conservatively most-positive-fixnum)
+    ;; resize windows proportionally
+    (setq window-combination-resize t)
+    ;; hide minor-modes in mode-line
+    (setq mode-line-modes '(:eval (propertize " [%m] "
+                                              'face 'font-lock-constant-face)))
+  #+END_SRC
 
+** convenience
+  #+BEGIN_SRC emacs-lisp :results silent
     ;; save backups in .emacs.d
-    (setf backup-directory-alist '(("." . "~/.emacs.d/.backups")))
-
+    (setq backup-directory-alist '(("." . "~/.emacs.d/.backups")))
     ;; save auto-save files (#file#) in .emacs.d
     (let ((auto-save-dir "~/.emacs.d/.autosaves/"))
       (make-directory auto-save-dir t)
       (setq auto-save-file-name-transforms `((".*" ,auto-save-dir t))))
-
     ;; no tabs
     (setq-default indent-tabs-mode nil)
-
     ;; update files when they change on disk
     (global-auto-revert-mode 1)
-
     ;; save more recent files
-    (setf recentf-max-saved-items 100)
-
+    (setq recentf-max-saved-items 100)
     ;; ask before killing emacs
-    (setf confirm-kill-emacs #'y-or-n-p)
-
-    ;; show matching parentheses
-    (show-paren-mode)
-
+    (setq confirm-kill-emacs #'y-or-n-p)
     ;; automatically go to the help window
-    (setf help-window-select t)
-
-    ;; smoother scrolling
-    (setf scroll-conservatively most-positive-fixnum)
-
-    ;; resize windows proportionally
-    (setf window-combination-resize t)
-
+    (setq help-window-select t)
     ;; sentences have a single space at the end
-    (setf sentence-end-double-space nil)
-
+    (setq sentence-end-double-space nil)
     ;; typed text replaces the selected text
     (delete-selection-mode 1)
-
-    ;; hide minor-modes in mode-line
-    (setf mode-line-modes '(:eval (propertize " [%m] "
-                                              'face 'font-lock-constant-face)))
-
-    ;; pretty lambdas
-    (global-prettify-symbols-mode t)
-    (setq prettify-symbols-unprettify-at-point 'right-edge)
-
     ;; don't accelerate mouse wheel scrolling
     (setq mouse-wheel-progressive-speed nil)
-
     ;; show off-screen matching parens when typing
     (setq blink-matching-paren 'echo)
-
     ;; add matching pairs automatically
     (electric-pair-mode 1)
-
     ;; make *scratch* unkillable
     (with-current-buffer "*scratch*"
       (emacs-lock-mode 'kill))
-
     ;; reduce the delay for creating frames and for using undo-tree
     (when (eq system-type 'gnu/linux)
       (setq x-wait-for-event-timeout nil))
-
+    ;; ask "(y/n)?" and not "(yes/no)?"
+    (fset #'yes-or-no-p #'y-or-n-p)
+    ;; more information on describe-key
+    (define-key (current-global-map) (kbd "C-h c") #'describe-key)
   #+END_SRC
 
 * custom functions
