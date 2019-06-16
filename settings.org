@@ -485,10 +485,11 @@
 
     (use-package projectile
       :ensure t
-      :bind* (:map evil-normal-state-map
-                   ("SPC p p" . projectile-switch-project)
-                   ("SPC p f" . projectile-find-file)
-                   ("SPC p c" . projectile-compile-project))
+      :defer t
+      :init
+      ;; define "SPC p" as additional prefix for projectile
+      (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map)
+      (autoload #'projectile-command-map "projectile" nil t 'keymap)
       :config
       (projectile-mode)
       (setq projectile-completion-system 'default)
@@ -496,9 +497,7 @@
 
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
 
-      ;; define "SPC p" as additional prefix for projectile
-      (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map)
-      (define-key evil-normal-state-map (kbd "SPC p s") #'my/project-rg)
+      (define-key projectile-command-map (kbd "s") #'my/project-rg)
 
       ;; compatibility layer between projectile and project.el
       (defun my/projectile-project-find-function (dir)
