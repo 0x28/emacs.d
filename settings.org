@@ -579,12 +579,8 @@
     (setq inhibit-startup-message t)
     ;; no menu-bar
     (menu-bar-mode -1)
-    ;; no tool-bar
-    (tool-bar-mode -1)
     ;; no blinking cursor
     (blink-cursor-mode -1)
-    ;; no scroll bar
-    (scroll-bar-mode -1)
     ;; highlight the current line
     (global-hl-line-mode)
     ;; column numbers
