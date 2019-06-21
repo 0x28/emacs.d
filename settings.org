@@ -10,7 +10,7 @@
     (setq gnutls-min-prime-bits 2048)
     (setq gnutls-verify-error t)
 
-    (setf package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+    (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                              ("melpa" . "https://melpa.org/packages/")))
 
     (setq package-enable-at-startup nil)
@@ -29,7 +29,7 @@
       :ensure t
       :demand
       :init
-      (setf evil-want-keybinding nil)
+      (setq evil-want-keybinding nil)
       :bind*
       (:map evil-normal-state-map
             ("SPC f i" . my/edit-init-file)
@@ -291,7 +291,7 @@
                        (setq-local company-backends (list #'company-capf))))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
-      (setf eshell-cmpl-ignore-case t
+      (setq eshell-cmpl-ignore-case t
             eshell-error-if-no-glob t
             eshell-hist-ignoredups t
             eshell-scroll-to-bottom-on-input t
@@ -451,7 +451,7 @@
       :hook (LaTeX-mode . TeX-source-correlate-mode)
       :defer t
       :config
-      (setf font-latex-fontify-sectioning 1.0)
+      (setq font-latex-fontify-sectioning 1.0)
       (setq-default TeX-view-program-selection
                     (quote (((output-dvi has-no-display-manager) "dvi2tty")
                             ((output-dvi style-pstricks) "dvips and gv")
