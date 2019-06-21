@@ -301,8 +301,7 @@
     (defun my/toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
       (interactive)
-      (let* ((eshell-buffer-name "*eshell*")
-             (eshell-window (get-buffer-window eshell-buffer-name))
+      (let* ((eshell-window (get-buffer-window "*eshell*"))
              (current-directory default-directory)
              (cd-to-default-dir (lambda ()
                                   (unless (string= default-directory
@@ -317,12 +316,10 @@
               (t
                (select-window
                 (split-window (frame-root-window)
-                              (round (* (window-height (frame-root-window))
-                                        0.6666))
+                              (/ (frame-height) -3)
                               'below))
                (eshell)
                (funcall cd-to-default-dir)))))
-
   #+END_SRC
 
 * whitespace
