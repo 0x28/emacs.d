@@ -326,7 +326,8 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package whitespace
       :ensure t
-      :hook (prog-mode . whitespace-mode)
+      :hook ((prog-mode . whitespace-mode)
+             (diff-mode . whitespace-mode))
       :config
       (setq-default
        fill-column 80
@@ -440,13 +441,6 @@
   #+BEGIN_SRC emacs-lisp :resutls silent
     (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
     (setq vc-follow-symlinks t)
-  #+END_SRC
-
-* diff
-  #+BEGIN_SRC emacs-lisp :results silent
-    (use-package diff
-      :defer t
-      :hook (diff-mode . whitespace-mode))
   #+END_SRC
 
 * LaTeX
