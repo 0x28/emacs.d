@@ -439,7 +439,7 @@
   #+END_SRC
 
 * version control
-  #+BEGIN_SRC emacs-lisp :resutls silent
+  #+BEGIN_SRC emacs-lisp :results silent
     (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
     (setq vc-follow-symlinks t)
   #+END_SRC
