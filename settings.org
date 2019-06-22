@@ -761,7 +761,7 @@
   #+END_SRC
 
 ** confirm closing emacsclient frames
-   #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
      (defun my/confirm-kill-terminal (&optional arg)
        "Ask for confirmation when closing frames.
      With prefix ARG, silently save all file-visiting buffers, then kill."
@@ -771,5 +771,5 @@
 
      (when (daemonp)
        (global-set-key [remap save-buffers-kill-terminal] #'my/confirm-kill-terminal))
-   #+END_SRC
+  #+END_SRC
 
