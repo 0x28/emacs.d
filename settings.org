@@ -439,9 +439,23 @@
   #+END_SRC
 
 * version control
+  Settings for the builtin vc.el.
   #+BEGIN_SRC emacs-lisp :results silent
     (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
     (setq vc-follow-symlinks t)
+  #+END_SRC
+  Magit keybindings.
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package magit
+      :ensure t
+      :bind* (:map evil-normal-state-map
+                   ("SPC g s" . magit-status)
+                   ("SPC g g" . magit-dispatch)
+                   ("SPC g l" . magit-log-current)))
+
+    (use-package evil-magit
+      :ensure t
+      :after magit)
   #+END_SRC
 
 * LaTeX
