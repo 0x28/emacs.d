@@ -82,29 +82,33 @@
        (let ((map (make-sparse-keymap)))
          (define-key map (kbd "C-n") #'evil-mc-make-and-goto-next-match)
          (define-key map (kbd "C-p") #'evil-mc-make-and-goto-prev-match)
-         (define-key map (kbd "C-j") #'evil-mc-make-cursor-move-next-line)
-         (define-key map (kbd "C-k") #'evil-mc-make-cursor-move-prev-line)
          (define-key map (kbd "C-a") #'evil-mc-make-all-cursors)
          (message "%s" (substitute-command-keys "\\{map}"))
          map)
        t))
 
+    (defun my/evil-mc-lines ()
+      "Create cursors for each line of the active selection."
+      (interactive)
+      (evil-mc-make-cursor-in-visual-selection-beg)
+      (evil-normal-state))
+
+    (evil-define-key 'normal 'global (kbd "SPC m") #'my/evil-mc-dispatch)
+    (evil-define-key 'visual 'global (kbd "SPC m") #'my/evil-mc-lines)
+
     (use-package evil-mc
       :ensure t
       :commands (evil-mc-make-and-goto-next-match
                  evil-mc-make-and-goto-prev-match
-                 evil-mc-make-cursor-move-next-line
-                 evil-mc-make-cursor-move-prev-line
-                 evil-mc-make-all-cursors)
-      :bind* (:map evil-normal-state-map
-                   ("SPC m" . my/evil-mc-dispatch))
+                 evil-mc-make-all-cursors
+                 evil-mc-make-cursor-in-visual-selection-beg)
       :config
-      (setq evil-mc-undo-cursors-on-keyboard-quit t)
-      (setq evil-mc-custom-known-commands
-            '((newline (:insert . evil-mc-execute-call))
+      (setq evil-mc-undo-cursors-on-keyboard-quit t
+            evil-mc-custom-known-commands
+            '((newline                 (:insert . evil-mc-execute-call))
               (c-indent-line-or-region (:insert . evil-mc-execute-call))
-              (upcase-word (:default . evil-mc-execute-default-call-with-count))
-              (downcase-word (:default . evil-mc-execute-default-call-with-count))))
+              (upcase-word             (:default . evil-mc-execute-default-call-with-count))
+              (downcase-word           (:default . evil-mc-execute-default-call-with-count))))
       (global-evil-mc-mode 1))
   #+END_SRC
 
