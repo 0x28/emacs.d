@@ -2,7 +2,7 @@ image: debian:sid
 
 before_script:
   - apt-get update -yqq
-  - apt-get install -yqq gpg emacs wget
+  - apt-get install -yqq gpg emacs wget git
   - cp -r "$CI_PROJECT_DIR" ~/.emacs.d
 
 test:
