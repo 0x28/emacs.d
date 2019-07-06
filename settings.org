@@ -390,24 +390,29 @@
       (setq-default c-default-style "my-style"))
   #+END_SRC
 
-* eglot
+* lsp
   #+BEGIN_SRC emacs-lisp :results silent
-    (use-package eglot
-      :if (>= emacs-major-version 26)
+    (use-package lsp-mode
       :ensure t
-      :defer)
+      :defer
+      :config
+      (setq lsp-prefer-flymake :none))
+
+    (use-package company-lsp
+      :ensure t
+      :defer t)
   #+END_SRC
 
 * Rust
-  My Rust configuration uses eglot and therefore doesn't need flycheck-mode.
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package rust-mode
       :ensure t
-      :if (fboundp 'eglot-ensure)
       :bind* (:map rust-mode-map
                    ("C-c i" . rust-format-buffer))
-      :hook (rust-mode . (lambda () (flycheck-mode -1)))
-      :hook (rust-mode . eglot-ensure))
+      :hook (rust-mode . lsp)
+      :hook (rust-mode . (lambda () (setq flycheck-checker 'rust-clippy)))
+      :config
+      (setq lsp-rust-all-features t))
   #+END_SRC
 
 * CMake
