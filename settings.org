@@ -40,6 +40,7 @@
       (:map evil-visual-state-map
             ("SPC n r" . narrow-to-region))
       :config
+      (define-key evil-normal-state-map (kbd "M-.") nil)
       (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
       (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
 
