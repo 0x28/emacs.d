@@ -402,9 +402,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package lsp-mode
       :ensure t
-      :defer
-      :config
-      (setq lsp-prefer-flymake :none))
+      :defer)
 
     (use-package company-lsp
       :ensure t
@@ -418,7 +416,7 @@
       :bind* (:map rust-mode-map
                    ("C-c i" . rust-format-buffer))
       :hook (rust-mode . lsp)
-      :hook (rust-mode . (lambda () (setq flycheck-checker 'rust-clippy)))
+      :hook (rust-mode . (lambda () (flycheck-mode -1)))
       :config
       (setq lsp-rust-all-features t))
   #+END_SRC
