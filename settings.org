@@ -228,9 +228,17 @@
         "SPC v" "version control"))
   #+END_SRC
 
-* flycheck
+* flycheck/flymake
   #+BEGIN_SRC emacs-lisp :results silent
-    ;; syntax checking
+    (defun my/list-errors ()
+      "Use flycheck or flymake to list errors."
+      (interactive)
+      (cond ((bound-and-true-p flycheck-mode) (flycheck-list-errors))
+            ((bound-and-true-p flymake-mode) (flymake-show-diagnostics-buffer))
+            (t (user-error "Neither flycheck nor flymake are enabled"))))
+
+    (define-key evil-normal-state-map (kbd "SPC e l") #'my/list-errors)
+
     (use-package flycheck
       :ensure t
       :defer t
