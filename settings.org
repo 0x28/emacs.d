@@ -474,6 +474,15 @@
       :after magit)
   #+END_SRC
 
+* recentf
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package recentf
+      :config
+      (run-with-idle-timer (* 60 2) t #'recentf-save-list)
+      ;; save more recent files
+      (setq recentf-max-saved-items 100))
+  #+END_SRC
+
 * LaTeX
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package tex-site
@@ -644,8 +653,6 @@
     (setq-default indent-tabs-mode nil)
     ;; update files when they change on disk
     (global-auto-revert-mode 1)
-    ;; save more recent files
-    (setq recentf-max-saved-items 100)
     ;; ask before killing emacs
     (setq confirm-kill-emacs #'y-or-n-p)
     ;; automatically go to the help window
