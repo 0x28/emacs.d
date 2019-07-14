@@ -478,6 +478,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package recentf
       :config
+      (recentf-mode 1)
       (run-with-idle-timer (* 60 2) t #'recentf-save-list)
       ;; save more recent files
       (setq recentf-max-saved-items 100))
