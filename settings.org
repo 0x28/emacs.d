@@ -300,6 +300,7 @@
   #+END_SRC
 
 * eshell
+** config
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package eshell
       :ensure t
@@ -319,9 +320,18 @@
             eshell-hist-ignoredups t
             eshell-scroll-to-bottom-on-input t
             eshell-cmpl-cycle-completions nil)
+
+      (add-hook 'eshell-directory-change-hook
+                (lambda () (cl-pushnew (abbreviate-file-name default-directory)
+                                  my/eshell-cd-history
+                                  :test #'string=)))
+
       :custom-face
       (eshell-prompt ((t (:inherit minibuffer-prompt :weight normal)))))
+  #+END_SRC
 
+** popup
+  #+BEGIN_SRC emacs-lisp :results silent
     (defun my/toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
       (interactive)
@@ -344,6 +354,17 @@
                               'below))
                (eshell)
                (funcall cd-to-default-dir)))))
+  #+END_SRC
+
+** jump
+  #+BEGIN_SRC emacs-lisp :results silent
+    (defvar my/eshell-cd-history nil "Eshell directory history.")
+
+    (defun eshell/j ()
+      "Jump to a previously visited directory."
+      (interactive)
+      (eshell/cd (completing-read "jump: "
+                                  my/eshell-cd-history)))
   #+END_SRC
 
 * whitespace
