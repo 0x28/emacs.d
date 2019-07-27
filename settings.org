@@ -230,6 +230,7 @@
       (which-key-add-key-based-replacements
         "SPC b" "bookmarks"
         "SPC f" "files"
+        "SPC g" "git"
         "SPC h" "help"
         "SPC n" "narrow"
         "SPC p" "project"
