@@ -319,13 +319,8 @@
             eshell-error-if-no-glob t
             eshell-hist-ignoredups t
             eshell-scroll-to-bottom-on-input t
-            eshell-cmpl-cycle-completions nil)
-
-      (add-hook 'eshell-directory-change-hook
-                (lambda () (cl-pushnew (abbreviate-file-name default-directory)
-                                  my/eshell-cd-history
-                                  :test #'string=)))
-
+            eshell-cmpl-cycle-completions nil
+            eshell-last-dir-ring-size 128)
       :custom-face
       (eshell-prompt ((t (:inherit minibuffer-prompt :weight normal)))))
   #+END_SRC
@@ -358,13 +353,12 @@
 
 ** jump
   #+BEGIN_SRC emacs-lisp :results silent
-    (defvar my/eshell-cd-history nil "Eshell directory history.")
-
     (defun eshell/j ()
       "Jump to a previously visited directory."
       (interactive)
-      (eshell/cd (completing-read "jump: "
-                                  my/eshell-cd-history)))
+      (eshell/cd
+       (completing-read "jump: "
+                        (seq-filter #'identity (cddr eshell-last-dir-ring)))))
   #+END_SRC
 
 * whitespace
