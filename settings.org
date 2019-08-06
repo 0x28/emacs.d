@@ -320,10 +320,27 @@
             eshell-hist-ignoredups t
             eshell-scroll-to-bottom-on-input t
             eshell-cmpl-cycle-completions nil
-            eshell-last-dir-ring-size 128)
+            eshell-last-dir-ring-size 128
+            eshell-prompt-function #'my/eshell-prompt)
+
       :custom-face
       (eshell-prompt ((t (:inherit minibuffer-prompt :weight normal)))))
   #+END_SRC
+
+** prompt
+#+BEGIN_SRC emacs-lisp :results silent
+  (defun my/eshell-prompt ()
+    "Custom eshell prompt."
+    (concat
+     (when (> eshell-last-command-status 0)
+       (propertize (format "(%d) " eshell-last-command-status) 'face 'error))
+     (propertize (user-login-name) 'face 'font-lock-type-face)
+     (propertize "@" 'face 'font-lock-comment-face)
+     (propertize (system-name) 'face 'font-lock-function-name-face)
+     " :: "
+     (propertize (abbreviate-file-name (eshell/pwd)) 'face 'default)
+     (if (= (user-uid) 0) " # " " $ ")))
+#+END_SRC
 
 ** popup
   #+BEGIN_SRC emacs-lisp :results silent
