@@ -358,7 +358,7 @@
       (interactive)
       (eshell/cd
        (completing-read "jump: "
-                        (seq-filter #'identity (cddr eshell-last-dir-ring)))))
+                        (ring-elements eshell-last-dir-ring))))
   #+END_SRC
 
 * whitespace
