@@ -372,10 +372,10 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (defun eshell/j ()
       "Jump to a previously visited directory."
-      (interactive)
       (eshell/cd
        (completing-read "jump: "
-                        (ring-elements eshell-last-dir-ring))))
+                        (delete-dups
+                         (ring-elements eshell-last-dir-ring)))))
   #+END_SRC
 
 * whitespace
