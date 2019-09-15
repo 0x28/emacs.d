@@ -13,14 +13,12 @@
     (setq package-archives
           '(("gnu" . "https://elpa.gnu.org/packages/")
             ("melpa" . "https://melpa.org/packages/")
-            ("gnu-mirror" . "https://gitlab.com/0x28/elpa-mirror/raw/master/gnu/")
-            ("melpa-mirror" . "https://gitlab.com/0x28/elpa-mirror/raw/master/melpa/")))
+            ("gnu-mirror" . "https://gitlab.com/0x28/elpa-mirror/raw/master/gnu/")))
 
     (setq package-archive-priorities
           '(("gnu" . 20)
             ("melpa" . 20)
-            ("gnu-mirror" . 0)
-            ("melpa-mirror" . 0)))
+            ("gnu-mirror" . 0)))
 
     (setq package-enable-at-startup nil)
     (package-initialize)
