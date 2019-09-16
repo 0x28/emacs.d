@@ -316,6 +316,7 @@
       (setq eshell-cmpl-ignore-case t
             eshell-error-if-no-glob t
             eshell-hist-ignoredups t
+            eshell-history-size 2048
             eshell-scroll-to-bottom-on-input t
             eshell-cmpl-cycle-completions nil
             eshell-last-dir-ring-size 128
