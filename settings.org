@@ -672,7 +672,7 @@
                        (cond ((eq system-type 'gnu/linux) "Hack-13")
                              ((eq system-type 'windows-nt) "Consolas-14"))))
     ;; pretty lambdas
-    (global-prettify-symbols-mode t)
+    (add-hook 'emacs-lisp-mode-hook #'prettify-symbols-mode)
     (setq prettify-symbols-unprettify-at-point 'right-edge)
     ;; smoother scrolling
     (setq scroll-conservatively most-positive-fixnum)
