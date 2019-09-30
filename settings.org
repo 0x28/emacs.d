@@ -852,3 +852,19 @@
        (global-set-key [remap save-buffers-kill-terminal] #'my/confirm-kill-terminal))
   #+END_SRC
 
+** open file externally
+  #+BEGIN_SRC emacs-lisp :results silent
+    (defun my/open-externally (file)
+      "Open FILE in an external application."
+      (interactive "f")
+      (let ((file (expand-file-name file)))
+        (cond
+         ((eq system-type 'gnu/linux)
+          (let ((process-connection-type nil))
+            (start-process "" nil "xdg-open" file)))
+         ((eq system-type 'darwin)
+          (shell-command (concat "open " (shell-quote-argument file))))
+         ((eq system-type 'windows-nt)
+          (w32-shell-execute "open" file)))))
+  #+END_SRC
+
