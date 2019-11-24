@@ -160,7 +160,8 @@
       (setq ivy-height 20
             ivy-re-builders-alist '((t . ivy--regex-ignore-order))
             ivy-use-virtual-buffers t
-            ivy-virtual-abbreviate 'abbreviate)
+            ivy-virtual-abbreviate 'abbreviate
+            ivy-use-selectable-prompt t)
       (ivy-mode))
 
     (use-package swiper
