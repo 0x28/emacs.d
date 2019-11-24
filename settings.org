@@ -510,7 +510,9 @@
       :bind* (:map evil-normal-state-map
                    ("SPC g s" . magit-status)
                    ("SPC g g" . magit-dispatch)
-                   ("SPC g l" . magit-log-current)))
+                   ("SPC g l" . magit-log-current))
+      :config
+      (setq magit-diff-refine-hunk t))
 
     (use-package evil-magit
       :ensure t
