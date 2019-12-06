@@ -5,3 +5,6 @@ alias l ls -al
 alias x exit
 alias type which $1
 alias e find-file-other-window $1
+alias ... cd ../..
+alias .... cd ../../..
+alias ..... cd ../../../..
