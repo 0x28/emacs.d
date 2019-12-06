@@ -379,6 +379,17 @@
                          (ring-elements eshell-last-dir-ring)))))
   #+END_SRC
 
+** open
+  #+BEGIN_SRC emacs-lisp :results silent
+    (defun eshell/o (&rest args)
+      "Open ARGS in an external application.
+    If there are no arguments open the `default-directory' in an
+    external application."
+      (if args
+          (mapc #'my/open-externally args)
+        (my/open-externally default-directory)))
+  #+END_SRC
+
 * whitespace
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package whitespace

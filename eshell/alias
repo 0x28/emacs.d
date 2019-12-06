@@ -1,5 +1,4 @@
 alias v vc-dir $1
-alias o my/open-externally $1
 alias c clear t
 alias d dired-other-window .
 alias l ls -al
