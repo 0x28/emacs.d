@@ -723,6 +723,8 @@
     (fset #'yes-or-no-p #'y-or-n-p)
     ;; more information on describe-key
     (define-key (current-global-map) (kbd "C-h c") #'describe-key)
+    ;; add a newline at the end of files
+    (setq require-final-newline t)
   #+END_SRC
 
 * custom functions
