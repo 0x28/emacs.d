@@ -322,10 +322,7 @@
             eshell-scroll-to-bottom-on-input t
             eshell-cmpl-cycle-completions nil
             eshell-last-dir-ring-size 128
-            eshell-prompt-function #'my/eshell-prompt)
-
-      :custom-face
-      (eshell-prompt ((t (:inherit minibuffer-prompt :weight normal)))))
+            eshell-prompt-function #'my/eshell-prompt))
   #+END_SRC
 
 ** prompt
