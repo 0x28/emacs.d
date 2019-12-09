@@ -15,9 +15,6 @@
    (expand-file-name "settings.org"
                      user-emacs-directory)))
 
-(provide 'init)
-
-;;; init.el ends here
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -37,3 +34,6 @@
  '(org-src-fontify-natively t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
+
+(provide 'init)
+;;; init.el ends here
