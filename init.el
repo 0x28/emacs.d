@@ -23,8 +23,8 @@
  '(help-argument-name ((t (:inherit (italic minibuffer-prompt)))))
  '(mode-line ((t (:overline "gainsboro" :background nil))))
  '(mode-line-inactive ((t (:overline "dim gray" :background nil))))
- '(org-block-begin-line ((t (:inherit org-meta-line :box -1))))
- '(org-block-end-line ((t (:inherit org-meta-line :box -1)))))
+ '(org-block-begin-line ((t (:box -1))))
+ '(org-block-end-line ((t (:box -1)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
