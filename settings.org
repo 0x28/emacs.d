@@ -855,15 +855,18 @@
 
 ** confirm closing emacsclient frames
   #+BEGIN_SRC emacs-lisp :results silent
-     (defun my/confirm-kill-terminal (&optional arg)
-       "Ask for confirmation when closing frames.
-     With prefix ARG, silently save all file-visiting buffers, then kill."
-       (interactive "P")
-       (when (y-or-n-p "Close frame? ")
-         (save-buffers-kill-terminal arg)))
+    (defun my/confirm-delete-frame (&optional arg)
+      "Ask for confirmation when closing frames.
+    With prefix ARG, silently save all file-visiting buffers, then
+    delete the selected frame."
+      (interactive "P")
+      (when (y-or-n-p "Close frame? ")
+        (save-some-buffers arg)
+        (delete-frame))
+      (message ""))
 
-     (when (daemonp)
-       (global-set-key [remap save-buffers-kill-terminal] #'my/confirm-kill-terminal))
+    (when (daemonp)
+      (global-set-key [remap save-buffers-kill-terminal] #'my/confirm-delete-frame))
   #+END_SRC
 
 ** open file externally
