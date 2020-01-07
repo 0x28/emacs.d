@@ -284,19 +284,7 @@
                       (with-selected-frame frame
                         (unless (member 'doom-dracula custom-enabled-themes)
                           (load-theme 'doom-dracula t)))))
-        (load-theme 'doom-dracula t))
-
-      (add-hook 'org-mode-hook
-                (lambda ()
-                  (dolist (face '(org-level-1
-                                  org-level-2
-                                  org-level-3
-                                  org-level-4
-                                  org-level-5))
-                    (set-face-attribute face
-                                        nil
-                                        :weight 'semi-bold
-                                        :height 1.0)))))
+        (load-theme 'doom-dracula t)))
   #+END_SRC
 
 * eshell
