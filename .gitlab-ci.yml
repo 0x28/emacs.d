@@ -7,7 +7,8 @@ before_script:
 
 test:
   script:
-    - emacs --batch -l ~/.emacs.d/init.el
+    - emacs --daemon -l ~/.emacs.d/init.el
+    - emacsclient --eval "(kill-emacs)"
     - tar caf emacs.tar.xz --exclude "*.elc" --exclude ".git" -C ~ .emacs.d
   artifacts:
     paths:
