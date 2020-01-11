@@ -144,6 +144,13 @@
       (define-key company-active-map (kbd "<tab>") #'company-complete-common-or-cycle)
       (define-key company-active-map (kbd "TAB") #'company-complete-common-or-cycle)
 
+      (defconst my/company-programming-backends
+        '((:separate
+           company-lsp
+           company-files
+           company-yasnippet)
+          company-keywords))
+
       (setq company-selection-wrap-around t
             company-idle-delay 0.1
             company-tooltip-minimum-width 40
@@ -405,10 +412,7 @@
 
     (defun my/c-and-c++-config ()
       "Setup C and C++ config."
-      (setq-local company-backends '((company-files
-                                      company-capf
-                                      company-yasnippet
-                                      company-keywords))))
+      (setq-local company-backends my/company-programming-backends))
 
     (use-package cc-mode
       :bind* (:map c-mode-map
@@ -441,7 +445,9 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package lsp-mode
       :ensure t
-      :defer)
+      :defer t
+      :config
+      (setq lsp-auto-configure nil))
 
     (use-package company-lsp
       :ensure t
@@ -455,7 +461,9 @@
       :bind* (:map rust-mode-map
                    ("C-c i" . rust-format-buffer))
       :hook (rust-mode . lsp)
-      :hook (rust-mode . (lambda () (flycheck-mode -1)))
+      :hook (rust-mode . (lambda ()
+                           (flycheck-mode -1)
+                           (setq-local company-backends my/company-programming-backends)))
       :config
       (setq lsp-rust-all-features t))
   #+END_SRC
