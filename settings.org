@@ -447,7 +447,8 @@
       :ensure t
       :defer t
       :config
-      (setq lsp-auto-configure nil))
+      (setq lsp-auto-configure nil)
+      (require 'lsp-clients))
 
     (use-package company-lsp
       :ensure t
