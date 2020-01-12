@@ -33,7 +33,8 @@
  '(help-at-pt-display-when-idle t nil (help-at-pt))
  '(org-src-fontify-natively t)
  '(scroll-bar-mode nil)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(menu-bar-mode nil))
 
 (provide 'init)
 ;;; init.el ends here

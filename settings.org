@@ -662,8 +662,6 @@
   #+BEGIN_SRC emacs-lisp :results silent
     ;; don't show a startup message
     (setq inhibit-startup-message t)
-    ;; no menu-bar
-    (menu-bar-mode -1)
     ;; no blinking cursor
     (blink-cursor-mode -1)
     ;; highlight the current line
