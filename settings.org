@@ -445,10 +445,7 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package lsp-mode
       :ensure t
-      :defer t
-      :config
-      (setq lsp-auto-configure nil)
-      (require 'lsp-clients))
+      :defer t)
 
     (use-package company-lsp
       :ensure t
@@ -461,10 +458,10 @@
       :ensure t
       :bind* (:map rust-mode-map
                    ("C-c i" . rust-format-buffer))
-      :hook (rust-mode . lsp)
       :hook (rust-mode . (lambda ()
                            (flycheck-mode -1)
                            (setq-local company-backends my/company-programming-backends)))
+      :hook (rust-mode . lsp)
       :config
       (setq lsp-rust-all-features t))
   #+END_SRC
