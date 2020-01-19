@@ -321,7 +321,7 @@
   #+END_SRC
 
 ** prompt
-#+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp :results silent
   (defun my/eshell-prompt ()
     "Custom eshell prompt."
     (concat
@@ -333,7 +333,7 @@
      " :: "
      (propertize (abbreviate-file-name (eshell/pwd)) 'face 'default)
      (if (= (user-uid) 0) " # " " $ ")))
-#+END_SRC
+  #+END_SRC
 
 ** popup
   #+BEGIN_SRC emacs-lisp :results silent
