@@ -561,7 +561,8 @@
 * projectile
   #+BEGIN_SRC emacs-lisp :results silent
     (defun my/project-rg ()
-      "Search with ripgrep within project."
+      "Search with ripgrep within project. If the ripgrep command
+    supports the --pcre2 flag, spaces can be used in the query."
       (interactive)
       (counsel-rg (thing-at-point 'symbol t)
                   (projectile-project-root)))
