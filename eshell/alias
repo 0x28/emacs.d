@@ -1,7 +1,7 @@
 alias v vc-dir $1
 alias c clear t
 alias d dired-other-window .
-alias l ls -al
+alias l ls -la $1
 alias x exit
 alias type which $1
 alias e find-file-other-window $1
