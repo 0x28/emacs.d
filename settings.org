@@ -459,7 +459,6 @@
       :bind* (:map rust-mode-map
                    ("C-c i" . rust-format-buffer))
       :hook (rust-mode . (lambda ()
-                           (flycheck-mode -1)
                            (setq-local company-backends my/company-programming-backends)))
       :hook (rust-mode . lsp)
       :config
