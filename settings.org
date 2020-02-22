@@ -236,6 +236,7 @@
       (setq which-key-idle-delay 0.5)
       (which-key-add-key-based-replacements
         "SPC b" "bookmarks"
+        "SPC e" "errors"
         "SPC f" "files"
         "SPC g" "git"
         "SPC h" "help"
