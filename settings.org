@@ -773,23 +773,12 @@
   #+END_SRC
 
 ** ssh connect
-   Use tramp to connect to a host in the local network. Uses the ip command to
-   find possible hosts.
   #+BEGIN_SRC emacs-lisp :results silent
-    (defun my/local-hosts ()
-      "Return a list of hosts in the local network."
-      (split-string
-       (shell-command-to-string
-        "ip neigh show nud stale nud reachable | cut -d ' ' -f 1")))
-
-    (defun my/ssh-connect ()
-      "Connect to the home directory of a foreign host."
-      (interactive)
-      (let ((host (completing-read "host: " (my/local-hosts)))
-            (user (read-string "user: ")))
-        (message "connecting to %s@%s ..." user host)
-        (find-file (concat "/ssh:" user "@" host ":~"))))
-
+    (defun my/ssh-connect (host user)
+      "Connect to the home directory of a foreign HOST as USER using SSH."
+      (interactive "Mhost: \nMuser: ")
+      (message "connecting to %s@%s ..." user host)
+      (find-file (concat "/ssh:" user "@" host ":~")))
   #+END_SRC
 
 ** duckduckgo dwim
