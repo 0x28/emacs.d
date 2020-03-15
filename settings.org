@@ -603,25 +603,26 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package counsel-dash
       :ensure t
+      :commands (dash-docs-installed-docsets)
       :init
       (defun my/view-docs-for-major-mode ()
         "Read the documentation for the programming language of the
     current major-mode. Use `counsel-dash-install-docset' or Zeal to
     download docsets."
         (interactive)
-        (setq-local counsel-dash-docsets
-                    (cdr (assoc major-mode '((sh-mode     . ("Bash"))
-                                             (rust-mode   . ("Rust"))
-                                             (c-mode      . ("C"))
-                                             (c++-mode    . ("C++" "Boost"))
-                                             (lisp-mode   . ("Common_Lisp"))
-                                             (cmake-mode  . ("CMake"))
-                                             (latex-mode  . ("LaTeX"))
-                                             (tex-mode    . ("LaTeX"))
-                                             (python-mode . ("Python_3"))))))
-        (if counsel-dash-docsets
-            (counsel-dash (thing-at-point 'symbol t))
-          (message "no docsets found for %s" major-mode)))
+        (let ((counsel-dash-docsets
+               (or (cdr (assoc major-mode '((sh-mode     . ("Bash"))
+                                            (rust-mode   . ("Rust"))
+                                            (c-mode      . ("C"))
+                                            (c++-mode    . ("C++" "Boost"))
+                                            (lisp-mode   . ("Common_Lisp"))
+                                            (cmake-mode  . ("CMake"))
+                                            (latex-mode  . ("LaTeX"))
+                                            (tex-mode    . ("LaTeX"))
+                                            (python-mode . ("Python_3")))))
+                   (list (completing-read "docset: "
+                                          (dash-docs-installed-docsets))))))
+          (counsel-dash (thing-at-point 'symbol t))))
       :bind* (:map evil-normal-state-map
                    ("SPC h d" . my/view-docs-for-major-mode)))
   #+END_SRC
