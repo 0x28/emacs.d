@@ -537,7 +537,7 @@
       :defer t
       :config
       (setq font-latex-fontify-sectioning 1.0)
-      (push '(output-pdf "xdg-open") TeX-view-program-selection))
+      (push '(output-pdf "Okular") TeX-view-program-selection))
   #+END_SRC
 
 * bookmarks
