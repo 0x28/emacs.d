@@ -531,18 +531,13 @@
 
 * LaTeX
   #+BEGIN_SRC emacs-lisp :results silent
-    (use-package tex-site
+    (use-package tex
       :ensure auctex
       :hook (LaTeX-mode . TeX-source-correlate-mode)
       :defer t
       :config
       (setq font-latex-fontify-sectioning 1.0)
-      (setq-default TeX-view-program-selection
-                    (quote (((output-dvi has-no-display-manager) "dvi2tty")
-                            ((output-dvi style-pstricks) "dvips and gv")
-                            (output-dvi "xdvi")
-                            (output-pdf "Okular")
-                            (output-html "xdg-open")))))
+      (push '(output-pdf "xdg-open") TeX-view-program-selection))
   #+END_SRC
 
 * bookmarks
