@@ -414,13 +414,11 @@
       (setq-local company-backends my/company-programming-backends))
 
     (use-package cc-mode
-      :bind* (:map c-mode-map
-                   ("C-c i" . clang-format-buffer))
-      :bind* (:map c++-mode-map
-                   ("C-c i" . clang-format-buffer))
-      :hook
-      (((c-mode c++-mode) . my/c-and-c++-config))
+      :hook (((c-mode c++-mode) . my/c-and-c++-config))
       :config
+      (dolist (map (list c-mode-map c++-mode-map))
+        (define-key map (kbd "C-c i") #'clang-format-buffer))
+
       (defconst my-cc-style
         '((c-basic-offset . 4)
           (c-comment-only-line-offset . 0)
