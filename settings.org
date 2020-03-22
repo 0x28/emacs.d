@@ -637,7 +637,9 @@
 * ibuffer
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package ibuffer
-      :bind ("C-x C-b" . ibuffer-other-window))
+      :bind ("C-x C-b" . ibuffer-other-window)
+      :config
+      (setq ibuffer-default-sorting-mode 'major-mode))
   #+END_SRC
 
 * additional keywords
