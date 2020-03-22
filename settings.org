@@ -865,5 +865,7 @@
           (shell-command (concat "open " (shell-quote-argument file))))
          ((eq system-type 'windows-nt)
           (w32-shell-execute "open" file)))))
+
+    (define-key evil-normal-state-map (kbd "SPC f e") #'my/open-externally)
   #+END_SRC
 
