@@ -498,7 +498,7 @@
 * version control
   Settings for the builtin vc.el.
   #+BEGIN_SRC emacs-lisp :results silent
-    (define-key evil-normal-state-map (kbd "SPC v") #'vc-prefix-map)
+    (evil-define-key '(normal visual) 'global (kbd "SPC v") #'vc-prefix-map)
     (setq vc-follow-symlinks t)
   #+END_SRC
   Magit keybindings.
