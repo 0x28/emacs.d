@@ -52,20 +52,16 @@
       (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
       (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
 
-      (setq evil-normal-state-tag
-            (propertize " N " 'face '((:foreground "green")))
-            evil-emacs-state-tag
-            (propertize " E " 'face '((:foreground "orange")))
-            evil-insert-state-tag
-            (propertize " I " 'face '((:foreground "red")))
-            evil-motion-state-tag
-            (propertize " M " 'face '((:foreground "deep sky blue")))
-            evil-visual-state-tag
-            (propertize " V " 'face '((:foreground "grey80")))
-            evil-replace-state-tag
-            (propertize " R " 'face '((:foreground "yellow")))
-            evil-operator-state-tag
-            (propertize " O " 'face '((:foreground "purple"))))
+      (defun my/color-text (text color)
+        (propertize text 'face `((:foreground ,color))))
+
+      (setq evil-normal-state-tag   (my/color-text " N " "green")
+            evil-emacs-state-tag    (my/color-text " E " "orange")
+            evil-insert-state-tag   (my/color-text " I " "red")
+            evil-motion-state-tag   (my/color-text " M " "deep sky blue")
+            evil-visual-state-tag   (my/color-text " V " "grey80")
+            evil-replace-state-tag  (my/color-text " R " "yellow")
+            evil-operator-state-tag (my/color-text " O " "purple"))
 
       (evil-mode))
   #+END_SRC
