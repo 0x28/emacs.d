@@ -26,7 +26,6 @@
  ;; If there is more than one, they won't work right.
  '(help-at-pt-display-when-idle t nil (help-at-pt))
  '(menu-bar-mode nil)
- '(org-src-fontify-natively t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(indent-tabs-mode nil))

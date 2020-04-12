@@ -120,6 +120,14 @@
       (global-evil-mc-mode 1))
   #+END_SRC
 
+* org
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package org
+      :custom
+      ((org-agenda-files (list org-directory))
+       (org-src-fontify-natively t)))
+  #+END_SRC
+
 * undo-tree
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package undo-tree
