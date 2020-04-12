@@ -6,9 +6,10 @@
     (require 'package)
     (require 'nsm)
 
-    (setq network-security-level 'high)
-    (setq gnutls-min-prime-bits 2048)
-    (setq gnutls-verify-error t)
+    (setq network-security-level 'high
+          gnutls-min-prime-bits 2048
+          gnutls-verify-error t
+          package-enable-at-startup nil)
 
     (setq package-archives
           '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -20,7 +21,6 @@
             ("melpa" . 20)
             ("gnu-mirror" . 0)))
 
-    (setq package-enable-at-startup nil)
     (package-initialize)
 
     ;; bootstrap `use-package'
