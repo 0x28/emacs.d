@@ -28,7 +28,8 @@
  '(menu-bar-mode nil)
  '(org-src-fontify-natively t)
  '(scroll-bar-mode nil)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(indent-tabs-mode nil))
 
 (provide 'init)
 ;;; init.el ends here

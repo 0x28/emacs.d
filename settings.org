@@ -693,8 +693,6 @@
     (let ((auto-save-dir "~/.emacs.d/.autosaves/"))
       (make-directory auto-save-dir t)
       (setq auto-save-file-name-transforms `((".*" ,auto-save-dir t))))
-    ;; no tabs
-    (setq-default indent-tabs-mode nil)
     ;; update files when they change on disk
     (global-auto-revert-mode 1)
     ;; ask before killing emacs
