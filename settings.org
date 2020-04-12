@@ -387,11 +387,10 @@
       :ensure t
       :hook ((prog-mode . whitespace-mode)
              (diff-mode . whitespace-mode))
-      :config
-      (setq-default
-       fill-column 80
-       whitespace-line-column fill-column
-       whitespace-style '(face trailing lines-tail)))
+      :custom
+      ((fill-column 80)
+       (whitespace-line-column fill-column)
+       (whitespace-style '(face trailing lines-tail))))
   #+END_SRC
 
 * line numbers
