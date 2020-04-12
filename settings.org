@@ -35,8 +35,9 @@
     (use-package evil
       :ensure t
       :demand
-      :init
-      (setq evil-want-keybinding nil)
+      :custom
+      (evil-want-keybinding nil)
+      (evil-lookup-func (lambda () (interactive) (call-interactively #'man)))
       :bind*
       (:map evil-normal-state-map
             ("SPC f i" . my/edit-init-file)
@@ -66,8 +67,6 @@
             evil-operator-state-tag
             (propertize " O " 'face '((:foreground "purple"))))
 
-      (setq evil-lookup-func (lambda () (interactive)
-                               (call-interactively #'man)))
       (evil-mode))
   #+END_SRC
 
