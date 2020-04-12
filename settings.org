@@ -434,7 +434,8 @@
            (inexpr-class . 0))))
 
       (c-add-style "my-style" my-cc-style)
-      (setq-default c-default-style "my-style"))
+      :custom
+      (c-default-style "my-style"))
   #+END_SRC
 
 * lsp
