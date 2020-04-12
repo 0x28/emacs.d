@@ -123,9 +123,12 @@
 * org
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package org
+      :custom-face
+      (org-block-begin-line ((t (:box -1))))
+      (org-block-end-line ((t (:box -1))))
       :custom
-      ((org-agenda-files (list org-directory))
-       (org-src-fontify-natively t)))
+      (org-agenda-files (list org-directory))
+      (org-src-fontify-natively t))
   #+END_SRC
 
 * undo-tree
