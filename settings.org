@@ -317,14 +317,15 @@
                        (setq-local company-backends (list #'company-capf))))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
-      (setq eshell-cmpl-ignore-case t
-            eshell-error-if-no-glob t
-            eshell-hist-ignoredups t
-            eshell-history-size 2048
-            eshell-scroll-to-bottom-on-input t
-            eshell-cmpl-cycle-completions nil
-            eshell-last-dir-ring-size 128
-            eshell-prompt-function #'my/eshell-prompt))
+      :custom
+      ((eshell-cmpl-ignore-case t)
+       (eshell-error-if-no-glob t)
+       (eshell-hist-ignoredups t)
+       (eshell-history-size 2048)
+       (eshell-scroll-to-bottom-on-input t)
+       (eshell-cmpl-cycle-completions nil)
+       (eshell-last-dir-ring-size 128)
+       (eshell-prompt-function #'my/eshell-prompt)))
   #+END_SRC
 
 ** prompt
