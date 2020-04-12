@@ -138,7 +138,7 @@
       :custom
       ((undo-tree-visualizer-timestamps t)
        (undo-tree-visualizer-relative-timestamps t))
-      :hook (undo-tree-mode . undo-tree-visualizer-))
+      :hook (undo-tree-mode . my/undo-tree-config))
   #+END_SRC
 
 * company
