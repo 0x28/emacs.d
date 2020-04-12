@@ -133,12 +133,12 @@
     (use-package undo-tree
       :ensure t
       :config
-      (setq undo-tree-visualizer-timestamps t
-            undo-tree-visualizer-relative-timestamps t)
-
       (defun my/undo-tree-config ()
         (setq undo-tree-visualizer-diff t))
-      :hook (undo-tree-visualizer-mode . my/undo-tree-config))
+      :custom
+      ((undo-tree-visualizer-timestamps t)
+       (undo-tree-visualizer-relative-timestamps t))
+      :hook (undo-tree-mode . undo-tree-visualizer-))
   #+END_SRC
 
 * company
