@@ -71,9 +71,10 @@
     (use-package evil-collection
       :ensure t
       :config
-      (setq evil-collection-key-blacklist (list "SPC"))
-      (setq evil-collection-company-use-tng nil)
-      (evil-collection-init))
+      (evil-collection-init)
+      :custom
+      (evil-collection-key-blacklist (list "SPC"))
+      (evil-collection-company-use-tng nil))
   #+END_SRC
 
 * evil multiple cursors
@@ -212,21 +213,23 @@
       (:map dired-mode-map
             ("<tab>" . dired-omit-mode)
             ("<backtab>" . dired-hide-details-mode))
-      :hook (dired-mode . dired-omit-mode)
-      :hook (dired-mode . dired-hide-details-mode)
+      :hook
+      (dired-mode . dired-omit-mode)
+      (dired-mode . dired-hide-details-mode)
       :config
-      (setq dired-auto-revert-buffer t)
-      (setq dired-dwim-target t)
-      (setq dired-omit-files "^\\.?#\\|^\\.[^.\n].*$")
-      (evil-define-key 'normal dired-mode-map (kbd "C-o") #'dired-display-file))
+      (evil-define-key 'normal dired-mode-map (kbd "C-o") #'dired-display-file)
+      :custom
+      (dired-auto-revert-buffer t)
+      (dired-dwim-target t)
+      (dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
   #+END_SRC
 
 * occur
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package replace
       :hook (occur-mode . next-error-follow-minor-mode)
-      :config
-      (setq list-matching-lines-default-context-lines 3))
+      :custom
+      (list-matching-lines-default-context-lines 3))
   #+END_SRC
 
 * which key
@@ -237,7 +240,6 @@
       :defer 1
       :config
       (which-key-mode)
-      (setq which-key-idle-delay 0.5)
       (which-key-add-key-based-replacements
         "SPC b" "bookmarks"
         "SPC e" "errors"
@@ -247,7 +249,9 @@
         "SPC n" "narrow"
         "SPC p" "project"
         "SPC q" "quit"
-        "SPC v" "version control"))
+        "SPC v" "version control")
+      :custom
+      (which-key-idle-delay 0.5))
   #+END_SRC
 
 * flycheck/flymake
@@ -465,16 +469,16 @@
       :hook (rust-mode . (lambda ()
                            (setq-local company-backends my/company-programming-backends)))
       :hook (rust-mode . lsp)
-      :config
-      (setq lsp-rust-all-features t))
+      :custom
+      (lsp-rust-all-features t))
   #+END_SRC
 
 * CMake
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package cmake-mode
       :ensure t
-      :config
-      (setq cmake-tab-width 4))
+      :custom
+      (cmake-tab-width 4))
   #+END_SRC
 
 * compile
@@ -483,8 +487,8 @@
       :defer t
       :bind* (:map compilation-mode-map
                    ("SPC" . nil))
-      :config
-      (setq compilation-scroll-output 'first-error))
+      :custom
+      (compilation-scroll-output 'first-error))
   #+END_SRC
 
 * align
@@ -516,8 +520,8 @@
                    ("SPC g s" . magit-status)
                    ("SPC g g" . magit-dispatch)
                    ("SPC g l" . magit-log-current))
-      :config
-      (setq magit-diff-refine-hunk t))
+      :custom
+      (magit-diff-refine-hunk t))
 
     (use-package evil-magit
       :ensure t
@@ -530,8 +534,8 @@
       :config
       (recentf-mode 1)
       (run-with-idle-timer (* 60 2) t #'recentf-save-list)
-      ;; save more recent files
-      (setq recentf-max-saved-items 100))
+      :custom
+      (recentf-max-saved-items 100))
   #+END_SRC
 
 * LaTeX
@@ -641,8 +645,8 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package ibuffer
       :bind ("C-x C-b" . ibuffer-other-window)
-      :config
-      (setq ibuffer-default-sorting-mode 'major-mode))
+      :custom
+      (ibuffer-default-sorting-mode 'major-mode))
   #+END_SRC
 
 * additional keywords
