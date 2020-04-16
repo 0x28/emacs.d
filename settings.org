@@ -686,6 +686,12 @@
     (column-number-mode 1)
     ;; show matching parentheses
     (show-paren-mode)
+    ;; disable scroll bar
+    (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
+    ;; disable menu bar
+    (add-to-list 'default-frame-alist '(menu-bar-lines . 0))
+    ;; disable tool bar
+    (add-to-list 'default-frame-alist '(tool-bar-lines . 0))
     ;; start emacs maximized
     (add-to-list 'default-frame-alist '(fullscreen . maximized))
     ;; use hack or consolas font
@@ -719,6 +725,8 @@
     (setq confirm-kill-emacs #'y-or-n-p)
     ;; automatically go to the help window
     (setq help-window-select t)
+    ;; show help on hover
+    (customize-set-variable 'help-at-pt-display-when-idle t)
     ;; sentences have a single space at the end
     (setq sentence-end-double-space nil)
     ;; typed text replaces the selected text
@@ -741,6 +749,8 @@
     (define-key (current-global-map) (kbd "C-h c") #'describe-key)
     ;; add a newline at the end of files
     (setq require-final-newline t)
+    ;; no tabs
+    (customize-set-variable 'indent-tabs-mode nil)
   #+END_SRC
 
 * custom functions
