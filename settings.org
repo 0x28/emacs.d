@@ -781,19 +781,17 @@
   #+END_SRC
 
 ** toggle maximize buffer
-   This function maximizes the current buffer, hiding the other buffers inside
-   the current frame. A further call restores the old buffer layout.
+   Original from https://gist.github.com/3402786.
   #+BEGIN_SRC emacs-lisp :results silent
-    ;; from https://gist.github.com/3402786
     (defun my/toggle-maximize-buffer ()
-      "Maximize buffer"
+      "Maximize the current buffer and save the window configuration.
+    A second call restores the old window configuration."
       (interactive)
       (if (and (= 1 (length (window-list)))
                (assoc ?_ register-alist))
           (jump-to-register ?_)
-        (progn
-          (window-configuration-to-register ?_)
-          (delete-other-windows))))
+        (window-configuration-to-register ?_)
+        (delete-other-windows)))
 
     (global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
   #+END_SRC
