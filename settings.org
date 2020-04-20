@@ -177,7 +177,8 @@
   #+BEGIN_SRC emacs-lisp :results silent
     (use-package ivy
       :ensure t
-      :defer t
+      :init
+      (setq completing-read-function #'ivy-completing-read)
       :bind* (("C-x b" . ivy-switch-buffer))
       :config
       (setq ivy-height 20
