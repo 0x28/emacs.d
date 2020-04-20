@@ -29,6 +29,12 @@
       (package-install 'use-package))
   #+END_SRC
 
+* custom file
+  #+BEGIN_SRC emacs-lisp :results silent
+    (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+    (load custom-file t)
+  #+END_SRC
+
 * evil
   Vim emulation for emacs.
   #+BEGIN_SRC emacs-lisp :results silent
