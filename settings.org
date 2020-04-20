@@ -117,13 +117,13 @@
   #+END_SRC
 
 * faces
-#+BEGIN_SRC emacs-lisp :results silent
-  (use-package faces
-    :custom-face
-    (help-argument-name ((t (:inherit (italic font-lock-function-name-face)))))
-    (mode-line ((t (:overline "gainsboro" :background nil))))
-    (mode-line-inactive ((t (:overline "dim gray" :background nil)))))
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package faces
+      :custom-face
+      (help-argument-name ((t (:inherit (italic font-lock-function-name-face)))))
+      (mode-line ((t (:overline "gainsboro" :background nil))))
+      (mode-line-inactive ((t (:overline "dim gray" :background nil)))))
+  #+END_SRC
 
 * org
   #+BEGIN_SRC emacs-lisp :results silent
