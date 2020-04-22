@@ -898,3 +898,22 @@
     (define-key evil-normal-state-map (kbd "SPC f e") #'my/open-externally)
   #+END_SRC
 
+** create TAGS file
+  #+BEGIN_SRC emacs-lisp :results silent
+    (defun my/create-tags (dir extensions)
+      "Create TAGS for files with EXTENSIONS in directory DIR."
+      (interactive "Dproject root: \nMenter file extensions: ")
+      (let* ((default-directory dir)
+             (extensions (split-string extensions))
+             (extensions (mapcar (lambda (e) (concat "*." e))
+                              extensions)))
+        (shell-command
+         (concat
+          (find-cmd
+           '(prune (name ".git" ".svn" ".CVS"))
+           `(or (iname ,@endings)))
+          " | etags -"))
+        (let ((tags-revert-without-query t))
+          (visit-tags-table dir))))
+  #+END_SRC
+
