@@ -911,7 +911,7 @@
          (concat
           (find-cmd
            '(prune (name ".git" ".svn" ".CVS"))
-           `(or (iname ,@endings)))
+           `(or (iname ,@extensions)))
           " | etags -"))
         (let ((tags-revert-without-query t))
           (visit-tags-table dir))))
