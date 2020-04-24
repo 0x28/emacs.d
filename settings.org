@@ -1,7 +1,8 @@
 #+TITLE: emacs settings
+#+PROPERTY: header-args :results silent
 * package setup
   Bootstraps use-package and sets the repositories.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     ;; set up package sources
     (require 'package)
     (require 'nsm)
@@ -30,14 +31,14 @@
   #+END_SRC
 
 * custom file
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
     (load custom-file t)
   #+END_SRC
 
 * evil
   Vim emulation for emacs.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package evil
       :ensure t
       :demand
@@ -73,7 +74,7 @@
   #+END_SRC
 
 * evil collection
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package evil-collection
       :ensure t
       :config
@@ -84,7 +85,7 @@
   #+END_SRC
 
 * evil multiple cursors
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/evil-mc-dispatch ()
       "Dispatch command to create multiple cursors."
       (interactive)
@@ -123,7 +124,7 @@
   #+END_SRC
 
 * faces
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package faces
       :custom-face
       (help-argument-name ((t (:inherit (italic font-lock-function-name-face)))))
@@ -132,7 +133,7 @@
   #+END_SRC
 
 * org
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package org
       :custom-face
       (org-block-begin-line ((t (:box -1))))
@@ -158,7 +159,7 @@
   #+END_SRC
 
 * undo-tree
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package undo-tree
       :ensure t
       :config
@@ -172,7 +173,7 @@
 
 * company
   Generic settings for the completion framework company.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package company
       :ensure t
       :config
@@ -195,7 +196,7 @@
   #+END_SRC
 
 * ivy
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package ivy
       :ensure t
       :init
@@ -236,7 +237,7 @@
   #+END_SRC
 
 * dired
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package dired-x
       :bind*
       (:map evil-normal-state-map
@@ -256,7 +257,7 @@
   #+END_SRC
 
 * occur
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package replace
       :hook (occur-mode . next-error-follow-minor-mode)
       :custom
@@ -264,7 +265,7 @@
   #+END_SRC
 
 * which key
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     ;; show keybindings while typing
     (use-package which-key
       :ensure t
@@ -286,7 +287,7 @@
   #+END_SRC
 
 * flycheck/flymake
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/list-errors ()
       "Use flycheck or flymake to list errors."
       (interactive)
@@ -303,7 +304,7 @@
   #+END_SRC
 
 * yasnippet
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     ;; snippet completion
     (use-package yasnippet
       :ensure t
@@ -314,14 +315,14 @@
         (define-key yas-minor-mode-map (kbd key) nil)))
   #+END_SRC
   Also load the snippets.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package yasnippet-snippets
       :ensure t
       :after yasnippet)
   #+END_SRC
 
 * theme
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package doom-themes
       :ensure t
       :config
@@ -336,7 +337,7 @@
 
 * eshell
 ** config
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package eshell
       :ensure t
       :bind* (("C-c s" . my/toggle-eshell))
@@ -362,7 +363,7 @@
   #+END_SRC
 
 ** prompt
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
   (defun my/eshell-prompt ()
     "Custom eshell prompt."
     (concat
@@ -377,7 +378,7 @@
   #+END_SRC
 
 ** popup
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
       (interactive)
@@ -403,7 +404,7 @@
   #+END_SRC
 
 ** jump
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun eshell/j ()
       "Jump to a previously visited directory."
       (eshell/cd
@@ -413,7 +414,7 @@
   #+END_SRC
 
 ** open
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun eshell/o (&rest args)
       "Open ARGS in an external application.
     If there are no arguments open the `default-directory' in an
@@ -424,7 +425,7 @@
   #+END_SRC
 
 * whitespace
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package whitespace
       :ensure t
       :hook ((prog-mode . whitespace-mode)
@@ -436,14 +437,14 @@
   #+END_SRC
 
 * line numbers
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package display-line-numbers
       :if (fboundp 'display-line-numbers-mode)
       :hook (prog-mode . display-line-numbers-mode))
   #+END_SRC
 
 * mail
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package mu4e
       :bind* ("C-c m" . mu4e)
       :config
@@ -471,7 +472,7 @@
   #+END_SRC
 
 * C, C++
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defalias 'cxx-mode #'c++-mode)
 
     (use-package clang-format
@@ -509,7 +510,7 @@
   #+END_SRC
 
 * lsp
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package lsp-mode
       :ensure t
       :defer t)
@@ -520,7 +521,7 @@
   #+END_SRC
 
 * Rust
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package rust-mode
       :ensure t
       :bind* (:map rust-mode-map
@@ -533,7 +534,7 @@
   #+END_SRC
 
 * CMake
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package cmake-mode
       :ensure t
       :custom
@@ -541,7 +542,7 @@
   #+END_SRC
 
 * compile
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package compile
       :defer t
       :bind* (:map compilation-mode-map
@@ -551,7 +552,7 @@
   #+END_SRC
 
 * align
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/align-whitespace (begin end)
       "Align columns by whitespace between BEGIN and END."
       (interactive "r")
@@ -567,12 +568,12 @@
 
 * version control
   Settings for the builtin vc.el.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (evil-define-key '(normal visual) 'global (kbd "SPC v") #'vc-prefix-map)
     (setq vc-follow-symlinks t)
   #+END_SRC
   Magit keybindings.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package magit
       :ensure t
       :bind* (:map evil-normal-state-map
@@ -588,7 +589,7 @@
   #+END_SRC
 
 * recentf
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package recentf
       :config
       (recentf-mode 1)
@@ -598,7 +599,7 @@
   #+END_SRC
 
 * LaTeX
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package tex
       :ensure auctex
       :hook (LaTeX-mode . TeX-source-correlate-mode)
@@ -610,7 +611,7 @@
 
 * bookmarks
   Some bookmark keybindings.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package bookmark
       :ensure t
       :bind* (:map evil-normal-state-map
@@ -620,7 +621,7 @@
   #+END_SRC
 
 * projectile
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/project-rg ()
       "Search with ripgrep within project. If the ripgrep command
     supports the --pcre2 flag, spaces can be used in the query."
@@ -657,14 +658,14 @@
   #+END_SRC
 
 * quickrun
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package quickrun
       :ensure t
       :bind* (("C-c x" . quickrun)))
   #+END_SRC
 
 * dash
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package counsel-dash
       :ensure t
       :commands (dash-docs-installed-docsets)
@@ -694,14 +695,14 @@
 * smex
   Counsel-M-x doesn't provide a command history. But it uses smex when
   available.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package smex
       :ensure t
       :after counsel)
   #+END_SRC
 
 * ibuffer
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (use-package ibuffer
       :bind ("C-x C-b" . ibuffer-other-window)
       :custom
@@ -711,7 +712,7 @@
 * additional keywords
   Some words like "FIXME" and "TODO" should be highlighted in every programming
   mode. It doesn't matter if they're inside comments or not.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/add-new-keywords()
       (font-lock-add-keywords
        nil
@@ -725,7 +726,7 @@
 
 * sane defaults
 ** visual
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     ;; don't show a startup message
     (setq inhibit-startup-message t)
     ;; no blinking cursor
@@ -762,7 +763,7 @@
   #+END_SRC
 
 ** convenience
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     ;; save backups in .emacs.d
     (setq backup-directory-alist '(("." . "~/.emacs.d/.backups")))
     ;; save auto-save files (#file#) in .emacs.d
@@ -807,7 +808,7 @@
   Small functions used in the keybindings.
 ** edit init file
    Function used to quickly edit my settings.org file.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/edit-init-file ()
       "Open the init file."
       (interactive)
@@ -817,7 +818,7 @@
 ** indent buffer
    This function removes trailing whitespace, indents the current buffer and
    removes tabs. For Makefiles it only removes trailing whitespace.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/indent-buffer ()
       "Indent and untabify the current buffer."
       (interactive)
@@ -832,7 +833,7 @@
 
 ** toggle maximize buffer
    Original from https://gist.github.com/3402786.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/toggle-maximize-buffer ()
       "Maximize the current buffer and save the window configuration.
     A second call restores the old window configuration."
@@ -847,7 +848,7 @@
   #+END_SRC
 
 ** ssh connect
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/ssh-connect (host user)
       "Connect to the home directory of a foreign HOST as USER using SSH."
       (interactive "Mhost: \nMuser: ")
@@ -856,7 +857,7 @@
   #+END_SRC
 
 ** duckduckgo dwim
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/ddg-dwim ()
       "Search duckduckgo.com for the symbol at point or the region if active."
       (interactive)
@@ -879,7 +880,7 @@
 
 ** kill current buffer
    Kill the current buffer without asking.
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/kill-current-buffer ()
       "Kill the current buffer."
       (interactive)
@@ -889,7 +890,7 @@
   #+END_SRC
 
 ** yank words to minibuffer
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/minibuffer-yank-word (&optional arg)
       "Yank ARG words from current line into minibuffer."
       (interactive "p")
@@ -909,7 +910,7 @@
   #+END_SRC
 
 ** confirm closing emacsclient frames
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/confirm-delete-frame (&optional arg)
       "Ask for confirmation when closing frames.
     With prefix ARG, silently save all file-visiting buffers, then
@@ -925,7 +926,7 @@
   #+END_SRC
 
 ** open file externally
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/open-externally (file)
       "Open FILE in an external application."
       (interactive "f")
@@ -942,7 +943,7 @@
   #+END_SRC
 
 ** create TAGS file
-  #+BEGIN_SRC emacs-lisp :results silent
+  #+BEGIN_SRC emacs-lisp
     (defun my/create-tags (dir extensions)
       "Create TAGS for files with EXTENSIONS in directory DIR."
       (interactive "Dproject root: \nMenter file extensions: ")
