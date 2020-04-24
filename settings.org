@@ -427,6 +427,34 @@
       :hook (prog-mode . display-line-numbers-mode))
   #+END_SRC
 
+* mail
+  #+BEGIN_SRC emacs-lisp :results silent
+    (use-package mu4e
+      :bind* ("C-c m" . mu4e)
+      :config
+      (defun my/compose-mail ()
+        "Compose mail using the `auth-sources' files."
+        (interactive)
+        (let* ((users (mapcar (lambda (entry) (plist-get entry :user))
+                              (auth-source-search :max 20)))
+               (user (completing-read "select user: " users))
+               (entry (car (auth-source-search :user user :max 1))))
+          (setq user-mail-address user ;; setq because mu4e runs asynchronously
+                smtpmail-smtp-server (plist-get entry :host)
+                smtpmail-smtp-service (string-to-number (plist-get entry :port)))
+          (mu4e~start #'mu4e-compose-new)))
+
+      (evil-define-key 'normal mu4e-main-mode-map (kbd "C") #'my/compose-mail)
+      :custom
+      (mu4e-get-mail-command "mbsync --all")
+      (mu4e-change-filenames-when-moving t)
+      (mu4e-completing-read-function #'completing-read)
+      (mu4e-view-actions '(("browse message" . mu4e-action-view-in-browser)))
+      (shr-use-colors nil)
+      (smtpmail-stream-type 'ssl)
+      (message-send-mail-function #'smtpmail-send-it))
+  #+END_SRC
+
 * C, C++
   #+BEGIN_SRC emacs-lisp :results silent
     (defalias 'cxx-mode #'c++-mode)
