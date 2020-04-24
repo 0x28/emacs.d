@@ -140,6 +140,21 @@
       :custom
       (org-agenda-files (list org-directory))
       (org-src-fontify-natively t))
+
+    (use-package org-protocol
+      :demand
+      :config
+      (defadvice org-protocol-capture (before my/focus-capture () activate)
+        (select-frame-set-input-focus (window-frame)))
+      (defadvice org-protocol-capture (after my/fill-capture () activate)
+        (fill-region (point-min) (point-max))))
+
+    (use-package org-capture
+      :defer t
+      :custom
+      (org-capture-templates
+       '(("w" "org-protocol web link" entry (file "Inbox.org")
+          "* %:description\n  %:link\n\n  %?%:initial\n"))))
   #+END_SRC
 
 * undo-tree
