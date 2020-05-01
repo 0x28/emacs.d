@@ -184,7 +184,7 @@
 
       (defconst my/company-programming-backends
         '((:separate
-           company-lsp
+           company-capf
            company-files
            company-yasnippet)
           company-keywords))
@@ -512,10 +512,6 @@
 * lsp
   #+BEGIN_SRC emacs-lisp
     (use-package lsp-mode
-      :ensure t
-      :defer t)
-
-    (use-package company-lsp
       :ensure t
       :defer t)
   #+END_SRC
