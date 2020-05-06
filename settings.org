@@ -463,6 +463,7 @@
       (evil-define-key 'normal mu4e-main-mode-map (kbd "C") #'my/compose-mail)
       :custom
       (mu4e-view-show-addresses t)
+      (mu4e-main-buffer-hide-personal-addresses t)
       (mu4e-get-mail-command "mbsync --all")
       (mu4e-change-filenames-when-moving t)
       (mu4e-completing-read-function #'completing-read)
