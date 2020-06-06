@@ -528,7 +528,8 @@
                            (setq-local company-backends my/company-programming-backends)))
       :hook (rust-mode . lsp)
       :custom
-      (lsp-rust-all-features t))
+      (lsp-rust-all-features t)
+      (lsp-rust-server 'rust-analyzer))
   #+END_SRC
 
 * CMake
