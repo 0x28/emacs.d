@@ -628,8 +628,9 @@
 * projectile
   #+BEGIN_SRC emacs-lisp
     (defun my/project-rg ()
-      "Search with ripgrep within project. If the ripgrep command
-        supports the --pcre2 flag, spaces can be used in the query."
+      "Search with ripgrep within project.
+    If the ripgrep command supports the --pcre2 flag, spaces can be
+    used in the query."
       (interactive)
       (let* ((rg-sep " -- ")
              (ivy-hooks-alist
@@ -637,11 +638,15 @@
         (counsel-rg (concat (thing-at-point 'symbol t) rg-sep)
                     (projectile-project-root))))
 
+    (defun my/projectile-project-find-function (dir)
+      "Compatibility layer between projectile and project.el."
+      (let ((root (projectile-project-root dir)))
+        (and root (cons 'transient root))))
+
     (use-package projectile
       :ensure t
       :defer t
       :init
-      ;; define "SPC p" as additional prefix for projectile
       (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map)
       (autoload #'projectile-command-map "projectile" nil t 'keymap)
       :config
@@ -650,11 +655,6 @@
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
 
       (define-key projectile-command-map (kbd "s") #'my/project-rg)
-
-      ;; compatibility layer between projectile and project.el
-      (defun my/projectile-project-find-function (dir)
-        (let ((root (projectile-project-root dir)))
-          (and root (cons 'transient root))))
 
       (require 'project)
       (add-to-list 'project-find-functions #'my/projectile-project-find-function)
