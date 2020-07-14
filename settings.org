@@ -650,14 +650,11 @@
       (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map)
       (autoload #'projectile-command-map "projectile" nil t 'keymap)
       :config
-      (projectile-mode)
-
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
-
       (define-key projectile-command-map (kbd "s") #'my/project-rg)
-
-      (require 'project)
       (add-to-list 'project-find-functions #'my/projectile-project-find-function)
+
+      (projectile-mode)
       :custom
       (projectile-completion-system 'default)
       (projectile-enable-caching t))
