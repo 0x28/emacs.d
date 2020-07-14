@@ -629,7 +629,7 @@
   #+BEGIN_SRC emacs-lisp
     (defun my/project-rg ()
       "Search with ripgrep within project. If the ripgrep command
-    supports the --pcre2 flag, spaces can be used in the query."
+        supports the --pcre2 flag, spaces can be used in the query."
       (interactive)
       (let* ((rg-sep " -- ")
              (ivy-hooks-alist
@@ -646,8 +646,6 @@
       (autoload #'projectile-command-map "projectile" nil t 'keymap)
       :config
       (projectile-mode)
-      (setq projectile-completion-system 'default)
-      (setq projectile-enable-caching t)
 
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
 
@@ -659,7 +657,10 @@
           (and root (cons 'transient root))))
 
       (require 'project)
-      (add-to-list 'project-find-functions #'my/projectile-project-find-function))
+      (add-to-list 'project-find-functions #'my/projectile-project-find-function)
+      :custom
+      (projectile-completion-system 'default)
+      (projectile-enable-caching t))
   #+END_SRC
 
 * quickrun
