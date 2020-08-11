@@ -137,8 +137,8 @@
     (use-package org
       :bind* (("C-c a" . org-agenda))
       :custom-face
-      (org-block-begin-line ((t (:box -1))))
-      (org-block-end-line ((t (:box -1))))
+      (org-block-begin-line ((t (:underline nil :overline t))))
+      (org-block-end-line ((t (:underline t :overline nil))))
       :custom
       (org-agenda-files (list org-directory))
       (org-src-fontify-natively t))
