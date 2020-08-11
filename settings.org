@@ -135,6 +135,7 @@
 * org
   #+BEGIN_SRC emacs-lisp
     (use-package org
+      :bind* (("C-c a" . org-agenda))
       :custom-face
       (org-block-begin-line ((t (:box -1))))
       (org-block-end-line ((t (:box -1))))
@@ -151,7 +152,7 @@
         (fill-region (point-min) (point-max))))
 
     (use-package org-capture
-      :defer t
+      :bind* (("C-c c" . org-capture))
       :custom
       (org-capture-templates
        '(("w" "org-protocol web link" entry (file "Inbox.org")
@@ -229,6 +230,8 @@
             ("SPC f f" . counsel-find-file)
             ("SPC f r" . counsel-recentf)
             ("SPC f l" . counsel-locate))
+      (:map org-mode-map
+            ("C-c t" . counsel-org-tag))
       :config
       (setq counsel-find-file-at-point t)
       (setf (cdr (assoc 'counsel-M-x ivy-initial-inputs-alist)) "")
