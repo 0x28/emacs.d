@@ -843,7 +843,7 @@
       "Maximize the current buffer and save the window configuration.
     A second call restores the old window configuration."
       (interactive)
-      (if (and (= 1 (length (window-list)))
+      (if (and (one-window-p t)
                (assoc ?_ register-alist))
           (jump-to-register ?_)
         (window-configuration-to-register ?_)
