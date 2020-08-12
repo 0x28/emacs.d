@@ -130,7 +130,8 @@
       :custom-face
       (help-argument-name ((t (:inherit (italic font-lock-function-name-face)))))
       (mode-line ((t (:overline "gainsboro" :background nil))))
-      (mode-line-inactive ((t (:overline "dim gray" :background nil)))))
+      (mode-line-inactive ((t (:overline "dim gray" :background nil))))
+      (vertical-border ((t (:foreground "black")))))
   #+END_SRC
 
 * org
