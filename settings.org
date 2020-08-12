@@ -342,7 +342,6 @@
 ** config
   #+BEGIN_SRC emacs-lisp
     (use-package eshell
-      :ensure t
       :bind* (("C-c s" . my/toggle-eshell))
       :hook
       (eshell-mode . (lambda ()
@@ -430,7 +429,6 @@
 * whitespace
   #+BEGIN_SRC emacs-lisp
     (use-package whitespace
-      :ensure t
       :hook ((prog-mode . whitespace-mode)
              (diff-mode . whitespace-mode))
       :custom
@@ -621,7 +619,6 @@
   Some bookmark keybindings.
   #+BEGIN_SRC emacs-lisp
     (use-package bookmark
-      :ensure t
       :bind* (:map evil-normal-state-map
                    ("SPC b l" . list-bookmarks)
                    ("SPC b s" . bookmark-set)
