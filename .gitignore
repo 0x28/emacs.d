@@ -4,3 +4,4 @@
 !init.el
 !.clang-format
 !abbrev_defs
+!early-init.el
