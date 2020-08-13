@@ -134,6 +134,15 @@
       (vertical-border ((t (:foreground "black")))))
   #+END_SRC
 
+* fill column indicator
+  #+BEGIN_SRC emacs-lisp
+    (use-package display-fill-column-indicator
+      :hook (prog-mode . display-fill-column-indicator-mode)
+      :if (>= emacs-major-version 27)
+      :custom
+      (display-fill-column-indicator-character nil))
+  #+END_SRC
+
 * org
   #+BEGIN_SRC emacs-lisp
     (use-package org
