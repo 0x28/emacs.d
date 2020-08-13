@@ -240,7 +240,8 @@
             ("SPC SPC" . counsel-M-x)
             ("SPC f f" . counsel-find-file)
             ("SPC f r" . counsel-recentf)
-            ("SPC f l" . counsel-locate))
+            ("SPC f l" . counsel-locate)
+            ("SPC f e" . counsel-find-file-extern))
       (:map org-mode-map
             ("C-c t" . counsel-org-tag))
       :config
@@ -433,8 +434,8 @@
     If there are no arguments open the `default-directory' in an
     external application."
       (if args
-          (mapc #'my/open-externally args)
-        (my/open-externally default-directory)))
+          (mapc #'counsel-find-file-extern args)
+        (counsel-find-file-extern (expand-file-name default-directory))))
   #+END_SRC
 
 * whitespace
@@ -939,23 +940,6 @@
 
     (when (daemonp)
       (global-set-key [remap save-buffers-kill-terminal] #'my/confirm-delete-frame))
-  #+END_SRC
-
-** open file externally
-  #+BEGIN_SRC emacs-lisp
-    (defun my/open-externally (file)
-      "Open FILE in an external application."
-      (interactive "f")
-      (let ((file (expand-file-name file)))
-        (cond
-         ((eq system-type 'gnu/linux)
-          (start-process "" nil "setsid" "-w" "xdg-open" file))
-         ((eq system-type 'darwin)
-          (shell-command (concat "open " (shell-quote-argument file))))
-         ((eq system-type 'windows-nt)
-          (w32-shell-execute "open" file)))))
-
-    (define-key evil-normal-state-map (kbd "SPC f e") #'my/open-externally)
   #+END_SRC
 
 ** create TAGS file
