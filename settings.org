@@ -529,7 +529,9 @@
   #+BEGIN_SRC emacs-lisp
     (use-package lsp-mode
       :ensure t
-      :defer t)
+      :defer t
+      :custom
+      (lsp-eldoc-render-all t))
   #+END_SRC
 
 * Rust
