@@ -831,6 +831,8 @@
     (setq require-final-newline t)
     ;; no tabs
     (customize-set-variable 'indent-tabs-mode nil)
+    ;; use M-o for other-window
+    (global-set-key (kbd "M-o") #'other-window)
   #+END_SRC
 
 * custom functions
