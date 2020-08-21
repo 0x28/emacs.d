@@ -773,8 +773,8 @@
     ;; resize windows proportionally
     (setq window-combination-resize t)
     ;; hide minor-modes in mode-line
-    (setq mode-line-modes '(:eval (propertize " [%m] "
-                                              'face 'font-lock-constant-face)))
+    (setq mode-line-modes '((:eval (propertize " %[(%m)%] "
+                                               'face 'font-lock-constant-face))))
     ;; resize frame per pixel
     (setq frame-resize-pixelwise t)
   #+END_SRC
