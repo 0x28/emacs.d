@@ -207,6 +207,16 @@
       (company-minimum-prefix-length 1))
   #+END_SRC
 
+* isearch
+  #+BEGIN_SRC emacs-lisp
+    (use-package isearch
+      :bind*
+      (:map isearch-mode-map
+            ("M-j" . isearch-yank-word-or-char))
+      :custom
+      (isearch-lazy-count t))
+  #+END_SRC
+
 * ivy
   #+BEGIN_SRC emacs-lisp
     (use-package ivy
