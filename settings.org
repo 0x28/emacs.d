@@ -330,17 +330,11 @@
 
 * yasnippet
   #+BEGIN_SRC emacs-lisp
-    ;; snippet completion
     (use-package yasnippet
       :ensure t
-      :bind* ("C-c y" . yas-insert-snippet)
-      :hook (prog-mode . yas-minor-mode)
-      :config
-      (dolist (key (list "TAB" "<tab>"))
-        (define-key yas-minor-mode-map (kbd key) nil)))
-  #+END_SRC
-  Also load the snippets.
-  #+BEGIN_SRC emacs-lisp
+      :hook (prog-mode . yas-minor-mode))
+
+    ;; Also load the snippets.
     (use-package yasnippet-snippets
       :ensure t
       :after yasnippet)
