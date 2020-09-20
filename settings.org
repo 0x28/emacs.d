@@ -535,7 +535,8 @@
       :ensure t
       :defer t
       :custom
-      (lsp-eldoc-render-all t))
+      (lsp-eldoc-render-all t)
+      (lsp-completion-provider :none))
   #+END_SRC
 
 * Rust
