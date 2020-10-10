@@ -598,7 +598,8 @@
       (when (eq system-type 'windows-nt) ;; too slow
         (remove-hook 'find-file-hook #'vc-refresh-state))
       :custom
-      (vc-follow-symlinks t))
+      (vc-follow-symlinks t)
+      (vc-git-annotate-switches '("-w" "-M")))
   #+END_SRC
   Magit keybindings.
   #+BEGIN_SRC emacs-lisp
