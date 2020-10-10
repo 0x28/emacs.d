@@ -45,6 +45,7 @@
       :demand
       :custom
       (evil-want-keybinding nil)
+      (evil-undo-system 'undo-tree)
       (evil-lookup-func (lambda () (interactive) (call-interactively #'man)))
       :bind*
       (:map evil-normal-state-map
@@ -174,9 +175,11 @@
   #+BEGIN_SRC emacs-lisp
     (use-package undo-tree
       :ensure t
+      :demand
       :config
       (defun my/undo-tree-config ()
         (setq undo-tree-visualizer-diff t))
+      (global-undo-tree-mode)
       :custom
       (undo-tree-visualizer-timestamps t)
       (undo-tree-visualizer-relative-timestamps t)
