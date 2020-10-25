@@ -717,7 +717,9 @@
                                           (dash-docs-installed-docsets))))))
           (counsel-dash (thing-at-point 'symbol t))))
       :bind* (:map evil-normal-state-map
-                   ("SPC h d" . my/view-docs-for-major-mode)))
+                   ("SPC h d" . my/view-docs-for-major-mode))
+      :custom
+      (dash-docs-candidate-format "%n %d/%f (%t)"))
   #+END_SRC
 
 * smex
