@@ -272,7 +272,8 @@
             ("SPC f d" . dired-jump-other-window))
       (:map dired-mode-map
             ("<tab>" . dired-omit-mode)
-            ("<backtab>" . dired-hide-details-mode))
+            ("<backtab>" . dired-hide-details-mode)
+            ([remap counsel-imenu] . dired-goto-file))
       :hook
       (dired-mode . dired-omit-mode)
       (dired-mode . dired-hide-details-mode)
