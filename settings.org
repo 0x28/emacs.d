@@ -158,9 +158,9 @@
     (use-package org-protocol
       :demand
       :config
-      (defadvice org-protocol-capture (before my/focus-capture () activate)
+      (define-advice org-protocol-capture (:before (_) my/focus-capture)
         (select-frame-set-input-focus (window-frame)))
-      (defadvice org-protocol-capture (after my/fill-capture () activate)
+      (define-advice org-protocol-capture (:after (_) my/fill-capture)
         (fill-region (point-min) (point-max))))
 
     (use-package org-capture
