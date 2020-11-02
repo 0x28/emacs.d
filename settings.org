@@ -453,7 +453,10 @@
       :custom
       (fill-column 80)
       (whitespace-line-column fill-column)
-      (whitespace-style '(face trailing lines-tail)))
+      (whitespace-style '(face trailing lines-tail))
+      :custom-face
+      (whitespace-line
+       ((t (:underline (:color "cyan" :style wave) :foreground nil)))))
   #+END_SRC
 
 * line numbers
