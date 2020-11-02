@@ -247,7 +247,6 @@
               ("C-h v" . counsel-describe-variable)
               ("C-h b" . counsel-descbinds)
               ("C-c d" . counsel-imenu)
-              ("C-c r" . counsel-recentf)
               ("C-c k" . counsel-yank-pop))
       (:map evil-normal-state-map
             ("SPC SPC" . counsel-M-x)
