@@ -459,7 +459,6 @@
 * line numbers
   #+BEGIN_SRC emacs-lisp
     (use-package display-line-numbers
-      :if (fboundp 'display-line-numbers-mode)
       :hook (prog-mode . display-line-numbers-mode))
   #+END_SRC
 
