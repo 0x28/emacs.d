@@ -840,6 +840,8 @@
     (global-set-key (kbd "M-o") #'other-window)
     ;; utf-8 everywhere
     (prefer-coding-system 'utf-8)
+    ;; disable suspend-frame
+    (global-unset-key (kbd "C-x C-z"))
   #+end_src
 
 * custom functions
