@@ -623,10 +623,6 @@
                    ("SPC g l" . magit-log-current))
       :custom
       (magit-diff-refine-hunk t))
-
-    (use-package evil-magit
-      :ensure t
-      :after magit)
   #+end_src
 
 * recentf
