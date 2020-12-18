@@ -892,10 +892,12 @@
 ** ssh connect
   #+begin_src emacs-lisp
     (defun my/ssh-connect (host user)
-      "Connect to the home directory of a foreign HOST as USER using SSH."
+      "Connect to the home directory of a foreign HOST as USER using
+    SSH. With prefix argument use plink instead of ssh."
       (interactive "Mhost: \nMuser: ")
       (message "connecting to %s@%s ..." user host)
-      (find-file (concat "/ssh:" user "@" host ":~")))
+      (let ((method (if current-prefix-arg "plink" "ssh")))
+        (find-file (format "/%s:%s@%s:~" method user host))))
   #+end_src
 
 ** duckduckgo dwim
