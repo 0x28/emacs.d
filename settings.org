@@ -475,6 +475,18 @@
       :hook (prog-mode . display-line-numbers-mode))
   #+end_src
 
+* lsp
+  #+begin_src emacs-lisp
+    (use-package lsp-mode
+      :ensure t
+      :defer t
+      :custom
+      (lsp-completion-provider :none))
+
+    (use-package lsp-ui
+      :ensure t)
+  #+end_src
+
 * mail
   #+begin_src emacs-lisp
     (use-package mu4e
@@ -542,16 +554,6 @@
       (c-add-style "my-style" my-cc-style)
       :custom
       (c-default-style "my-style"))
-  #+end_src
-
-* lsp
-  #+begin_src emacs-lisp
-    (use-package lsp-mode
-      :ensure t
-      :defer t
-      :custom
-      (lsp-eldoc-render-all t)
-      (lsp-completion-provider :none))
   #+end_src
 
 * Rust
