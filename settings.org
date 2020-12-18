@@ -37,6 +37,14 @@
     (load custom-file t)
   #+end_src
 
+* ediff
+#+begin_src emacs-lisp
+  (use-package ediff-wind
+    :custom
+    (ediff-split-window-function 'split-window-horizontally)
+    (ediff-window-setup-function 'ediff-setup-windows-plain))
+#+end_src
+
 * evil
   Vim emulation for emacs.
   #+begin_src emacs-lisp
