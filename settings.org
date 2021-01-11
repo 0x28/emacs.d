@@ -499,19 +499,18 @@
       :bind* ("C-c m" . mu4e)
       :if (fboundp #'mu4e)
       :config
-      (defun my/compose-mail ()
-        "Compose mail using the `auth-sources' files."
+      (defun my/compose-mail-setup ()
+        "Initialize mail settings using the `auth-sources' files."
         (interactive)
         (let* ((users (mapcar (lambda (entry) (plist-get entry :user))
                               (auth-source-search :max 20)))
                (user (completing-read "select user: " users))
                (entry (car (auth-source-search :user user :max 1))))
-          (setq user-mail-address user ;; setq because mu4e runs asynchronously
+          (setq user-mail-address user
                 smtpmail-smtp-server (plist-get entry :host)
-                smtpmail-smtp-service (string-to-number (plist-get entry :port)))
-          (mu4e~start #'mu4e-compose-new)))
+                smtpmail-smtp-service (string-to-number (plist-get entry :port)))))
 
-      (evil-define-key 'normal mu4e-main-mode-map (kbd "C") #'my/compose-mail)
+      (add-hook 'mu4e-compose-pre-hook #'my/compose-mail-setup)
       (setq mu4e-main-buffer-hide-personal-addresses t)
       :custom
       (mu4e-view-show-addresses t)
