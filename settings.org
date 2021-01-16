@@ -36,12 +36,12 @@
   #+end_src
 
 * ediff
-#+begin_src emacs-lisp
-  (use-package ediff-wind
-    :custom
-    (ediff-split-window-function 'split-window-horizontally)
-    (ediff-window-setup-function 'ediff-setup-windows-plain))
-#+end_src
+  #+begin_src emacs-lisp
+    (use-package ediff-wind
+      :custom
+      (ediff-split-window-function 'split-window-horizontally)
+      (ediff-window-setup-function 'ediff-setup-windows-plain))
+  #+end_src
 
 * evil
   Vim emulation for emacs.
@@ -602,10 +602,10 @@
                     "\\(\\s-*\\)\\s-" 1 0 t))
 
     (use-package align
-        :bind* (:map evil-visual-state-map
-                     ("SPC a a" . align)
-                     ("SPC a r" . align-regexp)
-                     ("SPC a w" . my/align-whitespace)))
+      :bind* (:map evil-visual-state-map
+                   ("SPC a a" . align)
+                   ("SPC a r" . align-regexp)
+                   ("SPC a w" . my/align-whitespace)))
   #+end_src
 
 * version control
