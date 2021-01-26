@@ -263,10 +263,12 @@
       (:map org-mode-map
             ("C-c t" . counsel-org-tag))
       :config
-      (setq counsel-find-file-at-point t)
       (setf (cdr (assoc 'counsel-M-x ivy-initial-inputs-alist)) "")
-      (setq counsel-async-filter-update-time 100000) ;; every 0.1 seconds
-      (counsel-mode))
+      (counsel-mode)
+      :custom
+      (counsel-find-file-at-point t)
+      (counsel-async-filter-update-time 100000) ;; every 0.1 seconds
+      (counsel-yank-pop-separator "\n--------\n"))
   #+end_src
 
 * dired
