@@ -490,7 +490,8 @@
       (lsp-completion-provider :none))
 
     (use-package lsp-ui
-      :ensure t)
+      :ensure t
+      :defer t)
   #+end_src
 
 * mail
