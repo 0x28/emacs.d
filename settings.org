@@ -38,6 +38,7 @@
 * ediff
   #+begin_src emacs-lisp
     (use-package ediff-wind
+      :defer t
       :custom
       (ediff-split-window-function 'split-window-horizontally)
       (ediff-window-setup-function 'ediff-setup-windows-plain))
