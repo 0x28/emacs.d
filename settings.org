@@ -583,6 +583,7 @@
   #+begin_src emacs-lisp
     (use-package cmake-mode
       :ensure t
+      :defer t
       :custom
       (cmake-tab-width 4))
   #+end_src
