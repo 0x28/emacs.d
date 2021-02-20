@@ -381,6 +381,8 @@
                        (setq-local company-backends (list #'company-capf))))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
+      (push '("\\*eshell\\*" display-buffer-at-bottom (window-height . 0.3))
+            display-buffer-alist)
       :custom
       (eshell-cmpl-ignore-case t)
       (eshell-error-if-no-glob t)
@@ -412,25 +414,14 @@
     (defun my/toggle-eshell ()
       "Open a new eshell window or switch to an existing one."
       (interactive)
-      (let* ((eshell-window (get-buffer-window "*eshell*"))
-             (current-directory default-directory)
-             (cd-to-default-dir (lambda ()
-                                  (unless (string= default-directory
-                                                   current-directory)
-                                    (eshell/cd current-directory)
-                                    (eshell-reset)))))
-        (cond ((eq (selected-window) eshell-window)
-               (delete-window))
-              ((window-live-p eshell-window)
-               (select-window eshell-window)
-               (funcall cd-to-default-dir))
-              (t
-               (select-window
-                (split-window (frame-root-window)
-                              (/ (frame-height) -3)
-                              'below))
-               (eshell)
-               (funcall cd-to-default-dir)))))
+      (let ((current-directory default-directory))
+        (if (eq major-mode 'eshell-mode)
+            (delete-window)
+          (eshell)
+          (unless (string= default-directory
+                           current-directory)
+            (eshell/cd current-directory)
+            (eshell-reset)))))
   #+end_src
 
 ** jump
