@@ -198,18 +198,20 @@
   #+begin_src emacs-lisp
     (use-package company
       :ensure t
+      :demand
       :config
       (add-hook 'after-init-hook #'global-company-mode)
 
       (define-key company-active-map (kbd "<tab>") #'company-complete-common-or-cycle)
       (define-key company-active-map (kbd "TAB") #'company-complete-common-or-cycle)
 
-      (defconst my/company-programming-backends
-        '((:separate
-           company-capf
-           company-files
-           company-yasnippet)
-          company-keywords))
+      (defun my/setup-prog-mode-completion ()
+        "Setup company backends for `prog-mode' derived modes."
+        (setq-local company-backends
+                    '((:separate company-capf company-files company-yasnippet)
+                      company-keywords)))
+
+      :hook (prog-mode . my/setup-prog-mode-completion)
       :custom
       (company-selection-wrap-around t)
       (company-idle-delay 0.1)
@@ -526,12 +528,7 @@
       :ensure t
       :defer t)
 
-    (defun my/c-and-c++-config ()
-      "Setup C and C++ config."
-      (setq-local company-backends my/company-programming-backends))
-
     (use-package cc-mode
-      :hook (((c-mode c++-mode) . my/c-and-c++-config))
       :config
       (dolist (map (list c-mode-map c++-mode-map))
         (define-key map (kbd "C-c i") #'clang-format-buffer))
@@ -562,8 +559,6 @@
       :ensure t
       :bind* (:map rust-mode-map
                    ("C-c i" . rust-format-buffer))
-      :hook (rust-mode . (lambda ()
-                           (setq-local company-backends my/company-programming-backends)))
       :hook (rust-mode . lsp)
       :custom
       (lsp-rust-all-features t)
