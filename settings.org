@@ -573,6 +573,8 @@
       :hook
       (cmake-mode . (lambda ()
                       (setq-local company-backends (list #'company-cmake))))
+      :config
+      (evil-define-key 'normal cmake-mode-map (kbd "SPC h h") #'cmake-help)
       :custom
       (cmake-tab-width 4))
   #+end_src
