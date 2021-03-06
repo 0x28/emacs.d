@@ -570,6 +570,9 @@
     (use-package cmake-mode
       :ensure t
       :defer t
+      :hook
+      (cmake-mode . (lambda ()
+                      (setq-local company-backends (list #'company-cmake))))
       :custom
       (cmake-tab-width 4))
   #+end_src
