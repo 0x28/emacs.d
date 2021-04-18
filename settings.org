@@ -782,8 +782,6 @@
                                            (goto-char (point-max))
                                            (format-mode-line "%l")))
                                   " C%c"))
-    ;; resize frame per pixel
-    (setq frame-resize-pixelwise t)
   #+end_src
 
 ** convenience

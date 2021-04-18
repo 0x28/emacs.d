@@ -13,3 +13,5 @@
              (cons 'font
                    (cond ((eq system-type 'gnu/linux) "Hack-13")
                          ((eq system-type 'windows-nt) "Consolas-14"))))
+;; resize frame per pixel
+(setq frame-resize-pixelwise t)
