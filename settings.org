@@ -485,7 +485,8 @@
       :ensure t
       :defer t
       :custom
-      (lsp-completion-provider :none))
+      (lsp-completion-provider :none)
+      (lsp-headerline-breadcrumb-enable nil))
 
     (use-package lsp-ui
       :ensure t
