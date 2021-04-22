@@ -175,7 +175,9 @@
       :custom
       (org-capture-templates
        '(("w" "org-protocol web link" entry (file "Inbox.org")
-          "* %:description\n  %:link\n\n  %?%:initial\n"))))
+          "* %:description\n  %:link\n\n  %?%:initial\n")
+         ("r" "capture region" entry (file "Inbox.org")
+          "* %?\n  %i\n"))))
   #+end_src
 
 * undo-tree
