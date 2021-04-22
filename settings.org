@@ -565,7 +565,8 @@
       :hook (rust-mode . lsp)
       :custom
       (lsp-rust-all-features t)
-      (lsp-rust-server 'rust-analyzer))
+      (lsp-rust-server 'rust-analyzer)
+      (lsp-rust-analyzer-proc-macro-enable t))
   #+end_src
 
 * CMake
