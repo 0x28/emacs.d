@@ -160,7 +160,8 @@
       (org-block-end-line ((t (:underline t :overline nil))))
       :custom
       (org-agenda-files (list org-directory))
-      (org-src-fontify-natively t))
+      (org-src-fontify-natively t)
+      (org-startup-folded t))
 
     (use-package org-protocol
       :demand
