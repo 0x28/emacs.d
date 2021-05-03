@@ -524,6 +524,14 @@
       (message-send-mail-function #'smtpmail-send-it))
   #+end_src
 
+* markdown
+  #+begin_src emacs-lisp
+    (use-package markdown-mode
+      :custom-face
+      (markdown-code-face
+       ((t (:inherit default :background nil :foreground nil)))))
+  #+end_src
+
 * C, C++
   #+begin_src emacs-lisp
     (defalias 'cxx-mode #'c++-mode)
