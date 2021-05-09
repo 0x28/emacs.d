@@ -625,6 +625,7 @@
       (evil-define-key '(normal visual) 'global (kbd "SPC v") #'vc-prefix-map)
       (when (eq system-type 'windows-nt) ;; too slow
         (remove-hook 'find-file-hook #'vc-refresh-state))
+      (setq vc-log-short-style '(directory file))
       :custom
       (vc-follow-symlinks t)
       (vc-git-annotate-switches '("-w" "-M")))
