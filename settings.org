@@ -111,7 +111,7 @@
       "Create cursors for each line of the active selection."
       (interactive)
       (evil-mc-make-cursor-in-visual-selection-beg)
-      (evil-normal-state))
+      (evil-mc-execute-for-all-cursors #'evil-normal-state))
 
     (evil-define-key 'normal 'global (kbd "SPC m") #'my/evil-mc-dispatch)
     (evil-define-key 'visual 'global (kbd "SPC m") #'my/evil-mc-lines)
