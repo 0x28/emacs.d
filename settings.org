@@ -816,6 +816,8 @@
     (delete-selection-mode 1)
     ;; don't accelerate mouse wheel scrolling
     (setq mouse-wheel-progressive-speed nil)
+    ;; set scroll speed
+    (setcar mouse-wheel-scroll-amount 5)
     ;; show off-screen matching parens when typing
     (setq blink-matching-paren 'echo)
     ;; add matching pairs automatically
