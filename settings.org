@@ -791,11 +791,7 @@
     (setq mode-line-modes '((:eval (propertize " %[(%m)%] "
                                                'face 'font-lock-constant-face))))
     ;; mode-line position format
-    (setq mode-line-position '(15 "L%l/"
-                                  (:eval (save-excursion
-                                           (goto-char (point-max))
-                                           (format-mode-line "%l")))
-                                  " C%c"))
+    (setq mode-line-position '(20 "%p L%l C%c"))
   #+end_src
 
 ** convenience
