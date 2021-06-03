@@ -296,6 +296,11 @@
       (dired-auto-revert-buffer t)
       (dired-dwim-target t)
       (dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
+
+    (use-package wdired
+      :defer t
+      :config
+      (evil-define-key 'normal wdired-mode-map (kbd "u") #'dired-undo))
   #+end_src
 
 * occur
