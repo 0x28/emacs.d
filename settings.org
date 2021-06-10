@@ -367,12 +367,11 @@
     (use-package doom-themes
       :ensure t
       :config
-      (if (daemonp)
-          (add-hook 'after-make-frame-functions
-                    (lambda (frame)
-                      (with-selected-frame frame
-                        (unless (member 'doom-dracula custom-enabled-themes)
-                          (load-theme 'doom-dracula t)))))
+      (add-hook 'server-after-make-frame-hook
+                (lambda ()
+                  (unless (custom-theme-enabled-p 'doom-dracula)
+                    (load-theme 'doom-dracula t))))
+      (unless (daemonp)
         (load-theme 'doom-dracula t)))
   #+end_src
 
