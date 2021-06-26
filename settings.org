@@ -190,8 +190,19 @@
 
 * org
   #+begin_src emacs-lisp
+    (defun my/org-tag ()
+      "Toggle org-mode tags of the current heading with completion."
+      (interactive)
+      (let* ((current-tags (org-get-tags nil t))
+             (new-tag (completing-read "toggle tag: " (org-get-buffer-tags))))
+        (org-set-tags
+         (if (member new-tag current-tags)
+             (remove new-tag current-tags)
+           (cons new-tag current-tags)))))
+
     (use-package org
-      :bind* (("C-c a" . org-agenda))
+      :bind* (("C-c a" . org-agenda)
+              ("C-c t" . my/org-tag))
       :custom-face
       (org-block-begin-line ((t (:underline nil :overline t))))
       (org-block-end-line ((t (:underline t :overline nil))))
@@ -303,8 +314,6 @@
             ("SPC f r" . counsel-recentf)
             ("SPC f l" . counsel-locate)
             ("SPC f e" . counsel-find-file-extern))
-      (:map org-mode-map
-            ("C-c t" . counsel-org-tag))
       :config
       (setf (cdr (assoc 'counsel-M-x ivy-initial-inputs-alist)) "")
       (counsel-mode)
