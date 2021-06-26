@@ -419,7 +419,7 @@
       :bind* (("C-c s" . my/toggle-eshell))
       :hook
       (eshell-mode . (lambda ()
-                       (local-set-key (kbd "C-r") #'counsel-esh-history)
+                       (local-set-key (kbd "C-r") #'my/eshell-history)
                        (local-set-key (kbd "TAB") #'company-complete-common)
                        (local-set-key (kbd "<tab>") #'company-complete-common)
                        (setq-local global-hl-line-mode nil)
@@ -490,6 +490,17 @@
           (mapc #'counsel-find-file-extern args)
         (counsel-find-file-extern (expand-file-name default-directory))))
   #+end_src
+
+** history
+   #+begin_src emacs-lisp
+     (defun my/eshell-history ()
+       "Insert a previous eshell command into the prompt."
+       (interactive)
+       (goto-char (point-max))
+       (insert (completing-read "insert previous command: "
+                                (delete-dups
+                                 (ring-elements eshell-history-ring)))))
+   #+end_src
 
 * whitespace
   #+begin_src emacs-lisp
