@@ -44,6 +44,33 @@
       (calendar-week-start-day 1))
   #+end_src
 
+* devdocs
+  #+begin_src emacs-lisp
+    (defun my/view-docs-for-major-mode ()
+      "Read the documentation for the programming language of the
+    current major-mode. Use `devdocs-install' to download docsets."
+      (interactive)
+      (let ((devdocs-current-docs
+             (cdr (assoc major-mode '((sh-mode      . ("bash"))
+                                      (rust-mode    . ("rust"))
+                                      (c-mode       . ("c"))
+                                      (c++-mode     . ("c" "cpp"))
+                                      (cmake-mode   . ("cmake"))
+                                      (haskell-mode . ("haskell~9"))
+                                      (latex-mode   . ("latex"))
+                                      (tex-mode     . ("latex"))
+                                      (python-mode  . ("python~3.9")))))))
+        (devdocs-lookup (not devdocs-current-docs) (thing-at-point 'symbol t))))
+
+    (use-package devdocs
+      :ensure t
+      :bind* (:map evil-normal-state-map
+                   ("SPC h d" . my/view-docs-for-major-mode))
+      :after evil
+      :custom
+      (devdocs-cache-timeout 3600))
+  #+end_src
+
 * ediff
   #+begin_src emacs-lisp
     (use-package ediff-wind
@@ -140,32 +167,6 @@
               (upcase-word             (:default . evil-mc-execute-default-call-with-count))
               (downcase-word           (:default . evil-mc-execute-default-call-with-count))))
       (global-evil-mc-mode 1))
-  #+end_src
-
-* devdocs
-  #+begin_src emacs-lisp
-    (defun my/view-docs-for-major-mode ()
-      "Read the documentation for the programming language of the
-    current major-mode. Use `devdocs-install' to download docsets."
-      (interactive)
-      (let ((devdocs-current-docs
-             (cdr (assoc major-mode '((sh-mode      . ("bash"))
-                                      (rust-mode    . ("rust"))
-                                      (c-mode       . ("c"))
-                                      (c++-mode     . ("c" "cpp"))
-                                      (cmake-mode   . ("cmake"))
-                                      (haskell-mode . ("haskell~9"))
-                                      (latex-mode   . ("latex"))
-                                      (tex-mode     . ("latex"))
-                                      (python-mode  . ("python~3.9")))))))
-        (devdocs-lookup (not devdocs-current-docs) (thing-at-point 'symbol t))))
-
-    (use-package devdocs
-      :ensure t
-      :bind* (:map evil-normal-state-map
-                   ("SPC h d" . my/view-docs-for-major-mode))
-      :custom
-      (devdocs-cache-timeout 3600))
   #+end_src
 
 * faces
