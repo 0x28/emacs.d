@@ -203,7 +203,6 @@
   #+begin_src emacs-lisp
     (use-package display-fill-column-indicator
       :hook (prog-mode . display-fill-column-indicator-mode)
-      :if (>= emacs-major-version 27)
       :custom
       (display-fill-column-indicator-character nil))
   #+end_src
