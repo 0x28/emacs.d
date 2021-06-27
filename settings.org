@@ -57,6 +57,11 @@
             ("SPC f r" . consult-recent-file)
             ("SPC f l" . consult-locate)
             ("SPC f e" . consult-file-externally))
+      :config
+      (define-advice consult-line
+          (:around (orig-fun &rest args) enable-preview)
+        (let ((consult-preview-key 'any))
+          (apply orig-fun args)))
       :custom
       (consult-preview-key nil)
       (consult-async-refresh-delay 0.1))
