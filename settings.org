@@ -533,6 +533,9 @@
     (use-package lsp-mode
       :ensure t
       :defer t
+      :bind* (:map evil-normal-state-map
+                   ("SPC l r" . lsp-rename)
+                   ("SPC l a" . lsp-execute-code-action))
       :custom
       (lsp-completion-provider :none)
       (lsp-headerline-breadcrumb-enable nil))
