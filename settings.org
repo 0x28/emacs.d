@@ -917,10 +917,10 @@
   #+begin_src emacs-lisp
     (defun my/ssh-connect (host user)
       "Connect to the home directory of a foreign HOST as USER using
-    SSH. With prefix argument use plink instead of ssh."
+    SSH. With prefix argument use sshx instead of ssh."
       (interactive "Mhost: \nMuser: ")
       (message "connecting to %s@%s ..." user host)
-      (let ((method (if current-prefix-arg "plink" "ssh")))
+      (let ((method (if current-prefix-arg "sshx" "ssh")))
         (find-file (format "/%s:%s@%s:~" method user host))))
   #+end_src
 
