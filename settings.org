@@ -589,7 +589,9 @@
   #+begin_src emacs-lisp
     (use-package orderless
       :ensure t
-      :custom (completion-styles '(orderless)))
+      :custom
+      (completion-styles '(orderless))
+      (orderless-component-separator #'orderless-escapable-split-on-space))
   #+end_src
 
 * C, C++
