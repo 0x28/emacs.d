@@ -224,7 +224,8 @@
 
     (use-package org
       :bind* (("C-c a" . org-agenda)
-              ("C-c t" . my/org-tag))
+              (:map org-mode-map
+                    ("C-c t" . my/org-tag)))
       :custom-face
       (org-block-begin-line ((t (:underline nil :overline t))))
       (org-block-end-line ((t (:underline t :overline nil))))
