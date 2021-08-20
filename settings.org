@@ -213,14 +213,16 @@
 * org
   #+begin_src emacs-lisp
     (defun my/org-tag ()
-      "Toggle org-mode tags of the current heading with completion."
+      "Change org-mode tags of the current heading with completion."
       (interactive)
       (let* ((current-tags (org-get-tags nil t))
-             (new-tag (completing-read "toggle tag: " (org-get-buffer-tags))))
-        (org-set-tags
-         (if (member new-tag current-tags)
-             (remove new-tag current-tags)
-           (cons new-tag current-tags)))))
+             (new-tags (completing-read-multiple
+                        "change tags: "
+                        (org-get-buffer-tags)
+                        nil
+                        nil
+                        (concat (string-join current-tags ",") ","))))
+        (org-set-tags (delete-dups new-tags))))
 
     (use-package org
       :bind* (("C-c a" . org-agenda)
