@@ -78,7 +78,7 @@
                                       (rust-mode    . ("rust"))
                                       (c-mode       . ("c"))
                                       (c++-mode     . ("c" "cpp"))
-                                      (cmake-mode   . ("cmake"))
+                                      (cmake-mode   . ("cmake~3.21"))
                                       (haskell-mode . ("haskell~9"))
                                       (latex-mode   . ("latex"))
                                       (tex-mode     . ("latex"))
