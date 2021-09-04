@@ -49,14 +49,14 @@
     (use-package consult
       :ensure t
       :after evil
-      :bind* (("C-c f" . consult-line)
-              ("C-x b" . consult-buffer)
-              ("C-c d" . consult-imenu)
-              ("C-c k" . consult-yank-pop))
-      (:map evil-normal-state-map
-            ("SPC f r" . consult-recent-file)
-            ("SPC f l" . consult-locate)
-            ("SPC f e" . consult-file-externally))
+      :bind*
+      ("C-c f" . consult-line)
+      ("C-x b" . consult-buffer)
+      ("C-c d" . consult-imenu)
+      ("C-c k" . consult-yank-pop)
+      ("<leader> f r" . consult-recent-file)
+      ("<leader> f l" . consult-locate)
+      ("<leader> f e" . consult-file-externally)
       :config
       (define-advice consult-line
           (:around (orig-fun &rest args) enable-preview)
@@ -87,8 +87,8 @@
 
     (use-package devdocs
       :ensure t
-      :bind* (:map evil-normal-state-map
-                   ("SPC h d" . my/view-docs-for-major-mode))
+      :bind*
+      ("<leader> h d" . my/view-docs-for-major-mode)
       :after evil
       :custom
       (devdocs-cache-timeout 3600))
@@ -114,20 +114,20 @@
       (evil-undo-system 'undo-tree)
       (evil-lookup-func (lambda () (interactive) (call-interactively #'man)))
       :bind*
-      (:map evil-normal-state-map
-            ("SPC SPC" . execute-extended-command)
-            ("SPC f f " . find-file)
-            ("SPC f i" . my/edit-init-file)
-            ("SPC f s" . my/ssh-connect)
-            ("SPC q n" . save-buffers-kill-emacs)
-            ("SPC n d" . narrow-to-defun)
-            ("SPC n w" . widen))
+      ("<leader> SPC" . execute-extended-command)
+      ("<leader> f f " . find-file)
+      ("<leader> f i" . my/edit-init-file)
+      ("<leader> f s" . my/ssh-connect)
+      ("<leader> q n" . save-buffers-kill-emacs)
+      ("<leader> n d" . narrow-to-defun)
+      ("<leader> n w" . widen)
       (:map evil-visual-state-map
-            ("SPC n r" . narrow-to-region))
+            ("<leader> n r" . narrow-to-region))
       :config
       (define-key evil-normal-state-map (kbd "M-.") nil)
       (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
       (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
+      (evil-set-leader '(visual normal) (kbd "SPC"))
 
       (defun my/color-text (text color)
         (propertize text 'face `((:foreground ,color))))
@@ -174,8 +174,8 @@
       (evil-mc-make-cursor-in-visual-selection-beg)
       (evil-mc-execute-for-all-cursors #'evil-normal-state))
 
-    (evil-define-key 'normal 'global (kbd "SPC m") #'my/evil-mc-dispatch)
-    (evil-define-key 'visual 'global (kbd "SPC m") #'my/evil-mc-lines)
+    (evil-define-key 'normal 'global (kbd "<leader> m") #'my/evil-mc-dispatch)
+    (evil-define-key 'visual 'global (kbd "<leader> m") #'my/evil-mc-lines)
 
     (use-package evil-mc
       :ensure t
@@ -317,8 +317,7 @@
   #+begin_src emacs-lisp
     (use-package dired-x
       :bind*
-      (:map evil-normal-state-map
-            ("SPC f d" . dired-jump-other-window))
+      ("<leader> f d" . dired-jump-other-window)
       (:map dired-mode-map
             ("<tab>" . dired-omit-mode)
             ("<backtab>" . dired-hide-details-mode)
@@ -356,15 +355,15 @@
       :config
       (which-key-mode)
       (which-key-add-key-based-replacements
-        "SPC b" "bookmarks"
-        "SPC e" "errors"
-        "SPC f" "files"
-        "SPC g" "git"
-        "SPC h" "help"
-        "SPC n" "narrow"
-        "SPC p" "project"
-        "SPC q" "quit"
-        "SPC v" "version control")
+        "<leader> b" "bookmarks"
+        "<leader> e" "errors"
+        "<leader> f" "files"
+        "<leader> g" "git"
+        "<leader> h" "help"
+        "<leader> n" "narrow"
+        "<leader> p" "project"
+        "<leader> q" "quit"
+        "<leader> v" "version control")
       :custom
       (which-key-idle-delay 0.5))
   #+end_src
@@ -378,7 +377,7 @@
             ((bound-and-true-p flymake-mode) (flymake-show-diagnostics-buffer))
             (t (user-error "Neither flycheck nor flymake are enabled"))))
 
-    (define-key evil-normal-state-map (kbd "SPC e l") #'my/list-errors)
+    (define-key evil-normal-state-map (kbd "<leader> e l") #'my/list-errors)
 
     (use-package flycheck
       :ensure t
@@ -537,11 +536,8 @@
       :ensure t
       :defer t
       :bind*
-      (:map evil-normal-state-map
-            ("SPC l r" . lsp-rename)
-            ("SPC l a" . lsp-execute-code-action))
-      (:map evil-visual-state-map
-            ("SPC l a" . lsp-execute-code-action))
+      ("<leader> l r" . lsp-rename)
+      ("<leader> l a" . lsp-execute-code-action)
       :custom
       (lsp-completion-provider :none)
       (lsp-headerline-breadcrumb-enable nil))
@@ -653,7 +649,7 @@
       (cmake-mode . (lambda ()
                       (setq-local company-backends (list #'company-cmake))))
       :config
-      (evil-define-key 'normal cmake-mode-map (kbd "SPC h h") #'cmake-help)
+      (evil-define-key 'normal cmake-mode-map (kbd "<leader> h h") #'cmake-help)
       :custom
       (cmake-tab-width 4))
   #+end_src
@@ -662,8 +658,6 @@
   #+begin_src emacs-lisp
     (use-package compile
       :defer t
-      :bind* (:map compilation-mode-map
-                   ("SPC" . nil))
       :custom
       (compilation-scroll-output 'first-error))
   #+end_src
@@ -677,18 +671,20 @@
                     "\\(\\s-*\\)\\s-" 1 0 t))
 
     (use-package align
-      :bind* (:map evil-visual-state-map
-                   ("SPC a a" . align)
-                   ("SPC a r" . align-regexp)
-                   ("SPC a w" . my/align-whitespace)))
+      :bind*
+      (:map evil-visual-state-map
+            ("<leader> a a" . align)
+            ("<leader> a r" . align-regexp)
+            ("<leader> a w" . my/align-whitespace)))
   #+end_src
 
 * version control
   Settings for the builtin vc.el.
   #+begin_src emacs-lisp
     (use-package vc
+      :bind-keymap*
+      ("<leader> v" . vc-prefix-map)
       :config
-      (evil-define-key '(normal visual) 'global (kbd "SPC v") #'vc-prefix-map)
       (when (eq system-type 'windows-nt) ;; too slow
         (remove-hook 'find-file-hook #'vc-refresh-state))
       (setq vc-log-short-style '(directory file))
@@ -700,10 +696,10 @@
   #+begin_src emacs-lisp
     (use-package magit
       :ensure t
-      :bind* (:map evil-normal-state-map
-                   ("SPC g s" . magit-status)
-                   ("SPC g g" . magit-dispatch)
-                   ("SPC g l" . magit-log-current))
+      :bind*
+      ("<leader> g s" . magit-status)
+      ("<leader> g g" . magit-dispatch)
+      ("<leader> g l" . magit-log-current)
       :custom
       (magit-diff-refine-hunk t))
   #+end_src
@@ -730,10 +726,10 @@
   Some bookmark keybindings.
   #+begin_src emacs-lisp
     (use-package bookmark
-      :bind* (:map evil-normal-state-map
-                   ("SPC b l" . list-bookmarks)
-                   ("SPC b s" . bookmark-set)
-                   ("SPC b j" . bookmark-jump)))
+      :bind*
+      ("<leader> b l" . list-bookmarks)
+      ("<leader> b s" . bookmark-set)
+      ("<leader> b j" . bookmark-jump))
   #+end_src
 
 * projectile
@@ -758,7 +754,7 @@
       :ensure t
       :defer t
       :init
-      (define-key evil-normal-state-map (kbd "SPC p") #'projectile-command-map)
+      (define-key evil-normal-state-map (kbd "<leader> p") #'projectile-command-map)
       (autoload #'projectile-command-map "projectile" nil t 'keymap)
       :config
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
