@@ -753,9 +753,8 @@
     (use-package projectile
       :ensure t
       :defer t
-      :init
-      (define-key evil-normal-state-map (kbd "<leader> p") #'projectile-command-map)
-      (autoload #'projectile-command-map "projectile" nil t 'keymap)
+      :bind-keymap*
+      ("<leader> p" . projectile-command-map)
       :config
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
       (define-key projectile-command-map (kbd "s") #'my/project-rg)
