@@ -360,6 +360,7 @@
         "<leader> f" "files"
         "<leader> g" "git"
         "<leader> h" "help"
+        "<leader> l" "lsp"
         "<leader> n" "narrow"
         "<leader> p" "project"
         "<leader> q" "quit"
