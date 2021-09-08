@@ -581,6 +581,7 @@
 * markdown
   #+begin_src emacs-lisp
     (use-package markdown-mode
+      :defer t
       :custom-face
       (markdown-code-face
        ((t (:inherit default :background nil :foreground nil)))))
