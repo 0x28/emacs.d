@@ -536,6 +536,7 @@
     (use-package lsp-mode
       :ensure t
       :defer t
+      :hook (rust-mode . lsp)
       :bind*
       ("<leader> l r" . lsp-rename)
       ("<leader> l a" . lsp-execute-code-action)
@@ -635,7 +636,6 @@
       :ensure t
       :bind* (:map rust-mode-map
                    ("C-c i" . rust-format-buffer))
-      :hook (rust-mode . lsp)
       :custom
       (lsp-rust-all-features t)
       (lsp-rust-server 'rust-analyzer)
