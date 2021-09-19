@@ -112,7 +112,7 @@
       :custom
       (evil-want-keybinding nil)
       (evil-undo-system 'undo-tree)
-      (evil-lookup-func #'consult-man)
+      (evil-lookup-func (lambda () (interactive) (call-interactively #'man)))
       :bind*
       ("<leader> SPC" . execute-extended-command)
       ("<leader> f f " . find-file)
