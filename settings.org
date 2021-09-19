@@ -225,9 +225,10 @@
         (org-set-tags (delete-dups new-tags))))
 
     (use-package org
-      :bind* (("C-c a" . org-agenda)
-              (:map org-mode-map
-                    ("C-c t" . my/org-tag)))
+      :bind*
+      ("C-c a" . org-agenda)
+      (:map org-mode-map
+            ("C-c t" . my/org-tag))
       :custom-face
       (org-block-begin-line ((t (:underline nil :overline t))))
       (org-block-end-line ((t (:underline t :overline nil))))
@@ -772,7 +773,7 @@
   #+begin_src emacs-lisp
     (use-package quickrun
       :ensure t
-      :bind* (("C-c x" . quickrun)))
+      :bind* ("C-c x" . quickrun))
   #+end_src
 
 * ibuffer
