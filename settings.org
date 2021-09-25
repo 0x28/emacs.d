@@ -869,7 +869,7 @@
     ;; no tabs
     (customize-set-variable 'indent-tabs-mode nil)
     ;; use M-o for other-window
-    (global-set-key (kbd "M-o") #'other-window)
+    (global-set-key (kbd "M-o") #'next-window-any-frame)
     ;; utf-8 everywhere
     (prefer-coding-system 'utf-8)
     ;; disable suspend-frame
