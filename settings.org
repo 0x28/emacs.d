@@ -103,6 +103,21 @@
       (ediff-window-setup-function 'ediff-setup-windows-plain))
   #+end_src
 
+* embark
+  #+begin_src emacs-lisp
+    (use-package embark
+      :ensure t
+      :bind*
+      ("C-," . embark-act)
+      ("C-h b" . embark-bindings)
+      (:map minibuffer-mode-map
+            ("C-c C-o" . embark-export)))
+
+    (use-package embark-consult
+      :ensure t
+      :after (embark consult))
+  #+end_src
+
 * evil
   Vim emulation for emacs.
   #+begin_src emacs-lisp
