@@ -64,7 +64,8 @@
           (apply orig-fun args)))
       :custom
       (consult-preview-key nil)
-      (consult-async-refresh-delay 0.1))
+      (consult-async-refresh-delay 0.1)
+      (consult-line-point-placement 'match-end)) ;; Needed for M-j to work
   #+end_src
 
 * devdocs
