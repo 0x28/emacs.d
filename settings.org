@@ -892,6 +892,9 @@
     (prefer-coding-system 'utf-8)
     ;; disable suspend-frame
     (global-unset-key (kbd "C-x C-z"))
+    ;; make scripts executable on save
+    (add-hook 'after-save-hook
+              #'executable-make-buffer-file-executable-if-script-p)
   #+end_src
 
 * custom functions
