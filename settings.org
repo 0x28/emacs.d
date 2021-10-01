@@ -701,9 +701,8 @@
   Settings for the builtin vc.el.
   #+begin_src emacs-lisp
     (use-package vc
-      :bind-keymap*
-      ("<leader> v" . vc-prefix-map)
       :config
+      (global-set-key (kbd "<leader> v") #'vc-prefix-map)
       (when (eq system-type 'windows-nt) ;; too slow
         (remove-hook 'find-file-hook #'vc-refresh-state))
       (setq vc-log-short-style '(directory file))
@@ -772,8 +771,9 @@
     (use-package projectile
       :ensure t
       :defer t
-      :bind-keymap*
-      ("<leader> p" . projectile-command-map)
+      :init
+      (global-set-key (kbd "<leader> p") #'projectile-command-map)
+      (autoload #'projectile-command-map "projectile.el" nil nil 'keymap)
       :config
       (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
       (define-key projectile-command-map (kbd "s") #'my/project-rg)
