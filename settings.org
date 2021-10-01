@@ -841,6 +841,10 @@
                                                'face 'font-lock-constant-face))))
     ;; mode-line position format
     (setq mode-line-position '(20 "%p L%l C%c"))
+    ;; hide help for minibuffer completion
+    (setq completion-show-help nil)
+    ;; only show one column for minibuffer completion
+    (setq completions-format 'one-column)
   #+end_src
 
 ** convenience
