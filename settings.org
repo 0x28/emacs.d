@@ -303,7 +303,7 @@
       (define-advice company-capf
           (:around (orig-fun &rest args) set-completion-styles)
         "Don't use orderless for company."
-        (let ((completion-styles '(basic partial-completion emacs22)))
+        (let ((completion-styles my/default-completion-styles))
           (apply orig-fun args)))
 
       (defun my/setup-prog-mode-completion ()
@@ -606,6 +606,7 @@
 
 * orderless
   #+begin_src emacs-lisp
+    (defconst my/default-completion-styles '(basic partial-completion emacs22))
     (use-package orderless
       :ensure t
       :custom
