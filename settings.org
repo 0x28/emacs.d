@@ -314,6 +314,7 @@
 
       :hook (prog-mode . my/setup-prog-mode-completion)
       :custom
+      (company-global-modes '(not eshell-mode))
       (company-selection-wrap-around t)
       (company-idle-delay 0.1)
       (company-tooltip-minimum-width 40)
@@ -436,11 +437,8 @@
       :hook
       (eshell-mode . (lambda ()
                        (local-set-key (kbd "C-r") #'my/eshell-history)
-                       (local-set-key (kbd "TAB") #'company-complete-common)
-                       (local-set-key (kbd "<tab>") #'company-complete-common)
-                       (setq-local global-hl-line-mode nil)
-                       (setq-local company-idle-delay nil)
-                       (setq-local company-backends (list #'company-capf))))
+                       (setq-local completion-styles my/default-completion-styles)
+                       (setq-local global-hl-line-mode nil)))
       :config
       (evil-set-initial-state 'eshell-mode 'emacs)
       (push '("\\*eshell\\*" display-buffer-at-bottom (window-height . 0.3))
@@ -451,7 +449,6 @@
       (eshell-hist-ignoredups t)
       (eshell-history-size 2048)
       (eshell-scroll-to-bottom-on-input t)
-      (eshell-cmpl-cycle-completions nil)
       (eshell-last-dir-ring-size 128)
       (eshell-prompt-function #'my/eshell-prompt))
   #+end_src
