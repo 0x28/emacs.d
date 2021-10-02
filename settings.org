@@ -834,8 +834,8 @@
     ;; resize windows proportionally
     (setq window-combination-resize t)
     ;; hide minor-modes in mode-line
-    (setq mode-line-modes '((:eval (propertize " %[(%m)%] "
-                                               'face 'font-lock-constant-face))))
+    (setq mode-line-modes
+          '("%[(" (:propertize mode-name face font-lock-constant-face) ")%]"))
     ;; mode-line position format
     (setq mode-line-position '(20 "%p L%l C%c"))
     ;; hide help for minibuffer completion
