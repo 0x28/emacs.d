@@ -554,6 +554,7 @@
       :bind*
       ("<leader> l r" . lsp-rename)
       ("<leader> l a" . lsp-execute-code-action)
+      ("<leader> l h" . lsp-describe-thing-at-point)
       :custom
       (lsp-completion-provider :none)
       (lsp-headerline-breadcrumb-enable nil))
