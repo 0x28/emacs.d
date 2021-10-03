@@ -384,6 +384,7 @@
     (load-theme 'doom-dracula t)))
 
 ;;; eshell
+;;;; config
 (use-package eshell
   :bind* (("C-c s" . my/toggle-eshell))
   :hook
@@ -404,6 +405,7 @@
   (eshell-last-dir-ring-size 128)
   (eshell-prompt-function #'my/eshell-prompt))
 
+;;;; prompt
 (defun my/eshell-prompt ()
   "Custom eshell prompt."
   (concat
@@ -416,6 +418,7 @@
    (propertize (abbreviate-file-name (eshell/pwd)) 'face 'default)
    (if (= (user-uid) 0) " # " " $ ")))
 
+;;;; popup
 (defun my/toggle-eshell ()
   "Open a new eshell window or switch to an existing one."
   (interactive)
@@ -428,6 +431,7 @@
         (eshell/cd current-directory)
         (eshell-reset)))))
 
+;;;; jump
 (defun eshell/j ()
   "Jump to a previously visited directory."
   (eshell/cd
@@ -435,6 +439,7 @@
                     (delete-dups
                      (ring-elements eshell-last-dir-ring)))))
 
+;;;; open
 (defun eshell/o (&rest args)
   "Open ARGS in an external application.
     If there are no arguments open the `default-directory' in an
@@ -443,6 +448,7 @@
       (mapc #'consult-file-externally args)
     (consult-file-externally (expand-file-name default-directory))))
 
+;;;; history
 (defun my/eshell-history ()
   "Insert a previous eshell command into the prompt."
   (interactive)
@@ -533,6 +539,15 @@
   :custom
   (completion-styles '(orderless))
   (orderless-component-separator #'orderless-escapable-split-on-space))
+
+;;; outline
+(use-package outline
+  :bind*
+  (:map outline-minor-mode-map
+        ("<tab>" . outline-cycle)
+        ("TAB" . outline-cycle))
+  :custom
+  (outline-minor-mode-highlight 'override))
 
 ;;; C, C++
 (defalias 'cxx-mode #'c++-mode)
@@ -923,3 +938,10 @@
     (message "Buffer reverted")))
 
 (global-set-key (kbd "<f5>") #'my/revert-buffer)
+
+;;; local variables
+;; Local Variables:
+;; outline-minor-mode-hook: (lambda nil (outline-hide-sublevels 1))
+;; outline-regexp: ";;;+"
+;; mode: outline-minor
+;; End:
