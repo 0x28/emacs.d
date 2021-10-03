@@ -144,6 +144,80 @@
   :ensure t
   :after (embark consult))
 
+;;; eshell
+;;;; config
+(use-package eshell
+  :bind* (("C-c s" . my/toggle-eshell))
+  :hook
+  (eshell-mode . (lambda ()
+                   (local-set-key (kbd "C-r") #'my/eshell-history)
+                   (setq-local completion-styles my/default-completion-styles)
+                   (setq-local global-hl-line-mode nil)))
+  :config
+  (evil-set-initial-state 'eshell-mode 'emacs)
+  (push '("\\*eshell\\*" display-buffer-at-bottom (window-height . 0.3))
+        display-buffer-alist)
+  :custom
+  (eshell-cmpl-ignore-case t)
+  (eshell-error-if-no-glob t)
+  (eshell-hist-ignoredups t)
+  (eshell-history-size 2048)
+  (eshell-scroll-to-bottom-on-input t)
+  (eshell-last-dir-ring-size 128)
+  (eshell-prompt-function #'my/eshell-prompt))
+
+;;;; prompt
+(defun my/eshell-prompt ()
+  "Custom eshell prompt."
+  (concat
+   (when (> eshell-last-command-status 0)
+     (propertize (format "(%d) " eshell-last-command-status) 'face 'error))
+   (propertize (user-login-name) 'face 'font-lock-type-face)
+   (propertize "@" 'face 'font-lock-comment-face)
+   (propertize (system-name) 'face 'font-lock-function-name-face)
+   " :: "
+   (propertize (abbreviate-file-name (eshell/pwd)) 'face 'default)
+   (if (= (user-uid) 0) " # " " $ ")))
+
+;;;; popup
+(defun my/toggle-eshell ()
+  "Open a new eshell window or switch to an existing one."
+  (interactive)
+  (let ((current-directory default-directory))
+    (if (eq major-mode 'eshell-mode)
+        (delete-window)
+      (eshell)
+      (unless (string= default-directory
+                       current-directory)
+        (eshell/cd current-directory)
+        (eshell-reset)))))
+
+;;;; jump
+(defun eshell/j ()
+  "Jump to a previously visited directory."
+  (eshell/cd
+   (completing-read "jump: "
+                    (delete-dups
+                     (ring-elements eshell-last-dir-ring)))))
+
+;;;; open
+(defun eshell/o (&rest args)
+  "Open ARGS in an external application.
+    If there are no arguments open the `default-directory' in an
+    external application."
+  (if args
+      (mapc #'consult-file-externally args)
+    (consult-file-externally (expand-file-name default-directory))))
+
+;;;; history
+(defun my/eshell-history ()
+  "Insert a previous eshell command into the prompt."
+  (interactive)
+  (goto-char (point-max))
+  (insert (completing-read "insert previous command: "
+                           (delete-dups
+                            (ring-elements eshell-history-ring)))))
+
 ;;; evil
 ;; Vim emulation for emacs.
 (use-package evil
@@ -429,80 +503,6 @@
                 (load-theme 'doom-dracula t))))
   (unless (daemonp)
     (load-theme 'doom-dracula t)))
-
-;;; eshell
-;;;; config
-(use-package eshell
-  :bind* (("C-c s" . my/toggle-eshell))
-  :hook
-  (eshell-mode . (lambda ()
-                   (local-set-key (kbd "C-r") #'my/eshell-history)
-                   (setq-local completion-styles my/default-completion-styles)
-                   (setq-local global-hl-line-mode nil)))
-  :config
-  (evil-set-initial-state 'eshell-mode 'emacs)
-  (push '("\\*eshell\\*" display-buffer-at-bottom (window-height . 0.3))
-        display-buffer-alist)
-  :custom
-  (eshell-cmpl-ignore-case t)
-  (eshell-error-if-no-glob t)
-  (eshell-hist-ignoredups t)
-  (eshell-history-size 2048)
-  (eshell-scroll-to-bottom-on-input t)
-  (eshell-last-dir-ring-size 128)
-  (eshell-prompt-function #'my/eshell-prompt))
-
-;;;; prompt
-(defun my/eshell-prompt ()
-  "Custom eshell prompt."
-  (concat
-   (when (> eshell-last-command-status 0)
-     (propertize (format "(%d) " eshell-last-command-status) 'face 'error))
-   (propertize (user-login-name) 'face 'font-lock-type-face)
-   (propertize "@" 'face 'font-lock-comment-face)
-   (propertize (system-name) 'face 'font-lock-function-name-face)
-   " :: "
-   (propertize (abbreviate-file-name (eshell/pwd)) 'face 'default)
-   (if (= (user-uid) 0) " # " " $ ")))
-
-;;;; popup
-(defun my/toggle-eshell ()
-  "Open a new eshell window or switch to an existing one."
-  (interactive)
-  (let ((current-directory default-directory))
-    (if (eq major-mode 'eshell-mode)
-        (delete-window)
-      (eshell)
-      (unless (string= default-directory
-                       current-directory)
-        (eshell/cd current-directory)
-        (eshell-reset)))))
-
-;;;; jump
-(defun eshell/j ()
-  "Jump to a previously visited directory."
-  (eshell/cd
-   (completing-read "jump: "
-                    (delete-dups
-                     (ring-elements eshell-last-dir-ring)))))
-
-;;;; open
-(defun eshell/o (&rest args)
-  "Open ARGS in an external application.
-    If there are no arguments open the `default-directory' in an
-    external application."
-  (if args
-      (mapc #'consult-file-externally args)
-    (consult-file-externally (expand-file-name default-directory))))
-
-;;;; history
-(defun my/eshell-history ()
-  "Insert a previous eshell command into the prompt."
-  (interactive)
-  (goto-char (point-max))
-  (insert (completing-read "insert previous command: "
-                           (delete-dups
-                            (ring-elements eshell-history-ring)))))
 
 ;;; whitespace
 (use-package whitespace
