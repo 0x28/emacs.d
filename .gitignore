@@ -1,6 +1,6 @@
 *
 !.gitignore
-!settings.org
+!settings.el
 !init.el
 !.clang-format
 !abbrev_defs
