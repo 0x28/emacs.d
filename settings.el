@@ -58,6 +58,12 @@
   :custom
   (calendar-week-start-day 1))
 
+;;; compile
+(use-package compile
+  :defer t
+  :custom
+  (compilation-scroll-output 'first-error))
+
 ;;; consult
 (use-package consult
   :ensure t
@@ -624,12 +630,6 @@
   (evil-define-key 'normal cmake-mode-map (kbd "<leader> h h") #'cmake-help)
   :custom
   (cmake-tab-width 4))
-
-;;; compile
-(use-package compile
-  :defer t
-  :custom
-  (compilation-scroll-output 'first-error))
 
 ;;; version control
 ;; Settings for the builtin vc.el.
