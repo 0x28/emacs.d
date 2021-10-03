@@ -29,6 +29,19 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
 
+;;; additional keywords
+;; Some words like "FIXME" and "TODO" should be highlighted in every programming
+;; mode. It doesn't matter if they're inside comments or not.
+(defun my/add-new-keywords()
+  (font-lock-add-keywords
+   nil
+   '(("\\<\\(FIXME\\|fixme\\)\\>" 1 'font-lock-warning-face prepend)
+     ("\\<\\(TODO\\|todo\\)\\>" 1 'font-lock-warning-face prepend)
+     ("\\<\\(BUG\\|bug\\)\\>" 1 'font-lock-warning-face prepend)
+     ("\\<\\(NOTE\\|note\\)\\>" 1 'font-lock-constant-face prepend))))
+
+(add-hook 'prog-mode-hook #'my/add-new-keywords)
+
 ;;; align
 (defun my/align-whitespace (begin end)
   "Align columns by whitespace between BEGIN and END."
@@ -710,19 +723,6 @@
   :ensure t
   :config
   (vertico-mode))
-
-;;; additional keywords
-;; Some words like "FIXME" and "TODO" should be highlighted in every programming
-;; mode. It doesn't matter if they're inside comments or not.
-(defun my/add-new-keywords()
-  (font-lock-add-keywords
-   nil
-   '(("\\<\\(FIXME\\|fixme\\)\\>" 1 'font-lock-warning-face prepend)
-     ("\\<\\(TODO\\|todo\\)\\>" 1 'font-lock-warning-face prepend)
-     ("\\<\\(BUG\\|bug\\)\\>" 1 'font-lock-warning-face prepend)
-     ("\\<\\(NOTE\\|note\\)\\>" 1 'font-lock-constant-face prepend))))
-
-(add-hook 'prog-mode-hook #'my/add-new-keywords)
 
 ;;; sane defaults
 ;;;; visual
