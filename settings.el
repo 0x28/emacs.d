@@ -352,6 +352,14 @@
   :custom
   (ibuffer-default-sorting-mode 'major-mode))
 
+;;; isearch
+(use-package isearch
+  :bind*
+  (:map isearch-mode-map
+        ("M-j" . isearch-yank-word-or-char))
+  :custom
+  (isearch-lazy-count t))
+
 ;;; org
 (defun my/org-tag ()
   "Change org-mode tags of the current heading with completion."
@@ -409,14 +417,6 @@
   (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-relative-timestamps t)
   :hook (undo-tree-mode . my/undo-tree-config))
-
-;;; isearch
-(use-package isearch
-  :bind*
-  (:map isearch-mode-map
-        ("M-j" . isearch-yank-word-or-char))
-  :custom
-  (isearch-lazy-count t))
 
 ;;; dired
 (use-package dired-x
