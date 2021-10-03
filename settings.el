@@ -414,20 +414,6 @@
   :custom
   (display-fill-column-indicator-character nil))
 
-;;; ibuffer
-(use-package ibuffer
-  :bind ("C-x C-b" . ibuffer-other-window)
-  :custom
-  (ibuffer-default-sorting-mode 'major-mode))
-
-;;; isearch
-(use-package isearch
-  :bind*
-  (:map isearch-mode-map
-        ("M-j" . isearch-yank-word-or-char))
-  :custom
-  (isearch-lazy-count t))
-
 ;;; flycheck/flymake
 (defun my/list-errors ()
   "Use flycheck or flymake to list errors."
@@ -442,6 +428,20 @@
   :ensure t
   :defer t
   :hook (prog-mode . flycheck-mode))
+
+;;; ibuffer
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer-other-window)
+  :custom
+  (ibuffer-default-sorting-mode 'major-mode))
+
+;;; isearch
+(use-package isearch
+  :bind*
+  (:map isearch-mode-map
+        ("M-j" . isearch-yank-word-or-char))
+  :custom
+  (isearch-lazy-count t))
 
 ;;; LaTeX
 (use-package tex-mode
