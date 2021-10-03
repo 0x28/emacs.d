@@ -615,6 +615,14 @@
   :custom
   (c-default-style "my-style"))
 
+;;; recentf
+(use-package recentf
+  :config
+  (recentf-mode 1)
+  (run-with-idle-timer (* 60 2) t #'recentf-save-list)
+  :custom
+  (recentf-max-saved-items 1000))
+
 ;;; Rust
 (use-package rust-mode
   :ensure t
@@ -664,14 +672,6 @@
   :ensure t
   :config
   (vertico-mode))
-
-;;; recentf
-(use-package recentf
-  :config
-  (recentf-mode 1)
-  (run-with-idle-timer (* 60 2) t #'recentf-save-list)
-  :custom
-  (recentf-max-saved-items 1000))
 
 ;;; projectile
 (defun my/project-rg ()
