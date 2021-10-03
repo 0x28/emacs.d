@@ -945,5 +945,5 @@
 ;; Local Variables:
 ;; outline-minor-mode-hook: (lambda nil (outline-hide-sublevels 1))
 ;; outline-regexp: ";;;+"
-;; mode: outline-minor
+;; eval: (outline-minor-mode)
 ;; End:
