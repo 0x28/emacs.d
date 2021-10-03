@@ -228,6 +228,12 @@
   :custom
   (display-fill-column-indicator-character nil))
 
+;;; ibuffer
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer-other-window)
+  :custom
+  (ibuffer-default-sorting-mode 'major-mode))
+
 ;;; org
 (defun my/org-tag ()
   "Change org-mode tags of the current heading with completion."
@@ -703,12 +709,6 @@
 (use-package quickrun
   :ensure t
   :bind* ("C-c x" . quickrun))
-
-;;; ibuffer
-(use-package ibuffer
-  :bind ("C-x C-b" . ibuffer-other-window)
-  :custom
-  (ibuffer-default-sorting-mode 'major-mode))
 
 ;;; additional keywords
 ;; Some words like "FIXME" and "TODO" should be highlighted in every programming
