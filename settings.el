@@ -443,18 +443,6 @@
   :defer t
   :hook (prog-mode . flycheck-mode))
 
-;;; whitespace
-(use-package whitespace
-  :hook ((prog-mode . whitespace-mode)
-         (diff-mode . whitespace-mode))
-  :custom
-  (fill-column 80)
-  (whitespace-line-column fill-column)
-  (whitespace-style '(face trailing lines-tail))
-  :custom-face
-  (whitespace-line
-   ((t (:underline (:color "cyan" :style wave) :foreground nil)))))
-
 ;;; LaTeX
 (use-package tex-mode
   :defer t
@@ -713,6 +701,18 @@
     "<leader> v" "version control")
   :custom
   (which-key-idle-delay 0.5))
+
+;;; whitespace
+(use-package whitespace
+  :hook ((prog-mode . whitespace-mode)
+         (diff-mode . whitespace-mode))
+  :custom
+  (fill-column 80)
+  (whitespace-line-column fill-column)
+  (whitespace-style '(face trailing lines-tail))
+  :custom-face
+  (whitespace-line
+   ((t (:underline (:color "cyan" :style wave) :foreground nil)))))
 
 ;;; yasnippet
 (use-package yasnippet
