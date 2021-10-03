@@ -443,16 +443,6 @@
   :defer t
   :hook (prog-mode . flycheck-mode))
 
-;;; yasnippet
-(use-package yasnippet
-  :ensure t
-  :hook (prog-mode . yas-minor-mode))
-
-;; Also load the snippets.
-(use-package yasnippet-snippets
-  :ensure t
-  :after yasnippet)
-
 ;;; theme
 (use-package doom-themes
   :ensure t
@@ -723,6 +713,16 @@
     "<leader> v" "version control")
   :custom
   (which-key-idle-delay 0.5))
+
+;;; yasnippet
+(use-package yasnippet
+  :ensure t
+  :hook (prog-mode . yas-minor-mode))
+
+;; Also load the snippets.
+(use-package yasnippet-snippets
+  :ensure t
+  :after yasnippet)
 
 ;;; sane defaults
 ;;;; visual
