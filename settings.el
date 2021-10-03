@@ -648,6 +648,11 @@
   (projectile-completion-system 'default)
   (projectile-enable-caching t))
 
+;;; quickrun
+(use-package quickrun
+  :ensure t
+  :bind* ("C-c x" . quickrun))
+
 ;;; recentf
 (use-package recentf
   :config
@@ -705,11 +710,6 @@
   :ensure t
   :config
   (vertico-mode))
-
-;;; quickrun
-(use-package quickrun
-  :ensure t
-  :bind* ("C-c x" . quickrun))
 
 ;;; additional keywords
 ;; Some words like "FIXME" and "TODO" should be highlighted in every programming
