@@ -25,6 +25,10 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;;; custom file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file t)
+
 ;;; align
 (defun my/align-whitespace (begin end)
   "Align columns by whitespace between BEGIN and END."
@@ -47,10 +51,6 @@
   ("<leader> b l" . list-bookmarks)
   ("<leader> b s" . bookmark-set)
   ("<leader> b j" . bookmark-jump))
-
-;;; custom file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file t)
 
 ;;; calendar
 (use-package calendar
