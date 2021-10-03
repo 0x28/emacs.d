@@ -71,6 +71,37 @@
   :custom
   (cmake-tab-width 4))
 
+;;; company
+;; Generic settings for the completion framework company.
+(use-package company
+  :ensure t
+  :demand
+  :config
+  (add-hook 'after-init-hook #'global-company-mode)
+
+  (dolist (key '("<tab>" "TAB"))
+    (define-key company-active-map (kbd key) #'company-complete-common-or-cycle))
+
+  (define-advice company-capf
+      (:around (orig-fun &rest args) set-completion-styles)
+    "Don't use orderless for company."
+    (let ((completion-styles my/default-completion-styles))
+      (apply orig-fun args)))
+
+  (defun my/setup-prog-mode-completion ()
+    "Setup company backends for `prog-mode' derived modes."
+    (setq-local company-backends
+                '((:separate company-capf company-files company-yasnippet)
+                  company-keywords)))
+
+  :hook (prog-mode . my/setup-prog-mode-completion)
+  :custom
+  (company-global-modes '(not eshell-mode))
+  (company-selection-wrap-around t)
+  (company-idle-delay 0.1)
+  (company-tooltip-minimum-width 40)
+  (company-minimum-prefix-length 1))
+
 ;;; compile
 (use-package compile
   :defer t
@@ -378,37 +409,6 @@
   (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-relative-timestamps t)
   :hook (undo-tree-mode . my/undo-tree-config))
-
-;;; company
-;; Generic settings for the completion framework company.
-(use-package company
-  :ensure t
-  :demand
-  :config
-  (add-hook 'after-init-hook #'global-company-mode)
-
-  (dolist (key '("<tab>" "TAB"))
-    (define-key company-active-map (kbd key) #'company-complete-common-or-cycle))
-
-  (define-advice company-capf
-      (:around (orig-fun &rest args) set-completion-styles)
-    "Don't use orderless for company."
-    (let ((completion-styles my/default-completion-styles))
-      (apply orig-fun args)))
-
-  (defun my/setup-prog-mode-completion ()
-    "Setup company backends for `prog-mode' derived modes."
-    (setq-local company-backends
-                '((:separate company-capf company-files company-yasnippet)
-                  company-keywords)))
-
-  :hook (prog-mode . my/setup-prog-mode-completion)
-  :custom
-  (company-global-modes '(not eshell-mode))
-  (company-selection-wrap-around t)
-  (company-idle-delay 0.1)
-  (company-tooltip-minimum-width 40)
-  (company-minimum-prefix-length 1))
 
 ;;; isearch
 (use-package isearch
