@@ -383,51 +383,6 @@
   :custom
   (isearch-lazy-count t))
 
-;;; org
-(defun my/org-tag ()
-  "Change org-mode tags of the current heading with completion."
-  (interactive)
-  (let* ((current-tags (org-get-tags nil t))
-         (new-tags (completing-read-multiple
-                    "change tags: "
-                    (org-get-buffer-tags)
-                    nil
-                    nil
-                    (concat (string-join current-tags ",") ","))))
-    (org-set-tags (delete-dups new-tags))))
-
-(use-package org
-  :bind*
-  ("C-c a" . org-agenda)
-  (:map org-mode-map
-        ("C-c t" . my/org-tag))
-  :custom-face
-  (org-block-begin-line ((t (:underline nil :overline t))))
-  (org-block-end-line ((t (:underline t :overline nil))))
-  :custom
-  (org-agenda-files (list org-directory))
-  (org-src-fontify-natively t)
-  (org-startup-folded t))
-
-(use-package org-protocol
-  :demand
-  :config
-  (define-advice org-protocol-capture (:before (_) my/focus-capture)
-    (select-frame-set-input-focus (window-frame)))
-  (define-advice org-protocol-capture (:after (_) my/fill-capture)
-    (fill-region (point-min) (point-max))))
-
-(use-package org-capture
-  :bind* (("C-c c" . org-capture))
-  :custom
-  (org-capture-templates
-   '(("w" "org-protocol web link" entry (file "Inbox.org")
-      "* %?%:description\n  %:link\n\n  %:initial\n"
-      :prepend t)
-     ("r" "capture region" entry (file "Inbox.org")
-      "* %?\n  %i\n"
-      :prepend t))))
-
 ;;; occur
 (use-package replace
   :hook (occur-mode . next-error-follow-minor-mode)
@@ -573,6 +528,51 @@
   :custom
   (completion-styles '(orderless))
   (orderless-component-separator #'orderless-escapable-split-on-space))
+
+;;; org
+(defun my/org-tag ()
+  "Change org-mode tags of the current heading with completion."
+  (interactive)
+  (let* ((current-tags (org-get-tags nil t))
+         (new-tags (completing-read-multiple
+                    "change tags: "
+                    (org-get-buffer-tags)
+                    nil
+                    nil
+                    (concat (string-join current-tags ",") ","))))
+    (org-set-tags (delete-dups new-tags))))
+
+(use-package org
+  :bind*
+  ("C-c a" . org-agenda)
+  (:map org-mode-map
+        ("C-c t" . my/org-tag))
+  :custom-face
+  (org-block-begin-line ((t (:underline nil :overline t))))
+  (org-block-end-line ((t (:underline t :overline nil))))
+  :custom
+  (org-agenda-files (list org-directory))
+  (org-src-fontify-natively t)
+  (org-startup-folded t))
+
+(use-package org-protocol
+  :demand
+  :config
+  (define-advice org-protocol-capture (:before (_) my/focus-capture)
+    (select-frame-set-input-focus (window-frame)))
+  (define-advice org-protocol-capture (:after (_) my/fill-capture)
+    (fill-region (point-min) (point-max))))
+
+(use-package org-capture
+  :bind* (("C-c c" . org-capture))
+  :custom
+  (org-capture-templates
+   '(("w" "org-protocol web link" entry (file "Inbox.org")
+      "* %?%:description\n  %:link\n\n  %:initial\n"
+      :prepend t)
+     ("r" "capture region" entry (file "Inbox.org")
+      "* %?\n  %i\n"
+      :prepend t))))
 
 ;;; outline
 (use-package outline
