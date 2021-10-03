@@ -33,6 +33,7 @@
                 "\\(\\s-*\\)\\s-" 1 0 t))
 
 (use-package align
+  :after evil
   :bind*
   (:map evil-visual-state-map
         ("<leader> a a" . align)
