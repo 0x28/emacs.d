@@ -383,12 +383,6 @@
   :custom
   (isearch-lazy-count t))
 
-;;; occur
-(use-package replace
-  :hook (occur-mode . next-error-follow-minor-mode)
-  :custom
-  (list-matching-lines-default-context-lines 3))
-
 ;;; which key
 ;; show keybindings while typing
 (use-package which-key
@@ -520,6 +514,12 @@
   :custom-face
   (markdown-code-face
    ((t (:inherit default :background nil :foreground nil)))))
+
+;;; occur
+(use-package replace
+  :hook (occur-mode . next-error-follow-minor-mode)
+  :custom
+  (list-matching-lines-default-context-lines 3))
 
 ;;; orderless
 (defconst my/default-completion-styles '(basic partial-completion emacs22))
