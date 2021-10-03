@@ -428,19 +428,6 @@
       "* %?\n  %i\n"
       :prepend t))))
 
-;;; undo-tree
-(use-package undo-tree
-  :ensure t
-  :demand
-  :config
-  (defun my/undo-tree-config ()
-    (setq undo-tree-visualizer-diff t))
-  (global-undo-tree-mode)
-  :custom
-  (undo-tree-visualizer-timestamps t)
-  (undo-tree-visualizer-relative-timestamps t)
-  :hook (undo-tree-mode . my/undo-tree-config))
-
 ;;; occur
 (use-package replace
   :hook (occur-mode . next-error-follow-minor-mode)
@@ -637,6 +624,19 @@
   (lsp-rust-all-features t)
   (lsp-rust-server 'rust-analyzer)
   (lsp-rust-analyzer-proc-macro-enable t))
+
+;;; undo-tree
+(use-package undo-tree
+  :ensure t
+  :demand
+  :config
+  (defun my/undo-tree-config ()
+    (setq undo-tree-visualizer-diff t))
+  (global-undo-tree-mode)
+  :custom
+  (undo-tree-visualizer-timestamps t)
+  (undo-tree-visualizer-relative-timestamps t)
+  :hook (undo-tree-mode . my/undo-tree-config))
 
 ;;; version control
 ;; Settings for the builtin vc.el.
