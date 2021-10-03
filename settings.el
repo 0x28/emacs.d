@@ -443,17 +443,6 @@
   :defer t
   :hook (prog-mode . flycheck-mode))
 
-;;; theme
-(use-package doom-themes
-  :ensure t
-  :config
-  (add-hook 'server-after-make-frame-hook
-            (lambda ()
-              (unless (custom-theme-enabled-p 'doom-dracula)
-                (load-theme 'doom-dracula t))))
-  (unless (daemonp)
-    (load-theme 'doom-dracula t)))
-
 ;;; whitespace
 (use-package whitespace
   :hook ((prog-mode . whitespace-mode)
@@ -652,6 +641,17 @@
   (lsp-rust-all-features t)
   (lsp-rust-server 'rust-analyzer)
   (lsp-rust-analyzer-proc-macro-enable t))
+
+;;; theme
+(use-package doom-themes
+  :ensure t
+  :config
+  (add-hook 'server-after-make-frame-hook
+            (lambda ()
+              (unless (custom-theme-enabled-p 'doom-dracula)
+                (load-theme 'doom-dracula t))))
+  (unless (daemonp)
+    (load-theme 'doom-dracula t)))
 
 ;;; undo-tree
 (use-package undo-tree
