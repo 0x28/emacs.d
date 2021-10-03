@@ -30,9 +30,9 @@
 (load custom-file t)
 
 ;;; additional keywords
-;; Some words like "FIXME" and "TODO" should be highlighted in every programming
-;; mode. It doesn't matter if they're inside comments or not.
 (defun my/add-new-keywords()
+  "Some words like FIXME and TODO should be highlighted in every programming
+mode. It doesn't matter if they're inside comments or not."
   (font-lock-add-keywords
    nil
    '(("\\<\\(FIXME\\|fixme\\)\\>" 1 'font-lock-warning-face prepend)
@@ -666,6 +666,7 @@
   :custom
   (vc-follow-symlinks t)
   (vc-git-annotate-switches '("-w" "-M")))
+
 ;; Magit keybindings.
 (use-package magit
   :ensure t
@@ -807,17 +808,15 @@
 
 ;;; custom functions
 ;;;; edit init file
-;; Function used to quickly edit my settings.el file.
 (defun my/edit-init-file ()
   "Open the init file."
   (interactive)
   (find-file (expand-file-name "settings.el" user-emacs-directory)))
 
 ;;;; indent buffer
-;; This function removes trailing whitespace, indents the current buffer and
-;; removes tabs. For Makefiles it only removes trailing whitespace.
 (defun my/indent-buffer ()
-  "Indent and untabify the current buffer."
+  "Remove trailing whitespace, indent the current buffer and
+remove tabs. In Makefiles only remove trailing whitespace."
   (interactive)
   (save-excursion
     (delete-trailing-whitespace)
@@ -844,7 +843,7 @@
 ;;;; ssh connect
 (defun my/ssh-connect (host user)
   "Connect to the home directory of a foreign HOST as USER using
-    SSH. With prefix argument use sshx instead of ssh."
+SSH. With prefix argument use sshx instead of ssh."
   (interactive "Mhost: \nMuser: ")
   (message "connecting to %s@%s ..." user host)
   (let ((method (if current-prefix-arg "sshx" "ssh")))
@@ -871,9 +870,8 @@
 (global-set-key (kbd "C-c g") #'my/ddg-dwim)
 
 ;;;; kill current buffer
-;; Kill the current buffer without asking.
 (defun my/kill-current-buffer ()
-  "Kill the current buffer."
+  "Kill the current buffer without asking."
   (interactive)
   (kill-buffer (current-buffer)))
 
@@ -900,8 +898,8 @@
 ;;;; confirm closing emacsclient frames
 (defun my/confirm-delete-frame (&optional arg)
   "Ask for confirmation when closing frames.
-    With prefix ARG, silently save all file-visiting buffers, then
-    delete the selected frame."
+With prefix ARG, silently save all file-visiting buffers, then
+delete the selected frame."
   (interactive "P")
   (when (y-or-n-p "Close frame? ")
     (save-some-buffers arg)
@@ -931,7 +929,7 @@
 ;;;; revert buffer safely
 (defun my/revert-buffer (arg)
   "Revert the current buffer if the associated file wasn't modified.
-    With prefix argument ARG reinitialize the modes."
+With prefix argument ARG reinitialize the modes."
   (interactive "P")
   (if (and (buffer-modified-p)
            (buffer-file-name))
