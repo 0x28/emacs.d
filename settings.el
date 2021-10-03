@@ -428,27 +428,6 @@
   :custom
   (isearch-lazy-count t))
 
-;;; which key
-;; show keybindings while typing
-(use-package which-key
-  :ensure t
-  :defer 1
-  :config
-  (which-key-mode)
-  (which-key-add-key-based-replacements
-    "<leader> b" "bookmarks"
-    "<leader> e" "errors"
-    "<leader> f" "files"
-    "<leader> g" "git"
-    "<leader> h" "help"
-    "<leader> l" "lsp"
-    "<leader> n" "narrow"
-    "<leader> p" "project"
-    "<leader> q" "quit"
-    "<leader> v" "version control")
-  :custom
-  (which-key-idle-delay 0.5))
-
 ;;; flycheck/flymake
 (defun my/list-errors ()
   "Use flycheck or flymake to list errors."
@@ -723,6 +702,27 @@
   :ensure t
   :config
   (vertico-mode))
+
+;;; which key
+;; show keybindings while typing
+(use-package which-key
+  :ensure t
+  :defer 1
+  :config
+  (which-key-mode)
+  (which-key-add-key-based-replacements
+    "<leader> b" "bookmarks"
+    "<leader> e" "errors"
+    "<leader> f" "files"
+    "<leader> g" "git"
+    "<leader> h" "help"
+    "<leader> l" "lsp"
+    "<leader> n" "narrow"
+    "<leader> p" "project"
+    "<leader> q" "quit"
+    "<leader> v" "version control")
+  :custom
+  (which-key-idle-delay 0.5))
 
 ;;; sane defaults
 ;;;; visual
