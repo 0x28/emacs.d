@@ -25,6 +25,20 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;;; align
+(defun my/align-whitespace (begin end)
+  "Align columns by whitespace between BEGIN and END."
+  (interactive "r")
+  (align-regexp begin end
+                "\\(\\s-*\\)\\s-" 1 0 t))
+
+(use-package align
+  :bind*
+  (:map evil-visual-state-map
+        ("<leader> a a" . align)
+        ("<leader> a r" . align-regexp)
+        ("<leader> a w" . my/align-whitespace)))
+
 ;;; custom file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
@@ -608,20 +622,6 @@
   :defer t
   :custom
   (compilation-scroll-output 'first-error))
-
-;;; align
-(defun my/align-whitespace (begin end)
-  "Align columns by whitespace between BEGIN and END."
-  (interactive "r")
-  (align-regexp begin end
-                "\\(\\s-*\\)\\s-" 1 0 t))
-
-(use-package align
-  :bind*
-  (:map evil-visual-state-map
-        ("<leader> a a" . align)
-        ("<leader> a r" . align-regexp)
-        ("<leader> a w" . my/align-whitespace)))
 
 ;;; version control
 ;; Settings for the builtin vc.el.
