@@ -155,6 +155,29 @@
   :custom
   (devdocs-cache-timeout 3600))
 
+;;; dired
+(use-package dired-x
+  :bind*
+  ("<leader> f d" . dired-jump-other-window)
+  (:map dired-mode-map
+        ("<tab>" . dired-omit-mode)
+        ("<backtab>" . dired-hide-details-mode)
+        ([remap consult-imenu] . dired-goto-file))
+  :hook
+  (dired-mode . dired-omit-mode)
+  (dired-mode . dired-hide-details-mode)
+  :config
+  (evil-define-key 'normal dired-mode-map (kbd "C-o") #'dired-display-file)
+  :custom
+  (dired-auto-revert-buffer t)
+  (dired-dwim-target t)
+  (dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
+
+(use-package wdired
+  :defer t
+  :config
+  (evil-define-key 'normal wdired-mode-map (kbd "u") #'dired-undo))
+
 ;;; ediff
 (use-package ediff-wind
   :defer t
@@ -417,29 +440,6 @@
   (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-relative-timestamps t)
   :hook (undo-tree-mode . my/undo-tree-config))
-
-;;; dired
-(use-package dired-x
-  :bind*
-  ("<leader> f d" . dired-jump-other-window)
-  (:map dired-mode-map
-        ("<tab>" . dired-omit-mode)
-        ("<backtab>" . dired-hide-details-mode)
-        ([remap consult-imenu] . dired-goto-file))
-  :hook
-  (dired-mode . dired-omit-mode)
-  (dired-mode . dired-hide-details-mode)
-  :config
-  (evil-define-key 'normal dired-mode-map (kbd "C-o") #'dired-display-file)
-  :custom
-  (dired-auto-revert-buffer t)
-  (dired-dwim-target t)
-  (dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
-
-(use-package wdired
-  :defer t
-  :config
-  (evil-define-key 'normal wdired-mode-map (kbd "u") #'dired-undo))
 
 ;;; occur
 (use-package replace
