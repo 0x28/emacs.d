@@ -615,6 +615,39 @@
   :custom
   (outline-minor-mode-highlight 'override))
 
+;;; projectile
+(defun my/project-rg ()
+  "Search with ripgrep within project.
+    If the ripgrep command supports the --pcre2 flag, spaces can be
+    used in the query."
+  (interactive)
+  (let* ((rg-sep " -- ")
+         (minibuffer-setup-hook (cons (lambda () (search-backward rg-sep nil t))
+                                      minibuffer-setup-hook)))
+    (consult-ripgrep (projectile-project-root)
+                     (concat (thing-at-point 'symbol t) rg-sep))))
+
+(defun my/projectile-project-find-function (dir)
+  "Compatibility layer between projectile and project.el."
+  (let ((root (projectile-project-root dir)))
+    (and root (cons 'transient root))))
+
+(use-package projectile
+  :ensure t
+  :defer t
+  :init
+  (global-set-key (kbd "<leader> p") #'projectile-command-map)
+  (autoload #'projectile-command-map "projectile.el" nil nil 'keymap)
+  :config
+  (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
+  (define-key projectile-command-map (kbd "s") #'my/project-rg)
+  (add-to-list 'project-find-functions #'my/projectile-project-find-function)
+
+  (projectile-mode)
+  :custom
+  (projectile-completion-system 'default)
+  (projectile-enable-caching t))
+
 ;;; recentf
 (use-package recentf
   :config
@@ -672,39 +705,6 @@
   :ensure t
   :config
   (vertico-mode))
-
-;;; projectile
-(defun my/project-rg ()
-  "Search with ripgrep within project.
-    If the ripgrep command supports the --pcre2 flag, spaces can be
-    used in the query."
-  (interactive)
-  (let* ((rg-sep " -- ")
-         (minibuffer-setup-hook (cons (lambda () (search-backward rg-sep nil t))
-                                      minibuffer-setup-hook)))
-    (consult-ripgrep (projectile-project-root)
-                     (concat (thing-at-point 'symbol t) rg-sep))))
-
-(defun my/projectile-project-find-function (dir)
-  "Compatibility layer between projectile and project.el."
-  (let ((root (projectile-project-root dir)))
-    (and root (cons 'transient root))))
-
-(use-package projectile
-  :ensure t
-  :defer t
-  :init
-  (global-set-key (kbd "<leader> p") #'projectile-command-map)
-  (autoload #'projectile-command-map "projectile.el" nil nil 'keymap)
-  :config
-  (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
-  (define-key projectile-command-map (kbd "s") #'my/project-rg)
-  (add-to-list 'project-find-functions #'my/projectile-project-find-function)
-
-  (projectile-mode)
-  :custom
-  (projectile-completion-system 'default)
-  (projectile-enable-caching t))
 
 ;;; quickrun
 (use-package quickrun
