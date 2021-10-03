@@ -39,6 +39,14 @@
         ("<leader> a r" . align-regexp)
         ("<leader> a w" . my/align-whitespace)))
 
+;;; bookmarks
+;; Some bookmark keybindings.
+(use-package bookmark
+  :bind*
+  ("<leader> b l" . list-bookmarks)
+  ("<leader> b s" . bookmark-set)
+  ("<leader> b j" . bookmark-jump))
+
 ;;; custom file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
@@ -657,14 +665,6 @@
   (run-with-idle-timer (* 60 2) t #'recentf-save-list)
   :custom
   (recentf-max-saved-items 1000))
-
-;;; bookmarks
-;; Some bookmark keybindings.
-(use-package bookmark
-  :bind*
-  ("<leader> b l" . list-bookmarks)
-  ("<leader> b s" . bookmark-set)
-  ("<leader> b j" . bookmark-jump))
 
 ;;; projectile
 (defun my/project-rg ()
