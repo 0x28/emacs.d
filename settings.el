@@ -59,6 +59,18 @@
   :custom
   (calendar-week-start-day 1))
 
+;;; CMake
+(use-package cmake-mode
+  :ensure t
+  :defer t
+  :hook
+  (cmake-mode . (lambda ()
+                  (setq-local company-backends (list #'company-cmake))))
+  :config
+  (evil-define-key 'normal cmake-mode-map (kbd "<leader> h h") #'cmake-help)
+  :custom
+  (cmake-tab-width 4))
+
 ;;; compile
 (use-package compile
   :defer t
@@ -625,18 +637,6 @@
   (lsp-rust-all-features t)
   (lsp-rust-server 'rust-analyzer)
   (lsp-rust-analyzer-proc-macro-enable t))
-
-;;; CMake
-(use-package cmake-mode
-  :ensure t
-  :defer t
-  :hook
-  (cmake-mode . (lambda ()
-                  (setq-local company-backends (list #'company-cmake))))
-  :config
-  (evil-define-key 'normal cmake-mode-map (kbd "<leader> h h") #'cmake-help)
-  :custom
-  (cmake-tab-width 4))
 
 ;;; version control
 ;; Settings for the builtin vc.el.
