@@ -52,6 +52,38 @@
   ("<leader> b s" . bookmark-set)
   ("<leader> b j" . bookmark-jump))
 
+;;; C, C++
+(defalias 'cxx-mode #'c++-mode)
+
+(use-package clang-format
+  :ensure t
+  :defer t)
+
+(use-package cc-mode
+  :defer t
+  :config
+  (dolist (map (list c-mode-map c++-mode-map))
+    (define-key map (kbd "C-c i") #'clang-format-buffer))
+
+  (defconst my-cc-style
+    '((c-basic-offset . 4)
+      (c-comment-only-line-offset . 0)
+      (c-offsets-alist
+       (innamespace . 0)
+       (case-label . +)
+       (statement-block-intro . +)
+       (knr-argdecl-intro . +)
+       (substatement-open . 0)
+       (substatement-label . 0)
+       (label . 0)
+       (statement-cont . +)
+       (inline-open . 0)
+       (inexpr-class . 0))))
+
+  (c-add-style "my-style" my-cc-style)
+  :custom
+  (c-default-style "my-style"))
+
 ;;; calendar
 (use-package calendar
   :defer t
@@ -582,38 +614,6 @@
         ("TAB" . outline-cycle))
   :custom
   (outline-minor-mode-highlight 'override))
-
-;;; C, C++
-(defalias 'cxx-mode #'c++-mode)
-
-(use-package clang-format
-  :ensure t
-  :defer t)
-
-(use-package cc-mode
-  :defer t
-  :config
-  (dolist (map (list c-mode-map c++-mode-map))
-    (define-key map (kbd "C-c i") #'clang-format-buffer))
-
-  (defconst my-cc-style
-    '((c-basic-offset . 4)
-      (c-comment-only-line-offset . 0)
-      (c-offsets-alist
-       (innamespace . 0)
-       (case-label . +)
-       (statement-block-intro . +)
-       (knr-argdecl-intro . +)
-       (substatement-open . 0)
-       (substatement-label . 0)
-       (label . 0)
-       (statement-cont . +)
-       (inline-open . 0)
-       (inexpr-class . 0))))
-
-  (c-add-style "my-style" my-cc-style)
-  :custom
-  (c-default-style "my-style"))
 
 ;;; recentf
 (use-package recentf
