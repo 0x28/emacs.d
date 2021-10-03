@@ -567,6 +567,7 @@
 
 ;;; outline
 (use-package outline
+  :if (>= emacs-major-version 28)
   :bind*
   (:map outline-minor-mode-map
         ("<tab>" . outline-cycle)
