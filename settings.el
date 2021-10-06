@@ -568,10 +568,10 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; outline
 (use-package outline
   :if (>= emacs-major-version 28)
-  :bind*
-  (:map outline-minor-mode-map
-        ("<tab>" . outline-cycle)
-        ("TAB" . outline-cycle))
+  :defer t
+  :config
+  (dolist (key '("<tab>" "TAB"))
+    (evil-define-key 'normal outline-minor-mode-map (kbd key) #'outline-cycle))
   :custom
   (outline-minor-mode-highlight 'override))
 
