@@ -326,6 +326,7 @@ mode. It doesn't matter if they're inside comments or not."
   (evil-want-keybinding nil)
   (evil-undo-system 'undo-tree)
   (evil-lookup-func (lambda () (interactive) (call-interactively #'man)))
+  (evil-start-of-line t)
   :bind*
   ("<leader> SPC" . execute-extended-command)
   ("<leader> f f " . find-file)
