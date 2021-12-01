@@ -477,6 +477,9 @@ mode. It doesn't matter if they're inside comments or not."
   ("<leader> l r" . lsp-rename)
   ("<leader> l a" . lsp-execute-code-action)
   ("<leader> l h" . lsp-describe-thing-at-point)
+  :config
+  (setq gc-cons-threshold (* 10 800000)
+        read-process-output-max (* 1024 1024))
   :custom
   (lsp-completion-provider :none)
   (lsp-headerline-breadcrumb-enable nil))
