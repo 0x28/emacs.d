@@ -430,6 +430,18 @@ mode. It doesn't matter if they're inside comments or not."
   :defer t
   :hook (prog-mode . flycheck-mode))
 
+;;; haskell
+(use-package haskell
+  :ensure haskell-mode
+  :hook (haskell-mode . interactive-haskell-mode)
+  :bind*
+  (:map interactive-haskell-mode-map
+        ("M-." . nil)))
+
+(use-package lsp-haskell
+  :ensure t
+  :hook (haskell-mode . lsp))
+
 ;;; ibuffer
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer-other-window)
