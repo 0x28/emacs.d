@@ -482,11 +482,14 @@ mode. It doesn't matter if they're inside comments or not."
         read-process-output-max (* 1024 1024))
   :custom
   (lsp-completion-provider :none)
-  (lsp-headerline-breadcrumb-enable nil))
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-lens-enable nil))
 
 (use-package lsp-ui
   :ensure t
-  :defer t)
+  :defer t
+  :custom
+  (lsp-ui-doc-show-with-cursor t))
 
 ;;; mail
 (use-package mu4e
