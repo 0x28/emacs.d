@@ -148,8 +148,16 @@ mode. It doesn't matter if they're inside comments or not."
   (company-minimum-prefix-length 1))
 
 ;;; compile
+(defun my/colorize-compilation ()
+  "Handle ANSI colors in compilation-mode."
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region
+     compilation-filter-start (point))))
+
 (use-package compile
   :defer t
+  :config
+  (add-hook 'compilation-filter-hook #'my/colorize-compilation)
   :custom
   (compilation-scroll-output 'first-error))
 
