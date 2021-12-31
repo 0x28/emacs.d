@@ -438,6 +438,29 @@ mode. It doesn't matter if they're inside comments or not."
   :defer t
   :hook (prog-mode . flycheck-mode))
 
+;;; gdb
+(use-package gud
+  :hook (gud-mode . (lambda ()
+                      (setq-local company-minimum-prefix-length 3))))
+
+(use-package gdb-mi
+  :custom
+  (gdb-restore-window-configuration-after-quit t))
+
+(defun my/debug-rust-program ()
+  "Debug the rust program executed by cargo."
+  (interactive)
+  (let* ((cargo-command (split-string-shell-command
+                         (read-string "debug: " "cargo test --bin ")))
+         (debug-target-path
+          (with-temp-buffer
+            (with-environment-variables
+                (("CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER" "echo"))
+              (apply #'call-process (car cargo-command) nil '(t nil) nil
+                     (cdr cargo-command)))
+            (string-trim (buffer-string)))))
+    (gdb (format "rust-gdb -i=mi -- %s" debug-target-path))))
+
 ;;; haskell
 (use-package haskell
   :ensure haskell-mode
