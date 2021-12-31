@@ -489,7 +489,8 @@ mode. It doesn't matter if they're inside comments or not."
   :ensure t
   :defer t
   :custom
-  (lsp-ui-doc-show-with-cursor t))
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-sideline-show-code-actions t))
 
 ;;; mail
 (use-package mu4e
