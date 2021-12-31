@@ -739,7 +739,9 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; yasnippet
 (use-package yasnippet
   :ensure t
-  :hook (prog-mode . yas-minor-mode))
+  :hook (prog-mode . yas-minor-mode)
+  :config
+  (yas-load-directory (expand-file-name "snippets" user-emacs-directory) 'jit))
 
 ;; Also load the snippets.
 (use-package yasnippet-snippets
