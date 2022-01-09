@@ -567,6 +567,8 @@ mode. It doesn't matter if they're inside comments or not."
 (defconst my/default-completion-styles '(basic partial-completion emacs22))
 (use-package orderless
   :ensure t
+  :config
+  (setq completion-category-defaults nil)
   :custom
   (completion-styles '(orderless))
   (orderless-component-separator #'orderless-escapable-split-on-space))
