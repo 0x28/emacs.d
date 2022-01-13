@@ -1,4 +1,4 @@
-alias v vc-dir $1
+alias v vc-dir .
 alias c clear t
 alias d dired-other-window .
 alias l ls -la $1
