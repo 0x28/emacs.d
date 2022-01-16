@@ -933,18 +933,30 @@ SSH. With prefix argument use sshx instead of ssh."
 (global-set-key (kbd "C-x k") #'my/kill-current-buffer)
 
 ;;;; yank words to minibuffer
+(defvar-local my/yank-pos nil)
+
+(defun my/remember-yank-pos ()
+  "Remember the point in the current buffer when entering the minibuffer."
+  (with-current-buffer (cadr (buffer-list))
+    (setq my/yank-pos (point))))
+
+(add-hook 'minibuffer-setup-hook #'my/remember-yank-pos)
+
 (defun my/minibuffer-yank-word (&optional arg)
   "Yank ARG words from current line into minibuffer."
   (interactive "p")
   (let (text)
     (with-current-buffer (cadr (buffer-list))
-      (let* ((beg (point))
-             (bol (line-beginning-position))
-             (eol (line-end-position))
-             (end (progn (forward-word arg)
-                         (goto-char (max bol (min (point) eol))))))
-        (setq text (buffer-substring-no-properties beg end))
-        (pulse-momentary-highlight-region beg end 'region)))
+      (save-excursion
+        (goto-char my/yank-pos)
+        (let* ((beg (point))
+               (bol (line-beginning-position))
+               (eol (line-end-position))
+               (end (progn (forward-word arg)
+                           (goto-char (max bol (min (point) eol))))))
+          (setq text (buffer-substring-no-properties beg end)
+                my/yank-pos end)
+          (pulse-momentary-highlight-region beg end 'highlight))))
     (when text
       (insert (replace-regexp-in-string "  +" " " text t t)))))
 
