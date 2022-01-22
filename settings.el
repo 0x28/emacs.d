@@ -26,7 +26,7 @@
   (package-install 'use-package))
 
 ;;; custom file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
 
 ;;; additional keywords
@@ -774,7 +774,7 @@ mode. It doesn't matter if they're inside comments or not."
   :ensure t
   :hook (prog-mode . yas-minor-mode)
   :config
-  (yas-load-directory (expand-file-name "snippets" user-emacs-directory) 'jit))
+  (yas-load-directory (locate-user-emacs-file "snippets") 'jit))
 
 ;; Also load the snippets.
 (use-package yasnippet-snippets
@@ -866,7 +866,7 @@ mode. It doesn't matter if they're inside comments or not."
 (defun my/edit-init-file ()
   "Open the init file."
   (interactive)
-  (find-file (expand-file-name "settings.el" user-emacs-directory)))
+  (find-file (locate-user-emacs-file "settings.el")))
 
 ;;;; indent buffer
 (defun my/indent-buffer ()
