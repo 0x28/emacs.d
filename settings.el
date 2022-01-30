@@ -20,6 +20,8 @@
   (setq package-enable-at-startup nil)
   (package-initialize))
 
+(setq use-package-enable-imenu-support t)
+
 ;; bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
