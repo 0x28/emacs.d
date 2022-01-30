@@ -540,7 +540,7 @@ mode. It doesn't matter if they're inside comments or not."
             smtpmail-smtp-service (string-to-number (plist-get entry :port)))))
 
   (add-hook 'mu4e-compose-pre-hook #'my/compose-mail-setup)
-  (setq mu4e-main-buffer-hide-personal-addresses t)
+  (setq mu4e-main-hide-personal-addresses t)
   :custom
   (mu4e-view-show-addresses t)
   (mu4e-get-mail-command "mbsync --all")
