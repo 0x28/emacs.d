@@ -613,10 +613,10 @@ mode. It doesn't matter if they're inside comments or not."
   :bind* (("C-c c" . org-capture))
   :custom
   (org-capture-templates
-   '(("w" "org-protocol web link" entry (file "Inbox.org")
+   '(("w" "org-protocol web link" entry (file "capture.org")
       "* %?%:description\n  %:link\n\n  %:initial\n"
       :prepend t)
-     ("r" "capture region" entry (file "Inbox.org")
+     ("r" "capture region" entry (file "capture.org")
       "* %?\n  %i\n"
       :prepend t))))
 
