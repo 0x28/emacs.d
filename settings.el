@@ -856,7 +856,7 @@ mode. It doesn't matter if they're inside comments or not."
 ;; use M-o for other-window
 (global-set-key (kbd "M-o") #'next-window-any-frame)
 ;; utf-8 everywhere
-(prefer-coding-system 'utf-8)
+(prefer-coding-system 'utf-8-unix)
 ;; disable suspend-frame
 (global-unset-key (kbd "C-x C-z"))
 ;; make scripts executable on save
