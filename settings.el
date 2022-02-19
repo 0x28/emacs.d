@@ -376,25 +376,12 @@ mode. It doesn't matter if they're inside comments or not."
   (evil-collection-company-use-tng nil))
 
 ;;; evil multiple cursors
-(defun my/evil-mc-dispatch ()
-  "Dispatch command to create multiple cursors."
-  (interactive)
-  (set-transient-map
-   (let ((map (make-sparse-keymap)))
-     (define-key map (kbd "C-n") #'evil-mc-make-and-goto-next-match)
-     (define-key map (kbd "C-p") #'evil-mc-make-and-goto-prev-match)
-     (define-key map (kbd "C-a") #'evil-mc-make-all-cursors)
-     (message "%s" (substitute-command-keys "\\{map}"))
-     map)
-   t))
-
 (defun my/evil-mc-lines ()
   "Create cursors for each line of the active selection."
   (interactive)
   (evil-mc-make-cursor-in-visual-selection-beg)
   (evil-mc-execute-for-all-cursors #'evil-normal-state))
 
-(evil-define-key 'normal 'global (kbd "<leader> m") #'my/evil-mc-dispatch)
 (evil-define-key 'visual 'global (kbd "<leader> m") #'my/evil-mc-lines)
 
 (use-package evil-mc
@@ -697,6 +684,19 @@ mode. It doesn't matter if they're inside comments or not."
                 (load-theme 'doom-dracula t))))
   (unless (daemonp)
     (load-theme 'doom-dracula t)))
+
+;;; transient
+(use-package transient
+  :config
+  (transient-define-prefix my/mc-dispatch ()
+    :transient-suffix #'transient--do-stay
+    :transient-non-suffix #'transient--do-exit
+    ["multiple cursors"
+     [("C-a" "All" evil-mc-make-all-cursors)
+      ("C-n" "Next" evil-mc-make-and-goto-next-match)
+      ("C-p" "Prev" evil-mc-make-and-goto-prev-match)]])
+
+  (evil-define-key 'normal 'global (kbd "<leader> m") #'my/mc-dispatch))
 
 ;;; undo-tree
 (use-package undo-tree
