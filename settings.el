@@ -688,6 +688,21 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; transient
 (use-package transient
   :config
+  (transient-define-prefix my/smerge-dispatch ()
+    "Convenience function for using smerge."
+    :transient-suffix #'transient--do-stay
+    :transient-non-suffix #'transient--do-call
+    ["smerge"
+     [("n" "Next" smerge-next)
+      ("p" "Prev" smerge-prev)]
+     [("u" "Keep upper" smerge-keep-upper)
+      ("l" "Keep lower" smerge-keep-lower)
+      ("a" "Keep all" smerge-keep-all)]
+     [("q" "Quit" transient-quit-one)]]
+    (interactive)
+    (smerge-mode)
+    (transient-setup 'my/smerge-dispatch))
+
   (transient-define-prefix my/mc-dispatch ()
     :transient-suffix #'transient--do-stay
     :transient-non-suffix #'transient--do-exit
