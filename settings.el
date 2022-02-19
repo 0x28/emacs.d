@@ -661,7 +661,8 @@ mode. It doesn't matter if they're inside comments or not."
   (projectile-mode)
   :custom
   (projectile-completion-system 'default)
-  (projectile-enable-caching t))
+  (projectile-enable-caching t)
+  (projectile-enable-cmake-presets t))
 
 ;;; quickrun
 (use-package quickrun
