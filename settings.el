@@ -402,9 +402,9 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package faces
   :custom-face
   (help-argument-name ((t (:inherit (italic font-lock-function-name-face)))))
-  (mode-line ((t (:overline "gainsboro" :background nil))))
-  (mode-line-inactive ((t (:overline "dim gray" :background nil))))
-  (vertical-border ((t (:foreground "black")))))
+  (mode-line ((t (:overline "gainsboro" :background nil :box nil))))
+  (mode-line-inactive ((t (:overline "dim gray" :background nil :box nil))))
+  (vertical-border ((t (:foreground "dim gray")))))
 
 ;;; fill column indicator
 (use-package display-fill-column-indicator
@@ -677,15 +677,18 @@ mode. It doesn't matter if they're inside comments or not."
   (lsp-rust-analyzer-proc-macro-enable t))
 
 ;;; theme
-(use-package doom-themes
+(use-package modus-themes
   :ensure t
   :config
   (add-hook 'server-after-make-frame-hook
             (lambda ()
-              (unless (custom-theme-enabled-p 'doom-dracula)
-                (load-theme 'doom-dracula t))))
+              (unless (custom-theme-enabled-p 'modus-vivendi)
+                (load-theme 'modus-vivendi t))))
   (unless (daemonp)
-    (load-theme 'doom-dracula t)))
+    (load-theme 'modus-vivendi t))
+  :custom
+  (modus-themes-headings '((t rainbow)))
+  (modus-themes-diffs 'bg-only))
 
 ;;; transient
 (use-package transient
@@ -787,7 +790,7 @@ mode. It doesn't matter if they're inside comments or not."
   (whitespace-style '(face trailing lines-tail))
   :custom-face
   (whitespace-line
-   ((t (:underline (:color "cyan" :style wave) :foreground nil)))))
+   ((t (:underline (:color "cyan" :style wave) :foreground nil :inherit nil)))))
 
 ;;; yasnippet
 (use-package yasnippet
