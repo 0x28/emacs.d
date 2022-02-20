@@ -486,7 +486,9 @@ mode. It doesn't matter if they're inside comments or not."
 
 ;;; line numbers
 (use-package display-line-numbers
-  :hook (prog-mode . display-line-numbers-mode))
+  :hook (prog-mode . display-line-numbers-mode)
+  :custom
+  (display-line-numbers-width 3))
 
 ;;; lsp
 (use-package lsp-mode
