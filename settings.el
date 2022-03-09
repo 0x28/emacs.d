@@ -246,7 +246,7 @@ mode. It doesn't matter if they're inside comments or not."
   :bind*
   ("C-," . embark-act)
   ("C-h b" . embark-bindings)
-  (:map minibuffer-mode-map
+  (:map minibuffer-local-map
         ("C-c C-o" . embark-export)))
 
 (use-package embark-consult
