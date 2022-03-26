@@ -514,33 +514,6 @@ mode. It doesn't matter if they're inside comments or not."
   (lsp-ui-doc-show-with-cursor t)
   (lsp-ui-sideline-show-code-actions t))
 
-;;; mail
-(use-package mu4e
-  :bind* ("C-c m" . mu4e)
-  :if (fboundp #'mu4e)
-  :config
-  (defun my/compose-mail-setup ()
-    "Initialize mail settings using the `auth-sources' files."
-    (interactive)
-    (let* ((users (mapcar (lambda (entry) (plist-get entry :user))
-                          (auth-source-search :max 20)))
-           (user (completing-read "select user: " users))
-           (entry (car (auth-source-search :user user :max 1))))
-      (setq user-mail-address user
-            smtpmail-smtp-server (plist-get entry :host)
-            smtpmail-smtp-service (string-to-number (plist-get entry :port)))))
-
-  (add-hook 'mu4e-compose-pre-hook #'my/compose-mail-setup)
-  (setq mu4e-main-hide-personal-addresses t)
-  :custom
-  (mu4e-view-show-addresses t)
-  (mu4e-get-mail-command "mbsync --all")
-  (mu4e-change-filenames-when-moving t)
-  (mu4e-completing-read-function #'completing-read)
-  (shr-use-colors nil)
-  (smtpmail-stream-type 'ssl)
-  (message-send-mail-function #'smtpmail-send-it))
-
 ;;; markdown
 (use-package markdown-mode
   :defer t
