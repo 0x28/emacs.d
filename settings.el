@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;; package setup
 ;; Bootstraps use-package and sets the repositories.
 ;; set up package sources
@@ -186,24 +187,24 @@ mode. It doesn't matter if they're inside comments or not."
   (consult-line-point-placement 'match-end)) ;; Needed for M-j to work
 
 ;;; devdocs
-(defun my/view-docs-for-major-mode ()
-  "Read the documentation for the programming language of the
-    current major-mode. Use `devdocs-install' to download docsets."
-  (interactive)
-  (let ((devdocs-current-docs
-         (cdr (assoc major-mode '((sh-mode      . ("bash"))
-                                  (rust-mode    . ("rust"))
-                                  (c-mode       . ("c"))
-                                  (c++-mode     . ("c" "cpp"))
-                                  (cmake-mode   . ("cmake~3.21"))
-                                  (haskell-mode . ("haskell~9"))
-                                  (latex-mode   . ("latex"))
-                                  (tex-mode     . ("latex"))
-                                  (python-mode  . ("python~3.9")))))))
-    (devdocs-lookup (not devdocs-current-docs) (thing-at-point 'symbol t))))
-
 (use-package devdocs
   :ensure t
+  :config
+  (defun my/view-docs-for-major-mode ()
+    "Read the documentation for the programming language of the
+    current major-mode. Use `devdocs-install' to download docsets."
+    (interactive)
+    (let ((devdocs-current-docs
+           (cdr (assoc major-mode '((sh-mode      . ("bash"))
+                                    (rust-mode    . ("rust"))
+                                    (c-mode       . ("c"))
+                                    (c++-mode     . ("c" "cpp"))
+                                    (cmake-mode   . ("cmake~3.21"))
+                                    (haskell-mode . ("haskell~9"))
+                                    (latex-mode   . ("latex"))
+                                    (tex-mode     . ("latex"))
+                                    (python-mode  . ("python~3.9")))))))
+      (devdocs-lookup (not devdocs-current-docs) (thing-at-point 'symbol t))))
   :bind*
   ("<leader> h d" . my/view-docs-for-major-mode)
   :after evil
@@ -588,7 +589,7 @@ mode. It doesn't matter if they're inside comments or not."
   :defer t
   :config
   (dolist (key '("<tab>" "TAB"))
-    (evil-define-key 'normal outline-minor-mode-map (kbd key) #'outline-cycle))
+    (evil-define-key* 'normal outline-minor-mode-map (kbd key) #'outline-cycle))
   :custom
   (outline-minor-mode-highlight 'override))
 
