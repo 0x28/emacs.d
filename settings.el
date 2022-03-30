@@ -765,6 +765,24 @@ mode. It doesn't matter if they're inside comments or not."
   (whitespace-line
    ((t (:underline (:color "cyan" :style wave) :foreground nil :inherit nil)))))
 
+;;; xml
+(defun my/format-xml ()
+  "Format XML buffers."
+  (interactive)
+  (let ((buffer " *format-xml*"))
+    (if (zerop
+         (call-process-region nil nil "xmllint" nil buffer nil "--format" "-"))
+        (replace-buffer-contents buffer 0.5) ;; NOTE: to preserve the point
+      (message "xml formatting failed:\n%s" (with-current-buffer buffer
+                                              (string-trim (buffer-string)))))
+    (kill-buffer buffer)))
+
+(use-package nxml-mode
+  :defer t
+  :bind*
+  (:map nxml-mode-map
+        ("C-c i" . my/format-xml)))
+
 ;;; yasnippet
 (use-package yasnippet
   :ensure t
