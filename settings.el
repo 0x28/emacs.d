@@ -513,6 +513,7 @@ mode. It doesn't matter if they're inside comments or not."
   :defer t
   :custom
   (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-doc-position 'bottom)
   (lsp-ui-sideline-show-code-actions t))
 
 ;;; markdown
