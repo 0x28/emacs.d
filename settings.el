@@ -469,7 +469,8 @@ mode. It doesn't matter if they're inside comments or not."
   (:map isearch-mode-map
         ("M-j" . isearch-yank-word-or-char))
   :custom
-  (isearch-lazy-count t))
+  (isearch-lazy-count t)
+  (isearch-wrap-pause 'no))
 
 ;;; LaTeX
 (use-package tex-mode
