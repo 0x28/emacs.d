@@ -868,6 +868,8 @@ mode. It doesn't matter if they're inside comments or not."
 ;; make scripts executable on save
 (add-hook 'after-save-hook
           #'executable-make-buffer-file-executable-if-script-p)
+;; highlight last selected error
+(customize-set-variable 'next-error-message-highlight t)
 ;; f5 is revert
 (global-set-key (kbd "<f5>") #'revert-buffer-quick)
 
