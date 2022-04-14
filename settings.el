@@ -853,7 +853,7 @@ mode. It doesn't matter if they're inside comments or not."
 (when (eq system-type 'gnu/linux)
   (setq x-wait-for-event-timeout nil))
 ;; ask "(y/n)?" and not "(yes/no)?"
-(defalias #'yes-or-no-p #'y-or-n-p)
+(customize-set-variable 'use-short-answers t)
 ;; more information on describe-key
 (global-set-key (kbd "C-h c") #'describe-key)
 ;; add a newline at the end of files
