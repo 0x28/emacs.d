@@ -507,6 +507,7 @@ mode. It doesn't matter if they're inside comments or not."
   :ensure t
   :defer t
   :custom
+  (lsp-ui-doc-delay 0.8)
   (lsp-ui-doc-show-with-cursor t)
   (lsp-ui-doc-position 'bottom)
   (lsp-ui-sideline-show-code-actions t))
