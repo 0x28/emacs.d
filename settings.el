@@ -766,6 +766,14 @@ mode. It doesn't matter if they're inside comments or not."
   (:map nxml-mode-map
         ("C-c i" . my/format-xml)))
 
+;;; xref
+(use-package xref
+  :defer t
+  :if (>= emacs-major-version 28)
+  :custom
+  (xref-search-program (if (executable-find "rg") 'ripgrep 'grep))
+  (xref-show-definitions-function #'xref-show-definitions-completing-read))
+
 ;;; yasnippet
 (use-package yasnippet
   :ensure t
