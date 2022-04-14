@@ -861,6 +861,8 @@ mode. It doesn't matter if they're inside comments or not."
 (customize-set-variable 'next-error-message-highlight t)
 ;; f5 is revert
 (global-set-key (kbd "<f5>") #'revert-buffer-quick)
+;; make URLs clickable
+(global-goto-address-mode 1)
 
 ;;; custom functions
 ;;;; edit init file
