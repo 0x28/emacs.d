@@ -876,6 +876,8 @@ mode. It doesn't matter if they're inside comments or not."
 ;; make scripts executable on save
 (add-hook 'after-save-hook
           #'executable-make-buffer-file-executable-if-script-p)
+;; f5 is revert
+(global-set-key (kbd "<f5>") #'revert-buffer-quick)
 
 ;;; custom functions
 ;;;; edit init file
@@ -1009,18 +1011,6 @@ delete the selected frame."
     (let ((tags-revert-without-query t))
       (visit-tags-table dir))))
 
-;;;; revert buffer safely
-(defun my/revert-buffer (arg)
-  "Revert the current buffer if the associated file wasn't modified.
-With prefix argument ARG reinitialize the modes."
-  (interactive "P")
-  (if (and (buffer-modified-p)
-           (buffer-file-name))
-      (message "Can't revert modified file!")
-    (revert-buffer 'noauto 'noconfirm (not arg))
-    (message "Buffer reverted")))
-
-(global-set-key (kbd "<f5>") #'my/revert-buffer)
 
 ;;; local variables
 ;; Local Variables:
