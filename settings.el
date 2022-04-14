@@ -536,23 +536,11 @@ mode. It doesn't matter if they're inside comments or not."
   (orderless-component-separator #'orderless-escapable-split-on-space))
 
 ;;; org
-(defun my/org-tag ()
-  "Change org-mode tags of the current heading with completion."
-  (interactive)
-  (let* ((current-tags (org-get-tags nil t))
-         (new-tags (completing-read-multiple
-                    "change tags: "
-                    (org-get-buffer-tags)
-                    nil
-                    nil
-                    (concat (string-join current-tags ",") ","))))
-    (org-set-tags (delete-dups new-tags))))
-
 (use-package org
   :bind*
   ("C-c a" . org-agenda)
   (:map org-mode-map
-        ("C-c t" . my/org-tag))
+        ("C-c t" . org-set-tags-command))
   :custom-face
   (org-block-begin-line ((t (:underline nil :overline t))))
   (org-block-end-line ((t (:underline t :overline nil))))
