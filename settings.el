@@ -582,9 +582,6 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package outline
   :if (>= emacs-major-version 28)
   :defer t
-  :config
-  (dolist (key '("<tab>" "TAB"))
-    (evil-define-key* 'normal outline-minor-mode-map (kbd key) #'outline-cycle))
   :custom
   (outline-minor-mode-highlight 'override))
 
@@ -1011,5 +1008,6 @@ delete the selected frame."
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; outline-minor-mode-hook: (lambda nil (outline-hide-sublevels 1))
 ;; outline-regexp: ";;;+"
+;; outline-minor-mode-cycle: t
 ;; eval: (outline-minor-mode)
 ;; End:
