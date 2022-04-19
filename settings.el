@@ -685,6 +685,7 @@ mode. It doesn't matter if they're inside comments or not."
   :custom
   (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-relative-timestamps t)
+  (undo-tree-auto-save-history nil)
   :hook (undo-tree-mode . my/undo-tree-config))
 
 ;;; version control
