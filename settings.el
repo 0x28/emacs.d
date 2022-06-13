@@ -422,6 +422,7 @@ mode. It doesn't matter if they're inside comments or not."
   :defer t
   :hook (prog-mode . flycheck-mode)
   :custom
+  (flycheck-check-syntax-automatically '(save mode-enabled))
   (flycheck-clang-language-standard "c++17")
   (flycheck-gcc-language-standard "c++17")
   (flycheck-cppcheck-standards "c++17"))
