@@ -412,7 +412,7 @@ mode. It doesn't matter if they're inside comments or not."
   "Use flycheck or flymake to list errors."
   (interactive)
   (cond ((bound-and-true-p flycheck-mode) (flycheck-list-errors))
-        ((bound-and-true-p flymake-mode) (flymake-show-diagnostics-buffer))
+        ((bound-and-true-p flymake-mode) (flymake-show-buffer-diagnostics))
         (t (user-error "Neither flycheck nor flymake are enabled"))))
 
 (define-key evil-normal-state-map (kbd "<leader> e l") #'my/list-errors)
