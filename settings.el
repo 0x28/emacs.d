@@ -644,7 +644,8 @@ mode. It doesn't matter if they're inside comments or not."
     (load-theme 'modus-vivendi t))
   :custom
   (modus-themes-headings '((t rainbow)))
-  (modus-themes-diffs 'bg-only))
+  (modus-themes-diffs 'bg-only)
+  (modus-themes-region '(bg-only)))
 
 ;;; transient
 (use-package transient
