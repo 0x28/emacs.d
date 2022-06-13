@@ -420,7 +420,11 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package flycheck
   :ensure t
   :defer t
-  :hook (prog-mode . flycheck-mode))
+  :hook (prog-mode . flycheck-mode)
+  :custom
+  (flycheck-clang-language-standard "c++17")
+  (flycheck-gcc-language-standard "c++17")
+  (flycheck-cppcheck-standards "c++17"))
 
 ;;; gdb
 (use-package gud
