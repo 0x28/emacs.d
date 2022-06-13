@@ -815,6 +815,8 @@ mode. It doesn't matter if they're inside comments or not."
 (setq completion-show-help nil)
 ;; only show one column for minibuffer completion
 (setq completions-format 'one-column)
+;; show details during completion
+(customize-set-variable 'completions-detailed t)
 
 ;;;; convenience
 ;; save backups in .emacs.d
