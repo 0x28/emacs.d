@@ -592,11 +592,6 @@ mode. It doesn't matter if they're inside comments or not."
     (consult-ripgrep (projectile-project-root)
                      (concat (thing-at-point 'symbol t) rg-sep))))
 
-(defun my/projectile-project-find-function (dir)
-  "Compatibility layer between projectile and project.el."
-  (let ((root (projectile-project-root dir)))
-    (and root (cons 'transient root))))
-
 (use-package projectile
   :ensure t
   :defer t
@@ -604,10 +599,7 @@ mode. It doesn't matter if they're inside comments or not."
   (global-set-key (kbd "<leader> p") #'projectile-command-map)
   (autoload #'projectile-command-map "projectile.el" nil nil 'keymap)
   :config
-  (push "CMakeLists.txt" projectile-project-root-files-top-down-recurring)
   (define-key projectile-command-map (kbd "s") #'my/project-rg)
-  (add-to-list 'project-find-functions #'my/projectile-project-find-function)
-
   (projectile-mode)
   :custom
   (projectile-completion-system 'default)
