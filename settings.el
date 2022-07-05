@@ -707,6 +707,8 @@ mode. It doesn't matter if they're inside comments or not."
   ("<leader> g s" . magit-status)
   ("<leader> g g" . magit-dispatch)
   ("<leader> g l" . magit-log-current)
+  ("<leader> g c" . magit-branch-checkout)
+  ("<leader> g f" . magit-fetch-all)
   :custom
   (magit-diff-refine-hunk t))
 
