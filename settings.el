@@ -455,6 +455,8 @@ mode. It doesn't matter if they're inside comments or not."
   :ensure haskell-mode
   :hook (haskell-mode . interactive-haskell-mode)
   :bind*
+  (:map haskell-mode-map
+        ("C-c i" . lsp-format-buffer))
   (:map interactive-haskell-mode-map
         ("M-." . nil)))
 
