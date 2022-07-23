@@ -773,7 +773,8 @@ mode. It doesn't matter if they're inside comments or not."
   :defer t
   :if (>= emacs-major-version 28)
   :custom
-  (xref-search-program (if (executable-find "rg") 'ripgrep 'grep))
+  ;; Doesn't work for binary files in emacs 28 because of bug #56624
+  ;; (xref-search-program (if (executable-find "rg") 'ripgrep 'grep))
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
 ;;; yasnippet
