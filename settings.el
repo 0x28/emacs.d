@@ -367,8 +367,7 @@ mode. It doesn't matter if they're inside comments or not."
   :config
   (evil-collection-init)
   :custom
-  (evil-collection-key-blacklist (list "SPC"))
-  (evil-collection-company-use-tng nil))
+  (evil-collection-key-blacklist (list "SPC")))
 
 ;;; evil multiple cursors
 (defun my/evil-mc-lines ()
