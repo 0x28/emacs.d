@@ -17,10 +17,6 @@
       '(("gnu" . 20)
         ("melpa" . 20)))
 
-(when (< emacs-major-version 27)
-  (setq package-enable-at-startup nil)
-  (package-initialize))
-
 (setq use-package-enable-imenu-support t)
 
 ;; bootstrap `use-package'
@@ -594,7 +590,6 @@ mode. It doesn't matter if they're inside comments or not."
 
 ;;; outline
 (use-package outline
-  :if (>= emacs-major-version 28)
   :hook (ediff-prepare-buffer . outline-show-all)
   :custom
   (outline-minor-mode-highlight 'override))
@@ -789,7 +784,6 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; xref
 (use-package xref
   :defer t
-  :if (>= emacs-major-version 28)
   :custom
   ;; Doesn't work for binary files in emacs 28 because of bug #56624
   ;; (xref-search-program (if (executable-find "rg") 'ripgrep 'grep))
@@ -893,8 +887,7 @@ mode. It doesn't matter if they're inside comments or not."
 ;; f5 is revert
 (global-set-key (kbd "<f5>") #'revert-buffer-quick)
 ;; make URLs clickable
-(when (>= emacs-major-version 28)
-  (global-goto-address-mode 1))
+(global-goto-address-mode 1)
 
 ;;; custom functions
 ;;;; edit init file
