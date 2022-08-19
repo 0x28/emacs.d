@@ -577,7 +577,7 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; outline
 (use-package outline
   :if (>= emacs-major-version 28)
-  :defer t
+  :hook (ediff-prepare-buffer . outline-show-all)
   :custom
   (outline-minor-mode-highlight 'override))
 
