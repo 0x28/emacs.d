@@ -553,7 +553,6 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; org
 (use-package org
   :bind*
-  ("C-c a" . org-agenda)
   (:map org-mode-map
         ("C-c t" . org-set-tags-command))
   :custom-face
@@ -563,6 +562,16 @@ mode. It doesn't matter if they're inside comments or not."
   (org-agenda-files (list org-directory))
   (org-src-fontify-natively t)
   (org-startup-folded t))
+
+(use-package org-agenda
+  :bind* ("C-c a" . org-agenda)
+  :config
+  (evil-define-key 'normal org-agenda-mode-map
+    (kbd "RET") #'org-agenda-goto
+    "gr" #'org-agenda-redo-all
+    "s" #'org-agenda-manipulate-query-add
+    "q" #'org-agenda-quit)
+  (evil-set-initial-state 'org-agenda-mode 'normal))
 
 (use-package org-protocol
   :demand
