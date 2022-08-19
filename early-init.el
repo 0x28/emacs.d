@@ -13,5 +13,8 @@
              (cons 'font
                    (cond ((eq system-type 'gnu/linux) "Hack-13")
                          ((eq system-type 'windows-nt) "Consolas-14"))))
+;; don't flash a white screen on startup
+(add-to-list 'default-frame-alist '(background-color . "#000000"))
+(add-to-list 'default-frame-alist '(foreground-color . "#ffffff"))
 ;; resize frame per pixel
 (setq frame-resize-pixelwise t)
