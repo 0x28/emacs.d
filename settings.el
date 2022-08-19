@@ -229,8 +229,17 @@ mode. It doesn't matter if they're inside comments or not."
   (evil-define-key 'normal wdired-mode-map (kbd "u") #'dired-undo))
 
 ;;; ediff
-(use-package ediff-wind
+(defun my/ediff-save-wincfg ()
+  (window-configuration-to-register ?~))
+
+(defun my/ediff-restore-wincfg ()
+  (jump-to-register ?~))
+
+(use-package ediff
   :defer t
+  :hook
+  (ediff-before-setup . my/ediff-save-wincfg)
+  (ediff-quit . my/ediff-restore-wincfg)
   :custom
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain))
