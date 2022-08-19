@@ -9,13 +9,7 @@
       gnutls-min-prime-bits 2048
       gnutls-verify-error t)
 
-(setq package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")))
-
-(setq package-archive-priorities
-      '(("gnu" . 20)
-        ("melpa" . 20)))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (setq use-package-enable-imenu-support t)
 
