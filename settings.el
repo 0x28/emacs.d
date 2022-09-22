@@ -138,6 +138,7 @@ mode. It doesn't matter if they're inside comments or not."
   (company-selection-wrap-around t)
   (company-idle-delay 0.1)
   (company-tooltip-minimum-width 40)
+  (company-tooltip-width-grow-only t)
   (company-minimum-prefix-length 1))
 
 ;;; compile
