@@ -416,15 +416,18 @@ mode. It doesn't matter if they're inside comments or not."
 
 (define-key evil-normal-state-map (kbd "<leader> e l") #'my/list-errors)
 
+(defun my/set-flycheck-c++-standard ()
+  (setq-local flycheck-gcc-language-standard "c++17"
+              flycheck-clang-language-standard "c++17"
+              flycheck-cppcheck-standards "c++17"))
+
 (use-package flycheck
   :ensure t
   :defer t
-  :hook (prog-mode . flycheck-mode)
+  :hook ((prog-mode . flycheck-mode)
+         (c++-mode . my/set-flycheck-c++-standard))
   :custom
-  (flycheck-check-syntax-automatically '(save mode-enabled))
-  (flycheck-clang-language-standard "c++17")
-  (flycheck-gcc-language-standard "c++17")
-  (flycheck-cppcheck-standards "c++17"))
+  (flycheck-check-syntax-automatically '(save mode-enabled)))
 
 ;;; gdb
 (use-package gud
