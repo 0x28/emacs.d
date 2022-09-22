@@ -1,10 +1,13 @@
-alias v vc-dir .
-alias c clear t
-alias d dired-other-window .
-alias l ls -la $1
-alias x exit
-alias type which $1
-alias e find-file-other-window $1
 alias ... cd ../..
 alias .... cd ../../..
 alias ..... cd ../../../..
+alias c clear t
+alias d dired-other-window .
+alias e find-file-other-window $1
+alias gd vc-diff
+alias gg vc-git-grep $1 "*" .
+alias glog vc-print-log nil 30
+alias gst vc-dir .
+alias l ls -la $1
+alias type which $1
+alias x exit
