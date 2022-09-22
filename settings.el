@@ -255,6 +255,7 @@ mode. It doesn't matter if they're inside comments or not."
   :hook
   (eshell-mode . (lambda ()
                    (local-set-key (kbd "C-r") #'my/eshell-history)
+                   (setq-local imenu-generic-expression '(("Prompt" " $ \\(.*\\)" 1)))
                    (setq-local completion-styles my/default-completion-styles)
                    (setq-local global-hl-line-mode nil)))
   :config
@@ -334,7 +335,7 @@ mode. It doesn't matter if they're inside comments or not."
   (evil-start-of-line t)
   :bind*
   ("<leader> SPC" . execute-extended-command)
-  ("<leader> f f " . find-file)
+  ("<leader> f f" . find-file)
   ("<leader> f i" . my/edit-init-file)
   ("<leader> f s" . my/ssh-connect)
   ("<leader> q n" . save-buffers-kill-emacs)
