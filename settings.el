@@ -925,10 +925,10 @@ remove tabs. In Makefiles only remove trailing whitespace."
 ;;;; ssh connect
 (defun my/ssh-connect (host user)
   "Connect to the home directory of a foreign HOST as USER using
-SSH. With prefix argument use sshx instead of ssh."
+SSH. On Linux the method is \"ssh\", otherwise it's \"plink\"."
   (interactive "Mhost: \nMuser: ")
   (message "connecting to %s@%s ..." user host)
-  (let ((method (if current-prefix-arg "sshx" "ssh")))
+  (let ((method (if (eq system-type 'gnu/linux) "ssh" "plink")))
     (find-file (format "/%s:%s@%s:~" method user host))))
 
 ;;;; duckduckgo dwim
