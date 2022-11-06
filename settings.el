@@ -531,7 +531,9 @@ mode. It doesn't matter if they're inside comments or not."
 
 ;;; occur
 (use-package replace
-  :hook (occur-mode . next-error-follow-minor-mode)
+  :hook
+  (occur-mode . next-error-follow-minor-mode)
+  (occur-mode-find-occurrence . recenter)
   :custom
   (list-matching-lines-default-context-lines 3))
 
