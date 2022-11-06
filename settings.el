@@ -725,6 +725,26 @@ mode. It doesn't matter if they're inside comments or not."
   :custom
   (magit-diff-refine-hunk t))
 
+(defun my/repolist-vc ()
+  "Show the VC status of the repo at point in `magit-repolist-mode'."
+  (interactive)
+  (vc-dir (tabulated-list-get-id)))
+
+(use-package magit-repos
+  :bind
+  ("<leader> g R" . magit-list-repositories)
+  :config
+  (evil-define-key 'normal magit-repolist-mode-map (kbd "v") #'my/repolist-vc)
+  :custom
+  (magit-repository-directories '(("~/repos/" . 1)))
+  (magit-repolist-columns
+   '(("Name" 25 magit-repolist-column-ident nil)
+     ("Flags" 5 magit-repolist-column-flags nil)
+     ("Branch" 25 magit-repolist-column-branch nil)
+     ("B<U" 3 magit-repolist-column-unpulled-from-upstream ((:sort <)))
+     ("B>U" 3 magit-repolist-column-unpushed-to-upstream ((:sort <)))
+     ("Path" 99 magit-repolist-column-path nil))))
+
 ;;; vertico
 (use-package vertico
   :ensure t
