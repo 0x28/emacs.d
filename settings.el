@@ -655,9 +655,11 @@ mode. It doesn't matter if they're inside comments or not."
   (unless (daemonp)
     (load-theme 'modus-vivendi t))
   :custom
-  (modus-themes-headings '((t rainbow)))
-  (modus-themes-diffs 'bg-only)
-  (modus-themes-region '(bg-only)))
+  (modus-themes-common-palette-overrides '((fg-heading-1 magenta-cooler)
+                                           (bg-region bg-cyan-subtle)
+                                           (fg-region unspecified)
+                                           (bg-added bg-added-faint)
+                                           (bg-removed bg-removed-faint))))
 
 ;;; transient
 (use-package transient
