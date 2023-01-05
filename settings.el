@@ -157,6 +157,7 @@ mode. It doesn't matter if they're inside comments or not."
   ("C-c f" . consult-line)
   ("C-x b" . consult-buffer)
   ("C-c d" . consult-imenu)
+  ("C-c D" . consult-imenu-multi)
   ("C-c k" . consult-yank-pop)
   ("<leader> f r" . consult-recent-file)
   ("<leader> f l" . consult-locate)
