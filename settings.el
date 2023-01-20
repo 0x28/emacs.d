@@ -161,7 +161,6 @@ mode. It doesn't matter if they're inside comments or not."
   ("C-c k" . consult-yank-pop)
   ("<leader> f r" . consult-recent-file)
   ("<leader> f l" . consult-locate)
-  ("<leader> f e" . consult-file-externally)
   :config
   (define-advice consult-line
       (:around (orig-fun &rest args) enable-preview)
@@ -239,9 +238,11 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; embark
 (use-package embark
   :ensure t
+  :after evil
   :bind*
   ("C-," . embark-act)
   ("C-h b" . embark-bindings)
+  ("<leader> f e" . embark-open-externally)
   (:map minibuffer-local-map
         ("C-c C-o" . embark-export)))
 
@@ -312,8 +313,8 @@ mode. It doesn't matter if they're inside comments or not."
     If there are no arguments open the `default-directory' in an
     external application."
   (if args
-      (mapc #'consult-file-externally args)
-    (consult-file-externally (expand-file-name default-directory))))
+      (mapc #'embark-open-externally args)
+    (embark-open-externally (expand-file-name default-directory))))
 
 ;;;; history
 (defun my/eshell-history ()
@@ -937,7 +938,7 @@ remove tabs. In Makefiles only remove trailing whitespace."
 ;; Original from https://gist.github.com/3402786.
 (defun my/toggle-maximize-buffer ()
   "Maximize the current buffer and save the window configuration.
-    A second call restores the old window configuration."
+A second call restores the old window configuration."
   (interactive)
   (if (and (one-window-p t)
            (assoc ?_ register-alist))
