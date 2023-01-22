@@ -594,6 +594,10 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; outline
 (use-package outline
   :hook (ediff-prepare-buffer . outline-show-all)
+  :config
+  (evil-define-key 'normal outline-minor-mode-map
+    (kbd "<tab>") #'outline-cycle
+    (kbd "<backtab>") #'outline-cycle-buffer)
   :custom
   (outline-minor-mode-highlight 'override))
 
@@ -1052,6 +1056,5 @@ delete the selected frame."
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; outline-minor-mode-hook: (lambda nil (outline-hide-sublevels 1))
 ;; outline-regexp: ";;;+"
-;; outline-minor-mode-cycle: t
 ;; eval: (outline-minor-mode)
 ;; End:
