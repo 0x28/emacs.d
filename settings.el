@@ -201,14 +201,15 @@ mode. It doesn't matter if they're inside comments or not."
   :bind*
   ("<leader> f d" . dired-jump-other-window)
   (:map dired-mode-map
-        ("<tab>" . dired-omit-mode)
         ("<backtab>" . dired-hide-details-mode)
         ([remap consult-imenu] . dired-goto-file))
   :hook
   (dired-mode . dired-omit-mode)
   (dired-mode . dired-hide-details-mode)
   :config
-  (evil-define-key 'normal dired-mode-map (kbd "C-o") #'dired-display-file)
+  (evil-define-key 'normal dired-mode-map
+    (kbd "C-o") #'dired-display-file
+    (kbd "TAB") #'dired-omit-mode)
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
@@ -347,8 +348,9 @@ mode. It doesn't matter if they're inside comments or not."
         ("<leader> n r" . narrow-to-region))
   :config
   (define-key evil-normal-state-map (kbd "M-.") nil)
-  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
-  (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
+  (evil-define-key 'normal org-mode-map
+    (kbd "<tab>") #'org-cycle
+    (kbd "TAB") #'org-cycle)
   (evil-set-leader '(visual normal) (kbd "SPC"))
 
   (defun my/color-text (text color)
