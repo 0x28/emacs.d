@@ -348,9 +348,7 @@ mode. It doesn't matter if they're inside comments or not."
         ("<leader> n r" . narrow-to-region))
   :config
   (define-key evil-normal-state-map (kbd "M-.") nil)
-  (evil-define-key 'normal org-mode-map
-    (kbd "<tab>") #'org-cycle
-    (kbd "TAB") #'org-cycle)
+  (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
   (evil-set-leader '(visual normal) (kbd "SPC"))
 
   (defun my/color-text (text color)
@@ -598,7 +596,7 @@ mode. It doesn't matter if they're inside comments or not."
   :hook (ediff-prepare-buffer . outline-show-all)
   :config
   (evil-define-key 'normal outline-minor-mode-map
-    (kbd "<tab>") #'outline-cycle
+    (kbd "TAB") #'outline-cycle
     (kbd "<backtab>") #'outline-cycle-buffer)
   :custom
   (outline-minor-mode-highlight 'override))
