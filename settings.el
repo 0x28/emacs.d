@@ -161,6 +161,7 @@ mode. It doesn't matter if they're inside comments or not."
   ("C-c k" . consult-yank-pop)
   ("<leader> f r" . consult-recent-file)
   ("<leader> f l" . consult-locate)
+  ("<leader> h i" . consult-info)
   :config
   (define-advice consult-line
       (:around (orig-fun &rest args) enable-preview)
