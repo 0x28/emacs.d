@@ -561,7 +561,8 @@ mode. It doesn't matter if they're inside comments or not."
   :custom
   (org-agenda-files (list org-directory))
   (org-src-fontify-natively t)
-  (org-startup-folded t))
+  (org-startup-folded t)
+  (org-complete-tags-always-offer-all-agenda-tags t))
 
 (use-package org-agenda
   :bind* ("C-c a" . org-agenda)
