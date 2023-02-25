@@ -335,7 +335,6 @@ mode. It doesn't matter if they're inside comments or not."
   :custom
   (evil-want-keybinding nil)
   (evil-undo-system 'undo-tree)
-  (evil-lookup-func (lambda () (interactive) (call-interactively #'man)))
   (evil-start-of-line t)
   :bind*
   ("<leader> SPC" . execute-extended-command)
@@ -919,6 +918,8 @@ mode. It doesn't matter if they're inside comments or not."
 (global-set-key (kbd "<f5>") #'revert-buffer-quick)
 ;; make URLs clickable
 (global-goto-address-mode 1)
+;; use all the width for man pages
+(customize-set-variable 'woman-fill-frame t)
 
 ;;; custom functions
 ;;;; edit init file
