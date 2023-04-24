@@ -344,6 +344,7 @@ mode. It doesn't matter if they're inside comments or not."
   ("<leader> q n" . save-buffers-kill-emacs)
   ("<leader> n d" . narrow-to-defun)
   ("<leader> n w" . widen)
+  ("<leader> c" . quick-calc)
   (:map evil-visual-state-map
         ("<leader> n r" . narrow-to-region))
   :config
