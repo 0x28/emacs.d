@@ -389,6 +389,13 @@ mode. It doesn't matter if they're inside comments or not."
              evil-mc-make-all-cursors
              evil-mc-make-cursor-in-visual-selection-beg)
   :config
+  (define-advice evil-mc-save-keys
+      (:around (orig-fun flag pre-name post-name keys) fixup-recording)
+    "Workaround for bug https://github.com/gabesoft/evil-mc/issues/131 in evil-mc."
+    (when (eq flag 'pre-read-key-sequence)
+      (setq flag 'post))
+    (funcall orig-fun flag pre-name post-name keys))
+
   (setq evil-mc-undo-cursors-on-keyboard-quit t
         evil-mc-custom-known-commands
         '((newline                 (:insert . evil-mc-execute-call))
