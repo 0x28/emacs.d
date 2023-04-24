@@ -605,13 +605,13 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; projectile
 (defun my/project-rg ()
   "Search with ripgrep within project.
-    If the ripgrep command supports the --pcre2 flag, spaces can be
-    used in the query."
+If the ripgrep command supports the --pcre2 flag, spaces can be
+used in the query."
   (interactive)
   (let* ((rg-sep " -- ")
          (minibuffer-setup-hook (cons (lambda () (search-backward rg-sep nil t))
                                       minibuffer-setup-hook)))
-    (consult-ripgrep (projectile-project-root)
+    (consult-ripgrep (project-root (project-current))
                      (concat (thing-at-point 'symbol t) rg-sep))))
 
 (use-package projectile
