@@ -5,13 +5,13 @@
 (require 'package)
 (require 'nsm)
 
-(setq network-security-level 'high
-      gnutls-min-prime-bits 2048
-      gnutls-verify-error t)
+(customize-set-variable 'network-security-level 'high)
+(customize-set-variable 'gnutls-min-prime-bits 2048)
+(customize-set-variable 'gnutls-verify-error t)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-(setq use-package-enable-imenu-support t)
+(customize-set-variable 'use-package-enable-imenu-support t)
 
 ;; bootstrap `use-package'
 (unless (package-installed-p 'use-package)
