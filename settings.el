@@ -371,7 +371,8 @@ mode. It doesn't matter if they're inside comments or not."
   :config
   (evil-collection-init)
   :custom
-  (evil-collection-key-blacklist (list "SPC")))
+  (evil-collection-key-blacklist (list "SPC"))
+  (evil-collection-outline-enable-in-minor-mode-p nil))
 
 ;;; evil multiple cursors
 (defun my/evil-mc-lines ()
@@ -602,11 +603,15 @@ mode. It doesn't matter if they're inside comments or not."
 
 ;;; outline
 (use-package outline
-  :hook (ediff-prepare-buffer . outline-show-all)
+  :hook
+  (ediff-prepare-buffer . outline-show-all)
+  (diff-mode . outline-minor-mode)
   :config
   (evil-define-key 'normal outline-minor-mode-map
     (kbd "TAB") #'outline-cycle
-    (kbd "<backtab>") #'outline-cycle-buffer)
+    (kbd "<backtab>") #'outline-cycle-buffer
+    (kbd "C-j") #'outline-next-heading
+    (kbd "C-k") #'outline-previous-heading)
   :custom
   (outline-minor-mode-highlight 'override))
 
