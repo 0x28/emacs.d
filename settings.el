@@ -927,6 +927,8 @@ used in the query."
 (global-goto-address-mode 1)
 ;; use all the width for man pages
 (customize-set-variable 'woman-fill-frame t)
+;; save the command history
+(savehist-mode 1)
 
 ;;; custom functions
 ;;;; edit init file
