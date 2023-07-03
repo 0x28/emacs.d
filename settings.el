@@ -682,12 +682,13 @@ used in the query."
     :transient-suffix #'transient--do-stay
     :transient-non-suffix #'transient--do-call
     ["smerge"
-     [("n" "Next" smerge-next)
-      ("p" "Prev" smerge-prev)]
-     [("u" "Keep upper" smerge-keep-upper)
-      ("l" "Keep lower" smerge-keep-lower)
-      ("a" "Keep all" smerge-keep-all)]
-     [("q" "Quit" transient-quit-one)]]
+     [("n" "next" smerge-next)
+      ("p" "prev" smerge-prev)]
+     [("u" "keep upper" smerge-keep-upper)
+      ("l" "keep lower" smerge-keep-lower)
+      ("a" "keep all" smerge-keep-all)]
+     [("q" "quit" transient-quit-one)
+      ("s" "save" save-buffer)]]
     (interactive)
     (smerge-mode)
     (transient-setup 'my/smerge-dispatch))
@@ -696,9 +697,9 @@ used in the query."
     :transient-suffix #'transient--do-stay
     :transient-non-suffix #'transient--do-exit
     ["multiple cursors"
-     [("C-a" "All" evil-mc-make-all-cursors)
-      ("C-n" "Next" evil-mc-make-and-goto-next-match)
-      ("C-p" "Prev" evil-mc-make-and-goto-prev-match)]])
+     [("C-a" "all" evil-mc-make-all-cursors)
+      ("C-n" "next" evil-mc-make-and-goto-next-match)
+      ("C-p" "prev" evil-mc-make-and-goto-prev-match)]])
 
   (evil-define-key 'normal 'global (kbd "<leader> m") #'my/mc-dispatch))
 
