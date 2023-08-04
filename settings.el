@@ -63,7 +63,9 @@ mode. It doesn't matter if they're inside comments or not."
 
 (use-package clang-format
   :ensure t
-  :defer t)
+  :defer t
+  :custom
+  (clang-format-fallback-style "LLVM"))
 
 (use-package cc-mode
   :defer t
