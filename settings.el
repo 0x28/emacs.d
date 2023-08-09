@@ -171,8 +171,7 @@ mode. It doesn't matter if they're inside comments or not."
       (apply orig-fun args)))
   :custom
   (consult-preview-key nil)
-  (consult-async-refresh-delay 0.1)
-  (consult-line-point-placement 'match-end)) ;; Needed for M-j to work
+  (consult-async-refresh-delay 0.1))
 
 ;;; devdocs
 (use-package devdocs
