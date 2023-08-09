@@ -395,7 +395,8 @@ mode. It doesn't matter if they're inside comments or not."
         evil-mc-custom-known-commands
         '((newline                 (:insert . evil-mc-execute-call))
           (c-indent-line-or-region (:insert . evil-mc-execute-call))
-          (wdired--self-insert     (:insert . evil-mc-execute-call))))
+          (wdired--self-insert     (:insert . evil-mc-execute-call))
+          (kill-sexp               (:default . evil-mc-execute-call))))
   (global-evil-mc-mode 1))
 
 ;;; faces
