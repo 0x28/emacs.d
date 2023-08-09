@@ -105,7 +105,7 @@ mode. It doesn't matter if they're inside comments or not."
   :defer t
   :hook
   (cmake-mode . (lambda ()
-                  (setq-local company-backends (list #'company-cmake))))
+                  (setq-local company-backends '(company-files company-cmake))))
   :config
   (evil-define-key 'normal cmake-mode-map (kbd "<leader> h h") #'cmake-help)
   :custom
