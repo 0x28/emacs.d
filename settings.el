@@ -432,8 +432,8 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package faces
   :custom-face
   (help-argument-name ((t (:inherit (italic font-lock-function-name-face)))))
-  (mode-line ((t (:overline "gainsboro" :background nil :box nil))))
-  (mode-line-inactive ((t (:overline "dim gray" :background nil :box nil))))
+  (mode-line-active ((t (:overline "gainsboro" :background "unspecified" :box nil))))
+  (mode-line-inactive ((t (:overline "dim gray" :background "unspecified" :box nil))))
   (vertical-border ((t (:foreground "dim gray")))))
 
 ;;; fill column indicator
@@ -562,7 +562,7 @@ mode. It doesn't matter if they're inside comments or not."
   :defer t
   :custom-face
   (markdown-code-face
-   ((t (:inherit default :background nil :foreground nil)))))
+   ((t (:inherit default :background "unspecified" :foreground "unspecified")))))
 
 ;;; occur
 (use-package replace
@@ -829,7 +829,7 @@ used in the query."
   (whitespace-style '(face trailing lines-tail))
   :custom-face
   (whitespace-line
-   ((t (:underline (:color "cyan" :style wave) :foreground nil :inherit nil)))))
+   ((t (:underline (:color "cyan" :style wave) :inherit nil)))))
 
 ;;; xml
 (defun my/format-xml ()
