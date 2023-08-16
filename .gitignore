@@ -2,5 +2,4 @@
 !.gitignore
 !settings.el
 !init.el
-!abbrev_defs
 !early-init.el

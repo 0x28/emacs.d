@@ -70,6 +70,34 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package cc-mode
   :defer t
   :config
+  (define-abbrev-table 'c-mode-abbrev-table
+    '(("f32" "float")
+      ("f64" "double")
+      ("i8" "int8_t")
+      ("i16" "int16_t")
+      ("i32" "int32_t")
+      ("i64" "int64_t")
+      ("u8" "uint8_t")
+      ("u16" "uint16_t")
+      ("u32" "uint32_t")
+      ("u64" "uint64_t")))
+
+  (define-abbrev-table 'c++-mode-abbrev-table
+    '((";f" "std::function<>" backward-char)
+      (";v" "std::vector<>" backward-char)
+      (";s" "std::string")
+      (";u" "std::unique_ptr<>" backward-char)
+      (";sp" "std::shared_ptr<>" backward-char)
+      (";o" "std::optional<>" backward-char)
+      (";nd" "[[nodiscard]]")
+      (";mu" "[[maybe_unused]]")
+      (";sa" "static_assert()" backward-char)
+      (";r" "return;" backward-char))
+    "C++ abbrevs"
+    :regexp (rx (seq (or line-start whitespace)
+                     (group (one-or-more (any ";" word)))))
+    :parents (list c-mode-abbrev-table))
+
   (dolist (map (list c-mode-map c++-mode-map))
     (define-key map (kbd "C-c i") #'clang-format-buffer))
 
@@ -936,6 +964,8 @@ used in the query."
 (savehist-mode 1)
 ;; extra keybindings for help commands
 (find-function-setup-keys)
+;; we keep the abbrevs in this file not a separate file
+(setopt save-abbrevs nil)
 
 ;;; custom functions
 ;;;; edit init file
