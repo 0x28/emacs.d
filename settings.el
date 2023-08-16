@@ -141,6 +141,12 @@ mode. It doesn't matter if they're inside comments or not."
 
 ;;; company
 ;; Generic settings for the completion framework company.
+(defun my/setup-prog-mode-completion ()
+  "Setup company backends for `prog-mode' derived modes."
+  (setq-local company-backends
+              '((:separate company-capf company-files company-yasnippet)
+                company-keywords)))
+
 (use-package company
   :ensure t
   :demand
@@ -155,12 +161,6 @@ mode. It doesn't matter if they're inside comments or not."
     "Don't use orderless for company."
     (let ((completion-styles my/default-completion-styles))
       (apply orig-fun args)))
-
-  (defun my/setup-prog-mode-completion ()
-    "Setup company backends for `prog-mode' derived modes."
-    (setq-local company-backends
-                '((:separate company-capf company-files company-yasnippet)
-                  company-keywords)))
 
   :hook (prog-mode . my/setup-prog-mode-completion)
   :custom
