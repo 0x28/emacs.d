@@ -853,6 +853,8 @@ used in the query."
 (column-number-mode 1)
 ;; show matching parentheses
 (show-paren-mode)
+;; show context for matching parentheses
+(setopt show-paren-context-when-offscreen 'overlay)
 ;; pretty lambdas
 (add-hook 'emacs-lisp-mode-hook #'prettify-symbols-mode)
 (setq prettify-symbols-unprettify-at-point 'right-edge)
