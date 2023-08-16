@@ -931,6 +931,8 @@ used in the query."
 (customize-set-variable 'woman-fill-frame t)
 ;; save the command history
 (savehist-mode 1)
+;; extra keybindings for help commands
+(find-function-setup-keys)
 
 ;;; custom functions
 ;;;; edit init file
