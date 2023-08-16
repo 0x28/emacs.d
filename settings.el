@@ -5,13 +5,13 @@
 (require 'package)
 (require 'nsm)
 
-(customize-set-variable 'network-security-level 'high)
-(customize-set-variable 'gnutls-min-prime-bits 2048)
-(customize-set-variable 'gnutls-verify-error t)
+(setopt network-security-level 'high)
+(setopt gnutls-min-prime-bits 2048)
+(setopt gnutls-verify-error t)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-(customize-set-variable 'use-package-enable-imenu-support t)
+(setopt use-package-enable-imenu-support t)
 
 ;; bootstrap `use-package'
 (unless (package-installed-p 'use-package)
@@ -19,7 +19,7 @@
   (package-install 'use-package))
 
 ;;; custom file
-(setq custom-file (locate-user-emacs-file "custom.el"))
+(setopt custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
 
 ;;; additional keywords
@@ -712,7 +712,7 @@ used in the query."
   :demand
   :config
   (defun my/undo-tree-config ()
-    (setq undo-tree-visualizer-diff t))
+    (setopt undo-tree-visualizer-diff t))
   (global-undo-tree-mode)
   :custom
   (undo-tree-visualizer-timestamps t)
@@ -844,7 +844,7 @@ used in the query."
 ;;; sane defaults
 ;;;; visual
 ;; don't show a startup message
-(setq inhibit-startup-message t)
+(setopt inhibit-startup-message t)
 ;; no blinking cursor
 (blink-cursor-mode -1)
 ;; highlight the current line
@@ -854,51 +854,51 @@ used in the query."
 ;; show matching parentheses
 (show-paren-mode)
 ;; show context for matching parentheses
-(setopt show-paren-context-when-offscreen 'overlay)
+(setopt show-paren-context-when-offscreen t)
 ;; pretty lambdas
 (add-hook 'emacs-lisp-mode-hook #'prettify-symbols-mode)
-(setq prettify-symbols-unprettify-at-point 'right-edge)
+(setopt prettify-symbols-unprettify-at-point 'right-edge)
 ;; smoother scrolling
-(setq scroll-conservatively most-positive-fixnum)
+(setopt scroll-conservatively most-positive-fixnum)
 ;; resize windows proportionally
-(setq window-combination-resize t)
+(setopt window-combination-resize t)
 ;; hide minor-modes in mode-line
 (setq mode-line-modes
       '("%[(" (:propertize mode-name face font-lock-constant-face) ")%] "))
 ;; mode-line position format
 (setq mode-line-position '(20 "%p L%l C%c"))
 ;; hide help for minibuffer completion
-(setq completion-show-help nil)
+(setopt completion-show-help nil)
 ;; only show one column for minibuffer completion
-(setq completions-format 'one-column)
+(setopt completions-format 'one-column)
 ;; show details during completion
-(customize-set-variable 'completions-detailed t)
+(setopt completions-detailed t)
 
 ;;;; convenience
 ;; save backups in .emacs.d
-(setq backup-directory-alist '(("." . "~/.emacs.d/.backups")))
+(setopt backup-directory-alist '(("." . "~/.emacs.d/.backups")))
 ;; save auto-save files (#file#) in .emacs.d
 (let ((auto-save-dir "~/.emacs.d/.autosaves/"))
   (make-directory auto-save-dir t)
-  (setq auto-save-file-name-transforms `((".*" ,auto-save-dir t))))
+  (setopt auto-save-file-name-transforms `((".*" ,auto-save-dir t))))
 ;; update files when they change on disk
 (global-auto-revert-mode 1)
 ;; ask before killing emacs
-(setq confirm-kill-emacs #'y-or-n-p)
+(setopt confirm-kill-emacs #'y-or-n-p)
 ;; automatically go to the help window
-(setq help-window-select t)
+(setopt help-window-select t)
 ;; show help on hover
-(customize-set-variable 'help-at-pt-display-when-idle t)
+(setopt help-at-pt-display-when-idle t)
 ;; sentences have a single space at the end
-(setq sentence-end-double-space nil)
+(setopt sentence-end-double-space nil)
 ;; typed text replaces the selected text
 (delete-selection-mode 1)
 ;; don't accelerate mouse wheel scrolling
-(setq mouse-wheel-progressive-speed nil)
+(setopt mouse-wheel-progressive-speed nil)
 ;; set scroll speed
 (setcar mouse-wheel-scroll-amount 5)
 ;; show off-screen matching parens when typing
-(setq blink-matching-paren 'echo)
+(setopt blink-matching-paren t)
 ;; add matching pairs automatically
 (electric-pair-mode 1)
 ;; make *scratch* unkillable
@@ -908,13 +908,13 @@ used in the query."
 (when (eq system-type 'gnu/linux)
   (setq x-wait-for-event-timeout nil))
 ;; ask "(y/n)?" and not "(yes/no)?"
-(customize-set-variable 'use-short-answers t)
+(setopt use-short-answers t)
 ;; more information on describe-key
 (global-set-key (kbd "C-h c") #'describe-key)
 ;; add a newline at the end of files
-(setq require-final-newline t)
+(setopt require-final-newline t)
 ;; no tabs
-(customize-set-variable 'indent-tabs-mode nil)
+(setopt indent-tabs-mode nil)
 ;; use M-o for other-window
 (global-set-key (kbd "M-o") #'next-window-any-frame)
 ;; utf-8 everywhere
@@ -925,13 +925,13 @@ used in the query."
 (add-hook 'after-save-hook
           #'executable-make-buffer-file-executable-if-script-p)
 ;; highlight last selected error
-(customize-set-variable 'next-error-message-highlight t)
+(setopt next-error-message-highlight t)
 ;; f5 is revert
 (global-set-key (kbd "<f5>") #'revert-buffer-quick)
 ;; make URLs clickable
 (global-goto-address-mode 1)
 ;; use all the width for man pages
-(customize-set-variable 'woman-fill-frame t)
+(setopt woman-fill-frame t)
 ;; save the command history
 (savehist-mode 1)
 ;; extra keybindings for help commands
