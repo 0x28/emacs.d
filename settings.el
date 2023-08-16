@@ -343,6 +343,7 @@ mode. It doesn't matter if they're inside comments or not."
   ("<leader> f i" . my/edit-init-file)
   ("<leader> f s" . my/ssh-connect)
   ("<leader> q n" . save-buffers-kill-emacs)
+  ("<leader> q r" . restart-emacs)
   ("<leader> n d" . narrow-to-defun)
   ("<leader> n w" . widen)
   ("<leader> c" . quick-calc)
