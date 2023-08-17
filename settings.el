@@ -13,11 +13,6 @@
 
 (setopt use-package-enable-imenu-support t)
 
-;; bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
 ;;; custom file
 (setopt custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
