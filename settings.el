@@ -1103,7 +1103,7 @@ delete the selected frame."
 ;;; local variables
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
-;; outline-minor-mode-hook: (lambda nil (outline-hide-sublevels 1))
 ;; outline-regexp: ";;;+"
 ;; eval: (outline-minor-mode)
+;; eval: (outline-hide-sublevels 1)
 ;; End:
