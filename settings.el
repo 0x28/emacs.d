@@ -279,13 +279,14 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; eshell
 ;;;; config
 (use-package eshell
-  :bind* (("C-c s" . my/toggle-eshell))
+  :bind*
+  ("C-c s" . my/toggle-eshell)
   :hook
   (eshell-mode . (lambda ()
-                   (local-set-key (kbd "C-r") #'my/eshell-history)
-                   (setq-local imenu-generic-expression '(("Prompt" " $ \\(.*\\)" 1)))
-                   (setq-local completion-styles my/default-completion-styles)
-                   (setq-local global-hl-line-mode nil)))
+                   (local-set-key (kbd "C-r") #'consult-history)
+                   (setq-local imenu-generic-expression '(("Prompt" " $ \\(.*\\)" 1))
+                               completion-styles my/default-completion-styles
+                               global-hl-line-mode nil)))
   :config
   (evil-set-initial-state 'eshell-mode 'emacs)
   (push '("\\*eshell\\*" display-buffer-at-bottom (window-height . 0.3))
@@ -341,15 +342,6 @@ mode. It doesn't matter if they're inside comments or not."
   (if args
       (mapc #'embark-open-externally args)
     (embark-open-externally (expand-file-name default-directory))))
-
-;;;; history
-(defun my/eshell-history ()
-  "Insert a previous eshell command into the prompt."
-  (interactive)
-  (goto-char (point-max))
-  (insert (completing-read "insert previous command: "
-                           (delete-dups
-                            (ring-elements eshell-history-ring)))))
 
 ;;; evil
 ;; Vim emulation for emacs.
