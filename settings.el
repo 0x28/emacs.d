@@ -1026,12 +1026,12 @@ SSH. On Linux the method is \"ssh\", otherwise it's \"plink\"."
 (global-set-key (kbd "C-x k") #'my/kill-current-buffer)
 
 ;;;; yank words to minibuffer
-(defvar-local my/yank-pos nil)
+(defvar my/yank-pos nil)
 
 (defun my/remember-yank-pos ()
   "Remember the point in the current buffer when entering the minibuffer."
   (with-current-buffer (cadr (buffer-list))
-    (setq my/yank-pos (point))))
+    (setq my/yank-pos (cons (point) (current-buffer)))))
 
 (add-hook 'minibuffer-setup-hook #'my/remember-yank-pos)
 
@@ -1039,16 +1039,16 @@ SSH. On Linux the method is \"ssh\", otherwise it's \"plink\"."
   "Yank ARG words from current line into minibuffer."
   (interactive "p")
   (let (text)
-    (with-current-buffer (cadr (buffer-list))
+    (with-current-buffer (cdr my/yank-pos)
       (save-excursion
-        (goto-char my/yank-pos)
+        (goto-char (car my/yank-pos))
         (let* ((beg (point))
                (bol (line-beginning-position))
                (eol (line-end-position))
                (end (progn (forward-word arg)
                            (goto-char (max bol (min (point) eol))))))
-          (setq text (buffer-substring-no-properties beg end)
-                my/yank-pos end)
+          (setq text (buffer-substring-no-properties beg end))
+          (setcar my/yank-pos end)
           (pulse-momentary-highlight-region beg end 'highlight))))
     (when text
       (insert (replace-regexp-in-string "  +" " " text t t)))))
