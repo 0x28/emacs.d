@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 ;;; package setup
-;; Bootstraps use-package and sets the repositories.
-;; set up package sources
 (require 'package)
 (require 'nsm)
 
