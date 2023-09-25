@@ -756,7 +756,20 @@ used in the query."
     (remove-hook 'find-file-hook #'vc-refresh-state))
   (setq vc-log-short-style '(directory file))
   :custom
-  (vc-follow-symlinks t)
+  (vc-follow-symlinks t))
+
+(defun my/vc-git-grep ()
+  "Run `vc-git-grep' in the current project's root directory."
+  (interactive)
+  (let ((default-directory (vc-root-dir)))
+    (call-interactively #'vc-git-grep)))
+
+(use-package vc-git
+  :commands (vc-git-grep)
+  :bind*
+  (:map vc-prefix-map
+        ("S" . #'my/vc-git-grep))
+  :custom
   (vc-git-annotate-switches '("-w" "-M")))
 
 ;; Magit keybindings.
