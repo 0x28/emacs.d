@@ -487,6 +487,20 @@ mode. It doesn't matter if they're inside comments or not."
   :ensure t
   :hook (haskell-mode . lsp))
 
+;;; hippie expand
+(use-package hippie-exp
+  :bind*
+  ("M-/" . hippie-expand)
+  :custom
+  (hippie-expand-try-functions-list
+   '(try-complete-file-name-partially
+     try-complete-file-name
+     try-expand-dabbrev
+     try-expand-dabbrev-all-buffers
+     try-expand-dabbrev-from-kill
+     try-expand-list
+     try-expand-line)))
+
 ;;; ibuffer
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer-other-window)
