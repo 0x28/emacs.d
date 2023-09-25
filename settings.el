@@ -951,6 +951,9 @@ used in the query."
 (find-function-setup-keys)
 ;; we keep the abbrevs in this file not a separate file
 (setopt save-abbrevs nil)
+;; Don't use TAGS for completion because this can be slow when projectile
+;; automatically visits TAGS files.
+(setq completion-at-point-functions nil)
 
 ;;; custom functions
 ;;;; edit init file
