@@ -1017,13 +1017,13 @@ A second call restores the old window configuration."
 (global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
 
 ;;;; ssh connect
-(defun my/ssh-connect (host user)
-  "Connect to the home directory of a foreign HOST as USER using
-SSH. On Linux the method is \"ssh\", otherwise it's \"plink\"."
-  (interactive "Mhost: \nMuser: ")
-  (message "connecting to %s@%s ..." user host)
+(defun my/ssh-connect (user-at-host)
+  "Open the home directory of a remote user using SSH.
+USER-AT-HOST should have the form user@host. On Linux the
+method is \"ssh\", otherwise it's \"plink\"."
+  (interactive (list (read-string "user@host: " nil 'my/ssh-history)))
   (let ((method (if (eq system-type 'gnu/linux) "ssh" "plink")))
-    (find-file (format "/%s:%s@%s:~" method user host))))
+    (find-file (format "/%s:%s:~" method user-at-host))))
 
 ;;;; duckduckgo dwim
 (defun my/ddg-dwim ()
