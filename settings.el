@@ -92,7 +92,7 @@ mode. It doesn't matter if they're inside comments or not."
     :parents (list c-mode-abbrev-table))
 
   (dolist (map (list c-mode-map c++-mode-map))
-    (define-key map (kbd "C-c i") #'clang-format-buffer))
+    (keymap-set map "C-c i" #'clang-format-buffer))
 
   (defconst my-cc-style
     '((c-basic-offset . 4)
@@ -147,7 +147,7 @@ mode. It doesn't matter if they're inside comments or not."
   (add-hook 'after-init-hook #'global-company-mode)
 
   (dolist (key '("<tab>" "TAB"))
-    (define-key company-active-map (kbd key) #'company-complete-common-or-cycle))
+    (keymap-set company-active-map key #'company-complete-common-or-cycle))
 
   (define-advice company-capf
       (:around (orig-fun &rest args) set-completion-styles)
@@ -281,7 +281,7 @@ mode. It doesn't matter if they're inside comments or not."
   ("C-c s" . my/toggle-eshell)
   :hook
   (eshell-mode . (lambda ()
-                   (local-set-key (kbd "C-r") #'consult-history)
+                   (keymap-local-set "C-r" #'consult-history)
                    (setq-local imenu-generic-expression '(("Prompt" " $ \\(.*\\)" 1))
                                completion-styles my/default-completion-styles
                                global-hl-line-mode nil)))
@@ -363,7 +363,7 @@ mode. It doesn't matter if they're inside comments or not."
   (:map evil-visual-state-map
         ("<leader> n r" . narrow-to-region))
   :config
-  (define-key evil-normal-state-map (kbd "M-.") nil)
+  (keymap-unset evil-normal-state-map "M-.")
   (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
   (evil-set-leader '(visual normal) (kbd "SPC"))
 
@@ -435,7 +435,7 @@ mode. It doesn't matter if they're inside comments or not."
         ((bound-and-true-p flymake-mode) (flymake-show-buffer-diagnostics))
         (t (user-error "Neither flycheck nor flymake are enabled"))))
 
-(define-key evil-normal-state-map (kbd "<leader> e l") #'my/list-errors)
+(keymap-set evil-normal-state-map "<leader> e l" #'my/list-errors)
 
 (defun my/set-flycheck-c++-standard ()
   (setq-local flycheck-gcc-language-standard "c++17"
@@ -654,10 +654,10 @@ used in the query."
   :ensure t
   :defer t
   :init
-  (global-set-key (kbd "<leader> p") #'projectile-command-map)
+  (keymap-global-set "<leader> p" #'projectile-command-map)
   (autoload #'projectile-command-map "projectile.el" nil nil 'keymap)
   :config
-  (define-key projectile-command-map (kbd "s") #'my/project-rg)
+  (keymap-set projectile-command-map "s" #'my/project-rg)
   (projectile-mode)
   :custom
   (projectile-completion-system 'default)
@@ -751,7 +751,7 @@ used in the query."
 ;; Settings for the builtin vc.el.
 (use-package vc
   :config
-  (global-set-key (kbd "<leader> v") #'vc-prefix-map)
+  (keymap-global-set "<leader> v" #'vc-prefix-map)
   (when (eq system-type 'windows-nt) ;; too slow
     (remove-hook 'find-file-hook #'vc-refresh-state))
   (setq vc-log-short-style '(directory file))
@@ -950,24 +950,24 @@ used in the query."
 ;; ask "(y/n)?" and not "(yes/no)?"
 (setopt use-short-answers t)
 ;; more information on describe-key
-(global-set-key (kbd "C-h c") #'describe-key)
+(keymap-global-set "C-h c" #'describe-key)
 ;; add a newline at the end of files
 (setopt require-final-newline t)
 ;; no tabs
 (setopt indent-tabs-mode nil)
 ;; use M-o for other-window
-(global-set-key (kbd "M-o") #'next-window-any-frame)
+(keymap-global-set "M-o" #'next-window-any-frame)
 ;; utf-8 everywhere
 (prefer-coding-system 'utf-8-unix)
 ;; disable suspend-frame
-(global-unset-key (kbd "C-x C-z"))
+(keymap-global-unset "C-x C-z")
 ;; make scripts executable on save
 (add-hook 'after-save-hook
           #'executable-make-buffer-file-executable-if-script-p)
 ;; highlight last selected error
 (setopt next-error-message-highlight t)
 ;; f5 is revert
-(global-set-key (kbd "<f5>") #'revert-buffer-quick)
+(keymap-global-set "<f5>" #'revert-buffer-quick)
 ;; make URLs clickable
 (global-goto-address-mode 1)
 ;; use all the width for man pages
@@ -1000,7 +1000,7 @@ remove tabs. In Makefiles only remove trailing whitespace."
       (indent-region (point-min) (point-max) nil)
       (untabify (point-min) (point-max)))))
 
-(global-set-key (kbd "C-c i") #'my/indent-buffer)
+(keymap-global-set "C-c i" #'my/indent-buffer)
 
 ;;;; toggle maximize buffer
 ;; Original from https://gist.github.com/3402786.
@@ -1014,7 +1014,7 @@ A second call restores the old window configuration."
     (window-configuration-to-register ?_)
     (delete-other-windows)))
 
-(global-set-key (kbd "C-x 1") #'my/toggle-maximize-buffer)
+(keymap-global-set "C-x 1" #'my/toggle-maximize-buffer)
 
 ;;;; ssh connect
 (defun my/ssh-connect (user-at-host)
@@ -1043,7 +1043,7 @@ method is \"ssh\", otherwise it's \"plink\"."
                  (concat "https://duckduckgo.com/?q=")
                  browse-url)))
 
-(global-set-key (kbd "C-c g") #'my/ddg-dwim)
+(keymap-global-set "C-c g" #'my/ddg-dwim)
 
 ;;;; kill current buffer
 (defun my/kill-current-buffer ()
@@ -1051,7 +1051,7 @@ method is \"ssh\", otherwise it's \"plink\"."
   (interactive)
   (kill-buffer (current-buffer)))
 
-(global-set-key (kbd "C-x k") #'my/kill-current-buffer)
+(keymap-global-set "C-x k" #'my/kill-current-buffer)
 
 ;;;; yank words to minibuffer
 (defvar my/yank-pos nil)
@@ -1081,7 +1081,7 @@ method is \"ssh\", otherwise it's \"plink\"."
     (when text
       (insert (replace-regexp-in-string "  +" " " text t t)))))
 
-(define-key minibuffer-local-map (kbd "M-j") #'my/minibuffer-yank-word)
+(keymap-set minibuffer-local-map "M-j" #'my/minibuffer-yank-word)
 
 ;;;; confirm closing emacsclient frames
 (defun my/confirm-delete-frame (&optional arg)
