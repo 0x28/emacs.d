@@ -111,7 +111,9 @@ mode. It doesn't matter if they're inside comments or not."
 
   (c-add-style "my-style" my-cc-style)
   :custom
-  (c-default-style "my-style"))
+  (c-default-style "my-style")
+  (lsp-clients-clangd-args '("--header-insertion-decorators=0"
+                             "--header-insertion=never")))
 
 ;;; calendar
 (use-package calendar
