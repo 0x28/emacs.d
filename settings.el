@@ -495,6 +495,7 @@ mode. It doesn't matter if they're inside comments or not."
   :bind*
   ("M-/" . hippie-expand)
   :custom
+  (hippie-expand-dabbrev-skip-space t)
   (hippie-expand-try-functions-list
    '(try-complete-file-name-partially
      try-complete-file-name
