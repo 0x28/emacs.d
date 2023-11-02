@@ -767,6 +767,7 @@ used in the query."
 (defun my/vc-git-grep ()
   "Run `vc-git-grep' in the current project's root directory."
   (interactive)
+  (vc-refresh-state)
   (let ((default-directory (vc-root-dir)))
     (call-interactively #'vc-git-grep)))
 
