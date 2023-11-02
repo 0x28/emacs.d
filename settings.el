@@ -497,10 +497,10 @@ mode. It doesn't matter if they're inside comments or not."
   :custom
   (hippie-expand-dabbrev-skip-space t)
   (hippie-expand-try-functions-list
-   '(try-complete-file-name-partially
-     try-complete-file-name
-     try-expand-dabbrev
+   '(try-expand-dabbrev
      try-expand-dabbrev-all-buffers
+     try-complete-file-name-partially
+     try-complete-file-name
      try-expand-dabbrev-from-kill
      try-expand-list
      try-expand-line)))
