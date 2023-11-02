@@ -934,6 +934,8 @@ used in the query."
 (setopt confirm-kill-emacs #'y-or-n-p)
 ;; automatically go to the help window
 (setopt help-window-select t)
+;; reuse the help window when looking up the source or info page
+(setopt help-window-keep-selected t)
 ;; show help on hover
 (setopt help-at-pt-display-when-idle t)
 ;; sentences have a single space at the end
