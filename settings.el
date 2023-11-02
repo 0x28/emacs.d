@@ -538,7 +538,9 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package lsp-mode
   :ensure t
   :defer t
-  :hook (rust-mode . lsp)
+  :hook
+  (rust-mode . lsp)
+  (c++-mode . lsp)
   :bind*
   ("<leader> l r" . lsp-rename)
   ("<leader> l a" . lsp-execute-code-action)
