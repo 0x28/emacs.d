@@ -519,7 +519,8 @@ mode. It doesn't matter if they're inside comments or not."
         ("DEL" . isearch-del-char))
   :custom
   (isearch-lazy-count t)
-  (isearch-wrap-pause 'no))
+  (isearch-wrap-pause 'no)
+  (isearch-repeat-on-direction-change t))
 
 ;;; LaTeX
 (use-package tex-mode
