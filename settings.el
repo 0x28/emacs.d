@@ -515,7 +515,8 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package isearch
   :bind*
   (:map isearch-mode-map
-        ("M-j" . isearch-yank-word-or-char))
+        ("M-j" . isearch-yank-word-or-char)
+        ("DEL" . isearch-del-char))
   :custom
   (isearch-lazy-count t)
   (isearch-wrap-pause 'no))
