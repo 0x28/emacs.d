@@ -681,9 +681,9 @@ used in the query."
 (use-package recentf
   :config
   (recentf-mode 1)
-  (run-with-idle-timer (* 60 2) t #'recentf-save-list)
   :custom
-  (recentf-max-saved-items 1000))
+  (recentf-max-saved-items 1000)
+  (recentf-auto-cleanup (* 60 2)))
 
 ;;; Rust
 (use-package rust-mode
