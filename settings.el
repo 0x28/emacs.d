@@ -54,12 +54,6 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; C, C++
 (defalias 'cxx-mode #'c++-mode)
 
-(use-package clang-format
-  :ensure t
-  :defer t
-  :custom
-  (clang-format-fallback-style "LLVM"))
-
 (use-package cc-mode
   :defer t
   :config
@@ -92,7 +86,7 @@ mode. It doesn't matter if they're inside comments or not."
     :parents (list c-mode-abbrev-table))
 
   (dolist (map (list c-mode-map c++-mode-map))
-    (keymap-set map "C-c i" #'clang-format-buffer))
+    (keymap-set map "C-c i" #'lsp-format-buffer))
 
   (defconst my-cc-style
     '((c-basic-offset . 4)
