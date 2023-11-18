@@ -53,6 +53,8 @@ mode. It doesn't matter if they're inside comments or not."
 
 ;;; C, C++
 (defalias 'cxx-mode #'c++-mode)
+(defconst my/dabbrev-regexp (rx (seq (or line-start whitespace)
+                                     (group (one-or-more (any ";" word))))))
 
 (use-package cc-mode
   :defer t
@@ -67,7 +69,11 @@ mode. It doesn't matter if they're inside comments or not."
       ("u8" "uint8_t")
       ("u16" "uint16_t")
       ("u32" "uint32_t")
-      ("u64" "uint64_t")))
+      ("u64" "uint64_t")
+      (";r" "return;" backward-char)
+      (";i" "#include"))
+    "C abbrevs"
+    :regexp my/dabbrev-regexp)
 
   (define-abbrev-table 'c++-mode-abbrev-table
     '((";f" "std::function<>" backward-char)
@@ -78,11 +84,9 @@ mode. It doesn't matter if they're inside comments or not."
       (";o" "std::optional<>" backward-char)
       (";nd" "[[nodiscard]]")
       (";mu" "[[maybe_unused]]")
-      (";sa" "static_assert()" backward-char)
-      (";r" "return;" backward-char))
+      (";sa" "static_assert()" backward-char))
     "C++ abbrevs"
-    :regexp (rx (seq (or line-start whitespace)
-                     (group (one-or-more (any ";" word)))))
+    :regexp my/dabbrev-regexp
     :parents (list c-mode-abbrev-table))
 
   (dolist (map (list c-mode-map c++-mode-map))
