@@ -83,7 +83,7 @@ mode. It doesn't matter if they're inside comments or not."
       (";sp" "std::shared_ptr<>" backward-char)
       (";o" "std::optional<>" backward-char)
       (";nd" "[[nodiscard]]")
-      (";mu" "[[maybe_unused]]")
+      (";uu" "[[maybe_unused]]")
       (";sa" "static_assert()" backward-char))
     "C++ abbrevs"
     :regexp my/dabbrev-regexp
