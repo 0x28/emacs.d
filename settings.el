@@ -418,8 +418,8 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package faces
   :custom-face
   (help-argument-name ((t (:inherit (italic font-lock-function-name-face)))))
-  (mode-line-active ((t (:overline "gainsboro" :background "black" :box nil))))
-  (mode-line-inactive ((t (:overline "dim gray" :background "black" :box nil))))
+  (mode-line-active ((t (:box (:line-width 3 :style flat-button)))))
+  (mode-line-inactive ((t (:box (:line-width 3 :style flat-button)))))
   (vertical-border ((t (:foreground "dim gray")))))
 
 ;;; fill column indicator
