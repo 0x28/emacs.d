@@ -733,8 +733,8 @@ and source file."
   :config
   (transient-define-prefix my/smerge-dispatch ()
     "Convenience function for using smerge."
-    :transient-suffix #'transient--do-stay
-    :transient-non-suffix #'transient--do-call
+    :transient-suffix 'stay
+    :transient-non-suffix 'call
     ["smerge"
      [("n" "next" smerge-next)
       ("p" "prev" smerge-prev)]
@@ -748,8 +748,8 @@ and source file."
     (transient-setup 'my/smerge-dispatch))
 
   (transient-define-prefix my/mc-dispatch ()
-    :transient-suffix #'transient--do-stay
-    :transient-non-suffix #'transient--do-exit
+    :transient-suffix 'stay
+    :transient-non-suffix 'exit
     ["multiple cursors"
      [("C-a" "all" evil-mc-make-all-cursors)
       ("C-n" "next" evil-mc-make-and-goto-next-match)
