@@ -657,9 +657,26 @@ used in the query."
     (consult-ripgrep (project-root (project-current))
                      (concat (thing-at-point 'symbol t) rg-sep))))
 
+(defun my/find-other-file ()
+  "Open the other file in the same project that has the longest common
+prefix with the current file. Useful for switching between header
+and source file."
+  (interactive)
+  (let* ((project-dir (projectile-project-root))
+         (current (file-relative-name buffer-file-name project-dir))
+         (nearest (cons -1 "")))
+    (dolist (file (projectile-get-other-files buffer-file-name))
+      (let ((prefix (abs (compare-strings current nil nil
+                                          file nil nil))))
+        (when (> prefix (car nearest))
+          (setq nearest (cons prefix file)))))
+    (find-file (expand-file-name (cdr nearest) project-dir))
+    (message "%s → %s" current (cdr nearest))))
+
 (use-package projectile
   :ensure t
   :defer t
+  :autoload (projectile-project-root projectile-get-other-files)
   :init
   (keymap-global-set "<leader> p" #'projectile-command-map)
   (autoload #'projectile-command-map "projectile.el" nil nil 'keymap)
