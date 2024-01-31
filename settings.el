@@ -737,7 +737,8 @@ and source file."
     :transient-non-suffix 'call
     ["smerge"
      [("n" "next" smerge-next)
-      ("p" "prev" smerge-prev)]
+      ("p" "prev" smerge-prev)
+      ("N" "next-file" vc-find-conflicted-file)]
      [("u" "keep upper" smerge-keep-upper)
       ("l" "keep lower" smerge-keep-lower)
       ("a" "keep all" smerge-keep-all)]
