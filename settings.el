@@ -1057,12 +1057,12 @@ method is \"ssh\", otherwise it's \"plink\"."
 (defun my/ddg-dwim ()
   "Search duckduckgo.com for the symbol at point or the region if active."
   (interactive)
-  (let* ((symbol (or (thing-at-point 'symbol t) ""))
+  (let* ((symbol (thing-at-point 'symbol t))
          (user-input
           (if (region-active-p)
               (buffer-substring-no-properties (region-beginning)
                                               (region-end))
-            (read-string (format "search term [default: \"%s\"]: " symbol)
+            (read-string (format-prompt "search term" symbol)
                          nil
                          'ddg-input-history
                          symbol))))
