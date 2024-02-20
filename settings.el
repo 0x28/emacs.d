@@ -9,6 +9,11 @@
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
+(setopt package-archive-priorities
+        '(("gnu"    . 99)   ; prefer GNU packages
+          ("nongnu" . 80)   ; use non-gnu packages if not found in GNU elpa
+          ("melpa"  . 0)))  ; if all else fails, get it from melpa
+
 (setopt use-package-enable-imenu-support t)
 
 ;;; custom file
