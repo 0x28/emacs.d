@@ -467,7 +467,8 @@ mode. It doesn't matter if they're inside comments or not."
   "Debug the rust program executed by cargo."
   (interactive)
   (let* ((cargo-command (split-string-shell-command
-                         (read-string "debug: " "cargo test --bin ")))
+                         (read-string "debug: " "cargo test --bin "
+                                      'my/rust-dbg-history)))
          (debug-target-path
           (with-temp-buffer
             (with-environment-variables
