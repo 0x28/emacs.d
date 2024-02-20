@@ -243,7 +243,9 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package wdired
   :defer t
   :config
-  (evil-define-key 'normal wdired-mode-map (kbd "u") #'dired-undo))
+  (evil-define-key 'normal wdired-mode-map (kbd "u") #'dired-undo)
+  :custom
+  (wdired-allow-to-change-permissions 'advanced))
 
 ;;; ediff
 (defun my/ediff-save-wincfg ()
