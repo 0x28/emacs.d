@@ -192,10 +192,8 @@ mode. It doesn't matter if they're inside comments or not."
   ("<leader> f l" . consult-locate)
   ("<leader> h i" . consult-info)
   :config
-  (define-advice consult-line
-      (:around (orig-fun &rest args) enable-preview)
-    (let ((consult-preview-key 'any))
-      (apply orig-fun args)))
+  (consult-customize consult-line consult-imenu consult-imenu-multi
+                     :preview-key 'any)
   :custom
   (consult-preview-key nil)
   (consult-async-refresh-delay 0.1))
