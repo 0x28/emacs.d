@@ -660,7 +660,7 @@ used in the query."
   (let* ((rg-sep " -- ")
          (minibuffer-setup-hook (cons (lambda () (search-backward rg-sep nil t))
                                       minibuffer-setup-hook)))
-    (consult-ripgrep (project-root (project-current))
+    (consult-ripgrep (project-root (project-current t))
                      (concat (thing-at-point 'symbol t) rg-sep))))
 
 (defun my/find-other-file ()
