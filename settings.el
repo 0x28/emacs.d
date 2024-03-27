@@ -676,8 +676,9 @@ and source file."
                                           file nil nil))))
         (when (> prefix (car nearest))
           (setq nearest (cons prefix file)))))
-    (find-file (expand-file-name (cdr nearest) project-dir))
-    (message "%s → %s" current (cdr nearest))))
+    (unless (string-empty-p (cdr nearest))
+      (find-file (expand-file-name (cdr nearest) project-dir))
+      (message "%s → %s" current (cdr nearest)))))
 
 (use-package projectile
   :ensure t
