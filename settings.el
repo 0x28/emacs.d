@@ -270,10 +270,10 @@ mode. It doesn't matter if they're inside comments or not."
 (use-package embark
   :ensure t
   :after evil
+  :commands (embark-open-externally)
   :bind*
   ("C-," . embark-act)
   ("C-h b" . embark-bindings)
-  ("<leader> f e" . embark-open-externally)
   (:map minibuffer-local-map
         ("C-c C-o" . embark-export)))
 
