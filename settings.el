@@ -946,6 +946,10 @@ and source file."
 (setopt completions-format 'one-column)
 ;; show details during completion
 (setopt completions-detailed t)
+;; stop displaying the warnings buffer
+(push '("\\*Warnings\\*" display-buffer-no-window
+        (allow-no-window . t))
+      display-buffer-alist)
 
 ;;;; convenience
 ;; save backups in .emacs.d
