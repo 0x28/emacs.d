@@ -76,7 +76,8 @@ mode. It doesn't matter if they're inside comments or not."
       ("u32" "uint32_t")
       ("u64" "uint64_t")
       (";r" "return;" backward-char)
-      (";i" "#include"))
+      (";i" "#include")
+      (";po" "#pragma once\n"))
     "C abbrevs"
     :regexp my/dabbrev-regexp)
 
@@ -87,6 +88,7 @@ mode. It doesn't matter if they're inside comments or not."
       (";u" "std::unique_ptr<>" backward-char)
       (";sp" "std::shared_ptr<>" backward-char)
       (";o" "std::optional<>" backward-char)
+      (";e" "explicit")
       (";nd" "[[nodiscard]]")
       (";uu" "[[maybe_unused]]")
       (";sa" "static_assert()" backward-char))
