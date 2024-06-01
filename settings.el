@@ -445,9 +445,9 @@ mode. It doesn't matter if they're inside comments or not."
 (keymap-set evil-normal-state-map "<leader> e l" #'my/list-errors)
 
 (defun my/set-flycheck-c++-standard ()
-  (setq-local flycheck-gcc-language-standard "c++17"
-              flycheck-clang-language-standard "c++17"
-              flycheck-cppcheck-standards "c++17"))
+  (setq-local flycheck-gcc-language-standard "c++20"
+              flycheck-clang-language-standard "c++20"
+              flycheck-cppcheck-standards '("c++20")))
 
 (use-package flycheck
   :ensure t
