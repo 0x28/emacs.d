@@ -996,6 +996,11 @@ and source file."
 (setopt indent-tabs-mode nil)
 ;; use M-o for other-window
 (keymap-global-set "M-o" #'next-window-any-frame)
+;; add meaning to other-window if there is only one window
+(define-advice other-window (:before (&rest _) my/split-if-single)
+  "Split window on `other-window' if there is only one window."
+  (when (one-window-p)
+    (split-window-sensibly)))
 ;; utf-8 everywhere
 (prefer-coding-system 'utf-8-unix)
 ;; disable suspend-frame
