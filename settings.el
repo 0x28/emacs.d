@@ -615,7 +615,9 @@ mode. It doesn't matter if they're inside comments or not."
     (kbd "RET") #'org-agenda-goto
     "gr" #'org-agenda-redo-all
     "s" #'org-agenda-manipulate-query-add
-    "q" #'org-agenda-quit)
+    "q" #'org-agenda-quit
+    "K" #'org-agenda-earlier
+    "J" #'org-agenda-later)
   (evil-set-initial-state 'org-agenda-mode 'normal))
 
 (use-package org-protocol
