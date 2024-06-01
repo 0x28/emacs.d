@@ -708,6 +708,12 @@ and source file."
   (recentf-max-saved-items 1000)
   (recentf-auto-cleanup (* 60 2)))
 
+;;; repeat
+(use-package repeat
+  :ensure nil
+  :config
+  (repeat-mode))
+
 ;;; Rust
 (use-package rust-mode
   :ensure t
