@@ -245,7 +245,15 @@ triggered the abbrev expansion. See `define-abbrev' for details."
   (dired-mode . dired-omit-mode)
   (dired-mode . dired-hide-details-mode)
   :config
+  (defun my/dired-ripgrep ()
+    "Run ripgrep on the directory at point within dired. Doesn't
+respect version control ignores (like .gitignore)."
+    (interactive)
+    (let ((consult-ripgrep-args (concat consult-ripgrep-args " --no-ignore-vcs")))
+      (consult-ripgrep (car-safe (dired-get-marked-files)))))
+
   (evil-define-key 'normal dired-mode-map
+    (kbd "A") #'my/dired-ripgrep
     (kbd "C-o") #'dired-display-file
     (kbd "TAB") #'dired-omit-mode)
   :custom
