@@ -704,7 +704,9 @@ and source file."
 ;;; quickrun
 (use-package quickrun
   :ensure t
-  :bind* ("C-c x" . quickrun))
+  :bind* ("C-c x" . quickrun)
+  :custom
+  (quickrun-focus-p nil))
 
 ;;; recentf
 (use-package recentf
