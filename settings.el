@@ -1045,6 +1045,8 @@ and source file."
 ;; Don't use TAGS for completion because this can be slow when projectile
 ;; automatically visits TAGS files.
 (setq completion-at-point-functions nil)
+;; search everywhere when using `apropos'
+(setopt apropos-do-all t)
 
 ;;; custom functions
 ;;;; edit init file
