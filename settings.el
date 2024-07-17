@@ -243,7 +243,9 @@ mode. It doesn't matter if they're inside comments or not."
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
   (dired-listing-switches "-ahl --group-directories-first --time-style=long-iso")
-  (dired-omit-files "^\\.?#\\|^\\.[^.\n].*$"))
+  (dired-omit-files "^\\.?#\\|^\\.[^.\n].*$")
+  (dired-create-destination-dirs 'ask)
+  (dired-create-destination-dirs-on-trailing-dirsep t))
 
 (use-package wdired
   :defer t
