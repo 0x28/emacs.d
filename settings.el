@@ -58,8 +58,17 @@ mode. It doesn't matter if they're inside comments or not."
 
 ;;; C, C++
 (defalias 'cxx-mode #'c++-mode)
-(defconst my/dabbrev-regexp (rx (seq (or line-start whitespace)
-                                     (group (one-or-more (any ";" word))))))
+(defconst my/dabbrev-regexp (rx (seq (or line-start (not (any ";" alnum)))
+                                     (group (+ (any ";" alnum))))))
+
+(defun my/abbrev-back ()
+  "Like `backward-char' but don't insert the character that
+triggered the abbrev expansion. See `define-abbrev' for details."
+  (interactive)
+  (backward-char)
+  'no-insert)
+
+(put 'my/abbrev-back 'no-self-insert t)
 
 (use-package cc-mode
   :defer t
@@ -82,16 +91,16 @@ mode. It doesn't matter if they're inside comments or not."
     :regexp my/dabbrev-regexp)
 
   (define-abbrev-table 'c++-mode-abbrev-table
-    '((";f" "std::function<>" backward-char)
-      (";v" "std::vector<>" backward-char)
+    '((";f" "std::function<>" my/abbrev-back)
+      (";v" "std::vector<>" my/abbrev-back)
       (";s" "std::string")
-      (";u" "std::unique_ptr<>" backward-char)
-      (";sp" "std::shared_ptr<>" backward-char)
-      (";o" "std::optional<>" backward-char)
       (";e" "explicit")
+      (";u" "std::unique_ptr<>" my/abbrev-back)
+      (";sp" "std::shared_ptr<>" my/abbrev-back)
+      (";o" "std::optional<>" my/abbrev-back)
       (";nd" "[[nodiscard]]")
       (";uu" "[[maybe_unused]]")
-      (";sa" "static_assert()" backward-char))
+      (";sa" "static_assert()" my/abbrev-back))
     "C++ abbrevs"
     :regexp my/dabbrev-regexp
     :parents (list c-mode-abbrev-table))
