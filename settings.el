@@ -357,7 +357,7 @@ mode. It doesn't matter if they're inside comments or not."
   :demand
   :custom
   (evil-want-keybinding nil)
-  (evil-undo-system 'undo-tree)
+  (evil-undo-system nil)
   (evil-start-of-line t)
   :bind*
   ("<leader> SPC" . execute-extended-command)
@@ -775,20 +775,6 @@ and source file."
 
   (evil-define-key 'normal 'global (kbd "<leader> m") #'my/mc-dispatch))
 
-;;; undo-tree
-(use-package undo-tree
-  :ensure t
-  :demand
-  :config
-  (defun my/undo-tree-config ()
-    (setopt undo-tree-visualizer-diff t))
-  (global-undo-tree-mode)
-  :custom
-  (undo-tree-visualizer-timestamps t)
-  (undo-tree-visualizer-relative-timestamps t)
-  (undo-tree-auto-save-history nil)
-  :hook (undo-tree-mode . my/undo-tree-config))
-
 ;;; version control
 ;; Settings for the builtin vc.el.
 (use-package vc
@@ -852,6 +838,17 @@ and source file."
   :ensure t
   :config
   (vertico-mode))
+
+;;; vundo
+(use-package vundo
+  :ensure t
+  :bind* ("C-x u" . vundo)
+  :config
+  (add-hook 'vundo-post-exit-hook
+            (lambda ()
+              (kill-matching-buffers "^\\*vundo-diff-" nil :no-ask)))
+  :custom
+  (vundo-roll-back-on-quit nil))
 
 ;;; which key
 ;; show keybindings while typing
