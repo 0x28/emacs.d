@@ -9,7 +9,7 @@ before_script:
 test:
   script:
     - emacs --batch -l ~/.emacs.d/init.el
-    - tar caf emacs.tar.xz --exclude "*.elc" --exclude ".git" -C ~ .emacs.d
+    - tar caf emacs.tar.xz --exclude "*.elc" --exclude "*.eln" --exclude ".git" -C ~ .emacs.d
   artifacts:
     paths:
       - emacs.tar.xz
