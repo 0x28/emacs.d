@@ -811,7 +811,7 @@ and source file."
   "Run `vc-git-grep' in the current project's root directory."
   (interactive)
   (vc-refresh-state)
-  (let ((default-directory (vc-root-dir)))
+  (let ((default-directory (project-root (project-current t))))
     (call-interactively #'vc-git-grep)))
 
 (use-package vc-git
