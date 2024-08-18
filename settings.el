@@ -363,8 +363,8 @@ respect version control ignores (like .gitignore)."
 ;;;; open
 (defun eshell/o (&rest args)
   "Open ARGS in an external application.
-    If there are no arguments open the `default-directory' in an
-    external application."
+If there are no arguments open the `default-directory' in an
+external application."
   (if args
       (mapc #'embark-open-externally args)
     (embark-open-externally (expand-file-name default-directory))))
