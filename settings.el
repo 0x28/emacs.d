@@ -503,6 +503,11 @@ external application."
             (string-trim (buffer-string)))))
     (gdb (format "rust-gdb -i=mi -- %s" debug-target-path))))
 
+;;; goto-chg
+(use-package goto-chg
+  :ensure t
+  :defer t)
+
 ;;; haskell
 (use-package haskell
   :ensure haskell-mode
