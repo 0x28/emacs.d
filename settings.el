@@ -86,7 +86,8 @@ triggered the abbrev expansion. See `define-abbrev' for details."
       ("u64" "uint64_t")
       (";r" "return;" backward-char)
       (";i" "#include")
-      (";po" "#pragma once\n"))
+      (";po" "#pragma once\n")
+      (";c" "const"))
     "C abbrevs"
     :regexp my/dabbrev-regexp)
 
