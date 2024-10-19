@@ -210,31 +210,6 @@ triggered the abbrev expansion. See `define-abbrev' for details."
   (consult-preview-key nil)
   (consult-async-refresh-delay 0.1))
 
-;;; devdocs
-(use-package devdocs
-  :ensure t
-  :config
-  (defun my/view-docs-for-major-mode ()
-    "Read the documentation for the programming language of the
-    current major-mode. Use `devdocs-install' to download docsets."
-    (interactive)
-    (let ((devdocs-current-docs
-           (cdr (assoc major-mode '((sh-mode      . ("bash"))
-                                    (rust-mode    . ("rust"))
-                                    (c-mode       . ("c"))
-                                    (c++-mode     . ("c" "cpp"))
-                                    (cmake-mode   . ("cmake~3.21"))
-                                    (haskell-mode . ("haskell~9"))
-                                    (latex-mode   . ("latex"))
-                                    (tex-mode     . ("latex"))
-                                    (python-mode  . ("python~3.9")))))))
-      (devdocs-lookup (not devdocs-current-docs) (thing-at-point 'symbol t))))
-  :bind*
-  ("<leader> h d" . my/view-docs-for-major-mode)
-  :after evil
-  :custom
-  (devdocs-cache-timeout 3600))
-
 ;;; dired
 (use-package dired-x
   :bind*
@@ -384,6 +359,7 @@ external application."
   ("<leader> f f" . find-file)
   ("<leader> f i" . my/edit-init-file)
   ("<leader> f s" . my/ssh-connect)
+  ("<leader> h d" . my/view-docs-for-major-mode)
   ("<leader> q n" . save-buffers-kill-emacs)
   ("<leader> q r" . restart-emacs)
   ("<leader> n d" . narrow-to-defun)
@@ -1201,6 +1177,32 @@ delete the selected frame."
     (let ((tags-revert-without-query t))
       (visit-tags-table dir))))
 
+;;;; documentation lookup
+(defun my/view-docs-for-major-mode (&optional arg)
+  "Read the documentation for the programming language of the current
+major-mode. With prefix ARG the language filter is skipped."
+  (interactive "P")
+  (let* ((doc-table '((sh-mode      . "bash")
+                      (rust-mode    . "rust")
+                      (c-mode       . "c")
+                      (c++-mode     . "cpp")
+                      (cmake-mode   . "cmake")
+                      (haskell-mode . "haskell")
+                      (latex-mode   . "latex")
+                      (tex-mode     . "latex")
+                      (python-mode  . "python3")))
+         (symbol (thing-at-point 'symbol t))
+         (selected-docs (unless arg
+                          (cdr (assoc major-mode doc-table))))
+         (selected-docs (if selected-docs (concat selected-docs " ") "")))
+    (thread-last
+      (read-string (format-prompt "%sdoc search" symbol selected-docs)
+                   nil
+                   'view-docs-history
+                   symbol)
+      url-hexify-string
+      (concat "https://devdocs.io/#q=" selected-docs)
+      browse-url)))
 
 ;;; local variables
 ;; Local Variables:
