@@ -492,6 +492,8 @@ external application."
   :hook
   ;; prefer lsp completion over interactive-haskell completion
   (haskell-mode . lsp)
+  (haskell-mode . (lambda ()
+                    (setq-local lsp-rename-use-prepare nil)))
   (haskell-mode . interactive-haskell-mode)
   :bind*
   (:map haskell-mode-map
