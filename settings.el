@@ -922,7 +922,14 @@ and source file."
   :custom
   ;; Doesn't work for binary files in emacs 28 because of bug #56624
   ;; (xref-search-program (if (executable-find "rg") 'ripgrep 'grep))
-  (xref-show-definitions-function #'xref-show-definitions-completing-read))
+  (xref-show-definitions-function #'xref-show-definitions-completing-read)
+  :config
+  (defun my/xrefs-apropos-completing-read ()
+    "Jump to a symbol by providing a pattern. The symbol can be
+anywhere in the current workspace. Also works with `lsp'."
+    (interactive)
+    (let ((xref-show-xrefs-function #'xref-show-definitions-completing-read))
+      (call-interactively #'xref-find-apropos))))
 
 ;;; yasnippet
 (use-package yasnippet
