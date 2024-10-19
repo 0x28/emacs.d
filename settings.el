@@ -879,6 +879,11 @@ and source file."
   :custom
   (vundo-roll-back-on-quit nil))
 
+;;; wgrep
+(use-package wgrep
+  :ensure t
+  :defer t)
+
 ;;; which key
 ;; show keybindings while typing
 (use-package which-key
