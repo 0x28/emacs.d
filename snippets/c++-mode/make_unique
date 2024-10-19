@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: make_unique
+# key: mu
+# --
+std::make_unique<$1>($2)

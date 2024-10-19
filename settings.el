@@ -106,6 +106,11 @@ triggered the abbrev expansion. See `define-abbrev' for details."
     :regexp my/dabbrev-regexp
     :parents (list c-mode-abbrev-table))
 
+  (put 'yas-expand 'no-self-insert t)
+
+  (dolist (key (list "mu" "ms" "fe" "sc" "dc" "rs"))
+    (define-abbrev c++-mode-abbrev-table (concat ";" key) key 'yas-expand))
+
   (dolist (map (list c-mode-map c++-mode-map))
     (keymap-set map "C-c i" #'lsp-format-buffer))
 
@@ -937,11 +942,6 @@ anywhere in the current workspace. Also works with `lsp'."
   :hook (prog-mode . yas-minor-mode)
   :config
   (yas-load-directory (locate-user-emacs-file "snippets") 'jit))
-
-;; Also load the snippets.
-(use-package yasnippet-snippets
-  :ensure t
-  :after yasnippet)
 
 ;;; sane defaults
 ;;;; visual

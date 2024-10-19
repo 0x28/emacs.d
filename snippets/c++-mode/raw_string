@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: raw_string
+# key: rs
+# --
+R"($1)"

@@ -3,3 +3,5 @@
 !settings.el
 !init.el
 !early-init.el
+!snippets
+!snippets/**

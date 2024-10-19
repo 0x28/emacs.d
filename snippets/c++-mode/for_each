@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: for_each
+# key: fe
+# --
+for(const auto& $1 : $2) {
+    $3
+}
