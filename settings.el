@@ -489,7 +489,10 @@ external application."
 ;;; haskell
 (use-package haskell
   :ensure haskell-mode
-  :hook (haskell-mode . interactive-haskell-mode)
+  :hook
+  ;; prefer lsp completion over interactive-haskell completion
+  (haskell-mode . lsp)
+  (haskell-mode . interactive-haskell-mode)
   :bind*
   (:map haskell-mode-map
         ("C-c i" . lsp-format-buffer))
@@ -498,7 +501,7 @@ external application."
 
 (use-package lsp-haskell
   :ensure t
-  :hook (haskell-mode . lsp))
+  :defer t)
 
 ;;; hippie expand
 (use-package hippie-exp
