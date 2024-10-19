@@ -439,7 +439,9 @@ external application."
         '((newline                 (:insert . evil-mc-execute-call))
           (c-indent-line-or-region (:insert . evil-mc-execute-call))
           (wdired--self-insert     (:insert . evil-mc-execute-call))
-          (kill-sexp               (:default . evil-mc-execute-call))))
+          (kill-sexp               (:default . evil-mc-execute-call))
+          (backward-kill-sexp      (:default . evil-mc-execute-call-with-count))
+          (backward-kill-word      (:default . evil-mc-execute-call-with-count))))
   (global-evil-mc-mode 1))
 
 ;;; faces
