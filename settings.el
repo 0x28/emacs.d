@@ -213,7 +213,8 @@ triggered the abbrev expansion. See `define-abbrev' for details."
                      :preview-key 'any)
   :custom
   (consult-preview-key nil)
-  (consult-async-refresh-delay 0.1))
+  (consult-async-refresh-delay 0.1)
+  (consult-line-start-from-top t))
 
 ;;; dired
 (use-package dired-x
