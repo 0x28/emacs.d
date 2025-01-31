@@ -623,7 +623,9 @@ external application."
   (org-agenda-files (list org-directory))
   (org-src-fontify-natively t)
   (org-startup-folded t)
-  (org-complete-tags-always-offer-all-agenda-tags t))
+  (org-complete-tags-always-offer-all-agenda-tags t)
+  (org-insert-heading-respect-content t)
+  (org-M-RET-may-split-line '((default . nil))))
 
 (use-package org-agenda
   :bind* ("C-c a" . org-agenda)
