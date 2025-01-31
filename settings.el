@@ -287,6 +287,7 @@ Doesn't respect version control ignores (like .gitignore)."
 ;;; eshell
 ;;;; config
 (use-package eshell
+  :after evil
   :bind*
   ("C-c s" . my/toggle-eshell)
   :hook
