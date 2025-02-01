@@ -710,6 +710,7 @@ and source file."
   (autoload #'projectile-command-map "projectile.el" nil nil 'keymap)
   :config
   (keymap-set projectile-command-map "s" #'my/project-rg)
+  (keymap-set projectile-command-map "a" #'my/find-other-file)
   (projectile-mode)
   :custom
   (projectile-completion-system 'default)
