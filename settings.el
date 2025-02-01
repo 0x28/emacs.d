@@ -1061,6 +1061,8 @@ anywhere in the current workspace. Also works with `lsp'."
 (setq completion-at-point-functions nil)
 ;; search everywhere when using `apropos'
 (setopt apropos-do-all t)
+;; recenter window after jumping to source from help buffer
+(add-hook 'find-function-after-hook #'recenter)
 
 ;;; custom functions
 ;;;; custom quit
