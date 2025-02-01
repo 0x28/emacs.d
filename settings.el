@@ -992,6 +992,10 @@ anywhere in the current workspace. Also works with `lsp'."
 (let ((auto-save-dir (locate-user-emacs-file ".autosaves")))
   (make-directory auto-save-dir t)
   (setopt auto-save-file-name-transforms `((".*" ,auto-save-dir t))))
+;; create lock files in .emacs.d
+(let ((lock-file-dir (locate-user-emacs-file ".lockfiles")))
+  (make-directory lock-file-dir t)
+  (setopt lock-file-name-transforms `((".*" ,lock-file-dir t))))
 ;; update files when they change on disk
 (global-auto-revert-mode 1)
 ;; ask before killing emacs
