@@ -1063,6 +1063,17 @@ anywhere in the current workspace. Also works with `lsp'."
 (setopt apropos-do-all t)
 
 ;;; custom functions
+;;;; custom quit
+(defun my/keyboard-quit ()
+  "Works like `keyboard-quit' but closes the minibuffer even when it's not
+focused."
+  (interactive)
+  (if (> (minibuffer-depth) 0)
+      (abort-recursive-edit)
+    (keyboard-quit)))
+
+(define-key global-map (kbd "C-g") #'my/keyboard-quit)
+
 ;;;; edit init file
 (defun my/edit-init-file ()
   "Open the init file."
