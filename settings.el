@@ -987,9 +987,9 @@ anywhere in the current workspace. Also works with `lsp'."
 
 ;;;; convenience
 ;; save backups in .emacs.d
-(setopt backup-directory-alist '(("." . "~/.emacs.d/.backups")))
+(setopt backup-directory-alist `(("." . ,(locate-user-emacs-file ".backups"))))
 ;; save auto-save files (#file#) in .emacs.d
-(let ((auto-save-dir "~/.emacs.d/.autosaves/"))
+(let ((auto-save-dir (locate-user-emacs-file ".autosaves")))
   (make-directory auto-save-dir t)
   (setopt auto-save-file-name-transforms `((".*" ,auto-save-dir t))))
 ;; update files when they change on disk
