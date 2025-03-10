@@ -809,7 +809,8 @@ and source file."
     (remove-hook 'find-file-hook #'vc-refresh-state))
   (setq vc-log-short-style '(directory file))
   :custom
-  (vc-follow-symlinks t))
+  (vc-follow-symlinks t)
+  (vc-display-status 'no-backend))
 
 (defun my/vc-git-grep ()
   "Run `vc-git-grep' in the current project's root directory."
