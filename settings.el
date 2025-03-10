@@ -672,6 +672,11 @@ external application."
   :custom
   (outline-minor-mode-highlight 'override))
 
+;;; project
+(use-package project
+  :custom
+  (project-mode-line t))
+
 ;;; projectile
 (defun my/project-rg ()
   "Search with ripgrep within project.
