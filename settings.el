@@ -884,7 +884,6 @@ and source file."
 ;;; which key
 ;; show keybindings while typing
 (use-package which-key
-  :ensure t
   :defer 1
   :config
   (which-key-mode)
