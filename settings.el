@@ -719,7 +719,7 @@ and source file."
   (projectile-mode)
   :custom
   (projectile-completion-system 'default)
-  (projectile-enable-caching t)
+  (projectile-enable-caching 'persistent)
   (projectile-enable-cmake-presets t))
 
 ;;; quickrun
