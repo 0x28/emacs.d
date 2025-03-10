@@ -1067,6 +1067,8 @@ anywhere in the current workspace. Also works with `lsp'."
 (setopt apropos-do-all t)
 ;; recenter window after jumping to source from help buffer
 (add-hook 'find-function-after-hook #'recenter)
+;; preview register contents
+(setopt register-use-preview nil)
 
 ;;; custom functions
 ;;;; custom quit
