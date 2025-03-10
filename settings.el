@@ -1093,7 +1093,7 @@ remove tabs. In Makefiles only remove trailing whitespace."
   (interactive)
   (save-excursion
     (delete-trailing-whitespace)
-    (unless (derived-mode-p 'makefile-mode 'python-mode)
+    (unless (derived-mode-p '(makefile-mode python-mode))
       (indent-region (point-min) (point-max) nil)
       (untabify (point-min) (point-max)))))
 
