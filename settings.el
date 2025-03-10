@@ -1010,6 +1010,9 @@ anywhere in the current workspace. Also works with `lsp'."
 (setopt help-window-select t)
 ;; reuse the help window when looking up the source or info page
 (setopt help-window-keep-selected t)
+;; show examples in help buffer
+(add-hook 'help-fns-describe-function-functions
+          #'shortdoc-help-fns-examples-function)
 ;; show help on hover
 (setopt help-at-pt-display-when-idle t)
 ;; sentences have a single space at the end
