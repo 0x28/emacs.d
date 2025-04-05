@@ -463,9 +463,10 @@ external application."
 
 (use-package flycheck
   :ensure t
-  :defer t
-  :hook ((prog-mode . flycheck-mode)
-         (c++-mode . my/set-flycheck-c++-standard))
+  :defer 1
+  :hook (c++-mode . my/set-flycheck-c++-standard)
+  :config
+  (global-flycheck-mode)
   :custom
   (flycheck-check-syntax-automatically '(save mode-enabled)))
 
