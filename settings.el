@@ -832,7 +832,8 @@ and source file."
   (:map vc-prefix-map
         ("S" . #'my/vc-git-grep))
   :custom
-  (vc-git-annotate-switches '("-w" "-M")))
+  (vc-git-annotate-switches '("-w" "-M"))
+  (vc-git-log-switches '("--stat")))
 
 ;; Magit keybindings.
 (use-package magit
