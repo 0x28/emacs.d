@@ -149,7 +149,10 @@ triggered the abbrev expansion. See `define-abbrev' for details."
   :defer t
   :hook
   (cmake-mode . (lambda ()
-                  (setq-local company-backends '(company-files company-cmake))))
+                  (setq-local company-backends
+                              (if (eq system-type 'windows-nt)
+                                  '(company-files)
+                                '(company-files company-cmake)))))
   :config
   (evil-define-key 'normal cmake-mode-map (kbd "<leader> h h") #'cmake-help)
   :custom
