@@ -1048,7 +1048,9 @@ anywhere in the current workspace. Also works with `lsp'."
 ;; no tabs
 (setopt indent-tabs-mode nil)
 ;; use M-o for other-window
-(keymap-global-set "M-o" #'next-window-any-frame)
+(keymap-global-set "M-o" #'other-window)
+;; use M-O for other-frame
+(keymap-global-set "M-O" #'other-frame)
 ;; add meaning to other-window if there is only one window
 (define-advice other-window (:before (&rest _) my/split-if-single)
   "Split window on `other-window' if there is only one window."
