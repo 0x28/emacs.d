@@ -742,7 +742,9 @@ and source file."
 (use-package repeat
   :ensure nil
   :config
-  (repeat-mode))
+  (repeat-mode)
+  :custom
+  (other-window-repeat-map nil))
 
 ;;; Rust
 (use-package rust-mode
