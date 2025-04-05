@@ -364,6 +364,7 @@ external application."
   :bind*
   ("<leader> SPC" . execute-extended-command)
   ("<leader> f f" . find-file)
+  ("<leader> f S" . tramp-revert-buffer-with-sudo)
   ("<leader> f i" . my/edit-init-file)
   ("<leader> f s" . my/ssh-connect)
   ("<leader> h d" . my/view-docs-for-major-mode)
