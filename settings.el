@@ -51,6 +51,7 @@ mode. It doesn't matter if they're inside comments or not."
 ;;; bookmarks
 ;; Some bookmark keybindings.
 (use-package bookmark
+  :hook (bookmark-after-jump . my/recenter-and-highlight)
   :bind*
   ("<leader> b l" . list-bookmarks)
   ("<leader> b s" . bookmark-set)
@@ -603,7 +604,7 @@ external application."
 ;;; occur
 (use-package replace
   :hook
-  (occur-mode-find-occurrence . recenter)
+  (occur-mode-find-occurrence . my/recenter-and-highlight)
   :custom
   (list-matching-lines-default-context-lines 3))
 
@@ -1067,6 +1068,8 @@ anywhere in the current workspace. Also works with `lsp'."
           #'executable-make-buffer-file-executable-if-script-p)
 ;; highlight last selected error
 (setopt next-error-message-highlight t)
+;; pulse when jumping to errors
+(add-hook 'next-error-hook #'my/recenter-and-highlight)
 ;; f5 is revert
 (keymap-global-set "<f5>" #'revert-buffer-quick)
 ;; make URLs clickable
@@ -1085,7 +1088,7 @@ anywhere in the current workspace. Also works with `lsp'."
 ;; search everywhere when using `apropos'
 (setopt apropos-do-all t)
 ;; recenter window after jumping to source from help buffer
-(add-hook 'find-function-after-hook #'recenter)
+(add-hook 'find-function-after-hook #'my/recenter-and-highlight)
 ;; preview register contents
 (setopt register-use-preview nil)
 
@@ -1258,6 +1261,12 @@ major-mode. With prefix ARG the language filter is skipped."
       url-hexify-string
       (concat "https://devdocs.io/#q=" selected-docs)
       browse-url)))
+
+;;;; recenter and highlight
+(defun my/recenter-and-highlight ()
+  "Recenter window to point and highlight the current line."
+  (recenter)
+  (pulse-momentary-highlight-one-line nil))
 
 ;;; local variables
 ;; Local Variables:
