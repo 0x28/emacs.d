@@ -99,6 +99,7 @@ triggered the abbrev expansion. See `define-abbrev' for details."
       (";e" "explicit")
       (";u" "std::unique_ptr<>" my/abbrev-back)
       (";sp" "std::shared_ptr<>" my/abbrev-back)
+      (";wp" "std::weak_ptr<>" my/abbrev-back)
       (";o" "std::optional<>" my/abbrev-back)
       (";ov" "override")
       (";nd" "[[nodiscard]]")
