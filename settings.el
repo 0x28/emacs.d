@@ -741,14 +741,22 @@ and source file."
 
 (use-package projectile
   :ensure t
-  :defer t
   :autoload (projectile-project-root projectile-get-other-files)
-  :init
-  (keymap-global-set "<leader> p" #'projectile-command-map)
-  (autoload #'projectile-command-map "projectile.el" nil nil 'keymap)
+  :bind*
+  ("<leader> p a" . my/find-other-file)
+  ("<leader> p b" . projectile-switch-to-buffer)
+  ("<leader> p c" . projectile-compile-project)
+  ("<leader> p d" . projectile-find-dir)
+  ("<leader> p f" . projectile-find-file)
+  ("<leader> p i" . projectile-invalidate-cache)
+  ("<leader> p k" . projectile-kill-buffers)
+  ("<leader> p p" . projectile-switch-project)
+  ("<leader> p r" . projectile-recentf)
+  ("<leader> p r" . projectile-run-project)
+  ("<leader> p s" . my/project-rg)
+  ("<leader> p t" . projectile-test-project)
+  ("<leader> p v" . projectile-vc)
   :config
-  (keymap-set projectile-command-map "s" #'my/project-rg)
-  (keymap-set projectile-command-map "a" #'my/find-other-file)
   (projectile-mode)
   :custom
   (projectile-completion-system 'default)
