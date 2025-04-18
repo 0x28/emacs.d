@@ -48,6 +48,25 @@ mode. It doesn't matter if they're inside comments or not."
         ("<leader> a r" . align-regexp)
         ("<leader> a w" . my/align-whitespace)))
 
+;;; avy
+(use-package avy
+  :ensure t
+  :config
+  (defun my/avy-goto-word-timer ()
+    "Like `avy-goto-char-timer' but it only jumps words."
+    (interactive)
+    (avy-process
+     (avy--read-candidates
+      (lambda (s)
+        (concat "\\b" (regexp-quote s))))))
+  :bind*
+  ("C-;" . my/avy-goto-word-timer)
+  :custom
+  (avy-background t)
+  (avy-timeout-seconds 0.3)
+  ;; home row first
+  (avy-keys (string-to-list "jfkdls;ahgbceimnopqrtuvwxyz")))
+
 ;;; bookmarks
 ;; Some bookmark keybindings.
 (use-package bookmark
