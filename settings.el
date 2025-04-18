@@ -922,7 +922,7 @@ and source file."
   (whitespace-style '(face trailing lines-tail))
   :custom-face
   (whitespace-line
-   ((t (:underline (:color "cyan" :style wave) :inherit nil)))))
+   ((t (:underline (:color "cyan" :style wave) :foreground nil :inherit nil)))))
 
 ;;; xml
 (defun my/format-xml ()
