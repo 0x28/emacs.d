@@ -1244,7 +1244,7 @@ major-mode. With prefix ARG the language filter is skipped."
   (let* ((doc-table '((sh-mode      . "bash")
                       (rust-mode    . "rust")
                       (c-mode       . "c")
-                      (c++-mode     . "cpp")
+                      (c++-mode     . "c++")
                       (cmake-mode   . "cmake")
                       (haskell-mode . "haskell")
                       (latex-mode   . "latex")
