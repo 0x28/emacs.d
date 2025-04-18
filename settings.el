@@ -385,6 +385,7 @@ external application."
   (keymap-unset evil-normal-state-map "M-.")
   (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
   (evil-set-leader '(visual normal) (kbd "SPC"))
+  (evil-set-initial-state 'comint-mode 'emacs)
 
   (defun my/color-text (text color)
     (propertize text 'face `((:foreground ,color))))
