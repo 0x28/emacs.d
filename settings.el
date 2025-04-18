@@ -492,6 +492,11 @@ external application."
   :custom
   (flycheck-check-syntax-automatically '(save mode-enabled)))
 
+(use-package flymake
+  :defer t
+  :custom
+  (flymake-show-diagnostics-at-end-of-line t))
+
 ;;; gdb
 (use-package gud
   :hook (gud-mode . (lambda ()
