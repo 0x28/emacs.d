@@ -256,6 +256,7 @@ triggered the abbrev expansion. See `define-abbrev' for details."
     "Run ripgrep on the directory at point or the marked files within dired.
 Doesn't respect version control ignores (like .gitignore)."
     (interactive)
+    (require 'consult)
     (let ((consult-ripgrep-args (concat consult-ripgrep-args " --no-ignore-vcs")))
       (consult-ripgrep (dired-get-marked-files))))
 
