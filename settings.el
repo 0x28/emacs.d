@@ -1295,7 +1295,7 @@ major-mode. With prefix ARG the language filter is skipped."
                    'view-docs-history
                    symbol)
       url-hexify-string
-      (concat "https://devdocs.io/#q=" selected-docs)
+      (concat "https://devdocs.io/#q=" (url-hexify-string selected-docs))
       browse-url)))
 
 ;;;; recenter and highlight
