@@ -55,10 +55,11 @@ mode. It doesn't matter if they're inside comments or not."
   (defun my/avy-goto-word-timer ()
     "Like `avy-goto-char-timer' but it only jumps words."
     (interactive)
-    (avy-process
-     (avy--read-candidates
-      (lambda (s)
-        (concat "\\b" (regexp-quote s))))))
+    (avy-with my/avy-goto-word-timer
+      (avy-process
+       (avy--read-candidates
+        (lambda (s)
+          (concat "\\b" (regexp-quote s)))))))
   :bind*
   ("C-;" . my/avy-goto-word-timer)
   :custom
