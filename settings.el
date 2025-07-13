@@ -871,6 +871,7 @@ and source file."
         ("S" . #'my/vc-git-grep))
   :custom
   (vc-git-annotate-switches '("-w" "-M"))
+  (vc-git-diff-switches '("-w" "-M"))
   (vc-git-log-switches '("--stat")))
 
 ;; Magit keybindings.
