@@ -1039,6 +1039,8 @@ anywhere in the current workspace. Also works with `lsp'."
 (push '("\\*Warnings\\*" display-buffer-no-window
         (allow-no-window . t))
       display-buffer-alist)
+;; just show the normal lisp names in the customize interface
+(setopt custom-unlispify-tag-names nil)
 
 ;;;; convenience
 ;; save backups in .emacs.d
