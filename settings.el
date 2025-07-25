@@ -1128,7 +1128,7 @@ anywhere in the current workspace. Also works with `lsp'."
 ;; search everywhere when using `apropos'
 (setopt apropos-do-all t)
 ;; recenter window after jumping to source from help buffer
-(add-hook 'find-function-after-hook #'my/recenter-and-highlight)
+(add-hook 'find-function-after-hook (lambda () (my/recenter-and-highlight 0)))
 ;; preview register contents
 (setopt register-use-preview nil)
 
@@ -1303,9 +1303,10 @@ major-mode. With prefix ARG the language filter is skipped."
       browse-url)))
 
 ;;;; recenter and highlight
-(defun my/recenter-and-highlight ()
-  "Recenter window to point and highlight the current line."
-  (recenter)
+(defun my/recenter-and-highlight (&optional arg)
+  "Recenter window to point and highlight the current line. ARG is passed
+to `recenter'."
+  (recenter arg)
   (pulse-momentary-highlight-one-line nil))
 
 ;;; local variables
