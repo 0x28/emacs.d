@@ -305,7 +305,9 @@ Doesn't respect version control ignores (like .gitignore)."
   ("C-," . embark-act)
   ("C-h b" . embark-bindings)
   (:map minibuffer-local-map
-        ("C-c C-o" . embark-export)))
+        ("C-c C-o" . embark-export))
+  (:map embark-general-map
+        ("Q" . query-replace)))
 
 (use-package embark-consult
   :ensure t
