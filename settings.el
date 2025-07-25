@@ -388,7 +388,7 @@ external application."
   :demand
   :custom
   (evil-want-keybinding nil)
-  (evil-undo-system nil)
+  (evil-undo-system 'undo-redo) ;; uses undo-only internally
   (evil-start-of-line t)
   :bind*
   ("<leader> SPC" . execute-extended-command)
