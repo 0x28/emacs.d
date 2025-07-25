@@ -872,8 +872,9 @@ and source file."
   (:map vc-prefix-map
         ("S" . #'my/vc-git-grep))
   :custom
-  (vc-git-annotate-switches '("-w" "-M"))
-  (vc-git-diff-switches '("-w" "-M"))
+  ;; -w is a bad idea for whitespace sensitive languages
+  (vc-git-annotate-switches '("-M"))
+  (vc-git-diff-switches '("-M"))
   (vc-git-log-switches '("--stat")))
 
 ;; Magit keybindings.
