@@ -847,6 +847,11 @@ and source file."
 
   (evil-define-key 'normal 'global (kbd "<leader> m") #'my/mc-dispatch))
 
+;;; uniquify
+(use-package uniquify
+  :custom
+  (uniquify-buffer-name-style 'forward))
+
 ;;; version control
 ;; Settings for the builtin vc.el.
 (use-package vc
