@@ -131,7 +131,7 @@ triggered the abbrev expansion. See `define-abbrev' for details."
 
   (put 'yas-expand 'no-self-insert t)
 
-  (dolist (key (list "mu" "ms" "fe" "sc" "dc" "rs"))
+  (dolist (key (list "mu" "ms" "fe" "sc" "dc" "rs" "l"))
     (define-abbrev c++-mode-abbrev-table (concat ";" key) key 'yas-expand))
 
   (dolist (map (list c-mode-map c++-mode-map))
