@@ -1128,6 +1128,11 @@ anywhere in the current workspace. Also works with `lsp'."
 (setopt woman-fill-frame t)
 ;; save the command history
 (savehist-mode 1)
+;; save even more stuff
+(setopt savehist-additional-variables '(kill-ring
+                                        mark-ring global-mark-ring
+                                        register-alist
+                                        search-ring regexp-search-ring))
 ;; extra keybindings for help commands
 (find-function-setup-keys)
 ;; we keep the abbrevs in this file not a separate file
