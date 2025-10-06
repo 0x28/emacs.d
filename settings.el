@@ -1055,6 +1055,8 @@ anywhere in the current workspace. Also works with `lsp'."
 (let ((auto-save-dir (locate-user-emacs-file ".autosaves")))
   (make-directory auto-save-dir t)
   (setopt auto-save-file-name-transforms `((".*" ,auto-save-dir t))))
+;; offer to delete auto-save files when deleting buffers
+(setopt kill-buffer-delete-auto-save-files t)
 ;; create lock files in .emacs.d
 (let ((lock-file-dir (locate-user-emacs-file ".lockfiles")))
   (make-directory lock-file-dir t)
