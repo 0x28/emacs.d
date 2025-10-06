@@ -1047,6 +1047,10 @@ anywhere in the current workspace. Also works with `lsp'."
 ;;;; convenience
 ;; save backups in .emacs.d
 (setopt backup-directory-alist `(("." . ,(locate-user-emacs-file ".backups"))))
+;; keep versions of backup files
+(setopt version-control t)
+;; don't ask when deleting old versions
+(setopt delete-old-versions t)
 ;; save auto-save files (#file#) in .emacs.d
 (let ((auto-save-dir (locate-user-emacs-file ".autosaves")))
   (make-directory auto-save-dir t)
