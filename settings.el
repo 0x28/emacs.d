@@ -925,10 +925,6 @@ and source file."
 (use-package vundo
   :ensure t
   :bind* ("C-x u" . vundo)
-  :config
-  (add-hook 'vundo-post-exit-hook
-            (lambda ()
-              (kill-matching-buffers "^\\*vundo-diff-" nil :no-ask)))
   :custom
   (vundo-roll-back-on-quit nil))
 
