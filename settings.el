@@ -613,7 +613,8 @@ external application."
   :custom
   (lsp-completion-provider :none)
   (lsp-headerline-breadcrumb-enable nil)
-  (lsp-lens-enable nil))
+  (lsp-lens-enable nil)
+  (lsp-enable-on-type-formatting nil))
 
 (use-package lsp-ui
   :ensure t
