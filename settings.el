@@ -696,6 +696,11 @@ external application."
       "* %?\n  %i\n"
       :prepend t))))
 
+(use-package org-refile
+  :defer t
+  :custom
+  (org-refile-targets '((org-agenda-files :level . 1))))
+
 ;;; outline
 (use-package outline
   :hook
