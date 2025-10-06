@@ -1262,6 +1262,8 @@ delete the selected frame."
 (when (daemonp)
   (global-set-key [remap save-buffers-kill-terminal] #'my/confirm-delete-frame))
 
+(define-key special-event-map [delete-frame] #'my/confirm-delete-frame)
+
 ;;;; create TAGS file
 (defun my/create-tags (dir extensions)
   "Create TAGS for files with EXTENSIONS in directory DIR."
