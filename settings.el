@@ -1057,6 +1057,8 @@ anywhere in the current workspace. Also works with `lsp'."
   (setopt lock-file-name-transforms `((".*" ,lock-file-dir t))))
 ;; update files when they change on disk
 (global-auto-revert-mode 1)
+;; also update dired buffers
+(setopt global-auto-revert-non-file-buffers t)
 ;; ask before killing emacs
 (setopt confirm-kill-emacs #'y-or-n-p)
 ;; automatically go to the help window
