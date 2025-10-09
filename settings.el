@@ -458,14 +458,6 @@ external application."
           (backward-kill-word      (:default . evil-mc-execute-call-with-count))))
   (global-evil-mc-mode 1))
 
-;;; faces
-(use-package faces
-  :custom-face
-  (help-argument-name ((t (:inherit (italic font-lock-function-name-face)))))
-  (mode-line-active ((t (:box (:line-width 3 :style flat-button)))))
-  (mode-line-inactive ((t (:box (:line-width 3 :style flat-button)))))
-  (vertical-border ((t (:foreground "dim gray")))))
-
 ;;; fill column indicator
 (use-package display-fill-column-indicator
   :hook (prog-mode . display-fill-column-indicator-mode)
@@ -627,10 +619,7 @@ external application."
 
 ;;; markdown
 (use-package markdown-mode
-  :defer t
-  :custom-face
-  (markdown-code-face
-   ((t (:inherit default :background "unspecified" :foreground "unspecified")))))
+  :defer t)
 
 ;;; occur
 (use-package replace
@@ -654,9 +643,6 @@ external application."
   :bind*
   (:map org-mode-map
         ("C-c t" . org-set-tags-command))
-  :custom-face
-  (org-block-begin-line ((t (:underline nil :overline t))))
-  (org-block-end-line ((t (:underline t :overline nil))))
   :custom
   (org-agenda-files (list org-directory))
   (org-src-fontify-natively t)
@@ -807,15 +793,26 @@ and source file."
   (lsp-rust-analyzer-proc-macro-enable t))
 
 ;;; theme
+(defun my/adjust-theme-faces (&rest _)
+  (modus-themes-with-colors
+    (custom-set-faces
+     '(help-argument-name ((t (:inherit (bold font-lock-function-name-face)))))
+     '(mode-line-active ((t (:box (:line-width 3 :style flat-button)))))
+     '(mode-line-inactive ((t (:box (:line-width 3 :style flat-button)))))
+     `(whitespace-line ((t (:underline (:color ,cyan :style dashes) :foreground nil :inherit nil))))
+     '(org-block-begin-line ((t (:underline nil :overline t))))
+     '(org-block-end-line ((t (:underline t :overline nil)))))))
+
 (use-package modus-themes
   :ensure t
   :config
+  (add-hook 'modus-themes-after-load-theme-hook #'my/adjust-theme-faces)
   (add-hook 'server-after-make-frame-hook
             (lambda ()
               (unless (custom-theme-enabled-p 'modus-vivendi)
-                (load-theme 'modus-vivendi t))))
+                (modus-themes-load-theme 'modus-vivendi))))
   (unless (daemonp)
-    (load-theme 'modus-vivendi t))
+    (modus-themes-load-theme 'modus-vivendi))
   :custom
   (modus-themes-common-palette-overrides '((fg-heading-1 magenta-cooler)
                                            (bg-region bg-cyan-subtle)
@@ -965,10 +962,7 @@ and source file."
   :custom
   (fill-column 80)
   (whitespace-line-column fill-column)
-  (whitespace-style '(face trailing lines-tail))
-  :custom-face
-  (whitespace-line
-   ((t (:underline (:color "cyan" :style wave) :foreground nil :inherit nil)))))
+  (whitespace-style '(face trailing lines-tail)))
 
 ;;; xml
 (defun my/format-xml ()
