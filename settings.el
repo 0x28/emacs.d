@@ -716,7 +716,7 @@ used in the query."
          (minibuffer-setup-hook (cons (lambda () (search-backward rg-sep nil t))
                                       minibuffer-setup-hook)))
     (consult-ripgrep (project-root (project-current t))
-                     (concat (thing-at-point 'symbol t) rg-sep))))
+                     rg-sep)))
 
 (defun my/find-other-file ()
   "Open the other file in the same project that has the longest common
