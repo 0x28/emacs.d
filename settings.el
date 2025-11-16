@@ -679,8 +679,11 @@ external application."
    '(("w" "org-protocol web link" entry (file "capture.org")
       "* %?%:description\n  %:link\n\n  %:initial\n"
       :prepend t)
-     ("r" "capture region" entry (file "capture.org")
-      "* %?\n  %i\n"
+     ("r" "region" entry (file "capture.org")
+      "* %^{Title}\n  #+begin_quote\n  %i#+end_quote\n  %?\n"
+      :prepend t)
+     ("n" "generic note" entry (file "notes.org")
+      "* %^{Title} %^G\n  %?\n"
       :prepend t))))
 
 (use-package org-refile
