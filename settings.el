@@ -234,6 +234,8 @@ triggered the abbrev expansion. See `define-abbrev' for details."
   ("<leader> f r" . consult-recent-file)
   ("<leader> f l" . consult-locate)
   ("<leader> h i" . consult-info)
+  (:map minibuffer-local-map
+        ("C-r" . consult-history))
   :config
   (consult-customize consult-line consult-imenu consult-imenu-multi
                      :preview-key 'any)
