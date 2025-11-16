@@ -1206,7 +1206,7 @@ A second call restores the old window configuration."
 USER-AT-HOST should have the form user@host. On Linux the
 method is \"ssh\", otherwise it's \"plink\"."
   (interactive (list (read-string "user@host: " nil 'my/ssh-history)))
-  (let ((method (if (eq system-type 'gnu/linux) "ssh" "plink")))
+  (let ((method (if (eq system-type 'gnu/linux) "scp" "pscp")))
     (find-file (format "/%s:%s:~" method user-at-host))))
 
 ;;;; duckduckgo dwim
