@@ -266,7 +266,6 @@ Doesn't respect version control ignores (like .gitignore)."
     (kbd "C-o") #'dired-display-file
     (kbd "TAB") #'dired-omit-mode)
   :custom
-  (dired-auto-revert-buffer t)
   (dired-dwim-target t)
   (dired-listing-switches "-ahl --group-directories-first --time-style=long-iso")
   (dired-omit-files "^\\.?#\\|^\\.[^.\n].*$")
@@ -703,8 +702,8 @@ external application."
 
 ;;; project
 (use-package project
-  :custom
-  (project-mode-line t))
+  :hook (find-file . (lambda () (unless (file-remote-p default-directory)
+                             (setq-local project-mode-line t)))))
 
 ;;; projectile
 (defun my/project-rg ()
@@ -754,7 +753,13 @@ and source file."
   ("<leader> p v" . projectile-vc)
   :config
   (projectile-mode)
+  ;; Causes hangs and slowdowns while using tramp, manual invocations of
+  ;; projectile will still use this functionality, but that's what we want
+  ;; anyway.
+  (remove-hook 'project-find-functions #'project-projectile)
   :custom
+  (projectile-auto-update-cache nil)
+  (projectile-dynamic-mode-line nil)
   (projectile-completion-system 'default)
   (projectile-enable-caching 'persistent)
   (projectile-enable-cmake-presets t))
