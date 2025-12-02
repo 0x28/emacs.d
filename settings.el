@@ -796,7 +796,7 @@ and source file."
 (use-package rust-mode
   :ensure t
   :bind* (:map rust-mode-map
-               ("C-c i" . rust-format-buffer))
+               ("C-c i" . lsp-format-buffer))
   :custom
   (lsp-rust-all-features t)
   (lsp-rust-server 'rust-analyzer)
