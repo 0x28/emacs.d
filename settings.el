@@ -592,7 +592,8 @@ external application."
 (use-package display-line-numbers
   :hook (prog-mode . display-line-numbers-mode)
   :custom
-  (display-line-numbers-width 3))
+  (display-line-numbers-width 3)
+  (display-line-numbers-width-start t))
 
 ;;; lsp
 (use-package lsp-mode
