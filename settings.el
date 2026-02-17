@@ -549,6 +549,9 @@ external application."
 (use-package hippie-exp
   :bind*
   ("M-/" . hippie-expand)
+  :config
+  (setopt hippie-expand-ignore-buffers
+          (remove 'dired-mode hippie-expand-ignore-buffers))
   :custom
   (hippie-expand-dabbrev-skip-space t)
   (hippie-expand-try-functions-list
