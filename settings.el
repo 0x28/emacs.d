@@ -881,7 +881,8 @@ and source file."
   (setq vc-log-short-style '(directory file))
   :custom
   (vc-follow-symlinks t)
-  (vc-display-status 'no-backend))
+  (vc-display-status 'no-backend)
+  (vc-handled-backends '(Git)))
 
 (defun my/vc-git-grep ()
   "Run `vc-git-grep' in the current project's root directory."
