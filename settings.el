@@ -391,6 +391,7 @@ external application."
   (evil-want-keybinding nil)
   (evil-undo-system 'undo-redo) ;; uses undo-only internally
   (evil-start-of-line t)
+  (evil-jumps-post-jump-hook '(my/recenter-and-highlight))
   :bind*
   ("<leader> SPC" . execute-extended-command)
   ("<leader> f f" . find-file)
