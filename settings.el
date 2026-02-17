@@ -537,7 +537,9 @@ external application."
   (:map haskell-mode-map
         ("C-c i" . lsp-format-buffer))
   (:map interactive-haskell-mode-map
-        ("M-." . nil)))
+        ("M-." . nil))
+  :custom
+  (haskell-interactive-mode-eval-mode #'haskell-mode))
 
 (use-package lsp-haskell
   :ensure t
