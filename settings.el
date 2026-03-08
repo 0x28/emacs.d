@@ -712,11 +712,7 @@ external application."
 If the ripgrep command supports the --pcre2 flag, spaces can be
 used in the query."
   (interactive)
-  (let* ((rg-sep " -- ")
-         (minibuffer-setup-hook (cons (lambda () (search-backward rg-sep nil t))
-                                      minibuffer-setup-hook)))
-    (consult-ripgrep (project-root (project-current t))
-                     rg-sep)))
+  (consult-ripgrep (project-root (project-current t))))
 
 (defun my/find-other-file ()
   "Open the other file in the same project that has the longest common
