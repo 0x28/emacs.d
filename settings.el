@@ -48,26 +48,6 @@ mode. It doesn't matter if they're inside comments or not."
         ("<leader> a r" . align-regexp)
         ("<leader> a w" . my/align-whitespace)))
 
-;;; avy
-(use-package avy
-  :ensure t
-  :config
-  (defun my/avy-goto-word-timer ()
-    "Like `avy-goto-char-timer' but it only jumps words."
-    (interactive)
-    (avy-with my/avy-goto-word-timer
-      (avy-process
-       (avy--read-candidates
-        (lambda (s)
-          (concat "\\b" (regexp-quote s)))))))
-  :bind*
-  ("C-;" . my/avy-goto-word-timer)
-  :custom
-  (avy-background t)
-  (avy-timeout-seconds 0.3)
-  ;; home row first
-  (avy-keys (string-to-list "jfkdls;ahgbceimnopqrtuvwxyz")))
-
 ;;; bookmarks
 ;; Some bookmark keybindings.
 (use-package bookmark
@@ -466,6 +446,15 @@ external application."
   :custom
   (display-fill-column-indicator-character nil))
 
+;;; flash
+(use-package flash
+  :ensure t
+  :bind*
+  ("C-;" . flash-jump)
+  :custom
+  (flash-labels "jfkdls;ahgbceimnopqrtuvwxyz")
+  (flash-rainbow t))
+
 ;;; flycheck/flymake
 (defun my/list-errors ()
   "Use flycheck or flymake to list errors."
@@ -813,6 +802,7 @@ and source file."
 (defun my/adjust-theme-faces (&rest _)
   (modus-themes-with-colors
     (custom-set-faces
+     '(flash-match ((t (:inherit highlight :underline nil))))
      '(help-argument-name ((t (:inherit (bold font-lock-function-name-face)))))
      '(mode-line-active ((t (:box (:line-width 3 :style flat-button)))))
      '(mode-line-inactive ((t (:box (:line-width 3 :style flat-button)))))
