@@ -1331,6 +1331,15 @@ to `recenter'."
   (recenter arg)
   (pulse-momentary-highlight-one-line nil))
 
+;;;; Create and visit scratch file
+(defun my/create-scratch-file (suffix)
+  "Create and visit a temporary file with SUFFIX."
+  (interactive "MSuffix: ")
+  (require 'xdg)
+  (let* ((dir (make-temp-file (file-name-concat (xdg-runtime-dir) "scratch_") :make-dir))
+         (file (expand-file-name (format "program.%s" suffix) dir)))
+    (find-file file)))
+
 ;;; local variables
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
