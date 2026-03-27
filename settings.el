@@ -1172,8 +1172,8 @@ focused."
 
 ;;;; indent buffer
 (defun my/indent-buffer ()
-  "Remove trailing whitespace, indent the current buffer and
-remove tabs. In Makefiles only remove trailing whitespace."
+  "Remove trailing whitespace, indent the current buffer and remove tabs.
+In Makefiles and python code only remove trailing whitespace."
   (interactive)
   (save-excursion
     (delete-trailing-whitespace)
