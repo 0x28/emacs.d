@@ -883,11 +883,18 @@ and source file."
   (let ((default-directory (project-root (project-current t))))
     (call-interactively #'vc-git-grep)))
 
+(defun my/vc-diff-ignore-whitespace ()
+  "Run `vc-diff' but ignore whitespace changes."
+  (interactive)
+  (let ((vc-git-diff-switches (cons "-w" vc-git-diff-switches)))
+    (vc-diff)))
+
 (use-package vc-git
   :commands (vc-git-grep)
   :bind*
   (:map vc-prefix-map
-        ("S" . #'my/vc-git-grep))
+        ("S" . #'my/vc-git-grep)
+        ("w" . #'my/vc-diff-ignore-whitespace))
   :custom
   ;; -w is a bad idea for whitespace sensitive languages
   (vc-git-annotate-switches '("-M"))
