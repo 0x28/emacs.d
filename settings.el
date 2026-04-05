@@ -1174,7 +1174,7 @@ focused."
       (abort-recursive-edit)
     (keyboard-quit)))
 
-(define-key global-map (kbd "C-g") #'my/keyboard-quit)
+(keymap-global-set "C-g" #'my/keyboard-quit)
 
 ;;;; edit init file
 (defun my/edit-init-file ()
