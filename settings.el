@@ -701,9 +701,18 @@ external application."
   (outline-minor-mode-highlight 'override))
 
 ;;; project
+(defun my/project-mode-line-format ()
+  "Calls `project-mode-line-format' but caches the result for the current
+buffer."
+  (if (boundp 'my/cached-project-mode-line)
+      my/cached-project-mode-line
+    (setq-local my/cached-project-mode-line (project-mode-line-format))))
+
 (use-package project
   :hook (find-file . (lambda () (unless (file-remote-p default-directory)
-                             (setq-local project-mode-line t)))))
+                             (setq-local project-mode-line t))))
+  :config
+  (setq project-mode-line-format '(:eval (my/project-mode-line-format))))
 
 ;;; projectile
 (defun my/project-rg ()
