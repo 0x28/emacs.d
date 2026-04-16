@@ -1172,6 +1172,8 @@ anywhere in the current workspace. Also works with `lsp'."
 (add-hook 'find-function-after-hook (lambda () (my/recenter-and-highlight 0)))
 ;; preview register contents
 (setopt register-use-preview nil)
+;; add global clipboard content to the kill-ring instead of overwriting it
+(setopt save-interprogram-paste-before-kill t)
 
 ;;; custom functions
 ;;;; custom quit
