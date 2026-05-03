@@ -921,6 +921,8 @@ and source file."
   ("<leader> g l" . magit-log-current)
   ("<leader> g c" . magit-branch-checkout)
   ("<leader> g f" . magit-fetch-all)
+  (:map magit-mode-map
+        ("SPC" . nil))
   :custom
   (magit-diff-refine-hunk t))
 
