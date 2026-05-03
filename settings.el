@@ -20,6 +20,23 @@
 (setopt custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
 
+;;; abbrev
+(defconst my/dabbrev-regexp (rx (seq (or line-start (not (any ";" alnum)))
+                                     (group (+ (any ";" alnum))))))
+
+(defun my/abbrev-back ()
+  "Like `backward-char' but don't insert the character that
+triggered the abbrev expansion. See `define-abbrev' for details."
+  (interactive)
+  (backward-char)
+  'no-insert)
+
+(use-package abbrev
+  :hook (prog-mode . abbrev-mode)
+  :demand
+  :config
+  (put 'my/abbrev-back 'no-self-insert t))
+
 ;;; additional keywords
 (defun my/add-new-keywords()
   "Some words like FIXME and TODO should be highlighted in every programming
@@ -59,17 +76,6 @@ mode. It doesn't matter if they're inside comments or not."
 
 ;;; C, C++
 (defalias 'cxx-mode #'c++-mode)
-(defconst my/dabbrev-regexp (rx (seq (or line-start (not (any ";" alnum)))
-                                     (group (+ (any ";" alnum))))))
-
-(defun my/abbrev-back ()
-  "Like `backward-char' but don't insert the character that
-triggered the abbrev expansion. See `define-abbrev' for details."
-  (interactive)
-  (backward-char)
-  'no-insert)
-
-(put 'my/abbrev-back 'no-self-insert t)
 
 (use-package cc-mode
   :defer t
@@ -109,10 +115,6 @@ triggered the abbrev expansion. See `define-abbrev' for details."
     :regexp my/dabbrev-regexp
     :parents (list c-mode-abbrev-table))
 
-  (put 'yas-expand 'no-self-insert t)
-
-  (dolist (key (list "mu" "ms" "fe" "sc" "dc" "rs" "l"))
-    (define-abbrev c++-mode-abbrev-table (concat ";" key) key 'yas-expand))
 
   (dolist (map (list c-mode-map c++-mode-map))
     (keymap-set map "C-c i" #'lsp-format-buffer))
@@ -1023,10 +1025,21 @@ anywhere in the current workspace. Also works with `lsp'."
       (call-interactively #'xref-find-apropos))))
 
 ;;; yasnippet
+(defun my/map-yas-to-abbrev ()
+  "Make yasnippets available as abbrevs that start with ';'."
+  (dolist (key (mapcan #'yas--table-all-keys
+                       (yas--get-snippet-tables major-mode)))
+    (abbrev-table-put local-abbrev-table :regexp my/dabbrev-regexp)
+    (define-abbrev local-abbrev-table (concat ";" key) key 'yas-expand)))
+
 (use-package yasnippet
   :ensure t
-  :hook (prog-mode . yas-minor-mode)
+  :hook
+  (prog-mode . yas-minor-mode)
+  (yas-minor-mode . my/map-yas-to-abbrev)
   :config
+  ;; don't insert spaces when called by abbrev
+  (put 'yas-expand 'no-self-insert t)
   (yas-load-directory (locate-user-emacs-file "snippets") 'jit))
 
 ;;; sane defaults
