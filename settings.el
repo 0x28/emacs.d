@@ -659,7 +659,10 @@ external application."
     "q" #'org-agenda-quit
     "K" #'org-agenda-earlier
     "J" #'org-agenda-later)
-  (evil-set-initial-state 'org-agenda-mode 'normal))
+  (evil-set-initial-state 'org-agenda-mode 'normal)
+  :custom
+  (org-agenda-start-day "-1d")
+  (org-agenda-start-on-weekday nil))
 
 (use-package org-protocol
   :demand
