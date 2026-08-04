@@ -601,7 +601,7 @@ external application."
   (setq gc-cons-threshold (* 10 800000)
         read-process-output-max (* 1024 1024))
   :custom
-  (lsp-completion-provider :none)
+  (lsp-completion-provider :capf)
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-lens-enable nil)
   (lsp-enable-on-type-formatting nil))
