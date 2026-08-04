@@ -1379,6 +1379,7 @@ to `recenter'."
   (require 'xdg)
   (let* ((dir (make-temp-file (file-name-concat (xdg-runtime-dir) "scratch_") :make-dir))
          (file (expand-file-name (format "program.%s" suffix) dir)))
+    (write-region "" nil (expand-file-name ".projectile" dir))
     (find-file file)))
 
 ;;; local variables
