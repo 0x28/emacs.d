@@ -866,9 +866,10 @@ and source file."
     :transient-suffix 'stay
     :transient-non-suffix 'exit
     ["multiple cursors"
-     [("C-a" "all" evil-mc-make-all-cursors)
-      ("C-n" "next" evil-mc-make-and-goto-next-match)
-      ("C-p" "prev" evil-mc-make-and-goto-prev-match)]])
+     :class transient-row
+     ("C-a" "all" evil-mc-make-all-cursors)
+     ("C-n" "next" evil-mc-make-and-goto-next-match)
+     ("C-p" "prev" evil-mc-make-and-goto-prev-match)])
 
   (evil-define-key 'normal 'global (kbd "<leader> m") #'my/mc-dispatch))
 
