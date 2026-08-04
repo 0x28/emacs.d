@@ -837,10 +837,18 @@ and source file."
                                            (bg-removed bg-removed-faint))))
 
 ;;; tramp
+(defun my/elevate-and-revert-buffer ()
+  "Revert current buffer with elevated permissions, using sudo.
+See `tramp-revert-buffer-with-sudo'. Recenters after the revert."
+  (interactive)
+  (require 'tramp)
+  (tramp-revert-buffer-with-sudo)
+  (my/recenter-and-highlight))
+
 (use-package tramp
   :defer t
   :bind*
-  ("<leader> f S" . tramp-revert-buffer-with-sudo))
+  ("<leader> f e" . my/elevate-and-revert-buffer))
 
 ;;; transient
 (use-package transient
