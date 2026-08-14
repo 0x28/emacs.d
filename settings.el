@@ -21,8 +21,8 @@
 (load custom-file t)
 
 ;;; abbrev
-(defconst my/dabbrev-regexp (rx (seq (or line-start (not (any ";" alnum)))
-                                     (group (+ (any ";" alnum))))))
+(defconst my/abbrev-regexp (rx (seq (or line-start (not (any ";" alnum)))
+                                    (group (+ (any ";" alnum))))))
 
 (defun my/abbrev-back ()
   "Like `backward-char' but don't insert the character that
@@ -96,7 +96,7 @@ mode. It doesn't matter if they're inside comments or not."
       (";po" "#pragma once\n")
       (";c" "const"))
     "C abbrevs"
-    :regexp my/dabbrev-regexp)
+    :regexp my/abbrev-regexp)
 
   (define-abbrev-table 'c++-mode-abbrev-table
     '((";f" "std::function<>" my/abbrev-back)
@@ -112,7 +112,7 @@ mode. It doesn't matter if they're inside comments or not."
       (";uu" "[[maybe_unused]]")
       (";sa" "static_assert()" my/abbrev-back))
     "C++ abbrevs"
-    :regexp my/dabbrev-regexp
+    :regexp my/abbrev-regexp
     :parents (list c-mode-abbrev-table))
 
 
@@ -1043,7 +1043,7 @@ anywhere in the current workspace. Also works with `lsp'."
   "Make yasnippets available as abbrevs that start with ';'."
   (dolist (key (mapcan #'yas--table-all-keys
                        (yas--get-snippet-tables major-mode)))
-    (abbrev-table-put local-abbrev-table :regexp my/dabbrev-regexp)
+    (abbrev-table-put local-abbrev-table :regexp my/abbrev-regexp)
     (define-abbrev local-abbrev-table (concat ";" key) key 'yas-expand)))
 
 (use-package yasnippet
