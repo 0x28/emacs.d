@@ -1204,6 +1204,8 @@ anywhere in the current workspace. Also works with `lsp'."
 (setopt save-interprogram-paste-before-kill t)
 ;; don't save duplicates to the kill-ring
 (setopt kill-do-not-save-duplicates t)
+;; show the working directory when invoking a shell command
+(setopt shell-command-prompt-show-cwd t)
 
 ;;; custom functions
 ;;;; custom quit
