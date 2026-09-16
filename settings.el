@@ -896,6 +896,7 @@ See `tramp-revert-buffer-with-sudo'. Recenters after the revert."
   (setq vc-log-short-style '(directory file))
   :custom
   (vc-follow-symlinks t)
+  (vc-find-revision-no-save t)
   (vc-display-status 'no-backend)
   (vc-handled-backends '(Git)))
 
