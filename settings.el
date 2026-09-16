@@ -795,7 +795,7 @@ and source file."
   :config
   (repeat-mode)
   :custom
-  (other-window-repeat-map nil))
+  (other-window-repeat-map (make-sparse-keymap)))
 
 ;;; Rust
 (use-package rust-mode
