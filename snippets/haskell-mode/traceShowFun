@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: traceShowFun
+# key: tsf
+# expand-env: ((yas-indent-line 'fixed))
+# --
+$1 | traceShow $1 False = undefined
