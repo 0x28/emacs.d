@@ -1202,6 +1202,8 @@ anywhere in the current workspace. Also works with `lsp'."
 (setopt register-use-preview nil)
 ;; add global clipboard content to the kill-ring instead of overwriting it
 (setopt save-interprogram-paste-before-kill t)
+;; don't save duplicates to the kill-ring
+(setopt kill-do-not-save-duplicates t)
 
 ;;; custom functions
 ;;;; custom quit
